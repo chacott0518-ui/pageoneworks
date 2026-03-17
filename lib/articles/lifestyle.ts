@@ -1,0 +1,38 @@
+import type { Article } from '../data';
+
+export const lifestyleArticles: Article[] = [
+  {
+    id: 5,
+    slug: 'art-basel-hong-kong-2026',
+    category: 'LIFESTYLE & TRAVEL',
+    categorySlug: 'lifestyle-travel',
+    title: 'Art Basel Hong Kong 2026',
+    titleKo: '아트 바젤 홍콩 2026: 주목할 작품과 컬렉팅 가이드',
+    excerpt: '세계 최고 아트페어에서 발견한 올해의 하이라이트.',
+    date: '2026.03.06',
+    readTime: '5 MIN',
+    image: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&q=80',
+    featured: true,
+    tags: ['아트', '컬렉팅', '홍콩'],
+    author: 'PAGEONEWORKS',
+    body: '아트 바젤 홍콩 2026이 성황리에 막을 내렸습니다.\n\n올해는 한국 작가들의 약진이 두드러졌습니다.\n\n미술 투자는 자산 포트폴리오의 일부로 자리잡고 있습니다.',
+  },
+  {
+    id: 6,
+    slug: 'michelin-seoul-2026',
+    category: 'LIFESTYLE & TRAVEL',
+    categorySlug: 'lifestyle-travel',
+    title: 'Seoul Michelin 2026',
+    titleKo: '미쉐린 서울 2026: 새로운 별들의 등장',
+    excerpt: '올해 새롭게 별을 받은 서울의 레스토랑과 셰프들.',
+    date: '2026.03.05',
+    readTime: '4 MIN',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    featured: true,
+    tags: ['미쉐린', '레스토랑', '서울'],
+    author: 'PAGEONEWORKS',
+    body: '미쉐린 가이드 서울 2026이 발표되었습니다.\n\n올해는 총 3곳이 새롭게 별을 받았습니다.\n\n강남과 성수동의 신개념 한식당들이 대거 포함되었습니다.',
+  },
+];

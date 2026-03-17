@@ -1,0 +1,6 @@
+{
+  "/page": "app/page.js",
+  "/community/page": "app/community/page.js",
+  "/archive/page": "app/archive/page.js",
+  "/category/[slug]/page": "app/category/[slug]/page.js"
+}

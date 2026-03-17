@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-space-mono: 'Space Mono', monospace;
+
+  /* 폰트 표준 스케일 */
+  --text-mono-xs: 11px;     /* 태그, 레이블, 캡션 최소 */
+  --text-mono-sm: 12px;     /* 버튼, 네비, 날짜 */
+  --text-mono-md: 13px;     /* 중요 레이블 */
+  --text-body-sm: 1rem;     /* 본문 작은 텍스트 */
+  --text-body: 1.05rem;     /* 본문 기본 */
+  --text-body-lg: 1.1rem;   /* 본문 강조 */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* 모바일 폰트 자동 확대 방지하되 최소 크기 보장 */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: #0a0a0a;
+  color: #f5f2ed;
+  font-family: var(--font-inter);
+  font-size: 16px; /* 기본 16px 고정 */
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Space Mono 최소 크기 전역 보장 */
+[style*="space-mono"],
+[style*="Space Mono"] {
+  font-size: max(var(--text-mono-xs), 11px) !important;
+}
+
+/* Noise Overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+/* 모바일에서 한글 줄바꿈 자연스럽게 */
+h2, h3, h4, p {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}
+
+/* Ticket cutout */
+.ticket-cutout { position: relative; }
+.ticket-cutout::before,
+.ticket-cutout::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #f5f2ed;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ticket-cutout::before { left: -8px; }
+.ticket-cutout::after { right: -8px; }
+
+.dashed-border-b { border-bottom: 1px dashed rgba(0,0,0,0.15); }
+.dashed-border-t { border-top: 1px dashed rgba(0,0,0,0.15); }
+
+.category-line { position: relative; overflow: hidden; }
+.category-line::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.4s ease;
+}
+.category-line:hover::after { width: 100%; }
+
+.article-image { transition: transform 1.5s cubic-bezier(0.33, 1, 0.68, 1); }
+.article-card:hover .article-image { transform: scale(1.05); }
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+}
