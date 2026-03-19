@@ -25,6 +25,9 @@ export type Article = {
   tags?: string[];
   author?: string;
   body?: string;
+  isSponsored?: boolean;
+  sponsorName?: string;
+  sponsorUrl?: string;
 };
 
 export const categories: Category[] = [
@@ -52,9 +55,9 @@ export const categories: Category[] = [
     id: '03',
     slug: 'drive-tech',
     title: 'DRIVE & TECH',
-    titleKo: '모빌리티·AI',
-    desc: 'Mobility & AI',
-    descKo: '자동화·미래 모빌리티·기술 트렌드',
+    titleKo: '모빌리티·AI·IT',
+    desc: 'Mobility, AI & Tech',
+    descKo: '자동화·미래 모빌리티·AI·IT 트렌드',
     color: '#7A8A9E',
     image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=85',
   },
@@ -72,14 +75,44 @@ export const categories: Category[] = [
     id: '05',
     slug: 'lifestyle-travel',
     title: 'LIFESTYLE & TRAVEL',
-    titleKo: '라이프·여행·미식·골프',
-    desc: 'Life, Travel & Dining',
-    descKo: '미식·골프·호텔·여행·아트',
+    titleKo: '라이프·여행·골프',
+    desc: 'Life, Travel & Golf',
+    descKo: '골프·호텔·여행·라이프스타일',
     color: '#9A7A9E',
     image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=85',
   },
   {
     id: '06',
+    slug: 'beauty-wellness',
+    title: 'BEAUTY & WELLNESS',
+    titleKo: '뷰티·피부·성형',
+    desc: 'Beauty & Wellness',
+    descKo: '피부과·성형외과·뷰티·스파',
+    color: '#C4899A',
+    image: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=85',
+  },
+  {
+    id: '07',
+    slug: 'food-dining',
+    title: 'FOOD & DINING',
+    titleKo: '미식·레스토랑·와인',
+    desc: 'Food & Dining',
+    descKo: '미쉐린·레스토랑·와인·건강식품',
+    color: '#C4A27A',
+    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85',
+  },
+  {
+    id: '08',
+    slug: 'education',
+    title: 'EDUCATION',
+    titleKo: '교육·유학·자격증',
+    desc: 'Education & Study',
+    descKo: '유학·어학원·프리미엄 교육기관',
+    color: '#7A9EB5',
+    image: 'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=1200&q=85',
+  },
+  {
+    id: '09',
     slug: 'archive',
     title: 'ARCHIVE',
     titleKo: '아카이브',

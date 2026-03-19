@@ -12,7 +12,9 @@ const tabs = [
   { label: 'DRIVE & TECH', value: 'DRIVE & TECH' },
   { label: 'LEGAL & FINANCE', value: 'LEGAL & FINANCE' },
   { label: 'LIFESTYLE & TRAVEL', value: 'LIFESTYLE & TRAVEL' },
-  { label: 'ARCHIVE', value: 'ARCHIVE' },
+  { label: 'BEAUTY & WELLNESS', value: 'BEAUTY & WELLNESS' },
+  { label: 'FOOD & DINING', value: 'FOOD & DINING' },
+  { label: 'EDUCATION', value: 'EDUCATION' },
 ];
 
 export function MagazineGrid() {
@@ -25,7 +27,7 @@ export function MagazineGrid() {
   const displayList = filtered.length > 0 ? filtered : articles;
   const main = displayList[0];
   const side = displayList.slice(1, 3);
-  const bottom = displayList.slice(3, 7);
+  const bottom = displayList.slice(3, 9);
   const mobileSwipe = displayList.slice(1, 3);
 
   return (
@@ -130,7 +132,7 @@ export function MagazineGrid() {
           </div>
 
           {bottom.length > 0 && (
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {bottom.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group">
                   <div className="relative overflow-hidden mb-3 bg-black" style={{ aspectRatio: '4/3' }}>

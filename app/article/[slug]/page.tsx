@@ -1,3 +1,6 @@
+import { ArticleJsonLd } from '@/components/ArticleJsonLd';
+import { ReadingProgress } from '@/components/ReadingProgress';
+import { ArticleCredit } from '@/components/ArticleCredit';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
@@ -107,6 +110,8 @@ export default function ArticlePage({ params }: Props) {
   return (
     <>
       <Header />
+      <ArticleJsonLd article={article} />
+      <ReadingProgress />
 
       {/* 히어로 */}
       <section className="relative w-full bg-black overflow-hidden" style={{ minHeight: '480px' }}>
@@ -218,6 +223,7 @@ export default function ArticlePage({ params }: Props) {
           )}
 
           {/* 카앤가이 정보 박스 */}
+          <ArticleCredit article={article} />
           {isCarnguy && (
             <div className="mb-12 p-6 md:p-8 bg-white border border-black/10 shadow-sm">
               <div className="flex flex-col gap-5">

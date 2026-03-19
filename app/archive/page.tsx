@@ -19,17 +19,17 @@ export default function ArchivePage() {
 
       <main>
         {/* Header */}
-        <section className="pt-32 pb-16 px-6 md:px-12 bg-[#0d0d0d]">
+        <section className="pt-28 md:pt-32 pb-10 md:pb-16 px-5 md:px-12 bg-[#0d0d0d]">
           <div className="max-w-[1600px] mx-auto">
             <p
-              className="font-mono text-[9px] uppercase tracking-[0.3em] text-cream/40 mb-5"
-              style={{ fontFamily: 'var(--font-space-mono)' }}
+              className="text-cream/40 mb-4 uppercase"
+              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.3em' }}
             >
               Archive · 아카이브
             </p>
             <h1
-              className="text-5xl md:text-7xl font-light text-cream"
-              style={{ fontFamily: 'var(--font-cormorant)' }}
+              className="font-light text-cream"
+              style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(2.2rem, 8vw, 5rem)' }}
             >
               전체 아티클
             </h1>
@@ -37,29 +37,29 @@ export default function ArchivePage() {
         </section>
 
         {/* Filter bar */}
-        <section className="sticky top-0 z-30 bg-[#0d0d0d]/95 backdrop-blur-md border-b border-white/5 px-6 md:px-12 py-4">
-          <div className="max-w-[1600px] mx-auto flex gap-3 overflow-x-auto hide-scrollbar">
+        <section className="sticky top-0 z-30 bg-[#0d0d0d]/95 backdrop-blur-md border-b border-white/5 px-5 md:px-12 py-3">
+          <div className="max-w-[1600px] mx-auto flex gap-2 overflow-x-auto hide-scrollbar">
             <button
               onClick={() => setActiveFilter(null)}
-              className={`shrink-0 font-mono text-[8px] uppercase tracking-widest px-4 py-2 border transition-colors ${
+              className={`shrink-0 uppercase px-3 py-1.5 border transition-colors ${
                 !activeFilter
                   ? 'border-cream text-cream'
                   : 'border-white/15 text-cream/40 hover:border-white/30'
               }`}
-              style={{ fontFamily: 'var(--font-space-mono)' }}
+              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.15em' }}
             >
-              All
+              ALL
             </button>
             {categories.map((cat) => (
               <button
                 key={cat.slug}
                 onClick={() => setActiveFilter(cat.slug)}
-                className={`shrink-0 font-mono text-[8px] uppercase tracking-widest px-4 py-2 border transition-colors ${
+                className={`shrink-0 uppercase px-3 py-1.5 border transition-colors ${
                   activeFilter === cat.slug
                     ? 'border-cream text-cream'
                     : 'border-white/15 text-cream/40 hover:border-white/30'
                 }`}
-                style={{ fontFamily: 'var(--font-space-mono)' }}
+                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.15em' }}
               >
                 {cat.title}
               </button>
@@ -68,47 +68,52 @@ export default function ArchivePage() {
         </section>
 
         {/* Articles list */}
-        <section className="py-16 md:py-20 px-6 md:px-12 bg-[#0a0a0a] min-h-[60vh]">
+        <section className="py-10 md:py-20 px-5 md:px-12 bg-[#0a0a0a] min-h-[60vh]">
           <div className="max-w-[1600px] mx-auto">
             <ul className="divide-y divide-white/5">
               {filtered.map((article, i) => (
                 <li key={article.id}>
                   <Link
                     href={`/article/${article.slug}`}
-                    className="group flex flex-col md:flex-row items-start md:items-center justify-between gap-4 py-8 hover:pl-2 transition-all duration-300"
+                    className="group flex items-center justify-between gap-3 py-4 md:py-8 hover:pl-1.5 transition-all duration-300"
                   >
-                    <div className="flex items-start md:items-center gap-6 md:gap-10 flex-1 min-w-0">
+                    <div className="flex items-center gap-4 md:gap-10 flex-1 min-w-0">
                       <span
-                        className="font-mono text-[9px] opacity-25 group-hover:opacity-50 transition-opacity shrink-0 pt-1 md:pt-0"
-                        style={{ fontFamily: 'var(--font-space-mono)' }}
+                        className="opacity-25 group-hover:opacity-50 transition-opacity shrink-0"
+                        style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px' }}
                       >
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <div className="flex-1 min-w-0">
                         <p
-                          className="font-mono text-[8px] uppercase tracking-widest text-cream/40 mb-2"
-                          style={{ fontFamily: 'var(--font-space-mono)' }}
+                          className="text-cream/40 mb-1 uppercase"
+                          style={{ fontFamily: 'var(--font-space-mono)', fontSize: '8px', letterSpacing: '0.12em' }}
                         >
                           {article.category}
                         </p>
                         <h3
-                          className="text-xl md:text-2xl font-light text-cream line-clamp-2 group-hover:italic transition-all"
-                          style={{ fontFamily: 'var(--font-cormorant)', wordBreak: 'keep-all' }}
+                          className="font-light text-cream group-hover:italic transition-all leading-snug"
+                          style={{
+                            fontFamily: 'var(--font-cormorant)',
+                            fontSize: 'clamp(0.95rem, 2vw, 1.5rem)',
+                            wordBreak: 'keep-all',
+                            lineHeight: '1.35',
+                          }}
                         >
                           {article.titleKo}
                         </h3>
                       </div>
                     </div>
-                    <div className="flex items-center gap-6 shrink-0 ml-10 md:ml-0">
+                    <div className="shrink-0 flex flex-col md:flex-row items-end md:items-center gap-1 md:gap-6">
                       <span
-                        className="font-mono text-[8px] uppercase tracking-widest text-cream/30"
-                        style={{ fontFamily: 'var(--font-space-mono)' }}
+                        className="text-cream/30"
+                        style={{ fontFamily: 'var(--font-space-mono)', fontSize: '8px', letterSpacing: '0.1em', whiteSpace: 'nowrap' }}
                       >
                         {article.date}
                       </span>
                       <span
-                        className="font-mono text-[8px] uppercase tracking-widest text-cream/30 hidden md:block"
-                        style={{ fontFamily: 'var(--font-space-mono)' }}
+                        className="text-cream/30 hidden md:block"
+                        style={{ fontFamily: 'var(--font-space-mono)', fontSize: '8px', letterSpacing: '0.1em' }}
                       >
                         {article.readTime}
                       </span>
@@ -120,7 +125,10 @@ export default function ArchivePage() {
 
             {filtered.length === 0 && (
               <div className="text-center py-24">
-                <p className="font-mono text-[9px] uppercase tracking-widest text-cream/30">
+                <p
+                  className="text-cream/30 uppercase"
+                  style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.2em' }}
+                >
                   이 카테고리에 아티클이 없습니다.
                 </p>
               </div>

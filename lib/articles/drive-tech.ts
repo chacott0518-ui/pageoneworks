@@ -33,6 +33,9 @@ export const driveTechArticles: Article[] = [
     featured: true,
     tags: ['수입차수리', '경기도광주', '판금도색', 'BMW수리', '벤츠수리', '사고수리', '보험처리'],
     author: 'PAGEONEWORKS',
+    isSponsored: true,
+    sponsorName: '카앤가이 CAR&GUY',
+    sponsorUrl: 'tel:027395415',
     body: `수입차를 타다 보면 누구나 한 번쯤 마주하는 순간이 있습니다. 주차장에서 발견한 긁힘, 갑작스러운 접촉사고, 빗길에서의 미끄러짐. 문제는 그 다음입니다. 어디서 고쳐야 하나.
 
 일반 공업사에 맡겼다가 이색현상이 생겨 낭패를 본 경험, 딜러십 서비스센터에 맡겼더니 수리비가 예상보다 훨씬 나와 당황한 경험. 수입차 오너라면 한 번쯤 겪어봤을 이야기입니다.

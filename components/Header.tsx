@@ -2,18 +2,22 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { X, ChevronDown } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { X } from 'lucide-react';
 
-const mainNav = [
+const categoryNav = [
   { label: 'VITALITY', slug: 'vitality', ko: '의료·안티에이징·병원' },
   { label: 'PROPERTIES', slug: 'properties', ko: '프리미엄 부동산' },
-  { label: 'DRIVE & TECH', slug: 'drive-tech', ko: '모빌리티·AI' },
+  { label: 'DRIVE & TECH', slug: 'drive-tech', ko: '모빌리티·AI·IT' },
   { label: 'LEGAL & FINANCE', slug: 'legal-finance', ko: '세무·법률·자산' },
-  { label: 'LIFESTYLE & TRAVEL', slug: 'lifestyle-travel', ko: '라이프·여행·미식·골프' },
+  { label: 'LIFESTYLE & TRAVEL', slug: 'lifestyle-travel', ko: '라이프·여행·골프' },
+  { label: 'BEAUTY & WELLNESS', slug: 'beauty-wellness', ko: '뷰티·피부·성형' },
+  { label: 'FOOD & DINING', slug: 'food-dining', ko: '미식·레스토랑·와인' },
+  { label: 'EDUCATION', slug: 'education', ko: '교육·유학·자격증' },
   { label: 'ARCHIVE', slug: 'archive', ko: '전체 아티클' },
 ];
 
-const extraNav = [
+const moreNav = [
   { label: 'COMMUNITY', slug: 'community', ko: '커뮤니티' },
   { label: 'NOTICE', slug: 'notice', ko: '공지사항' },
   { label: 'ABOUT', slug: 'about', ko: '소개' },
@@ -22,7 +26,7 @@ const extraNav = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -40,85 +44,63 @@ export function Header() {
     return `/category/${slug}`;
   };
 
+  const isActive = (slug: string) => {
+    if (slug === 'archive') return pathname === '/archive';
+    if (['community', 'notice', 'about'].includes(slug)) return pathname === `/${slug}`;
+    return pathname === `/category/${slug}`;
+  };
+
   return (
     <>
+      {/* 헤더 */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'bg-black/90 backdrop-blur-md' : 'bg-black/60 backdrop-blur-sm'
+          scrolled ? 'bg-black/95 backdrop-blur-md' : 'bg-black/70 backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-5 md:px-8 h-14 md:h-16 flex items-center justify-between gap-4">
-
+        <div
+          className="max-w-[1600px] mx-auto flex items-center justify-between"
+          style={{ padding: '0 48px', height: '56px' }}
+        >
           {/* 로고 */}
           <Link href="/" className="flex flex-col leading-none group shrink-0">
             <span
-              className="text-cream font-semibold uppercase group-hover:opacity-70 transition-opacity"
-              style={{ fontFamily: 'var(--font-cormorant)', fontSize: '15px', letterSpacing: '0.18em' }}
+              className="text-cream uppercase group-hover:opacity-70 transition-opacity"
+              style={{
+                fontFamily: 'var(--font-cormorant)',
+                fontSize: 'clamp(13px, 1.5vw, 16px)',
+                fontWeight: 500,
+                letterSpacing: '0.18em',
+                lineHeight: 1.2,
+              }}
             >
               PAGEONEWORKS
             </span>
             <span
-              className="text-cream/40 mt-0.5 uppercase"
-              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.2em' }}
+              className="text-cream/40 uppercase mt-1"
+              style={{
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: '9px',
+                letterSpacing: '0.22em',
+                lineHeight: 1,
+              }}
             >
               Premium Magazine
             </span>
           </Link>
 
-          {/* PC 네비 */}
-          <nav className="hidden lg:flex items-center gap-3 xl:gap-5 flex-1 justify-center">
-            {mainNav.map((item) => (
-              <Link
-                key={item.slug}
-                href={getHref(item.slug)}
-                className="text-cream/65 hover:text-cream font-medium uppercase transition-colors whitespace-nowrap"
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.08em' }}
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            <span className="text-cream/15 text-sm">|</span>
-
-            <div className="relative">
-              <button
-                onClick={() => setMoreOpen(!moreOpen)}
-                onBlur={() => setTimeout(() => setMoreOpen(false), 150)}
-                className="flex items-center gap-1 text-cream/65 hover:text-cream font-medium uppercase transition-colors whitespace-nowrap"
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.08em' }}
-              >
-                MORE
-                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${moreOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {moreOpen && (
-                <div className="absolute top-full right-0 mt-2 w-48 bg-[#1a1a1a] border border-white/10 shadow-xl z-50">
-                  {extraNav.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={getHref(item.slug)}
-                      onClick={() => setMoreOpen(false)}
-                      className="flex flex-col px-4 py-3 hover:bg-white/5 transition-colors border-b border-white/5 last:border-0"
-                    >
-                      <span className="text-cream/85" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '15px' }}>
-                        {item.label}
-                      </span>
-                      <span className="text-cream/30 mt-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px' }}>
-                        {item.ko}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          </nav>
-
           {/* 우측 */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center" style={{ gap: '12px' }}>
             <Link
               href="/community"
-              className="hidden md:inline-flex items-center border border-cream/25 text-cream/65 hover:border-cream/60 hover:text-cream uppercase transition-all whitespace-nowrap px-3 py-1.5"
-              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}
+              className="hidden md:inline-flex items-center border border-cream/25 text-cream/65 hover:border-cream/60 hover:text-cream uppercase transition-all"
+              style={{
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: '11px',
+                letterSpacing: '0.12em',
+                padding: '7px 14px',
+                lineHeight: 1,
+              }}
             >
               구독하기
             </Link>
@@ -126,105 +108,263 @@ export function Header() {
             <button
               onClick={() => setDrawerOpen(true)}
               aria-label="메뉴 열기"
-              className="flex flex-col justify-center gap-[5px] w-8 h-8 lg:hidden"
+              className="flex flex-col items-end justify-center"
+              style={{ gap: '5px', width: '32px', height: '32px' }}
             >
-              <span className="block w-5 h-px bg-cream" />
-              <span className="block w-5 h-px bg-cream" />
-              <span className="block w-3.5 h-px bg-cream" />
+              <span className="block bg-cream" style={{ width: '20px', height: '1px' }} />
+              <span className="block bg-cream" style={{ width: '20px', height: '1px' }} />
+              <span className="block bg-cream" style={{ width: '14px', height: '1px' }} />
             </button>
           </div>
         </div>
       </header>
 
-      {/* 딤 */}
+      {/* 딤 오버레이 */}
       <div
         onClick={() => setDrawerOpen(false)}
-        className={`fixed inset-0 z-[49] bg-black/50 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[49] bg-black/60 transition-opacity duration-300 ${
           drawerOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       />
 
-      {/* 모바일 드로어 */}
+      {/* 드로어 */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-[51] w-[80vw] max-w-[320px] bg-[#1c1c1c] flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
+        className={`fixed top-0 right-0 bottom-0 z-[51] flex flex-col transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
           drawerOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{
+          width: 'clamp(280px, 80vw, 360px)',
+          backgroundColor: '#141414',
+        }}
       >
-        <div className="flex items-center justify-between px-5 h-14 border-b border-white/10 shrink-0">
+        {/* 드로어 헤더 */}
+        <div
+          className="flex items-center justify-between shrink-0"
+          style={{
+            padding: '0 24px',
+            height: '56px',
+            borderBottom: '1px solid rgba(255,255,255,0.08)',
+          }}
+        >
           <span
-            className="text-cream/50 uppercase tracking-[0.25em]"
-            style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px' }}
+            className="text-cream/40 uppercase"
+            style={{
+              fontFamily: 'var(--font-space-mono)',
+              fontSize: '10px',
+              letterSpacing: '0.28em',
+              lineHeight: 1,
+            }}
           >
             Menu
           </span>
-          <button onClick={() => setDrawerOpen(false)} className="text-cream/50 hover:text-cream transition-colors p-1">
-            <X className="w-4 h-4" />
+          <button
+            onClick={() => setDrawerOpen(false)}
+            className="text-cream/40 hover:text-cream transition-colors"
+            style={{ padding: '4px' }}
+          >
+            <X style={{ width: '16px', height: '16px' }} />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-5 py-5">
-          <p className="text-cream/30 uppercase tracking-[0.25em] mb-4" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px' }}>
+        {/* 드로어 콘텐츠 */}
+        <nav
+          className="flex-1 overflow-y-auto"
+          style={{ padding: '20px 24px' }}
+        >
+          {/* 카테고리 레이블 */}
+          <p
+            className="text-cream/30 uppercase"
+            style={{
+              fontFamily: 'var(--font-space-mono)',
+              fontSize: '10px',
+              letterSpacing: '0.28em',
+              lineHeight: 1,
+              marginBottom: '12px',
+            }}
+          >
             Categories
           </p>
-          {mainNav.map((item, i) => (
-            <Link
-              key={item.slug}
-              href={getHref(item.slug)}
-              onClick={() => setDrawerOpen(false)}
-              className="group flex items-center justify-between py-4 border-b border-white/8"
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-cream/25 w-5 shrink-0" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px' }}>
-                  {String(i + 1).padStart(2, '0')}
+
+          {/* 카테고리 목록 */}
+          {categoryNav.map((item, i) => {
+            const active = isActive(item.slug);
+            return (
+              <Link
+                key={item.slug}
+                href={getHref(item.slug)}
+                onClick={() => setDrawerOpen(false)}
+                className="group flex items-center justify-between transition-all duration-200"
+                style={{
+                  padding: 'clamp(10px, 1.5vh, 14px) 0',
+                  paddingLeft: active ? '12px' : '0',
+                  borderBottom: '1px solid rgba(255,255,255,0.06)',
+                  borderLeft: active ? '2px solid #1a1aff' : '2px solid transparent',
+                }}
+              >
+                <div className="flex items-center" style={{ gap: '12px' }}>
+                  <span
+                    className="shrink-0"
+                    style={{
+                      fontFamily: 'var(--font-space-mono)',
+                      fontSize: '9px',
+                      color: 'rgba(245,242,237,0.2)',
+                      width: '18px',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <p
+                      className="group-hover:italic transition-all duration-200"
+                      style={{
+                        fontFamily: 'var(--font-cormorant)',
+                        fontSize: 'clamp(15px, 2vw, 18px)',
+                        fontWeight: 300,
+                        color: active ? '#f5f2ed' : 'rgba(245,242,237,0.75)',
+                        lineHeight: 1.2,
+                        letterSpacing: '0.02em',
+                      }}
+                    >
+                      {item.label}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: 'var(--font-space-mono)',
+                        fontSize: '9px',
+                        color: 'rgba(245,242,237,0.3)',
+                        lineHeight: 1,
+                        letterSpacing: '0.08em',
+                        marginTop: '4px',
+                      }}
+                    >
+                      {item.ko}
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className="group-hover:text-cream/60 transition-colors"
+                  style={{
+                    color: 'rgba(245,242,237,0.2)',
+                    fontSize: '13px',
+                    lineHeight: 1,
+                  }}
+                >
+                  →
                 </span>
+              </Link>
+            );
+          })}
+
+          {/* 구분선 */}
+          <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '16px 0' }} />
+
+          {/* MORE 레이블 */}
+          <p
+            className="text-cream/30 uppercase"
+            style={{
+              fontFamily: 'var(--font-space-mono)',
+              fontSize: '10px',
+              letterSpacing: '0.28em',
+              lineHeight: 1,
+              marginBottom: '12px',
+            }}
+          >
+            More
+          </p>
+
+          {/* MORE 목록 */}
+          {moreNav.map((item) => {
+            const active = isActive(item.slug);
+            return (
+              <Link
+                key={item.slug}
+                href={getHref(item.slug)}
+                onClick={() => setDrawerOpen(false)}
+                className="group flex items-center justify-between transition-all duration-200"
+                style={{
+                  padding: 'clamp(8px, 1.2vh, 12px) 0',
+                  paddingLeft: active ? '12px' : '0',
+                  borderBottom: '1px solid rgba(255,255,255,0.05)',
+                  borderLeft: active ? '2px solid #1a1aff' : '2px solid transparent',
+                }}
+              >
                 <div>
-                  <p className="text-cream font-light group-hover:italic transition-all duration-200" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '18px' }}>
+                  <p
+                    className="group-hover:italic transition-all duration-200"
+                    style={{
+                      fontFamily: 'var(--font-cormorant)',
+                      fontSize: 'clamp(13px, 1.8vw, 15px)',
+                      fontWeight: 300,
+                      color: active ? '#f5f2ed' : 'rgba(245,242,237,0.55)',
+                      lineHeight: 1.2,
+                      letterSpacing: '0.02em',
+                    }}
+                  >
                     {item.label}
                   </p>
-                  <p className="text-cream/35 mt-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px' }}>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-space-mono)',
+                      fontSize: '9px',
+                      color: 'rgba(245,242,237,0.25)',
+                      lineHeight: 1,
+                      letterSpacing: '0.08em',
+                      marginTop: '3px',
+                    }}
+                  >
                     {item.ko}
                   </p>
                 </div>
-              </div>
-              <span className="text-cream/25 text-sm group-hover:text-cream/60 transition-colors">→</span>
-            </Link>
-          ))}
-
-          <div className="my-5 border-t border-white/10" />
-
-          <p className="text-cream/30 uppercase tracking-[0.25em] mb-4" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px' }}>
-            More
-          </p>
-          {extraNav.map((item) => (
-            <Link
-              key={item.slug}
-              href={getHref(item.slug)}
-              onClick={() => setDrawerOpen(false)}
-              className="group flex items-center justify-between py-4 border-b border-white/8"
-            >
-              <div>
-                <p className="text-cream/85 font-light group-hover:italic transition-all duration-200" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '17px' }}>
-                  {item.label}
-                </p>
-                <p className="text-cream/30 mt-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px' }}>
-                  {item.ko}
-                </p>
-              </div>
-              <span className="text-cream/25 text-sm group-hover:text-cream/60 transition-colors">→</span>
-            </Link>
-          ))}
+                <span
+                  className="group-hover:text-cream/50 transition-colors"
+                  style={{
+                    color: 'rgba(245,242,237,0.18)',
+                    fontSize: '12px',
+                  }}
+                >
+                  →
+                </span>
+              </Link>
+            );
+          })}
         </nav>
 
-        <div className="px-5 py-5 border-t border-white/10 shrink-0">
+        {/* 드로어 하단 */}
+        <div
+          className="shrink-0"
+          style={{
+            padding: '16px 24px',
+            borderTop: '1px solid rgba(255,255,255,0.08)',
+          }}
+        >
           <Link
             href="/community"
             onClick={() => setDrawerOpen(false)}
-            className="flex items-center justify-center w-full border border-cream/25 text-cream/65 uppercase py-3.5 hover:border-cream/50 hover:text-cream transition-all"
-            style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.18em' }}
+            className="flex items-center justify-center w-full uppercase transition-all hover:border-cream/50 hover:text-cream"
+            style={{
+              border: '1px solid rgba(245,242,237,0.22)',
+              color: 'rgba(245,242,237,0.6)',
+              fontFamily: 'var(--font-space-mono)',
+              fontSize: '11px',
+              letterSpacing: '0.2em',
+              padding: '13px',
+              lineHeight: 1,
+            }}
           >
             구독하기
           </Link>
-          <p className="text-cream/20 uppercase tracking-widest text-center mt-3" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px' }}>
+          <p
+            className="text-center uppercase"
+            style={{
+              fontFamily: 'var(--font-space-mono)',
+              fontSize: '9px',
+              letterSpacing: '0.2em',
+              color: 'rgba(245,242,237,0.18)',
+              marginTop: '12px',
+              lineHeight: 1,
+            }}
+          >
             © 2026 PAGEONEWORKS
           </p>
         </div>
