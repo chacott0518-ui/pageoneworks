@@ -1,7 +1,10 @@
 {
-  "/page": "app/page.js",
-  "/category/[slug]/page": "app/category/[slug]/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/archive/page": "app/archive/page.js",
-  "/article/[slug]/page": "app/article/[slug]/page.js"
+  "/community/page": "app/community/page.js",
+  "/page": "app/page.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/category/[slug]/page": "app/category/[slug]/page.js",
+  "/article/[slug]/page": "app/article/[slug]/page.js",
+  "/opengraph-image/route": "app/opengraph-image/route.js"
 }

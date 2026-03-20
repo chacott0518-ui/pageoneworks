@@ -64,7 +64,7 @@ export default function CommunityPage() {
 
   return (
     <>
-      <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} theme="dark" />
+      <Header />
 
       <main>
         {/* Hero */}
