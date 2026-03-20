@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import '../styles/globals.css';
 
-const SITE_URL = 'https://pageoneworks.com';
+const SITE_URL = 'https://pageoneworks.vercel.app';
 
 export const viewport: Viewport = {
   width: 'device-width',
