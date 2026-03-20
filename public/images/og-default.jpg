@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0a"/>
+      <stop offset="100%" style="stop-color:#181818"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1200" height="630" fill="url(#bg)" style="stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 상단 가로선 -->
+  <rect x="80" y="80" width="1040" height="0.8" fill="rgba(245,242,237,0.15)" style="fill:rgba(245, 242, 237, 0.15);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 하단 가로선 -->
+  <rect x="80" y="550" width="1040" height="0.8" fill="rgba(245,242,237,0.15)" style="fill:rgba(245, 242, 237, 0.15);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 메인 로고 -->
+  <text x="600" y="340" font-family="Georgia, serif" font-size="100" font-weight="300" fill="#f5f2ed" letter-spacing="12" text-anchor="middle" style="fill:rgb(245, 242, 237);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:100px;font-weight:300;text-anchor:middle;dominant-baseline:auto">PAGEONEWORKS</text>
+
+  <!-- 서브 텍스트 -->
+  <text x="600" y="400" font-family="Georgia, serif" font-size="20" font-weight="300" fill="rgba(245,242,237,0.45)" letter-spacing="6" text-anchor="middle" font-style="italic" style="fill:rgba(245, 242, 237, 0.45);stroke:none;color:rgb(255, 255, 255);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Georgia, serif;font-size:20px;font-weight:300;font-style:italic;text-anchor:middle;dominant-baseline:auto">Premium Lifestyle Magazine</text>
+
+</svg>
