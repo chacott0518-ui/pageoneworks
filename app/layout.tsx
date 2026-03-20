@@ -191,7 +191,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     images: [
       {
-        url: '/opengraph-image',
+        url: '/images/og-default.jpg',
         width: 1200,
         height: 630,
         alt: 'PAGEONEWORKS — 프리미엄 라이프스타일 매거진',
@@ -202,7 +202,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PAGEONEWORKS — 프리미엄 라이프스타일 매거진',
     description: '의료·부동산·모빌리티·법률·금융·라이프스타일·뷰티·미식·교육을 아우르는 대한민국 프리미엄 웹 매거진',
-    images: ['/opengraph-image'],
+    images: ['/images/og-default.jpg'],
   },
   robots: {
     index: true,
