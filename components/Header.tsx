@@ -19,6 +19,7 @@ const categoryNav = [
 
 const moreNav = [
   { label: 'COMMUNITY', slug: 'community', ko: '커뮤니티' },
+  { label: 'ADVERTISE', slug: 'advertise', ko: '광고·제휴' },
   { label: 'NOTICE', slug: 'notice', ko: '공지사항' },
   { label: 'ABOUT', slug: 'about', ko: '소개' },
 ];
@@ -40,19 +41,18 @@ export function Header() {
   }, [drawerOpen]);
 
   const getHref = (slug: string) => {
-    if (['community', 'notice', 'about', 'archive'].includes(slug)) return `/${slug}`;
+    if (['community', 'notice', 'about', 'archive', 'advertise'].includes(slug)) return `/${slug}`;
     return `/category/${slug}`;
   };
 
   const isActive = (slug: string) => {
     if (slug === 'archive') return pathname === '/archive';
-    if (['community', 'notice', 'about'].includes(slug)) return pathname === `/${slug}`;
+    if (['community', 'notice', 'about', 'advertise'].includes(slug)) return pathname === `/${slug}`;
     return pathname === `/category/${slug}`;
   };
 
   return (
     <>
-      {/* 헤더 */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled ? 'bg-black/95 backdrop-blur-md' : 'bg-black/70 backdrop-blur-sm'
@@ -89,32 +89,75 @@ export function Header() {
             </span>
           </Link>
 
-          {/* 우측 */}
-          <div className="flex items-center" style={{ gap: '12px' }}>
+          {/* 우측 버튼 영역 */}
+          <div className="flex items-center" style={{ gap: '8px' }}>
+
+            {/* 로그인 — PC만 */}
             <Link
-              href="/community"
-              className="hidden md:inline-flex items-center border border-cream/25 text-cream/65 hover:border-cream/60 hover:text-cream uppercase transition-all"
+              href="/login"
+              className="hidden md:inline-flex items-center text-cream/60 hover:text-cream uppercase transition-all"
               style={{
                 fontFamily: 'var(--font-space-mono)',
-                fontSize: '11px',
+                fontSize: '10px',
                 letterSpacing: '0.12em',
-                padding: '7px 14px',
+                padding: '7px 10px',
                 lineHeight: 1,
+              }}
+            >
+              로그인
+            </Link>
+
+            {/* 회원가입 — PC만 */}
+            <Link
+              href="/signup"
+              className="hidden md:inline-flex items-center text-cream/60 hover:text-cream uppercase transition-all"
+              style={{
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: '10px',
+                letterSpacing: '0.12em',
+                padding: '7px 10px',
+                lineHeight: 1,
+              }}
+            >
+              회원가입
+            </Link>
+
+            {/* 구분선 — PC만 */}
+            <div
+              className="hidden md:block bg-cream/20"
+              style={{ width: '1px', height: '14px' }}
+            />
+
+            {/* 구독하기 — PC만 */}
+            <Link
+              href="/community"
+              className="hidden md:inline-flex items-center uppercase transition-all hover:bg-cream/10"
+              style={{
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: '10px',
+                letterSpacing: '0.12em',
+                padding: '7px 16px',
+                lineHeight: 1,
+                border: '1px solid rgba(245,242,237,0.55)',
+                color: 'rgba(245,242,237,0.85)',
+                background: 'rgba(245,242,237,0.06)',
               }}
             >
               구독하기
             </Link>
 
+            {/* 햄버거 */}
             <button
               onClick={() => setDrawerOpen(true)}
               aria-label="메뉴 열기"
-              className="flex flex-col items-end justify-center"
+              className="flex flex-col items-end justify-center ml-1"
               style={{ gap: '5px', width: '32px', height: '32px' }}
             >
               <span className="block bg-cream" style={{ width: '20px', height: '1px' }} />
               <span className="block bg-cream" style={{ width: '20px', height: '1px' }} />
               <span className="block bg-cream" style={{ width: '14px', height: '1px' }} />
             </button>
+
           </div>
         </div>
       </header>
@@ -167,11 +210,8 @@ export function Header() {
         </div>
 
         {/* 드로어 콘텐츠 */}
-        <nav
-          className="flex-1 overflow-y-auto"
-          style={{ padding: '20px 24px' }}
-        >
-          {/* 카테고리 레이블 */}
+        <nav className="flex-1 overflow-y-auto" style={{ padding: '20px 24px' }}>
+
           <p
             className="text-cream/30 uppercase"
             style={{
@@ -185,7 +225,6 @@ export function Header() {
             Categories
           </p>
 
-          {/* 카테고리 목록 */}
           {categoryNav.map((item, i) => {
             const active = isActive(item.slug);
             return (
@@ -244,11 +283,7 @@ export function Header() {
                 </div>
                 <span
                   className="group-hover:text-cream/60 transition-colors"
-                  style={{
-                    color: 'rgba(245,242,237,0.2)',
-                    fontSize: '13px',
-                    lineHeight: 1,
-                  }}
+                  style={{ color: 'rgba(245,242,237,0.2)', fontSize: '13px', lineHeight: 1 }}
                 >
                   →
                 </span>
@@ -256,10 +291,8 @@ export function Header() {
             );
           })}
 
-          {/* 구분선 */}
           <div style={{ height: '1px', background: 'rgba(255,255,255,0.1)', margin: '16px 0' }} />
 
-          {/* MORE 레이블 */}
           <p
             className="text-cream/30 uppercase"
             style={{
@@ -273,7 +306,6 @@ export function Header() {
             More
           </p>
 
-          {/* MORE 목록 */}
           {moreNav.map((item) => {
             const active = isActive(item.slug);
             return (
@@ -318,10 +350,7 @@ export function Header() {
                 </div>
                 <span
                   className="group-hover:text-cream/50 transition-colors"
-                  style={{
-                    color: 'rgba(245,242,237,0.18)',
-                    fontSize: '12px',
-                  }}
+                  style={{ color: 'rgba(245,242,237,0.18)', fontSize: '12px' }}
                 >
                   →
                 </span>
@@ -338,6 +367,43 @@ export function Header() {
             borderTop: '1px solid rgba(255,255,255,0.08)',
           }}
         >
+          {/* 로그인 / 회원가입 */}
+          <div className="flex gap-2 mb-3">
+            <Link
+              href="/login"
+              onClick={() => setDrawerOpen(false)}
+              className="flex-1 flex items-center justify-center uppercase transition-all hover:border-cream/50 hover:text-cream"
+              style={{
+                border: '1px solid rgba(245,242,237,0.18)',
+                color: 'rgba(245,242,237,0.5)',
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: '10px',
+                letterSpacing: '0.15em',
+                padding: '10px',
+                lineHeight: 1,
+              }}
+            >
+              로그인
+            </Link>
+            <Link
+              href="/signup"
+              onClick={() => setDrawerOpen(false)}
+              className="flex-1 flex items-center justify-center uppercase transition-all hover:border-cream/50 hover:text-cream"
+              style={{
+                border: '1px solid rgba(245,242,237,0.18)',
+                color: 'rgba(245,242,237,0.5)',
+                fontFamily: 'var(--font-space-mono)',
+                fontSize: '10px',
+                letterSpacing: '0.15em',
+                padding: '10px',
+                lineHeight: 1,
+              }}
+            >
+              회원가입
+            </Link>
+          </div>
+
+          {/* 구독하기 */}
           <Link
             href="/community"
             onClick={() => setDrawerOpen(false)}
@@ -354,6 +420,7 @@ export function Header() {
           >
             구독하기
           </Link>
+
           <p
             className="text-center uppercase"
             style={{

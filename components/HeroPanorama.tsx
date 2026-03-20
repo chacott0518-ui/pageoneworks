@@ -192,14 +192,37 @@ export function HeroPanorama() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-7 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2.5">
-        <div className="w-14 h-14 rounded-full border border-cream/12 flex items-center justify-center">
-          <span className="text-cream/35 text-[7px] uppercase tracking-[0.18em]" style={{ fontFamily: 'var(--font-space-mono)' }}>
-            Scroll
-          </span>
-        </div>
-        <div className="w-px h-7 bg-gradient-to-b from-cream/25 to-transparent" style={{ animation: 'heroPulse 2s ease-in-out infinite' }} />
-      </div>
+<div
+  className="absolute z-20 flex flex-col items-center gap-2"
+  style={{
+    bottom: 'clamp(12px, 3vh, 28px)',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  }}
+>
+  <div
+    className="rounded-full border border-cream/12 flex items-center justify-center"
+    style={{ width: '36px', height: '36px' }}
+  >
+    <span
+  style={{
+    fontFamily: 'var(--font-space-mono)',
+    fontSize: '8px',
+    letterSpacing: '0.08em',
+    color: 'rgba(245,242,237,0.35)',
+    textTransform: 'uppercase',
+    transform: 'scale(0.6)',
+    display: 'inline-block',
+  }}
+>
+  Scroll
+</span>
+  </div>
+  <div
+    className="w-px h-5 bg-gradient-to-b from-cream/25 to-transparent"
+    style={{ animation: 'heroPulse 2s ease-in-out infinite' }}
+  />
+</div>
 
       <style>{`
         @keyframes heroFadeUp {
