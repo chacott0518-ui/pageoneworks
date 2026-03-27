@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
 import { articles, categories } from '@/lib/data';
 
-const BASE_URL = 'https://pageoneworks.com';
+const BASE_URL = 'https://pageoneworks.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 정적 페이지
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
@@ -24,21 +24,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+    {
+      url: `${BASE_URL}/advertise`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
   ];
 
-  // 카테고리 페이지
-  const categoryPages: MetadataRoute.Sitemap = categories.map((cat) => ({
-    url: `${BASE_URL}/category/${cat.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }));
+  // archive 슬러그 제외하고 카테고리 페이지만
+  const categoryPages: MetadataRoute.Sitemap = categories
+    .filter((cat) => cat.slug !== 'archive')
+    .map((cat) => ({
+      url: `${BASE_URL}/category/${cat.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    }));
 
-  // 아티클 페이지
   const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${BASE_URL}/article/${article.slug}`,
     lastModified: new Date(article.date.replace(/\./g, '-')),
-    changeFrequency: 'monthly',
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 

@@ -213,9 +213,9 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
   },
   verification: {
-    google: 'google-site-verification-코드입력',
+    google: 'iVUs-rUXvdFnYyvVaAhuHAdliuBoujmjyq3tyLV23Hc',
     other: {
-      'naver-site-verification': '네이버-인증코드입력',
+      'naver-site-verification': '70cca9006ec0f61be7a6c77b82e354fa1a08919b',
     },
   },
 };
