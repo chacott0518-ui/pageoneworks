@@ -589,6 +589,9 @@ video {
 .z-50 {
   z-index: 50;
 }
+.z-\[100\] {
+  z-index: 100;
+}
 .z-\[49\] {
   z-index: 49;
 }
@@ -654,6 +657,9 @@ video {
 }
 .ml-3 {
   margin-left: 0.75rem;
+}
+.ml-4 {
+  margin-left: 1rem;
 }
 .ml-8 {
   margin-left: 2rem;
@@ -833,6 +839,9 @@ video {
 .max-w-\[1600px\] {
   max-width: 1600px;
 }
+.max-w-\[280px\] {
+  max-width: 280px;
+}
 .max-w-\[500px\] {
   max-width: 500px;
 }
@@ -968,14 +977,6 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
-}
-.divide-y > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-y-reverse: 0;
-  border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
-  border-bottom-width: calc(1px * var(--tw-divide-y-reverse));
-}
-.divide-white\/5 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgb(255 255 255 / 0.05);
 }
 .self-start {
   align-self: flex-start;
@@ -1298,10 +1299,6 @@ video {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
 }
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
-}
 .py-12 {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -1326,10 +1323,6 @@ video {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
-.py-24 {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -1345,6 +1338,10 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
+}
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 .pb-1 {
   padding-bottom: 0.25rem;
@@ -1600,17 +1597,11 @@ video {
 .opacity-100 {
   opacity: 1;
 }
-.opacity-25 {
-  opacity: 0.25;
-}
 .opacity-30 {
   opacity: 0.3;
 }
 .opacity-40 {
   opacity: 0.4;
-}
-.opacity-45 {
-  opacity: 0.45;
 }
 .opacity-50 {
   opacity: 0.5;
@@ -1628,6 +1619,10 @@ video {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 .blur {
   --tw-blur: blur(8px);
@@ -1863,9 +1858,6 @@ h1 {
 .hover\:bg-ink\/80:hover {
   background-color: rgb(26 26 26 / 0.8);
 }
-.hover\:pl-1\.5:hover {
-  padding-left: 0.375rem;
-}
 .hover\:text-cream:hover {
   --tw-text-opacity: 1;
   color: rgb(245 242 237 / var(--tw-text-opacity, 1));
@@ -1905,6 +1897,12 @@ h1 {
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+.active\:bg-cream\/5:active {
+  background-color: rgb(245 242 237 / 0.05);
+}
+.active\:opacity-80:active {
+  opacity: 0.8;
 }
 .group:hover .group-hover\:scale-105 {
   --tw-scale-x: 1.05;
@@ -1960,14 +1958,24 @@ h1 {
 .group:hover .group-hover\:text-cream\/60 {
   color: rgb(245 242 237 / 0.6);
 }
-.group:hover .group-hover\:opacity-50 {
-  opacity: 0.5;
+.group:hover .group-hover\:text-cream\/70 {
+  color: rgb(245 242 237 / 0.7);
 }
 .group:hover .group-hover\:opacity-70 {
   opacity: 0.7;
 }
 .group:hover .group-hover\:opacity-80 {
   opacity: 0.8;
+}
+.group:active .group-active\:italic {
+  font-style: italic;
+}
+.group:active .group-active\:text-cream\/70 {
+  color: rgb(245 242 237 / 0.7);
+}
+.group:active .group-active\:brightness-110 {
+  --tw-brightness: brightness(1.1);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 @media (min-width: 640px) {
 
@@ -2038,6 +2046,10 @@ h1 {
     margin-top: 0px;
   }
 
+  .md\:mt-10 {
+    margin-top: 2.5rem;
+  }
+
   .md\:mt-2 {
     margin-top: 0.5rem;
   }
@@ -2064,6 +2076,10 @@ h1 {
 
   .md\:hidden {
     display: none;
+  }
+
+  .md\:max-w-\[240px\] {
+    max-width: 240px;
   }
 
   .md\:grid-cols-2 {
@@ -2147,14 +2163,14 @@ h1 {
     padding-right: 2rem;
   }
 
+  .md\:py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
   .md\:py-16 {
     padding-top: 4rem;
     padding-bottom: 4rem;
-  }
-
-  .md\:py-20 {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
   }
 
   .md\:py-24 {
@@ -2167,17 +2183,17 @@ h1 {
     padding-bottom: 7rem;
   }
 
-  .md\:py-8 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+  .md\:py-4 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .md\:pb-12 {
+    padding-bottom: 3rem;
   }
 
   .md\:pb-14 {
     padding-bottom: 3.5rem;
-  }
-
-  .md\:pb-16 {
-    padding-bottom: 4rem;
   }
 
   .md\:pb-24 {
@@ -2246,6 +2262,10 @@ h1 {
 
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .lg\:gap-16 {

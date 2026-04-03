@@ -46,7 +46,7 @@ export default function CategoryPage({ params }: Props) {
     <>
       <Header />
 
-      {/* Hero */}
+      {/* 히어로 섹션 */}
       <section className="relative overflow-hidden" style={{ minHeight: '55vh' }}>
         <div className="absolute inset-0">
           <img
@@ -105,7 +105,7 @@ export default function CategoryPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Articles */}
+      {/* 아티클 그리드 섹션 */}
       <section className="py-12 md:py-24 px-5 md:px-12 bg-[#0a0a0a] text-cream min-h-[40vh]">
         <div className="max-w-[1600px] mx-auto">
           {catArticles.length === 0 ? (
@@ -124,42 +124,67 @@ export default function CategoryPage({ params }: Props) {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {catArticles.map((article) => (
-                <Link key={article.id} href={`/article/${article.slug}`} className="group block">
-                  <div className="overflow-hidden mb-3 md:mb-4" style={{ aspectRatio: '4/3' }}>
+                <Link
+                  key={article.id}
+                  href={`/article/${article.slug}`}
+                  className="group block"
+                >
+                  {/* 썸네일 이미지 */}
+                  <div
+                    className="overflow-hidden mb-3 md:mb-4 bg-[#1a1a1a]"
+                    style={{ aspectRatio: '4/3' }}
+                  >
                     <img
                       src={article.image}
                       alt={article.titleKo}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
+
+                  {/* 카테고리 */}
                   <p
-                    className="opacity-45 mb-1.5 uppercase"
-                    style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.1em' }}
+                    className="text-cream/40 mb-1.5 uppercase"
+                    style={{ fontFamily: 'var(--font-space-mono)', fontSize: '8px', letterSpacing: '0.12em' }}
                   >
-                    {article.date} &middot; {article.readTime} Read
+                    {article.category}
                   </p>
+
+                  {/* 제목 */}
                   <h3
-                    className="font-light group-hover:italic transition-all leading-snug"
+                    className="font-light text-cream group-hover:italic transition-all leading-snug line-clamp-2"
                     style={{
                       fontFamily: 'var(--font-cormorant)',
-                      fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-                      lineHeight: '1.3',
+                      fontSize: 'clamp(0.95rem, 1.5vw, 1.2rem)',
+                      lineHeight: '1.35',
+                      wordBreak: 'keep-all',
                     }}
                   >
                     {article.titleKo}
                   </h3>
+
+                  {/* excerpt */}
                   <p
-                    className="mt-2 opacity-45 leading-relaxed line-clamp-2"
+                    className="text-cream/35 mt-1.5 leading-relaxed line-clamp-2"
                     style={{
                       fontFamily: 'var(--font-inter)',
                       fontWeight: 300,
-                      fontSize: '0.875rem',
+                      fontSize: '0.8rem',
                       lineHeight: '1.6',
                     }}
                   >
                     {article.excerpt}
+                  </p>
+
+                  {/* 날짜 · 읽기시간 */}
+                  <p
+                    className="text-cream/25 mt-2 uppercase"
+                    style={{ fontFamily: 'var(--font-space-mono)', fontSize: '8px', letterSpacing: '0.08em' }}
+                  >
+                    {article.date} &middot; {article.readTime} Read
                   </p>
                 </Link>
               ))}

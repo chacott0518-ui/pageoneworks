@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { X } from 'lucide-react';
+import { X, Search } from 'lucide-react';
+import { SearchOverlay } from '@/components/SearchOverlay';
 
 const categoryNav = [
   { label: 'VITALITY', slug: 'vitality', ko: '의료·안티에이징·병원' },
@@ -27,6 +28,7 @@ const moreNav = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -145,6 +147,22 @@ export function Header() {
             >
               구독하기
             </Link>
+
+            {/* 구분선 — PC만 */}
+            <div
+              className="hidden md:block bg-cream/20"
+              style={{ width: '1px', height: '14px' }}
+            />
+
+            {/* 돋보기 — PC + 모바일 모두 */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              aria-label="검색"
+              className="flex items-center justify-center text-cream/50 hover:text-cream transition-colors"
+              style={{ width: '32px', height: '32px' }}
+            >
+              <Search style={{ width: '15px', height: '15px' }} />
+            </button>
 
             {/* 햄버거 */}
             <button
@@ -436,6 +454,9 @@ export function Header() {
           </p>
         </div>
       </div>
+
+      {/* 검색 오버레이 */}
+      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }
