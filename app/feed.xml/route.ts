@@ -11,8 +11,8 @@ export async function GET() {
       return `
     <item>
       <title><![CDATA[${article.titleKo}]]></title>
-      <link>${BASE_URL}/article/${article.slug}</link>
-      <guid isPermaLink="true">${BASE_URL}/article/${article.slug}</guid>
+      <link>${BASE_URL}/article/${article.slug.replace(/&/g, '&amp;')}</link>
+      isPermaLink="true">${BASE_URL}/article/${article.slug.replace(/&/g, '&amp;')}</guid>
       <description><![CDATA[${article.excerpt ?? ''}]]></description>
       <category><![CDATA[${article.category}]]></category>
       <pubDate>${pubDate}</pubDate>
