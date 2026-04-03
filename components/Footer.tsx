@@ -9,9 +9,10 @@ const categoryLinks = [
   { label: 'PROPERTIES', href: '/category/properties' },
   { label: 'DRIVE & TECH', href: '/category/drive-tech' },
   { label: 'LEGAL & FINANCE', href: '/category/legal-finance' },
-  { label: 'LIFESTYLE', href: '/category/lifestyle' },
-  { label: 'CULTURE', href: '/category/culture' },
-  { label: 'TRAVEL', href: '/category/travel' },
+  { label: 'LIFESTYLE & TRAVEL', href: '/category/lifestyle-travel' },
+  { label: 'BEAUTY & WELLNESS', href: '/category/beauty-wellness' },
+  { label: 'FOOD & DINING', href: '/category/food-dining' },
+  { label: 'EDUCATION', href: '/category/education' },
   { label: 'ARCHIVE', href: '/archive' },
 ];
 
@@ -160,13 +161,31 @@ export function Footer() {
           </div>
         </div>
 
+        {/* 사업자 정보 — PC: 한 줄 / 모바일: 두 줄 */}
+        <div className="pt-6 pb-4 border-t border-white/5">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1 md:gap-6">
+            <p
+              className="text-[7px] uppercase tracking-wider leading-relaxed"
+              style={{ fontFamily: 'var(--font-space-mono)', color: 'rgba(245,242,237,0.18)' }}
+            >
+              USENAD Co., Ltd. &nbsp;|&nbsp; CEO : Kim Se-jun &nbsp;|&nbsp; Business Reg. No. 206-31-95055 &nbsp;|&nbsp; chacott0518@gmail.com
+            </p>
+            <p
+              className="text-[7px] uppercase tracking-wider leading-relaxed"
+              style={{ fontFamily: 'var(--font-space-mono)', color: 'rgba(245,242,237,0.18)' }}
+            >
+              7F, Ewha Bldg, 463-2 Jangan-dong, Dongdaemun-gu, Seoul, Republic of Korea
+            </p>
+          </div>
+        </div>
+
         {/* 하단 바 */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 pt-6 border-t border-white/5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 pt-5 border-t border-white/5">
           <p
             className="text-cream/20 text-[7px] uppercase tracking-widest"
             style={{ fontFamily: 'var(--font-space-mono)' }}
           >
-            © {new Date().getFullYear()} PAGEONEWORKS. ALL RIGHTS RESERVED.
+            © {new Date().getFullYear()} USENAD Co., Ltd. All Rights Reserved. &nbsp;|&nbsp; Operated by PAGEONEWORKS
           </p>
           <div className="flex gap-4">
             {['Privacy', 'Terms', 'Cookie'].map((item) => (
