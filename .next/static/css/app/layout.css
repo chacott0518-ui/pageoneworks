@@ -2098,16 +2098,16 @@ h1 {
     flex-direction: row;
   }
 
+  .md\:flex-wrap {
+    flex-wrap: wrap;
+  }
+
   .md\:items-center {
     align-items: center;
   }
 
   .md\:items-baseline {
     align-items: baseline;
-  }
-
-  .md\:justify-between {
-    justify-content: space-between;
   }
 
   .md\:gap-10 {
@@ -2128,6 +2128,11 @@ h1 {
 
   .md\:gap-6 {
     gap: 1.5rem;
+  }
+
+  .md\:gap-x-6 {
+    -moz-column-gap: 1.5rem;
+         column-gap: 1.5rem;
   }
 
   .md\:p-6 {
