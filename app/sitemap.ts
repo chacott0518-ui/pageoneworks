@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 import { articles, categories } from '@/lib/data';
 
-const BASE_URL = 'https://pageoneworks.vercel.app';
+const BASE_URL = 'https://www.pageoneworks.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
 
@@ -32,7 +32,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // archive 슬러그 제외하고 카테고리 페이지만
   const categoryPages: MetadataRoute.Sitemap = categories
     .filter((cat) => cat.slug !== 'archive')
     .map((cat) => ({
