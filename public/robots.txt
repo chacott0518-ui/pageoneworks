@@ -7,4 +7,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://pageoneworks.com/sitemap.xml
+Sitemap: https://www.pageoneworks.com/sitemap.xml
