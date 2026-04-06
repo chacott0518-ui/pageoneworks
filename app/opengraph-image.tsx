@@ -12,24 +12,15 @@ export default async function Image() {
         style={{
           width: '1200px',
           height: '630px',
-          background: '#0a0a0a',
+          background: '#1B26B0',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-end',
+          alignItems: 'center',
+          justifyContent: 'center',
           padding: '80px',
           position: 'relative',
         }}
       >
-        {/* 배경 그라디언트 */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%)',
-          }}
-        />
-
         {/* 상단 라인 */}
         <div
           style={{
@@ -38,25 +29,27 @@ export default async function Image() {
             left: '80px',
             right: '80px',
             height: '1px',
-            background: 'rgba(245,242,237,0.15)',
+            background: 'rgba(255,255,255,0.2)',
           }}
         />
 
-        {/* 카테고리 텍스트 */}
+        {/* 텍스트 영역 */}
         <div
           style={{
             position: 'relative',
             display: 'flex',
             flexDirection: 'column',
-            gap: '16px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '24px',
           }}
         >
           <p
             style={{
-              fontFamily: 'serif',
-              fontSize: '13px',
-              letterSpacing: '0.3em',
-              color: 'rgba(245,242,237,0.4)',
+              fontFamily: 'sans-serif',
+              fontSize: '16px',
+              letterSpacing: '0.4em',
+              color: 'rgba(255,255,255,0.6)',
               textTransform: 'uppercase',
               margin: 0,
             }}
@@ -65,24 +58,24 @@ export default async function Image() {
           </p>
           <h1
             style={{
-              fontFamily: 'serif',
-              fontSize: '96px',
-              fontWeight: 300,
-              color: '#f5f2ed',
+              fontFamily: 'sans-serif',
+              fontSize: '120px',
+              fontWeight: 700,
+              color: '#ffffff',
               letterSpacing: '-0.02em',
               lineHeight: 1,
               margin: 0,
             }}
           >
-            PAGEONEWORKS
+            PAGEONE.
           </h1>
           <p
             style={{
-              fontFamily: 'serif',
-              fontSize: '20px',
-              color: 'rgba(245,242,237,0.5)',
+              fontFamily: 'sans-serif',
+              fontSize: '22px',
+              color: 'rgba(255,255,255,0.6)',
               margin: 0,
-              letterSpacing: '0.05em',
+              letterSpacing: '0.08em',
             }}
           >
             의료 · 부동산 · 모빌리티 · 법률 · 금융 · 라이프스타일 · 뷰티 · 미식 · 교육
@@ -97,7 +90,7 @@ export default async function Image() {
             left: '80px',
             right: '80px',
             height: '1px',
-            background: 'rgba(245,242,237,0.15)',
+            background: 'rgba(255,255,255,0.2)',
           }}
         />
       </div>
