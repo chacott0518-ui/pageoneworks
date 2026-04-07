@@ -21,6 +21,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/article/[slug]/page.js"
     ],
+    "/archive/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/archive/page.js"
+    ],
     "/category/[slug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",

@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props) {
 
 function parseBody(body: string) {
   const lines = body.split('\n');
-  const blocks: { type: string; content: string; caption?: string }[] = [];
+  const blocks: { type: string; content: string; caption?: string; extra?: string }[] = [];
   let i = 0;
   while (i < lines.length) {
     const line = lines[i];
@@ -62,6 +62,20 @@ function parseBody(body: string) {
     }
     if (/^[1-4]단계/.test(line)) {
       blocks.push({ type: 'step', content: line });
+      i++; continue;
+    }
+    if (line.startsWith('##INFOBOX##')) {
+      const parts = line.split('##');
+      blocks.push({ type: 'infobox', content: parts[4] || '', caption: parts[2] || '', extra: parts[3] || '' });
+      i++; continue;
+    }
+    if (line.startsWith('##STATGRID##')) {
+      blocks.push({ type: 'statgrid', content: line.replace(/^##STATGRID##/, '').replace(/##END##$/, '') });
+      i++; continue;
+    }
+    if (line.startsWith('##TABLEROW##')) {
+      const cells = line.replace(/^##TABLEROW##/, '').split('||');
+      blocks.push({ type: 'tablerow', content: line, caption: cells[0] || '', extra: cells[1] || '' });
       i++; continue;
     }
     if (line.trim() === '') { i++; continue; }
@@ -404,6 +418,109 @@ export default function ArticlePage({ params }: Props) {
                   >
                     {stepText}
                   </p>
+                </div>
+              );
+            }
+            if (block.type === 'infobox') {
+              const colorMap: Record<string, { bg: string; border: string; title: string; text: string }> = {
+                blue:   { bg: '#EFF6FF', border: '#2563EB', title: '#1E40AF', text: '#1E3A8A' },
+                green:  { bg: '#F0FDF4', border: '#16A34A', title: '#166534', text: '#14532D' },
+                amber:  { bg: '#FFFBEB', border: '#D97706', title: '#92400E', text: '#78350F' },
+                red:    { bg: '#FFF1F2', border: '#E11D48', title: '#9F1239', text: '#881337' },
+                purple: { bg: '#FAF5FF', border: '#7C3AED', title: '#5B21B6', text: '#4C1D95' },
+              };
+              const c = colorMap[block.extra || 'blue'] || colorMap.blue;
+              return (
+                <div
+                  key={i}
+                  style={{
+                    background: c.bg,
+                    borderLeft: `4px solid ${c.border}`,
+                    borderRadius: '0 8px 8px 0',
+                    padding: '20px 24px',
+                    margin: '24px 0',
+                  }}
+                >
+                  {block.caption && (
+                    <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: c.border, marginBottom: '8px', fontWeight: 600 }}>
+                      {block.caption}
+                    </p>
+                  )}
+                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', color: c.text, lineHeight: '1.7', margin: 0, wordBreak: 'keep-all' }}>
+                    {block.content}
+                  </p>
+                </div>
+              );
+            }
+            if (block.type === 'statgrid') {
+              const stats = block.content.split('||').map((s: string) => s.trim()).filter(Boolean);
+              return (
+                <div
+                  key={i}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+                    gap: '12px',
+                    margin: '28px 0',
+                  }}
+                >
+                  {stats.map((stat: string, si: number) => {
+                    const [val, label] = stat.split(':');
+                    return (
+                      <div
+                        key={si}
+                        style={{
+                          background: '#1a1a1a',
+                          borderRadius: '4px',
+                          padding: '20px 16px',
+                          textAlign: 'center',
+                        }}
+                      >
+                        <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 400, color: '#f5f2ed', margin: '0 0 4px' }}>
+                          {val?.trim()}
+                        </p>
+                        <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.5)', margin: 0 }}>
+                          {label?.trim()}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            }
+            if (block.type === 'tablerow') {
+              const cells = block.content.replace(/^##TABLEROW##/, '').split('||');
+              const isHeader = cells[0]?.startsWith('**');
+              return (
+                <div
+                  key={i}
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
+                    gap: '1px',
+                    background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)',
+                    borderRadius: i === 0 ? '4px 4px 0 0' : '0',
+                    marginTop: isHeader ? '28px' : '0',
+                    marginBottom: '1px',
+                  }}
+                >
+                  {cells.map((cell: string, ci: number) => (
+                    <div
+                      key={ci}
+                      style={{
+                        padding: '12px 16px',
+                        fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)',
+                        fontSize: isHeader ? '10px' : 'clamp(0.85rem, 1.3vw, 0.95rem)',
+                        fontWeight: isHeader ? 600 : 300,
+                        color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)',
+                        letterSpacing: isHeader ? '0.08em' : '0',
+                        textTransform: isHeader ? 'uppercase' : 'none',
+                        wordBreak: 'keep-all',
+                      }}
+                    >
+                      {cell.trim().replace(/\*\*/g, '')}
+                    </div>
+                  ))}
                 </div>
               );
             }
