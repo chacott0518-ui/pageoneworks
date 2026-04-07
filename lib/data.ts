@@ -10,7 +10,7 @@ export type Category = {
 };
 
 export type Article = {
-  id: number;
+  id: number | string;
   slug: string;
   category: string;
   categorySlug: string;

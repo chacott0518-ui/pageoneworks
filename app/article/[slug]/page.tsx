@@ -1,6 +1,7 @@
 import { ArticleJsonLd } from '@/components/ArticleJsonLd';
 import { ReadingProgress } from '@/components/ReadingProgress';
 import { ArticleCredit } from '@/components/ArticleCredit';
+import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
@@ -73,6 +74,10 @@ function parseBody(body: string) {
       blocks.push({ type: 'statgrid', content: line.replace(/^##STATGRID##/, '').replace(/##END##$/, '') });
       i++; continue;
     }
+    if (line.startsWith('##MOSAIC##')) {
+      blocks.push({ type: 'mosaic', content: line.replace(/^##MOSAIC##/, '').replace(/##END##$/, '') });
+      i++; continue;
+    }
     if (line.startsWith('##TABLEROW##')) {
       const cells = line.replace(/^##TABLEROW##/, '').split('||');
       blocks.push({ type: 'tablerow', content: line, caption: cells[0] || '', extra: cells[1] || '' });
@@ -128,8 +133,8 @@ export default function ArticlePage({ params }: Props) {
       <ReadingProgress />
 
       {/* 히어로 */}
-      <section className="relative w-full bg-black overflow-hidden" style={{ minHeight: '480px' }}>
-        <div className="relative w-full" style={{ minHeight: '480px' }}>
+      <section className="relative w-full bg-black overflow-hidden">
+  <div className="relative w-full" style={{ aspectRatio: '21/9', minHeight: '320px' }}>
           <img
             src={article.image}
             alt={article.titleKo}
@@ -485,6 +490,67 @@ export default function ArticlePage({ params }: Props) {
                       </div>
                     );
                   })}
+                </div>
+              );
+            }
+            if (block.type === 'mosaic') {
+              const mParts = block.content.split('||');
+              const mImgs: { url: string; cap: string }[] = [];
+              for (let mi = 0; mi < mParts.length; mi += 2) {
+                const u = mParts[mi]?.trim();
+                if (u) mImgs.push({ url: u, cap: mParts[mi + 1]?.trim() || '' });
+              }
+              const capOverlay = (cap: string) => cap ? (
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0,
+                  background: 'linear-gradient(transparent, rgba(0,0,0,0.68))',
+                  padding: '24px 12px 10px',
+                  fontFamily: 'var(--font-space-mono)', fontSize: '9px',
+                  letterSpacing: '0.1em', textTransform: 'uppercase' as const,
+                  color: 'rgba(255,255,255,0.75)',
+                }}>{cap}</div>
+              ) : null;
+              const imgBox = (img: { url: string; cap: string }, extraStyle: React.CSSProperties = {}) => (
+                <div style={{ position: 'relative', overflow: 'hidden', ...extraStyle }}>
+                  <img src={img.url} alt={img.cap}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    loading="lazy" />
+                  {capOverlay(img.cap)}
+                </div>
+              );
+              if (mImgs.length === 2) {
+                return (
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '4px', margin: '32px 0' }}>
+                    {imgBox(mImgs[0], { aspectRatio: '4/3' })}
+                    {imgBox(mImgs[1], { aspectRatio: '4/3' })}
+                  </div>
+                );
+              }
+              if (mImgs.length === 3) {
+                return (
+                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', margin: '32px 0' }}>
+                    {imgBox(mImgs[0], { gridColumn: '1 / -1', aspectRatio: '21/8' })}
+                    {mImgs.slice(1).map((img, mi) => (
+                      <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3' }}>
+                        <img src={img.url} alt={img.cap}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                          loading="lazy" />
+                        {capOverlay(img.cap)}
+                      </div>
+                    ))}
+                  </div>
+                );
+              }
+              return (
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', margin: '32px 0' }}>
+                  {mImgs.slice(0, 4).map((img, mi) => (
+                    <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1/1' }}>
+                      <img src={img.url} alt={img.cap}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        loading="lazy" />
+                      {capOverlay(img.cap)}
+                    </div>
+                  ))}
                 </div>
               );
             }
