@@ -133,8 +133,8 @@ export default function ArticlePage({ params }: Props) {
       <ReadingProgress />
 
       {/* 히어로 */}
-      <section className="relative w-full bg-black overflow-hidden">
-  <div className="relative w-full" style={{ aspectRatio: '21/9', minHeight: '320px' }}>
+      <section className="relative w-full overflow-hidden" style={{ background: '#000', fontSize: 0 }}>
+        <div className="relative w-full" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
           <img
             src={article.image}
             alt={article.titleKo}

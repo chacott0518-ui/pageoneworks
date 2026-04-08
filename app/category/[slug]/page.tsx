@@ -124,8 +124,34 @@ export default function CategoryPage({ params }: Props) {
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {catArticles.map((article) => (
+            <>
+              {/* 피처드 글 — 큰 슬롯 */}
+              {catArticles.filter(a => a.featured).map((article) => (
+                <Link
+                  key={`featured-${article.id}`}
+                  href={`/article/${article.slug}`}
+                  className="group block mb-6 md:mb-10"
+                >
+                  <div className="relative overflow-hidden bg-[#1a1a1a]" style={{ aspectRatio: '21/9' }}>
+                    <img
+                      src={article.image}
+                      alt={article.titleKo}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 p-6 md:p-10">
+                      <p className="text-cream/50 uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.2em' }}>{article.category}</p>
+                      <h2 className="text-cream font-light leading-tight" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)', wordBreak: 'keep-all' }}>{article.titleKo}</h2>
+                      <p className="text-cream/40 mt-2 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '8px', letterSpacing: '0.08em' }}>{article.date} · {article.readTime}</p>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+
+              {/* 일반 글 그리드 — featured 제외 */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {catArticles.filter(a => !a.featured).map((article) => (
                 <Link
                   key={article.id}
                   href={`/article/${article.slug}`}
@@ -188,7 +214,8 @@ export default function CategoryPage({ params }: Props) {
                   </p>
                 </Link>
               ))}
-            </div>
+              </div>
+            </>
           )}
         </div>
       </section>
