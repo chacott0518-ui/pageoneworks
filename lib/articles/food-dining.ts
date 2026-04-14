@@ -3,7 +3,7 @@ import { Article } from '@/lib/data';
 export const foodDiningArticles: Article[] = [
   {
     id: 301,
-    slug: 'michelin-seoul-2026',
+    slug: 'michelin-seoul-food-2026',
     category: 'FOOD & DINING',
     categorySlug: 'food-dining',
     title: 'Michelin Seoul 2026: New Stars',
