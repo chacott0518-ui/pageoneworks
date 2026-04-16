@@ -3,7 +3,7 @@
 import { Header } from '@/components/Header';
 import { HeroPanorama } from '@/components/HeroPanorama';
 import { MagazineGrid } from '@/components/MagazineGrid';
-import { CategoryShowcase } from '@/components/CategoryShowcase';
+import { EditorPickSection } from '@/components/EditorPickSection';
 import { CommunityCTA } from '@/components/CommunityCTA';
 import { Footer } from '@/components/Footer';
 
@@ -14,7 +14,7 @@ export default function HomePage() {
       <main>
         <HeroPanorama />
         <MagazineGrid />
-        <CategoryShowcase />
+        <EditorPickSection />
         <CommunityCTA />
       </main>
       <Footer />

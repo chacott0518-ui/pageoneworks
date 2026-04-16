@@ -2,31 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+KR:wght@300;400&display=swap');
 
 :root {
   --font-cormorant: 'Cormorant Garamond', serif;
   --font-inter: 'Inter', sans-serif;
   --font-space-mono: 'Space Mono', monospace;
-
-  /* 폰트 표준 스케일 */
-  --text-mono-xs: 11px;     /* 태그, 레이블, 캡션 최소 */
-  --text-mono-sm: 12px;     /* 버튼, 네비, 날짜 */
-  --text-mono-md: 13px;     /* 중요 레이블 */
-  --text-body-sm: 1rem;     /* 본문 작은 텍스트 */
-  --text-body: 1.05rem;     /* 본문 기본 */
-  --text-body-lg: 1.1rem;   /* 본문 강조 */
+  --text-mono-xs: 11px;
+  --text-mono-sm: 12px;
+  --text-mono-md: 13px;
+  --text-body-sm: 1rem;
+  --text-body: 1.05rem;
+  --text-body-lg: 1.1rem;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
-  /* 모바일 폰트 자동 확대 방지하되 최소 크기 보장 */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -35,24 +28,20 @@ body {
   background-color: #0a0a0a;
   color: #f5f2ed;
   font-family: var(--font-inter);
-  font-size: 16px; /* 기본 16px 고정 */
+  font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* Space Mono 최소 크기 전역 보장 */
 [style*="space-mono"],
 [style*="Space Mono"] {
   font-size: max(var(--text-mono-xs), 11px) !important;
 }
 
-/* Noise Overlay */
 .noise-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   pointer-events: none;
   z-index: 9999;
   opacity: 0.035;
@@ -61,34 +50,22 @@ body {
   background-size: 128px 128px;
 }
 
-/* Hide scrollbar */
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
-/* 모바일에서 한글 줄바꿈 자연스럽게 */
-h2, h3, h4, p {
-  word-break: keep-all;
-  overflow-wrap: break-word;
-}
+h2, h3, h4, p { word-break: keep-all; overflow-wrap: break-word; }
+h1 { word-break: break-all; overflow-wrap: break-word; }
 
-h1 {
-  word-break: break-all;
-  overflow-wrap: break-word;
-}
-
-/* Ticket cutout */
 .ticket-cutout { position: relative; }
 .ticket-cutout::before,
 .ticket-cutout::after {
   content: '';
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 16px; height: 16px;
   background: #f5f2ed;
   border-radius: 50%;
   top: 50%;
@@ -104,10 +81,8 @@ h1 {
 .category-line::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
   background: currentColor;
   transition: width 0.4s ease;
 }
@@ -119,7 +94,44 @@ h1 {
 @layer utilities {
   .text-balance { text-wrap: balance; }
 }
-/* 카테고리 네비바 여백 보정 */
-.hero-offset {
-  padding-top: 97px;
+
+.hero-offset { padding-top: 97px; }
+
+/* ── EditorPickSection ── */
+.ep-sec { background: #0e0e0e; }
+
+@media (min-width: 769px) { .ep-mob { display: none !important; } }
+@media (max-width: 768px)  { .ep-desk { display: none !important; } }
+
+.ep-more-btn {
+  display: inline-block;
+  padding: 8px 20px;
+  border: 0.5px solid #383838;
+  border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #888;
+  text-decoration: none;
+  transition: all .2s ease;
+  margin-top: 10px;
 }
+.ep-more-btn:hover { border-color: #c9b99a; color: #c9b99a; transform: translateY(-1px); }
+
+.ep-more-mob {
+  display: block;
+  text-align: center;
+  margin-top: 24px;
+  padding: 13px;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #777;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+.ep-more-mob:hover { border-color: #c9b99a; color: #c9b99a; }

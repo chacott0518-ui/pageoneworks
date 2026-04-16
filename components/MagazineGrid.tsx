@@ -27,7 +27,7 @@ export function MagazineGrid() {
   const displayList = filtered.length > 0 ? filtered : articles;
   const main = displayList.find((a) => a.featured) ?? displayList[0];
   const side = displayList.slice(1, 3);
-  const bottom = displayList.slice(3, 9);
+  const bottom = displayList.slice(3, 6);
   const mobileSwipe = displayList.slice(1, 3);
 
   return (

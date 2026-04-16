@@ -28,6 +28,7 @@ export type Article = {
   isSponsored?: boolean;
   sponsorName?: string;
   sponsorUrl?: string;
+  viewCount?: number; 
 };
 
 export const categories: Category[] = [
