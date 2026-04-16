@@ -1,6 +1,7 @@
 import { ArticleJsonLd } from '@/components/ArticleJsonLd';
 import { ReadingProgress } from '@/components/ReadingProgress';
 import { ArticleCredit } from '@/components/ArticleCredit';
+import PregnancyCalculator from '@/components/PregnancyCalculator';
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -63,6 +64,11 @@ function parseBody(body: string) {
     }
     if (/^[1-4]단계/.test(line)) {
       blocks.push({ type: 'step', content: line });
+      i++; continue;
+    }
+    if (line.startsWith('##TOOL##')) {
+      const parts = line.split('##');
+      blocks.push({ type: 'tool', content: parts[2] || '' });
       i++; continue;
     }
     if (line.startsWith('##INFOBOX##')) {
@@ -553,6 +559,10 @@ export default function ArticlePage({ params }: Props) {
                   ))}
                 </div>
               );
+            }
+            if (block.type === 'tool') {
+              if (block.content === 'pregnancy-calculator') return <PregnancyCalculator key={i} />;
+              return null;
             }
             if (block.type === 'tablerow') {
               const cells = block.content.replace(/^##TABLEROW##/, '').split('||');
