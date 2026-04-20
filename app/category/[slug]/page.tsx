@@ -126,7 +126,7 @@ export default function CategoryPage({ params }: Props) {
           ) : (
             <>
               {/* 피처드 글 — 큰 슬롯 */}
-              {catArticles.filter(a => a.featured).map((article) => (
+              {catArticles.filter(a => a.featured).slice(0, 1).map((article) => (
                 <Link
                   key={`featured-${article.id}`}
                   href={`/article/${article.slug}`}
@@ -139,7 +139,7 @@ export default function CategoryPage({ params }: Props) {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       loading="eager"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
                     <div className="absolute bottom-0 left-0 p-6 md:p-10">
                       <p className="text-cream/50 uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.2em' }}>{article.category}</p>
                       <h2 className="text-cream font-light leading-tight" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)', wordBreak: 'keep-all' }}>{article.titleKo}</h2>
@@ -151,7 +151,7 @@ export default function CategoryPage({ params }: Props) {
 
               {/* 일반 글 그리드 — featured 제외 */}
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {catArticles.filter(a => !a.featured).map((article) => (
+              {catArticles.filter((a, idx) => !a.featured || idx !== catArticles.findIndex(x => x.featured)).map((article) => (
                 <Link
                   key={article.id}
                   href={`/article/${article.slug}`}
