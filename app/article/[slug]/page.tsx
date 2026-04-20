@@ -2,6 +2,8 @@ import { ArticleJsonLd } from '@/components/ArticleJsonLd';
 import { ReadingProgress } from '@/components/ReadingProgress';
 import { ArticleCredit } from '@/components/ArticleCredit';
 import PregnancyCalculator from '@/components/PregnancyCalculator';
+import TaxCalculator from '@/components/TaxCalculator';
+import VatCalculator from '@/components/VatCalculator';
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -562,6 +564,8 @@ export default function ArticlePage({ params }: Props) {
             }
             if (block.type === 'tool') {
               if (block.content === 'pregnancy-calculator') return <PregnancyCalculator key={i} />;
+              if (block.content === 'tax-calculator')        return <TaxCalculator key={i} />;
+              if (block.content === 'vat-calculator')        return <VatCalculator key={i} />;
               return null;
             }
             if (block.type === 'tablerow') {
