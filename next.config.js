@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  staticPageGenerationTimeout: 180,
   async redirects() {
     return [
       {
@@ -18,5 +19,4 @@ const nextConfig = {
     ],
   },
 };
-
 module.exports = nextConfig;
