@@ -73,6 +73,12 @@ function parseBody(body: string) {
       blocks.push({ type: 'tool', content: parts[2] || '' });
       i++; continue;
     }
+    if (line.startsWith('##CTA##')) {
+      const inner = line.replace('##CTA##', '').replace('##END##', '');
+      const [btnText, phone] = inner.split('||');
+      blocks.push({ type: 'cta', content: btnText?.trim() || '무료 상담', caption: phone?.trim() || '' });
+      i++; continue;
+    }
     if (line.startsWith('##INFOBOX##')) {
       const parts = line.split('##');
       blocks.push({ type: 'infobox', content: parts[4] || '', caption: parts[2] || '', extra: parts[3] || '' });
@@ -559,6 +565,35 @@ export default function ArticlePage({ params }: Props) {
                       {capOverlay(img.cap)}
                     </div>
                   ))}
+                </div>
+              );
+            }
+            if (block.type === 'cta') {
+              return (
+                <div key={i} style={{ margin: '32px 0', display: 'flex', justifyContent: 'center' }}>
+                  
+                    <a href={`tel:${block.caption?.replace(/-/g, '')}`}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      background: '#1a1a1a',
+                      color: '#f5f2ed',
+                      padding: '18px 40px',
+                      fontFamily: 'var(--font-space-mono)',
+                      fontSize: '13px',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase' as const,
+                      textDecoration: 'none',
+                      borderRadius: '2px',
+                      transition: 'background 0.2s',
+                    }}
+                    onMouseOver={e => (e.currentTarget.style.background = '#333')}
+                    onMouseOut={e => (e.currentTarget.style.background = '#1a1a1a')}
+                  >
+                    <Phone className="w-4 h-4" />
+                    {block.content}
+                  </a>
                 </div>
               );
             }
