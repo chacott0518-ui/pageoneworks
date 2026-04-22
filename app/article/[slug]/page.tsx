@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props) {
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) return {};
   return {
-    title: `${article.titleKo} — PAGEONEWORKS`,
+    title: `${article.titleKo} ??PAGEONEWORKS`,
     description: article.excerpt,
     openGraph: {
       title: article.titleKo,
@@ -56,15 +56,15 @@ function parseBody(body: string) {
       blocks.push({ type: 'faq', content: line, caption: lines[i + 1] || '' });
       i += 2; continue;
     }
-    if (line.startsWith('■')) {
-      blocks.push({ type: 'heading', content: line.replace('■ ', '').replace('■', '') });
+    if (line.startsWith('??)) {
+      blocks.push({ type: 'heading', content: line.replace('??', '').replace('??, '') });
       i++; continue;
     }
-    if (line.startsWith('【')) {
+    if (line.startsWith('??)) {
       blocks.push({ type: 'subheading', content: line });
       i++; continue;
     }
-    if (/^[1-4]단계/.test(line)) {
+    if (/^[1-4]?�계/.test(line)) {
       blocks.push({ type: 'step', content: line });
       i++; continue;
     }
@@ -76,7 +76,7 @@ function parseBody(body: string) {
     if (line.startsWith('##CTA##')) {
       const inner = line.replace('##CTA##', '').replace('##END##', '');
       const [btnText, phone] = inner.split('||');
-      blocks.push({ type: 'cta', content: btnText?.trim() || '무료 상담', caption: phone?.trim() || '' });
+      blocks.push({ type: 'cta', content: btnText?.trim() || '무료 ?�담', caption: phone?.trim() || '' });
       i++; continue;
     }
     if (line.startsWith('##INFOBOX##')) {
@@ -146,7 +146,7 @@ export default function ArticlePage({ params }: Props) {
       <ArticleJsonLd article={article} />
       <ReadingProgress />
 
-      {/* 히어로 */}
+      {/* ?�어�?*/}
       <section className="relative w-full overflow-hidden" style={{ background: '#000', fontSize: 0 }}>
         <div className="relative w-full" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
           <img
@@ -156,7 +156,7 @@ export default function ArticlePage({ params }: Props) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/30 to-black/50" />
 
-          {/* 카테고리 백 링크 - 모바일 헤더 아래 */}
+          {/* 카테고리 �?링크 - 모바???�더 ?�래 */}
           <div className="absolute top-16 md:top-20 left-5 md:left-10 z-10">
             <Link
               href={`/category/${article.categorySlug}`}
@@ -174,7 +174,7 @@ export default function ArticlePage({ params }: Props) {
             >
               {article.category}
             </span>
-            {/* 모바일에서 제목 짤림 방지: max-w 제거, pr 추가 */}
+            {/* 모바?�에???�목 짤림 방�?: max-w ?�거, pr 추�? */}
             <h1
               className="text-cream leading-tight"
               style={{
@@ -235,7 +235,7 @@ export default function ArticlePage({ params }: Props) {
       <article className="bg-[#f8f7f4] min-h-screen">
         <div className="max-w-[760px] mx-auto px-5 md:px-8 py-12 md:py-16">
 
-          {/* 태그 */}
+          {/* ?�그 */}
           {article.tags && article.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-10 pb-8 border-b border-black/8">
               {article.tags.map((tag) => (
@@ -255,7 +255,7 @@ export default function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {/* 카앤가이 정보 박스 */}
+          {/* 카앤가???�보 박스 */}
           <ArticleCredit article={article} />
           {isCarnguy && (
             <div className="mb-12 p-6 md:p-8 bg-white border border-black/10 shadow-sm">
@@ -270,7 +270,7 @@ export default function ArticlePage({ params }: Props) {
                       color: 'rgba(26,26,26,0.4)',
                     }}
                   >
-                    업체 정보
+                    ?�체 ?�보
                   </p>
                   <p
                     style={{
@@ -281,7 +281,7 @@ export default function ArticlePage({ params }: Props) {
                       marginBottom: '6px',
                     }}
                   >
-                    카앤가이 CAR&GUY
+                    카앤가??CAR&GUY
                   </p>
                   <p
                     style={{
@@ -292,7 +292,7 @@ export default function ArticlePage({ params }: Props) {
                       lineHeight: '1.6',
                     }}
                   >
-                    경기도 광주시 광남안로 12 · 국토교통부 인증 1급 자동차공업사
+                    경기??광주??광남?�로 12 · �?��교통부 ?�증 1�??�동차공?�사
                   </p>
                 </div>
 
@@ -308,16 +308,16 @@ export default function ArticlePage({ params }: Props) {
                   }}
                 >
                   <Phone className="w-4 h-4" />
-                  지금 바로 상담 예약하기
+                  지�?바로 ?�담 ?�약?�기
                 </a>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-black/8">
                 {[
-                  { num: '15+', label: '년 업력' },
-                  { num: '3,200+', label: '누적 수리' },
-                  { num: '100%', label: '보험접수 성공률' },
-                  { num: '1급', label: '공업사 인증' },
+                  { num: '15+', label: '???�력' },
+                  { num: '3,200+', label: '?�적 ?�리' },
+                  { num: '100%', label: '보험?�수 ?�공�? },
+                  { num: '1�?, label: '공업???�증' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center py-2">
                     <p
@@ -410,7 +410,7 @@ export default function ArticlePage({ params }: Props) {
               );
             }
             if (block.type === 'step') {
-              const dashIdx = block.content.indexOf(' — ');
+              const dashIdx = block.content.indexOf(' ??');
               const stepLabel = dashIdx > -1 ? block.content.slice(0, dashIdx) : block.content;
               const stepText = dashIdx > -1 ? block.content.slice(dashIdx + 3) : '';
               return (
@@ -588,8 +588,6 @@ export default function ArticlePage({ params }: Props) {
                       borderRadius: '2px',
                       transition: 'background 0.2s',
                     }}
-                    onMouseOver={e => (e.currentTarget.style.background = '#333')}
-                    onMouseOut={e => (e.currentTarget.style.background = '#1a1a1a')}
                   >
                     <Phone className="w-4 h-4" />
                     {block.content}
@@ -674,7 +672,7 @@ export default function ArticlePage({ params }: Props) {
                   paddingLeft: '14px',
                 }}
               >
-                FAQ — 자주 묻는 질문
+                FAQ ???�주 묻는 질문
               </h2>
               <div className="flex flex-col gap-4">
                 {faqBlocks.map((faq, i) => (
@@ -697,7 +695,7 @@ export default function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {/* 오시는 길 */}
+          {/* ?�시??�?*/}
           {isCarnguy && (
             <div className="mt-14 pt-10 border-t border-black/8">
               <h2
@@ -711,10 +709,9 @@ export default function ArticlePage({ params }: Props) {
                   paddingLeft: '14px',
                 }}
               >
-                오시는 길
-              </h2>
+                ?�시??�?              </h2>
 
-              {/* 구글맵으로 교체 - 카카오 iframe embed 미지원 */}
+              {/* 구�?맵으�?교체 - 카카??iframe embed 미�???*/}
               <div className="w-full overflow-hidden mb-5 border border-black/8" style={{ aspectRatio: '16/9' }}>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.5!2d127.254300!3d37.423400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z7Jes6rWs6rSA7J207Yq4!5e0!3m2!1sko!2skr!4v1"
@@ -724,11 +721,11 @@ export default function ArticlePage({ params }: Props) {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="카앤가이 위치"
+                  title="카앤가???�치"
                 />
               </div>
 
-              {/* 주소 + 시간 한줄 버튼식 */}
+              {/* 주소 + ?�간 ?�줄 버튼??*/}
               <div className="flex flex-col sm:flex-row gap-3 mb-4">
                 <div className="flex items-center gap-3 flex-1 px-5 py-4 bg-white border border-black/8">
                   <MapPin className="w-4 h-4 shrink-0" style={{ color: 'rgba(26,26,26,0.4)' }} />
@@ -740,7 +737,7 @@ export default function ArticlePage({ params }: Props) {
                       주소
                     </p>
                     <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>
-                      경기도 광주시 광남안로 12
+                      경기??광주??광남?�로 12
                     </p>
                   </div>
                 </div>
@@ -751,10 +748,10 @@ export default function ArticlePage({ params }: Props) {
                       className="uppercase mb-0.5"
                       style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}
                     >
-                      운영시간
+                      ?�영?�간
                     </p>
                     <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>
-                      평일 09:00–18:00 · 야간/주말 24h 긴급
+                      ?�일 09:00??8:00 · ?�간/주말 24h 긴급
                     </p>
                   </div>
                 </div>
@@ -762,7 +759,7 @@ export default function ArticlePage({ params }: Props) {
 
               <div className="flex flex-col sm:flex-row gap-3">
                <a
-              href="https://map.kakao.com/link/to/카앤가이,37.423400,127.254300"
+              href="https://map.kakao.com/link/to/카앤가??37.423400,127.254300"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2.5 flex-1 border border-black/20 hover:border-black/40 transition-colors"
@@ -775,8 +772,7 @@ export default function ArticlePage({ params }: Props) {
                   }}
                 >
                   <ExternalLink className="w-4 h-4" />
-                  카카오맵으로 길찾기
-                </a>
+                  카카?�맵?�로 길찾�?                </a>
                 
                 <a
                 href="tel:027395415"
@@ -789,7 +785,7 @@ export default function ArticlePage({ params }: Props) {
                   }}
                 >
                   <Phone className="w-4 h-4" />
-                  지금 바로 상담하기
+                  지�?바로 ?�담?�기
                 </a>
               </div>
             </div>
@@ -798,7 +794,7 @@ export default function ArticlePage({ params }: Props) {
           <ShareButtons />
         </div>
 
-        {/* 관련 아티클 */}
+        {/* 관???�티??*/}
         {related.length > 0 && (
           <section className="border-t border-black/8 py-14 px-5 md:px-10 bg-[#f0ede8]">
             <div className="max-w-[1200px] mx-auto">
