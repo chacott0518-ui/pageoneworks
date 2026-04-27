@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props) {
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) return {};
   return {
-    title: `${article.titleKo} ??PAGEONEWORKS`,
+    title: `${article.titleKo} — PAGEONEWORKS`,
     description: article.excerpt,
     openGraph: {
       title: article.titleKo,
@@ -56,15 +56,15 @@ function parseBody(body: string) {
       blocks.push({ type: 'faq', content: line, caption: lines[i + 1] || '' });
       i += 2; continue;
     }
-    if (line.startsWith('??)) {
-      blocks.push({ type: 'heading', content: line.replace('??', '').replace('??, '') });
+    if (line.startsWith('\u25a0')) {
+      blocks.push({ type: 'heading', content: line.replace('\u25a0 ', '').replace('\u25a0', '') });
       i++; continue;
     }
-    if (line.startsWith('??)) {
+    if (line.startsWith('\u3010')) {
       blocks.push({ type: 'subheading', content: line });
       i++; continue;
     }
-    if (/^[1-4]?�계/.test(line)) {
+    if (/^[1-9]\uB2E8\uACC4/.test(line)) {
       blocks.push({ type: 'step', content: line });
       i++; continue;
     }
@@ -76,7 +76,7 @@ function parseBody(body: string) {
     if (line.startsWith('##CTA##')) {
       const inner = line.replace('##CTA##', '').replace('##END##', '');
       const [btnText, phone] = inner.split('||');
-      blocks.push({ type: 'cta', content: btnText?.trim() || '무료 ?�담', caption: phone?.trim() || '' });
+      blocks.push({ type: 'cta', content: btnText?.trim() || '\uBB34\uB8CC \uC0C1\uB2F4', caption: phone?.trim() || '' });
       i++; continue;
     }
     if (line.startsWith('##INFOBOX##')) {
@@ -146,7 +146,6 @@ export default function ArticlePage({ params }: Props) {
       <ArticleJsonLd article={article} />
       <ReadingProgress />
 
-      {/* ?�어�?*/}
       <section className="relative w-full overflow-hidden" style={{ background: '#000', fontSize: 0 }}>
         <div className="relative w-full" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
           <img
@@ -155,8 +154,6 @@ export default function ArticlePage({ params }: Props) {
             className="absolute inset-0 w-full h-full object-cover opacity-70"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/30 to-black/50" />
-
-          {/* 카테고리 �?링크 - 모바???�더 ?�래 */}
           <div className="absolute top-16 md:top-20 left-5 md:left-10 z-10">
             <Link
               href={`/category/${article.categorySlug}`}
@@ -166,7 +163,6 @@ export default function ArticlePage({ params }: Props) {
               <ArrowLeft className="w-3 h-3" /> {article.category}
             </Link>
           </div>
-
           <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-8 md:pb-14">
             <span
               className="inline-block border border-cream/30 text-cream/65 px-3 py-1 mb-4 uppercase"
@@ -174,7 +170,6 @@ export default function ArticlePage({ params }: Props) {
             >
               {article.category}
             </span>
-            {/* 모바?�에???�목 짤림 방�?: max-w ?�거, pr 추�? */}
             <h1
               className="text-cream leading-tight"
               style={{
@@ -193,35 +188,22 @@ export default function ArticlePage({ params }: Props) {
             </h1>
             <p
               className="text-cream/55 mt-4 leading-relaxed max-w-[640px] pr-4 md:pr-0"
-              style={{
-                fontFamily: 'var(--font-inter)',
-                fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)',
-                fontWeight: 300,
-              }}
+              style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', fontWeight: 300 }}
             >
               {article.excerpt}
             </p>
             <div className="flex items-center gap-3 mt-4 flex-wrap">
-              <span
-                className="text-cream/45 uppercase"
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}
-              >
+              <span className="text-cream/45 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
                 {article.date}
               </span>
               <span className="text-cream/20">·</span>
-              <span
-                className="text-cream/45 uppercase"
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}
-              >
+              <span className="text-cream/45 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
                 {article.readTime} READ
               </span>
               {article.author && (
                 <>
                   <span className="text-cream/20">·</span>
-                  <span
-                    className="text-cream/45 uppercase"
-                    style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}
-                  >
+                  <span className="text-cream/45 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
                     {article.author}
                   </span>
                 </>
@@ -231,23 +213,16 @@ export default function ArticlePage({ params }: Props) {
         </div>
       </section>
 
-      {/* 본문 */}
       <article className="bg-[#f8f7f4] min-h-screen">
         <div className="max-w-[760px] mx-auto px-5 md:px-8 py-12 md:py-16">
 
-          {/* ?�그 */}
           {article.tags && article.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-10 pb-8 border-b border-black/8">
               {article.tags.map((tag) => (
                 <span
                   key={tag}
                   className="border border-black/15 uppercase px-3 py-1.5"
-                  style={{
-                    fontFamily: 'var(--font-space-mono)',
-                    fontSize: '11px',
-                    letterSpacing: '0.1em',
-                    color: 'rgba(26,26,26,0.5)',
-                  }}
+                  style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: 'rgba(26,26,26,0.5)' }}
                 >
                   # {tag}
                 </span>
@@ -255,90 +230,42 @@ export default function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {/* 카앤가???�보 박스 */}
           <ArticleCredit article={article} />
           {isCarnguy && (
             <div className="mb-12 p-6 md:p-8 bg-white border border-black/10 shadow-sm">
               <div className="flex flex-col gap-5">
                 <div>
-                  <p
-                    className="uppercase mb-2"
-                    style={{
-                      fontFamily: 'var(--font-space-mono)',
-                      fontSize: '11px',
-                      letterSpacing: '0.25em',
-                      color: 'rgba(26,26,26,0.4)',
-                    }}
-                  >
-                    ?�체 ?�보
+                  <p className="uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.25em', color: 'rgba(26,26,26,0.4)' }}>
+                    \uC5C5\uCCB4 \uC815\uBCF4
                   </p>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-cormorant)',
-                      fontSize: 'clamp(1.5rem, 3vw, 1.9rem)',
-                      fontWeight: 500,
-                      color: '#1a1a1a',
-                      marginBottom: '6px',
-                    }}
-                  >
-                    카앤가??CAR&GUY
+                  <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 1.9rem)', fontWeight: 500, color: '#1a1a1a', marginBottom: '6px' }}>
+                    \uCE74\uC564\uAC00\uC774 CAR&GUY
                   </p>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-inter)',
-                      fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
-                      fontWeight: 300,
-                      color: 'rgba(26,26,26,0.6)',
-                      lineHeight: '1.6',
-                    }}
-                  >
-                    경기??광주??광남?�로 12 · �?��교통부 ?�증 1�??�동차공?�사
+                  <p style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', fontWeight: 300, color: 'rgba(26,26,26,0.6)', lineHeight: '1.6' }}>
+                    \uACBD\uAE30\uB3C4 \uAD11\uC8FC\uC2DC \uAD11\uB0A8\uC548\uB85C 12 · \uAD6D\uD1A0\uAD50\uD1B5\uBD80 \uC778\uC99D 1\uAE09 \uC790\uB3D9\uCC28\uACF5\uC5C5\uC0AC
                   </p>
                 </div>
-
-                
                 <a
-                href="tel:027395415"
+                  href="tel:027395415"
                   className="inline-flex items-center justify-center gap-2.5 bg-[#1a1a1a] text-white w-full hover:bg-black/80 transition-colors"
-                  style={{
-                    fontFamily: 'var(--font-space-mono)',
-                    fontSize: '13px',
-                    letterSpacing: '0.1em',
-                    padding: '16px 24px',
-                  }}
+                  style={{ fontFamily: 'var(--font-space-mono)', fontSize: '13px', letterSpacing: '0.1em', padding: '16px 24px' }}
                 >
                   <Phone className="w-4 h-4" />
-                  지�?바로 ?�담 ?�약?�기
+                  \uC9C0\uAE08 \uBC14\uB85C \uC0C1\uB2F4 \uC608\uC57D\uD558\uAE30
                 </a>
               </div>
-
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-black/8">
                 {[
-                  { num: '15+', label: '???�력' },
-                  { num: '3,200+', label: '?�적 ?�리' },
-                  { num: '100%', label: '보험?�수 ?�공�? },
-                  { num: '1�?, label: '공업???�증' },
+                  { num: '15+', label: '\uB144 \uC5C5\uB825' },
+                  { num: '3,200+', label: '\uB204\uC801 \uC218\uB9AC' },
+                  { num: '100%', label: '\uBCF4\uD5D8\uC811\uC218 \uC131\uACF5\uB960' },
+                  { num: '1\uAE09', label: '\uACF5\uC5C5\uC0AC \uC778\uC99D' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center py-2">
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-cormorant)',
-                        fontSize: 'clamp(1.6rem, 3vw, 2.1rem)',
-                        fontWeight: 400,
-                        color: '#1a1a1a',
-                      }}
-                    >
+                    <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', fontWeight: 400, color: '#1a1a1a' }}>
                       {stat.num}
                     </p>
-                    <p
-                      className="uppercase mt-1"
-                      style={{
-                        fontFamily: 'var(--font-space-mono)',
-                        fontSize: '11px',
-                        letterSpacing: '0.1em',
-                        color: 'rgba(26,26,26,0.4)',
-                      }}
-                    >
+                    <p className="uppercase mt-1" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: 'rgba(26,26,26,0.4)' }}>
                       {stat.label}
                     </p>
                   </div>
@@ -347,28 +274,13 @@ export default function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {/* 본문 블록 */}
           {contentBlocks.map((block, i) => {
             if (block.type === 'image') {
               return (
                 <figure key={i} className="my-8 md:my-10">
-                  <img
-                    src={block.content}
-                    alt={block.caption || ''}
-                    className="w-full object-cover"
-                    style={{ aspectRatio: '16/9' }}
-                    loading="lazy"
-                  />
+                  <img src={block.content} alt={block.caption || ''} className="w-full object-cover" style={{ aspectRatio: '16/9' }} loading="lazy" />
                   {block.caption && (
-                    <figcaption
-                      className="text-center mt-3 px-5 uppercase"
-                      style={{
-                        fontFamily: 'var(--font-space-mono)',
-                        fontSize: '11px',
-                        letterSpacing: '0.12em',
-                        color: 'rgba(26,26,26,0.4)',
-                      }}
-                    >
+                    <figcaption className="text-center mt-3 px-5 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
                       {block.caption}
                     </figcaption>
                   )}
@@ -377,64 +289,28 @@ export default function ArticlePage({ params }: Props) {
             }
             if (block.type === 'heading') {
               return (
-                <h2
-                  key={i}
-                  className="mt-12 mb-5 pb-4 border-b border-black/10"
-                  style={{
-                    fontFamily: 'var(--font-cormorant)',
-                    fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                    fontWeight: 500,
-                    color: '#1a1a1a',
-                    borderLeft: '3px solid #1a1aff',
-                    paddingLeft: '14px',
-                  }}
-                >
+                <h2 key={i} className="mt-12 mb-5 pb-4 border-b border-black/10" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
                   {block.content}
                 </h2>
               );
             }
             if (block.type === 'subheading') {
               return (
-                <h3
-                  key={i}
-                  className="mt-8 mb-4"
-                  style={{
-                    fontFamily: 'var(--font-cormorant)',
-                    fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)',
-                    fontWeight: 500,
-                    color: '#1a1a1a',
-                  }}
-                >
+                <h3 key={i} className="mt-8 mb-4" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', fontWeight: 500, color: '#1a1a1a' }}>
                   {block.content}
                 </h3>
               );
             }
             if (block.type === 'step') {
-              const dashIdx = block.content.indexOf(' ??');
+              const dashIdx = block.content.indexOf(' \u2014 ');
               const stepLabel = dashIdx > -1 ? block.content.slice(0, dashIdx) : block.content;
               const stepText = dashIdx > -1 ? block.content.slice(dashIdx + 3) : '';
               return (
                 <div key={i} className="flex gap-5 my-5 p-5 md:p-6 bg-white border border-black/8">
-                  <span
-                    className="shrink-0 uppercase font-medium mt-0.5"
-                    style={{
-                      fontFamily: 'var(--font-space-mono)',
-                      fontSize: '11px',
-                      letterSpacing: '0.1em',
-                      color: '#1a1aff',
-                    }}
-                  >
+                  <span className="shrink-0 uppercase font-medium mt-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: '#1a1aff' }}>
                     {stepLabel}
                   </span>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-inter)',
-                      fontWeight: 300,
-                      fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)',
-                      color: 'rgba(26,26,26,0.7)',
-                      lineHeight: '1.8',
-                    }}
-                  >
+                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.7)', lineHeight: '1.8' }}>
                     {stepText}
                   </p>
                 </div>
@@ -450,16 +326,7 @@ export default function ArticlePage({ params }: Props) {
               };
               const c = colorMap[block.extra || 'blue'] || colorMap.blue;
               return (
-                <div
-                  key={i}
-                  style={{
-                    background: c.bg,
-                    borderLeft: `4px solid ${c.border}`,
-                    borderRadius: '0 8px 8px 0',
-                    padding: '20px 24px',
-                    margin: '24px 0',
-                  }}
-                >
+                <div key={i} style={{ background: c.bg, borderLeft: `4px solid ${c.border}`, borderRadius: '0 8px 8px 0', padding: '20px 24px', margin: '24px 0' }}>
                   {block.caption && (
                     <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: c.border, marginBottom: '8px', fontWeight: 600 }}>
                       {block.caption}
@@ -474,33 +341,13 @@ export default function ArticlePage({ params }: Props) {
             if (block.type === 'statgrid') {
               const stats = block.content.split('||').map((s: string) => s.trim()).filter(Boolean);
               return (
-                <div
-                  key={i}
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-                    gap: '12px',
-                    margin: '28px 0',
-                  }}
-                >
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px', margin: '28px 0' }}>
                   {stats.map((stat: string, si: number) => {
                     const [val, label] = stat.split(':');
                     return (
-                      <div
-                        key={si}
-                        style={{
-                          background: '#1a1a1a',
-                          borderRadius: '4px',
-                          padding: '20px 16px',
-                          textAlign: 'center',
-                        }}
-                      >
-                        <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 400, color: '#f5f2ed', margin: '0 0 4px' }}>
-                          {val?.trim()}
-                        </p>
-                        <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.5)', margin: 0 }}>
-                          {label?.trim()}
-                        </p>
+                      <div key={si} style={{ background: '#1a1a1a', borderRadius: '4px', padding: '20px 16px', textAlign: 'center' }}>
+                        <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 400, color: '#f5f2ed', margin: '0 0 4px' }}>{val?.trim()}</p>
+                        <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.5)', margin: 0 }}>{label?.trim()}</p>
                       </div>
                     );
                   })}
@@ -515,30 +362,16 @@ export default function ArticlePage({ params }: Props) {
                 if (u) mImgs.push({ url: u, cap: mParts[mi + 1]?.trim() || '' });
               }
               const capOverlay = (cap: string) => cap ? (
-                <div style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  background: 'linear-gradient(transparent, rgba(0,0,0,0.68))',
-                  padding: '24px 12px 10px',
-                  fontFamily: 'var(--font-space-mono)', fontSize: '9px',
-                  letterSpacing: '0.1em', textTransform: 'uppercase' as const,
-                  color: 'rgba(255,255,255,0.75)',
-                }}>{cap}</div>
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.68))', padding: '24px 12px 10px', fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.75)' }}>{cap}</div>
               ) : null;
               const imgBox = (img: { url: string; cap: string }, extraStyle: React.CSSProperties = {}) => (
                 <div style={{ position: 'relative', overflow: 'hidden', ...extraStyle }}>
-                  <img src={img.url} alt={img.cap}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                    loading="lazy" />
+                  <img src={img.url} alt={img.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
                   {capOverlay(img.cap)}
                 </div>
               );
               if (mImgs.length === 2) {
-                return (
-                  <div key={i} style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '4px', margin: '32px 0' }}>
-                    {imgBox(mImgs[0], { aspectRatio: '4/3' })}
-                    {imgBox(mImgs[1], { aspectRatio: '4/3' })}
-                  </div>
-                );
+                return <div key={i} style={{ display: 'grid', gridTemplateColumns: '3fr 2fr', gap: '4px', margin: '32px 0' }}>{imgBox(mImgs[0], { aspectRatio: '4/3' })}{imgBox(mImgs[1], { aspectRatio: '4/3' })}</div>;
               }
               if (mImgs.length === 3) {
                 return (
@@ -546,9 +379,7 @@ export default function ArticlePage({ params }: Props) {
                     {imgBox(mImgs[0], { gridColumn: '1 / -1', aspectRatio: '21/8' })}
                     {mImgs.slice(1).map((img, mi) => (
                       <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3' }}>
-                        <img src={img.url} alt={img.cap}
-                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                          loading="lazy" />
+                        <img src={img.url} alt={img.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
                         {capOverlay(img.cap)}
                       </div>
                     ))}
@@ -559,9 +390,7 @@ export default function ArticlePage({ params }: Props) {
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', margin: '32px 0' }}>
                   {mImgs.slice(0, 4).map((img, mi) => (
                     <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1/1' }}>
-                      <img src={img.url} alt={img.cap}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                        loading="lazy" />
+                      <img src={img.url} alt={img.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
                       {capOverlay(img.cap)}
                     </div>
                   ))}
@@ -571,8 +400,8 @@ export default function ArticlePage({ params }: Props) {
             if (block.type === 'cta') {
               return (
                 <div key={i} style={{ margin: '32px 0', display: 'flex', justifyContent: 'center' }}>
-                  
-                    <a href={`tel:${block.caption?.replace(/-/g, '')}`}
+                  <a
+                    href={`tel:${block.caption?.replace(/-/g, '')}`}
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -586,7 +415,6 @@ export default function ArticlePage({ params }: Props) {
                       textTransform: 'uppercase' as const,
                       textDecoration: 'none',
                       borderRadius: '2px',
-                      transition: 'background 0.2s',
                     }}
                   >
                     <Phone className="w-4 h-4" />
@@ -597,40 +425,17 @@ export default function ArticlePage({ params }: Props) {
             }
             if (block.type === 'tool') {
               if (block.content === 'pregnancy-calculator') return <PregnancyCalculator key={i} />;
-              if (block.content === 'tax-calculator')        return <TaxCalculator key={i} />;
-              if (block.content === 'vat-calculator')        return <VatCalculator key={i} />;
+              if (block.content === 'tax-calculator') return <TaxCalculator key={i} />;
+              if (block.content === 'vat-calculator') return <VatCalculator key={i} />;
               return null;
             }
             if (block.type === 'tablerow') {
               const cells = block.content.replace(/^##TABLEROW##/, '').split('||');
               const isHeader = cells[0]?.startsWith('**');
               return (
-                <div
-                  key={i}
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: `repeat(${cells.length}, 1fr)`,
-                    gap: '1px',
-                    background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)',
-                    borderRadius: i === 0 ? '4px 4px 0 0' : '0',
-                    marginTop: isHeader ? '28px' : '0',
-                    marginBottom: '1px',
-                  }}
-                >
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: `repeat(${cells.length}, 1fr)`, gap: '1px', background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)', borderRadius: i === 0 ? '4px 4px 0 0' : '0', marginTop: isHeader ? '28px' : '0', marginBottom: '1px' }}>
                   {cells.map((cell: string, ci: number) => (
-                    <div
-                      key={ci}
-                      style={{
-                        padding: '12px 16px',
-                        fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)',
-                        fontSize: isHeader ? '10px' : 'clamp(0.85rem, 1.3vw, 0.95rem)',
-                        fontWeight: isHeader ? 600 : 300,
-                        color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)',
-                        letterSpacing: isHeader ? '0.08em' : '0',
-                        textTransform: isHeader ? 'uppercase' : 'none',
-                        wordBreak: 'keep-all',
-                      }}
-                    >
+                    <div key={ci} style={{ padding: '12px 16px', fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)', fontSize: isHeader ? '10px' : 'clamp(0.85rem, 1.3vw, 0.95rem)', fontWeight: isHeader ? 600 : 300, color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)', letterSpacing: isHeader ? '0.08em' : '0', textTransform: isHeader ? 'uppercase' : 'none', wordBreak: 'keep-all' }}>
                       {cell.trim().replace(/\*\*/g, '')}
                     </div>
                   ))}
@@ -638,54 +443,21 @@ export default function ArticlePage({ params }: Props) {
               );
             }
             return (
-              <p
-                key={i}
-                style={{
-                  fontFamily: 'var(--font-inter)',
-                  fontWeight: 300,
-                  fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)',
-                  color: 'rgba(26,26,26,0.75)',
-                  lineHeight: '1.75',
-                  marginTop: '12px',
-                  marginBottom: '12px',
-                  wordBreak: 'keep-all',
-                  overflowWrap: 'break-word',
-                }}
-              >
+              <p key={i} style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.75)', lineHeight: '1.75', marginTop: '12px', marginBottom: '12px', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                 {block.content}
               </p>
             );
-            
           })}
 
-          {/* FAQ */}
           {faqBlocks.length > 0 && (
             <div className="mt-14 pt-10 border-t border-black/8">
-              <h2
-                className="mb-8"
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                  fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                  fontWeight: 500,
-                  color: '#1a1a1a',
-                  borderLeft: '3px solid #1a1aff',
-                  paddingLeft: '14px',
-                }}
-              >
-                FAQ ???�주 묻는 질문
+              <h2 className="mb-8" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
+                FAQ \u2014 \uC790\uC8FC \uBB3B\uB294 \uC9C8\uBB38
               </h2>
               <div className="flex flex-col gap-4">
                 {faqBlocks.map((faq, i) => (
                   <div key={i} className="p-6 md:p-8 bg-white border border-black/8">
-                    <p
-                      className="mb-4 pb-3 border-b border-black/8"
-                      style={{
-                        fontFamily: 'var(--font-inter)',
-                        fontSize: 'clamp(1rem, 1.8vw, 1.1rem)',
-                        fontWeight: 500,
-                        color: '#1a1a1a',
-                      }}
-                    >
+                    <p className="mb-4 pb-3 border-b border-black/8" style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(1rem, 1.8vw, 1.1rem)', fontWeight: 500, color: '#1a1a1a' }}>
                       {faq.content}
                     </p>
                     <FaqAnswer text={faq.caption || ''} />
@@ -695,97 +467,38 @@ export default function ArticlePage({ params }: Props) {
             </div>
           )}
 
-          {/* ?�시??�?*/}
           {isCarnguy && (
             <div className="mt-14 pt-10 border-t border-black/8">
-              <h2
-                className="mb-8"
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                  fontSize: 'clamp(1.5rem, 3vw, 2rem)',
-                  fontWeight: 500,
-                  color: '#1a1a1a',
-                  borderLeft: '3px solid #1a1aff',
-                  paddingLeft: '14px',
-                }}
-              >
-                ?�시??�?              </h2>
-
-              {/* 구�?맵으�?교체 - 카카??iframe embed 미�???*/}
+              <h2 className="mb-8" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
+                \uC624\uC2DC\uB294 \uAE38
+              </h2>
               <div className="w-full overflow-hidden mb-5 border border-black/8" style={{ aspectRatio: '16/9' }}>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.5!2d127.254300!3d37.423400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z7Jes6rWs6rSA7J207Yq4!5e0!3m2!1sko!2skr!4v1"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="카앤가???�치"
-                />
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.5!2d127.254300!3d37.423400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z7Jes6rWs6rSA7J207Yq4!5e0!3m2!1sko!2skr!4v1" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="\uCE74\uC564\uAC00\uC774 \uC704\uCE58" />
               </div>
-
-              {/* 주소 + ?�간 ?�줄 버튼??*/}
               <div className="flex flex-col sm:flex-row gap-3 mb-4">
                 <div className="flex items-center gap-3 flex-1 px-5 py-4 bg-white border border-black/8">
                   <MapPin className="w-4 h-4 shrink-0" style={{ color: 'rgba(26,26,26,0.4)' }} />
                   <div>
-                    <p
-                      className="uppercase mb-0.5"
-                      style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}
-                    >
-                      주소
-                    </p>
-                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>
-                      경기??광주??광남?�로 12
-                    </p>
+                    <p className="uppercase mb-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}>\uC8FC\uC18C</p>
+                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>\uACBD\uAE30\uB3C4 \uAD11\uC8FC\uC2DC \uAD11\uB0A8\uC548\uB85C 12</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-1 px-5 py-4 bg-white border border-black/8">
                   <Clock className="w-4 h-4 shrink-0" style={{ color: 'rgba(26,26,26,0.4)' }} />
                   <div>
-                    <p
-                      className="uppercase mb-0.5"
-                      style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}
-                    >
-                      ?�영?�간
-                    </p>
-                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>
-                      ?�일 09:00??8:00 · ?�간/주말 24h 긴급
-                    </p>
+                    <p className="uppercase mb-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}>\uC6B4\uC601\uC2DC\uAC04</p>
+                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>\uD3C9\uC77C 09:00\u201318:00 \u00B7 \uC57C\uAC04/\uC8FC\uB9D0 24h \uAE34\uAE09</p>
                   </div>
                 </div>
               </div>
-
               <div className="flex flex-col sm:flex-row gap-3">
-               <a
-              href="https://map.kakao.com/link/to/카앤가??37.423400,127.254300"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2.5 flex-1 border border-black/20 hover:border-black/40 transition-colors"
-                  style={{
-                    fontFamily: 'var(--font-space-mono)',
-                    fontSize: '12px',
-                    letterSpacing: '0.08em',
-                    color: 'rgba(26,26,26,0.65)',
-                    padding: '16px',
-                  }}
-                >
+                <a href="https://map.kakao.com/link/to/\uCE74\uC564\uAC00\uC774,37.423400,127.254300" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2.5 flex-1 border border-black/20 hover:border-black/40 transition-colors" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.08em', color: 'rgba(26,26,26,0.65)', padding: '16px' }}>
                   <ExternalLink className="w-4 h-4" />
-                  카카?�맵?�로 길찾�?                </a>
-                
-                <a
-                href="tel:027395415"
-                  className="flex items-center justify-center gap-2.5 flex-1 bg-[#1a1a1a] text-white hover:bg-black/80 transition-colors"
-                  style={{
-                    fontFamily: 'var(--font-space-mono)',
-                    fontSize: '12px',
-                    letterSpacing: '0.08em',
-                    padding: '16px',
-                  }}
-                >
+                  \uCE74\uCE74\uC624\uB9F5\uC73C\uB85C \uAE38\uCC3E\uAE30
+                </a>
+                <a href="tel:027395415" className="flex items-center justify-center gap-2.5 flex-1 bg-[#1a1a1a] text-white hover:bg-black/80 transition-colors" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.08em', padding: '16px' }}>
                   <Phone className="w-4 h-4" />
-                  지�?바로 ?�담?�기
+                  \uC9C0\uAE08 \uBC14\uB85C \uC0C1\uB2F4\uD558\uAE30
                 </a>
               </div>
             </div>
@@ -794,37 +507,22 @@ export default function ArticlePage({ params }: Props) {
           <ShareButtons />
         </div>
 
-        {/* 관???�티??*/}
         {related.length > 0 && (
           <section className="border-t border-black/8 py-14 px-5 md:px-10 bg-[#f0ede8]">
             <div className="max-w-[1200px] mx-auto">
-              <p
-                className="uppercase mb-8"
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}
-              >
+              <p className="uppercase mb-8" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}>
                 Related Articles
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {related.map((rel) => (
                   <Link key={rel.id} href={`/article/${rel.slug}`} className="group">
                     <div className="overflow-hidden aspect-video mb-4">
-                      <img
-                        src={rel.image}
-                        alt={rel.titleKo}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
+                      <img src={rel.image} alt={rel.titleKo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                     </div>
-                    <p
-                      className="uppercase mb-2"
-                      style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}
-                    >
+                    <p className="uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
                       {rel.category}
                     </p>
-                    <h4
-                      className="font-light leading-snug group-hover:italic transition-all"
-                      style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', color: '#1a1a1a' }}
-                    >
+                    <h4 className="font-light leading-snug group-hover:italic transition-all" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', color: '#1a1a1a' }}>
                       {rel.titleKo}
                     </h4>
                   </Link>
