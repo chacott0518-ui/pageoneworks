@@ -452,7 +452,7 @@ export default function ArticlePage({ params }: Props) {
           {faqBlocks.length > 0 && (
             <div className="mt-14 pt-10 border-t border-black/8">
               <h2 className="mb-8" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
-                FAQ \u2014 \uC790\uC8FC \uBB3B\uB294 \uC9C8\uBB38
+                FAQ — 자주 묻는 질문
               </h2>
               <div className="flex flex-col gap-4">
                 {faqBlocks.map((faq, i) => (
