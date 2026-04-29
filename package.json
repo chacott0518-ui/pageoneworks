@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "postbuild": "node scripts/notify-indexnow.mjs",
-  "start": "next start",
-  "lint": "next lint"
-},
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "node scripts/notify-indexnow.mjs",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
+    "@supabase/ssr": "^0.10.2",
+    "@supabase/supabase-js": "^2.105.1",
     "clsx": "^2.1.1",
     "feed": "^5.2.0",
     "framer-motion": "^11.1.5",
