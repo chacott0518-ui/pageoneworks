@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import '../styles/globals.css';
+import FloatingButtons from '@/components/FloatingButtons'
 
 const SITE_URL = 'https://www.pageoneworks.com';
 
@@ -363,6 +364,8 @@ export default function RootLayout({
       <body>
         <div className="noise-overlay" aria-hidden="true" />
         {children}
+        <FloatingButtons />
+
       </body>
     </html>
   );

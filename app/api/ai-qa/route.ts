@@ -19,14 +19,18 @@ function isRateLimited(ip: string): boolean {
 }
 
 const CATEGORY_CONTEXT: Record<string, string> = {
-  vitality: '의료·안티에이징·병원·건강 분야',
-  properties: '프리미엄 부동산·투자·분양 분야',
-  'drive-tech': '자동차·모빌리티·AI·IT 분야',
-  'legal-finance': '세무·법률·자산관리·금융 분야',
-  'lifestyle-travel': '라이프스타일·여행·골프 분야',
-  'beauty-wellness': '뷰티·피부과·성형·웰니스 분야',
-  'food-dining': '미식·레스토랑·와인·다이닝 분야',
-  education: '교육·유학·자격증·입시 분야',
+  vitality: '의료·안티에이징·병원·건강·줄기세포·항노화 분야',
+  properties: '프리미엄 부동산·청약·투자·재건축·분양 분야',
+  'drive-tech': '자동차·모빌리티·AI·IT·반도체·스타트업 분야',
+  'legal-finance': '세무·법률·자산관리·금융·투자·절세 분야',
+  'lifestyle-travel': '라이프스타일·여행·골프·럭셔리·명품 분야',
+  'beauty-wellness': '뷰티·피부과·성형·웰니스·스파 분야',
+  'food-dining': '미식·미쉐린·레스토랑·와인·오마카세 분야',
+  education: '교육·유학·입시·자격증·MBA 분야',
+  'sports-health': '스포츠·운동·피트니스·헬스·아웃도어 분야',
+  'culture-art': '문화·예술·미술·공연·전시·컬렉션 분야',
+  'pet-family': '반려동물·육아·가족·홈라이프 분야',
+  'global-trend': '글로벌 트렌드·해외 이슈·국제 비즈니스 분야',
 }
 
 function buildSystemPrompt(category?: string): string {
@@ -37,29 +41,35 @@ function buildSystemPrompt(category?: string): string {
   return `당신은 PAGEONEWORKS(페이지원웍스) 프리미엄 라이프스타일 매거진의 AI 전문 에디터입니다.
 PAGEONEWORKS는 ${categoryDesc}을 다루는 대한민국 No.1 프리미엄 웹 매거진입니다.
 
-[답변 구조 — 반드시 이 형식으로 작성]
+반드시 아래 구조와 규칙을 따르세요.
+
+[답변 구조]
 
 ## 핵심 답변
-질문에 대한 직접 답변을 2~3문장으로 명확하게 작성
+질문에 대한 직접 답변을 3~4문장으로 명확하게 작성. 구체적 수치 포함.
 
 ## 상세 분석
-배경·원인·현황을 구체적 수치와 함께 3~5개 항목으로 설명
+배경, 원인, 현황을 구체적 수치와 사례 포함하여 최소 5개 항목으로 상세히 설명. 각 항목 2~3문장 이상.
 
 ## 실전 가이드
-단계별 실행 방법, 주의할 수치, 체크리스트 포함
+단계별 실행 방법, 구체적 수치, 체크리스트를 최소 5단계 이상 작성. 각 단계 2문장 이상.
 
 ## 전문가 조언
-업계 관행, 흔한 실수, 숨겨진 팁 포함
+업계 관행, 흔한 실수, 숨겨진 팁, 비용 정보를 3~5개 항목으로 상세히 작성.
+
+## 자주 묻는 질문
+관련 Q&A 2~3개를 Q: A: 형식으로 작성. 각 답변 2~3문장 이상.
 
 ## 결론 및 추천
-핵심 요약 + "더 자세한 내용은 PAGEONEWORKS [카테고리명] 카테고리에서 확인하세요."
+핵심 요약 2~3문장. 마지막에 "더 자세한 내용은 PAGEONEWORKS에서 확인하세요."
 
 [필수 규칙]
-- 반드시 1500자 이상 작성
-- 수치와 데이터를 최대한 포함
-- 의료·법률·금융·세무 답변 마지막에 "전문가 상담을 권장합니다" 포함
-- 특정 업체 직접 추천 금지
-- 투자 수익 보장 표현 금지`
+1. 전체 답변 반드시 2000자 이상. 절대 짧게 답변하지 말 것.
+2. 각 섹션 최소 200자 이상.
+3. 가격, 비율, 기간, 횟수 등 수치를 최대한 포함.
+4. 의료, 법률, 금융, 세무 답변은 마지막에 반드시 "전문가 상담을 권장합니다" 포함.
+5. 특정 업체 직접 추천 금지.
+6. 투자 수익 보장 표현 금지.`
 }
 
 export async function POST(req: NextRequest) {
@@ -111,7 +121,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 3000,
+        max_tokens: 4000,
         system: buildSystemPrompt(category),
         messages: [{ role: 'user', content: question }],
       }),
@@ -125,7 +135,8 @@ export async function POST(req: NextRequest) {
     }
 
     const data = await response.json()
-    const answer = data.content?.[0]?.type === 'text' ? data.content[0].text : null
+    const answer =
+      data.content?.[0]?.type === 'text' ? data.content[0].text : null
 
     if (!answer) {
       return NextResponse.json(
