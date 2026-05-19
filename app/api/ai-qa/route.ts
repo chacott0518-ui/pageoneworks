@@ -1,5 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+const ipCallMap = new Map<string, { count: number; date: string }>()
+
+function getToday(): string {
+  return new Date().toISOString().slice(0, 10)
+}
+
+function isRateLimited(ip: string): boolean {
+  const today = getToday()
+  const record = ipCallMap.get(ip)
+  if (!record || record.date !== today) {
+    ipCallMap.set(ip, { count: 1, date: today })
+    return false
+  }
+  if (record.count >= 1) return true
+  record.count++
+  return false
+}
+
 const CATEGORY_CONTEXT: Record<string, string> = {
   vitality: '의료·안티에이징·병원·건강 분야',
   properties: '프리미엄 부동산·투자·분양 분야',
@@ -19,21 +37,43 @@ function buildSystemPrompt(category?: string): string {
   return `당신은 PAGEONEWORKS(페이지원웍스) 프리미엄 라이프스타일 매거진의 AI 전문 에디터입니다.
 PAGEONEWORKS는 ${categoryDesc}을 다루는 대한민국 No.1 프리미엄 웹 매거진입니다.
 
-답변 원칙:
-1. 첫 문장에 질문의 핵심을 바로 답하세요.
-2. 검증된 정보만 제공하고 불확실한 내용은 명확히 표시하세요.
-3. 500~1000자 수준으로 답변하세요.
-4. 한국어로 답변하되 전문 용어는 한글+영문 병기하세요.
-5. 의료·법률·세무·금융 질문에는 마지막에 "전문가 상담을 권장합니다" 문구를 포함하세요.
-6. 답변 말미에 "더 자세한 내용은 PAGEONEWORKS에서 확인하세요"를 자연스럽게 포함하세요.
+[답변 구조 — 반드시 이 형식으로 작성]
 
-절대 하지 말 것:
-- 특정 의료기관, 법무법인, 세무사 사무소를 직접 추천하지 마세요.
-- 투자 수익률을 보장하는 표현을 사용하지 마세요.`
+## 핵심 답변
+질문에 대한 직접 답변을 2~3문장으로 명확하게 작성
+
+## 상세 분석
+배경·원인·현황을 구체적 수치와 함께 3~5개 항목으로 설명
+
+## 실전 가이드
+단계별 실행 방법, 주의할 수치, 체크리스트 포함
+
+## 전문가 조언
+업계 관행, 흔한 실수, 숨겨진 팁 포함
+
+## 결론 및 추천
+핵심 요약 + "더 자세한 내용은 PAGEONEWORKS [카테고리명] 카테고리에서 확인하세요."
+
+[필수 규칙]
+- 반드시 1500자 이상 작성
+- 수치와 데이터를 최대한 포함
+- 의료·법률·금융·세무 답변 마지막에 "전문가 상담을 권장합니다" 포함
+- 특정 업체 직접 추천 금지
+- 투자 수익 보장 표현 금지`
 }
 
 export async function POST(req: NextRequest) {
   try {
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded ? forwarded.split(',')[0].trim() : 'unknown'
+
+    if (isRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'AI 질문은 하루 1회만 가능합니다. 내일 다시 이용해 주세요.' },
+        { status: 429 }
+      )
+    }
+
     const body = await req.json()
     const { question, category } = body as {
       question: string
@@ -71,7 +111,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-20250514',
-        max_tokens: 1500,
+        max_tokens: 3000,
         system: buildSystemPrompt(category),
         messages: [{ role: 'user', content: question }],
       }),
@@ -88,7 +128,10 @@ export async function POST(req: NextRequest) {
     const answer = data.content?.[0]?.type === 'text' ? data.content[0].text : null
 
     if (!answer) {
-      return NextResponse.json({ error: '답변을 생성할 수 없습니다' }, { status: 500 })
+      return NextResponse.json(
+        { error: '답변을 생성할 수 없습니다' },
+        { status: 500 }
+      )
     }
 
     return NextResponse.json({
@@ -98,7 +141,10 @@ export async function POST(req: NextRequest) {
       timestamp: new Date().toISOString(),
     })
   } catch {
-    return NextResponse.json({ error: '서버 오류가 발생했습니다' }, { status: 500 })
+    return NextResponse.json(
+      { error: '서버 오류가 발생했습니다' },
+      { status: 500 }
+    )
   }
 }
 
