@@ -11,6 +11,8 @@ import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
 import { articles } from '@/lib/data';
 import { ShareButtons } from './ShareButtons';
 import { Header } from '@/components/Header';
+import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, extractFAQsFromBody, normalizeDate, siteSchema } from '@/lib/schemas'
+import AIQnA from '@/components/AIQnA'
 
 interface Props {
   params: { slug: string };
@@ -26,6 +28,8 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${article.titleKo} — PAGEONEWORKS`,
     description: article.excerpt,
+    alternates: { canonical: `https://www.pageoneworks.com/article/${article.slug}` },
+    keywords: article.tags ?? [],
     openGraph: {
       title: article.titleKo,
       description: article.excerpt,
@@ -139,9 +143,36 @@ export default function ArticlePage({ params }: Props) {
   const faqBlocks = blocks.filter((b) => b.type === 'faq');
   const contentBlocks = blocks.filter((b) => b.type !== 'faq');
   const isCarnguy = article.slug === 'carnguy-import-car-repair-guide';
+  // ── 스키마 생성 ──────────────────────────────────────────
+  const BASE_URL = 'https://www.pageoneworks.com'
+  const articleUrl = `${BASE_URL}/article/${article.slug}`
+  const dateISO = normalizeDate(article.date)
+  const faqs = extractFAQsFromBody(article.body ?? '')
+  const articleSchema = getArticleSchema({
+    title: article.titleKo,
+    description: article.excerpt,
+    url: articleUrl,
+    imageUrl: article.heroImage ?? article.image,
+    datePublished: dateISO,
+    authorName: article.author ?? 'PAGEONEWORKS 편집부',
+    category: article.category,
+    tags: article.tags ?? [],
+  })
+  const faqSchema = getFAQSchema(faqs)
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: '홈', url: BASE_URL },
+    { name: article.category, url: `${BASE_URL}/category/${article.categorySlug}` },
+    { name: article.titleKo, url: articleUrl },
+  ])
+  const speakableSchema = getSpeakableSchema(articleUrl, article.titleKo)
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
       <Header />
       <ArticleJsonLd article={article} />
       <ReadingProgress />
@@ -503,6 +534,8 @@ export default function ArticlePage({ params }: Props) {
               </div>
             </div>
           )}
+
+<AIQnA category={article.categorySlug} />
 
           <ShareButtons />
         </div>

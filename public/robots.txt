@@ -1,10 +1,46 @@
-User-agent: Googlebot
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /auth/
+Disallow: /mypage/
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
 Allow: /
 
 User-agent: Yeti
 Allow: /
 
-User-agent: *
+User-agent: Bingbot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Manus
 Allow: /
 
 Sitemap: https://www.pageoneworks.com/sitemap.xml
+Sitemap: https://www.pageoneworks.com/feed.xml
+
+Crawl-delay: 1
