@@ -7,9 +7,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
         serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-space-mono)', 'monospace'],
+        pretendard: ['Pretendard', '-apple-system', 'sans-serif'],
       },
       colors: {
         cream: '#f5f2ed',
@@ -18,8 +19,10 @@ module.exports = {
       },
       letterSpacing: {
         ultrawide: '0.3em',
+        tight: '-0.025em',
+        tighter: '-0.04em',
       },
     },
   },
   plugins: [],
-};
+}

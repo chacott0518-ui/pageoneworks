@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+KR:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Serif+KR:wght@300;400&display=swap');
 
 :root {
   --font-cormorant: 'Cormorant Garamond', serif;
-  --font-inter: 'Inter', sans-serif;
   --font-space-mono: 'Space Mono', monospace;
   --text-mono-xs: 11px;
   --text-mono-sm: 12px;
@@ -27,10 +26,14 @@ html {
 body {
   background-color: #0a0a0a;
   color: #f5f2ed;
-  font-family: var(--font-inter);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 [style*="space-mono"],
@@ -57,8 +60,13 @@ body {
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
-h2, h3, h4, p { word-break: keep-all; overflow-wrap: break-word; }
-h1 { word-break: break-all; overflow-wrap: break-word; }
+h1, h2, h3, h4, p { word-break: keep-all; overflow-wrap: break-word; }
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
 
 .ticket-cutout { position: relative; }
 .ticket-cutout::before,
@@ -97,7 +105,6 @@ h1 { word-break: break-all; overflow-wrap: break-word; }
 
 .hero-offset { padding-top: 97px; }
 
-/* ── EditorPickSection ── */
 .ep-sec { background: #0e0e0e; }
 
 @media (min-width: 769px) { .ep-mob { display: none !important; } }
