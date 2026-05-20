@@ -10,8 +10,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.10.2",
-    "@supabase/supabase-js": "^2.105.1",
+    "@supabase/ssr": "^0.10.3",
+    "@supabase/supabase-js": "^2.106.0",
     "clsx": "^2.1.1",
     "feed": "^5.2.0",
     "framer-motion": "^11.1.5",

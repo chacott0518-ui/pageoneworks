@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import { Header } from '@/components/Header'
 
 export default function LoginPage() {
+  const [marketing, setMarketing] = useState(false)
   const supabase = createClient()
 
   const handleGoogleLogin = async () => {
@@ -15,87 +17,80 @@ export default function LoginPage() {
     })
   }
 
+  const handleKakaoLogin = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'kakao',
+      options: {
+        redirectTo: `${location.origin}/auth/callback?next=/`,
+      },
+    })
+  }
+
   return (
     <>
       <Header />
-      <div
-        style={{
-          minHeight: '100vh',
-          background: '#0a0a0a',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px',
-        }}
-      >
-        <div
-          style={{
-            width: '100%',
-            maxWidth: '420px',
-          }}
-        >
+      <div style={{
+        minHeight: '100vh',
+        background: '#0a0a0a',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '20px',
+      }}>
+        <div style={{ width: '100%', maxWidth: '420px' }}>
+
           {/* 로고 */}
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <p
-              style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: '13px',
-                letterSpacing: '0.25em',
-                color: 'rgba(245,242,237,0.4)',
-                textTransform: 'uppercase',
-                marginBottom: '8px',
-              }}
-            >
+            <p style={{
+              fontFamily: 'var(--font-space-mono)',
+              fontSize: '13px',
+              letterSpacing: '0.25em',
+              color: 'rgba(245,242,237,0.4)',
+              textTransform: 'uppercase',
+              marginBottom: '8px',
+            }}>
               PAGEONEWORKS
             </p>
-            <h1
-              style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontSize: 'clamp(2rem, 5vw, 2.8rem)',
-                fontWeight: 400,
-                color: '#f5f2ed',
-                margin: 0,
-                lineHeight: 1.2,
-              }}
-            >
+            <h1 style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontSize: 'clamp(2rem, 5vw, 2.8rem)',
+              fontWeight: 400,
+              color: '#f5f2ed',
+              margin: 0,
+              lineHeight: 1.2,
+            }}>
               Premium Magazine
             </h1>
-            <p
-              style={{
-                fontFamily: 'var(--font-inter)',
-                fontSize: '14px',
-                fontWeight: 300,
-                color: 'rgba(245,242,237,0.4)',
-                marginTop: '12px',
-              }}
-            >
+            <p style={{
+              fontFamily: 'var(--font-inter)',
+              fontSize: '14px',
+              fontWeight: 300,
+              color: 'rgba(245,242,237,0.4)',
+              marginTop: '12px',
+            }}>
               프리미엄 콘텐츠를 무제한으로 이용하세요
             </p>
           </div>
 
           {/* 로그인 박스 */}
-          <div
-            style={{
-              background: '#141414',
-              border: '1px solid rgba(245,242,237,0.08)',
-              padding: '40px',
-            }}
-          >
-            <p
-              style={{
-                fontFamily: 'var(--font-space-mono)',
-                fontSize: '11px',
-                letterSpacing: '0.15em',
-                color: 'rgba(245,242,237,0.35)',
-                textTransform: 'uppercase',
-                textAlign: 'center',
-                marginBottom: '28px',
-              }}
-            >
+          <div style={{
+            background: '#141414',
+            border: '1px solid rgba(245,242,237,0.08)',
+            padding: '40px',
+          }}>
+            <p style={{
+              fontFamily: 'var(--font-space-mono)',
+              fontSize: '11px',
+              letterSpacing: '0.15em',
+              color: 'rgba(245,242,237,0.35)',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              marginBottom: '28px',
+            }}>
               소셜 계정으로 간편 로그인
             </p>
 
-            {/* 구글 로그인 버튼 */}
+            {/* 구글 버튼 */}
             <button
               onClick={handleGoogleLogin}
               style={{
@@ -127,28 +122,79 @@ export default function LoginPage() {
               Google로 계속하기
             </button>
 
-            <div
+            {/* 카카오 버튼 */}
+            <button
+              onClick={handleKakaoLogin}
               style={{
-                borderTop: '1px solid rgba(245,242,237,0.06)',
-                paddingTop: '24px',
-                marginTop: '12px',
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '12px',
+                background: '#FEE500',
+                color: '#3C1E1E',
+                border: 'none',
+                padding: '14px 24px',
+                fontFamily: 'var(--font-inter)',
+                fontSize: '14px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                marginBottom: '20px',
+                transition: 'opacity 0.2s',
               }}
+              onMouseOver={e => (e.currentTarget.style.opacity = '0.9')}
+              onMouseOut={e => (e.currentTarget.style.opacity = '1')}
             >
-              <p
-                style={{
-                  fontFamily: 'var(--font-inter)',
-                  fontSize: '12px',
-                  fontWeight: 300,
-                  color: 'rgba(245,242,237,0.25)',
-                  textAlign: 'center',
-                  lineHeight: 1.7,
-                }}
-              >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#3C1E1E">
+                <path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.7 1.62 5.07 4.08 6.48L5.4 21l4.32-2.88c.72.12 1.44.18 2.28.18 5.52 0 10-3.48 10-7.8S17.52 3 12 3z"/>
+              </svg>
+              카카오로 계속하기
+            </button>
+
+            {/* 마케팅 동의 */}
+            <div style={{
+              padding: '12px 14px',
+              background: 'rgba(196,168,130,0.05)',
+              border: '0.5px solid rgba(196,168,130,0.15)',
+              borderRadius: '4px',
+              marginBottom: '20px',
+            }}>
+              <label style={{
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '10px',
+                cursor: 'pointer',
+              }}>
+                <input
+                  type="checkbox"
+                  checked={marketing}
+                  onChange={e => setMarketing(e.target.checked)}
+                  style={{ marginTop: '2px', accentColor: '#C4A882', flexShrink: 0 }}
+                />
+                <span style={{ fontSize: '12px', color: 'rgba(245,242,237,0.45)', lineHeight: '1.5' }}>
+                  <strong style={{ color: 'rgba(245,242,237,0.65)' }}>[선택] 마케팅 정보 수신 동의</strong><br />
+                  새 아티클, 이벤트 등 유용한 정보를 이메일로 받아보실 수 있습니다.
+                </span>
+              </label>
+            </div>
+
+            {/* 약관 */}
+            <div style={{
+              borderTop: '1px solid rgba(245,242,237,0.06)',
+              paddingTop: '20px',
+            }}>
+              <p style={{
+                fontFamily: 'var(--font-inter)',
+                fontSize: '12px',
+                fontWeight: 300,
+                color: 'rgba(245,242,237,0.25)',
+                textAlign: 'center',
+                lineHeight: 1.7,
+              }}>
                 로그인 시 PAGEONEWORKS의{' '}
                 <span style={{ color: 'rgba(245,242,237,0.45)', textDecoration: 'underline' }}>
                   이용약관
-                </span>
-                {' '}및{' '}
+                </span>{' '}및{' '}
                 <span style={{ color: 'rgba(245,242,237,0.45)', textDecoration: 'underline' }}>
                   개인정보처리방침
                 </span>
