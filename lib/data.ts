@@ -114,16 +114,6 @@ export const categories: Category[] = [
   },
   {
     id: '09',
-    slug: 'archive',
-    title: 'ARCHIVE',
-    titleKo: '아카이브',
-    desc: 'All Articles',
-    descKo: '전체 아티클 저장소',
-    color: '#7A9E9A',
-    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1200&q=85',
-  },
-  {
-    id: '09',
     slug: 'sports-health',
     title: 'SPORTS & HEALTH',
     titleKo: '스포츠·헬스',
@@ -161,6 +151,16 @@ export const categories: Category[] = [
     descKo: '해외 이슈·글로벌 비즈니스·국제 트렌드',
     color: '#7A8A9E',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&q=85',
+  },
+  {
+    id: '13',
+    slug: 'archive',
+    title: 'ARCHIVE',
+    titleKo: '아카이브',
+    desc: 'All Articles',
+    descKo: '전체 아티클 저장소',
+    color: '#7A9E9A',
+    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=1200&q=85',
   },
 ];
 
