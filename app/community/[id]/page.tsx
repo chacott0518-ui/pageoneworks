@@ -67,11 +67,8 @@ export default async function PostPage({ params }: Props) {
 
   await supabase.rpc('increment_view_count', { post_id: params.id })
 
-  const { data: { user } } = await supabase.auth.getUser()
-
   const postUrl = `${BASE_URL}/community/${params.id}`
 
-  // ── 스키마 7종 ──
   const discussionSchema = {
     '@context': 'https://schema.org',
     '@type': 'DiscussionForumPosting',
@@ -88,19 +85,11 @@ export default async function PostPage({ params }: Props) {
       '@type': 'Organization',
       name: 'PAGEONEWORKS',
       url: BASE_URL,
-      logo: { '@type': 'ImageObject', url: `${BASE_URL}/images/logo.png` },
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/images/og-default.jpg` },
     },
     interactionStatistic: [
-      {
-        '@type': 'InteractionCounter',
-        interactionType: 'https://schema.org/LikeAction',
-        userInteractionCount: post.like_count ?? 0,
-      },
-      {
-        '@type': 'InteractionCounter',
-        interactionType: 'https://schema.org/CommentAction',
-        userInteractionCount: post.comment_count ?? 0,
-      },
+      { '@type': 'InteractionCounter', interactionType: 'https://schema.org/LikeAction', userInteractionCount: post.like_count ?? 0 },
+      { '@type': 'InteractionCounter', interactionType: 'https://schema.org/CommentAction', userInteractionCount: post.comment_count ?? 0 },
     ],
     mainEntityOfPage: { '@type': 'WebPage', '@id': postUrl },
   }
@@ -134,26 +123,13 @@ export default async function PostPage({ params }: Props) {
     name: post.title,
     url: postUrl,
     description: post.content?.slice(0, 160),
-    publisher: {
-      '@type': 'Organization',
-      name: 'PAGEONEWORKS',
-      url: BASE_URL,
-    },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: '홈', item: BASE_URL },
-        { '@type': 'ListItem', position: 2, name: '커뮤니티', item: `${BASE_URL}/community` },
-        { '@type': 'ListItem', position: 3, name: post.category_slug, item: `${BASE_URL}/community` },
-        { '@type': 'ListItem', position: 4, name: post.title, item: postUrl },
-      ],
-    },
+    publisher: { '@type': 'Organization', name: 'PAGEONEWORKS', url: BASE_URL },
   }
 
   const howToSchema = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: `PAGEONEWORKS 커뮤니티 이용 방법`,
+    name: 'PAGEONEWORKS 커뮤니티 이용 방법',
     description: '프리미엄 커뮤니티에서 전문가와 소통하는 방법',
     step: [
       { '@type': 'HowToStep', position: 1, name: '로그인', text: '구글 또는 카카오 계정으로 간편 로그인' },
@@ -168,10 +144,7 @@ export default async function PostPage({ params }: Props) {
     '@type': 'WebPage',
     name: post.title,
     url: postUrl,
-    speakable: {
-      '@type': 'SpeakableSpecification',
-      cssSelector: ['h1', '.speakable-summary'],
-    },
+    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.speakable-summary'] },
   }
 
   const breadcrumbSchema = {
@@ -189,11 +162,8 @@ export default async function PostPage({ params }: Props) {
     '@type': 'Organization',
     name: 'PAGEONEWORKS',
     url: BASE_URL,
-    logo: { '@type': 'ImageObject', url: `${BASE_URL}/images/logo.png` },
-    sameAs: [
-      'https://www.instagram.com/pageoneworks',
-      'https://www.youtube.com/@pageoneworks',
-    ],
+    logo: { '@type': 'ImageObject', url: `${BASE_URL}/images/og-default.jpg` },
+    sameAs: ['https://www.instagram.com/pageoneworks', 'https://www.youtube.com/@pageoneworks'],
   }
 
   return (
@@ -205,7 +175,7 @@ export default async function PostPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      <PostDetail post={post} currentUser={user} />
+      <PostDetail postId={params.id} />
     </>
   )
 }
