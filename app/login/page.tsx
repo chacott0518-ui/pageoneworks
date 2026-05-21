@@ -12,7 +12,7 @@ export default function LoginPage() {
     await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: `${location.origin}/auth/callback?next=/`,
+        redirectTo: `${location.origin}/auth/callback?next=${new URLSearchParams(window.location.search).get('next') ?? '/'}`,
       },
     })
   }
@@ -21,7 +21,7 @@ export default function LoginPage() {
     await supabase.auth.signInWithOAuth({
       provider: 'kakao',
       options: {
-        redirectTo: `${location.origin}/auth/callback?next=/`,
+        redirectTo: `${location.origin}/auth/callback?next=${new URLSearchParams(window.location.search).get('next') ?? '/'}`,
       },
     })
   }
