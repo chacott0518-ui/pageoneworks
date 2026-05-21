@@ -7,8 +7,8 @@ import { Footer } from '@/components/Footer'
 import Link from 'next/link'
 import {
   Heart, MessageCircle, Share2, ArrowLeft,
-  Eye, Bookmark, Flag, MoreHorizontal,
-  Image as ImageIcon, X, Send
+  Eye, Bookmark, Flag, X,
+  Image as ImageIcon, Send
 } from 'lucide-react'
 
 const LEVEL_BADGE: Record<number, string> = { 1: '🌱', 2: '🌿', 3: '🌳', 4: '⭐' }
@@ -23,6 +23,20 @@ const CAT_STYLE: Record<string, string> = {
   '자유게시판':  'bg-zinc-500/15 text-zinc-300',
   '공동구매':    'bg-orange-500/15 text-orange-300',
   '정치·시사':   'bg-rose-500/15 text-rose-300',
+  '경제·주식':   'bg-cyan-500/15 text-cyan-300',
+  '게임':        'bg-blue-600/15 text-blue-300',
+  '반려동물':    'bg-teal-500/15 text-teal-300',
+  '골프·여행':   'bg-green-500/15 text-green-300',
+  '뷰티·성형':   'bg-pink-500/15 text-pink-300',
+  '육아·교육':   'bg-teal-600/15 text-teal-300',
+  '정신건강':    'bg-pink-400/15 text-pink-300',
+  '실버·요양':   'bg-slate-500/15 text-slate-300',
+  '다이어트':    'bg-lime-500/15 text-lime-300',
+  '보험·연금':   'bg-indigo-500/15 text-indigo-300',
+  '창업·사업':   'bg-violet-500/15 text-violet-300',
+  '유머·짤':     'bg-yellow-500/15 text-yellow-300',
+  '광고주후기':  'bg-gold/15 text-gold',
+  '익명게시판':  'bg-gray-500/15 text-gray-400',
 }
 
 function timeAgo(d: string) {
@@ -56,7 +70,6 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
 
   const catStyle = CAT_STYLE[post.category_slug] ?? 'bg-white/8 text-white/50'
 
-  // 좋아요 여부 확인
   useEffect(() => {
     if (!currentUser) return
     supabase
@@ -68,7 +81,6 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
       .then(({ data }) => { if (data) setLiked(true) })
   }, [currentUser])
 
-  // 댓글 불러오기
   useEffect(() => {
     supabase
       .from('community_comments')
@@ -150,15 +162,11 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
       <main className="min-h-screen bg-[#0F0F10] pt-[60px]">
         <div className="max-w-[720px] mx-auto px-5 py-8">
 
-          {/* 뒤로가기 */}
           <Link href="/community" className="inline-flex items-center gap-2 text-[12px] text-[#5A5450] hover:text-[#A09080] transition-colors mb-6">
             <ArrowLeft className="w-3.5 h-3.5" /> 커뮤니티로 돌아가기
           </Link>
 
-          {/* 게시글 */}
           <article className="bg-[#1E1E22] border border-white/[0.10] rounded-xl p-6 mb-4">
-
-            {/* 헤더 */}
             <div className="flex items-center gap-3 mb-5">
               <div className="w-9 h-9 rounded-full border border-gold/25 flex items-center justify-center text-[13px] font-bold text-gold shrink-0"
                 style={{ background: 'rgba(201,169,110,0.12)' }}>
@@ -178,18 +186,15 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
               </div>
             </div>
 
-            {/* 제목 */}
             <h1 className="text-[20px] font-extrabold text-[#F0E8D8] leading-snug mb-4"
               style={{ letterSpacing: '-0.02em' }}>
               {post.title}
             </h1>
 
-            {/* 본문 */}
             <p className="text-[14px] text-[#8A8278] leading-relaxed mb-5 whitespace-pre-wrap">
               {post.content}
             </p>
 
-            {/* 이미지 */}
             {post.images && post.images.length > 0 && (
               <div className="grid grid-cols-3 gap-2 mb-5">
                 {post.images.map((img: string, i: number) => (
@@ -198,7 +203,6 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
               </div>
             )}
 
-            {/* 태그 */}
             {post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2 mb-5">
                 {post.tags.map((tag: string) => (
@@ -207,12 +211,9 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
               </div>
             )}
 
-            {/* 액션 바 */}
             <div className="flex items-center gap-4 pt-4 border-t border-white/[0.07]">
-              <button
-                onClick={handleLike}
-                className={`flex items-center gap-1.5 text-[13px] font-semibold transition-colors ${liked ? 'text-red-400' : 'text-[#5A5450] hover:text-[#8A8278]'}`}
-              >
+              <button onClick={handleLike}
+                className={`flex items-center gap-1.5 text-[13px] font-semibold transition-colors ${liked ? 'text-red-400' : 'text-[#5A5450] hover:text-[#8A8278]'}`}>
                 <Heart className={`w-4 h-4 ${liked ? 'fill-red-400' : ''}`} />
                 {likeCount}
               </button>
@@ -221,8 +222,7 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
                 {comments.length}
               </button>
               <button onClick={handleShare} className="flex items-center gap-1.5 text-[13px] text-[#5A5450] hover:text-[#8A8278] transition-colors">
-                <Share2 className="w-4 h-4" />
-                공유
+                <Share2 className="w-4 h-4" /> 공유
               </button>
               <div className="ml-auto flex items-center gap-1.5 text-[12px] text-[#3A3630]">
                 <Eye className="w-3.5 h-3.5" />
@@ -242,7 +242,7 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
               </div>
             )}
             <textarea
-              placeholder={currentUser ? "댓글을 입력하세요" : "로그인 후 댓글을 작성할 수 있습니다"}
+              placeholder={currentUser ? '댓글을 입력하세요' : '로그인 후 댓글을 작성할 수 있습니다'}
               value={commentText}
               onChange={e => setCommentText(e.target.value)}
               rows={3}
@@ -251,16 +251,11 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
               className="w-full bg-transparent text-[13px] text-[#D8CEB8] placeholder:text-[#3A3630] resize-none focus:outline-none leading-relaxed"
             />
             <div className="flex items-center justify-between pt-3 border-t border-white/[0.07]">
-              <div className="flex items-center gap-3">
-                <button className="flex items-center gap-1 text-[11px] text-[#4A4640] hover:text-[#7A7268] transition-colors">
-                  <ImageIcon className="w-3.5 h-3.5" /> 이미지
-                </button>
-              </div>
-              <button
-                onClick={handleComment}
-                disabled={submitting || !commentText.trim()}
-                className="flex items-center gap-1.5 bg-gold text-[#0F0F10] text-[12px] font-bold px-4 py-2 rounded-lg hover:bg-gold/90 transition-all disabled:opacity-30"
-              >
+              <button className="flex items-center gap-1 text-[11px] text-[#4A4640] hover:text-[#7A7268] transition-colors">
+                <ImageIcon className="w-3.5 h-3.5" /> 이미지
+              </button>
+              <button onClick={handleComment} disabled={submitting || !commentText.trim()}
+                className="flex items-center gap-1.5 bg-gold text-[#0F0F10] text-[12px] font-bold px-4 py-2 rounded-lg hover:bg-gold/90 transition-all disabled:opacity-30">
                 <Send className="w-3 h-3" />
                 {submitting ? '등록 중...' : '등록'}
               </button>
@@ -273,7 +268,6 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
 
             {topComments.map(comment => (
               <div key={comment.id}>
-                {/* 댓글 */}
                 <div className="bg-[#1E1E22] border border-white/[0.08] rounded-xl p-4">
                   <div className="flex items-center gap-2.5 mb-3">
                     <div className="w-7 h-7 rounded-full border border-gold/20 flex items-center justify-center text-[10px] font-bold text-gold"
@@ -291,17 +285,12 @@ export default function PostDetail({ post, currentUser }: { post: any; currentUs
                     </div>
                   </div>
                   <p className="text-[13px] text-[#8A8278] leading-relaxed mb-3 whitespace-pre-wrap">{comment.content}</p>
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={() => setReplyTo(comment.id)}
-                      className="text-[11px] text-[#4A4640] hover:text-[#7A7268] transition-colors"
-                    >
-                      답글
-                    </button>
-                  </div>
+                  <button onClick={() => setReplyTo(comment.id)}
+                    className="text-[11px] text-[#4A4640] hover:text-[#7A7268] transition-colors">
+                    답글
+                  </button>
                 </div>
 
-                {/* 대댓글 */}
                 {getReplies(comment.id).map(reply => (
                   <div key={reply.id} className="ml-6 mt-1.5 bg-[#18181B] border border-white/[0.06] rounded-xl p-4">
                     <div className="flex items-center gap-2.5 mb-2">
