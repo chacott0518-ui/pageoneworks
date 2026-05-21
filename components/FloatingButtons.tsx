@@ -149,7 +149,7 @@ export default function FloatingButtons({ category }: FloatingButtonsProps) {
 
         {/* 글쓰기 버튼 */}
         <button
-          onClick={() => alert('커뮤니티 준비 중입니다.')}
+          onClick={() => { window.location.href = '/community' }}
           aria-label="커뮤니티 글쓰기"
           title="커뮤니티 글쓰기"
           style={{

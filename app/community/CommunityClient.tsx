@@ -371,7 +371,7 @@ function WriteModal({ onClose, onLoginRequired }: { onClose: () => void; onLogin
       .filter(Boolean)
       .slice(0, 5)
 
-    const { data, error } = await supabase
+      const { data, error } = await supabase
       .from('community_posts')
       .insert({
         user_id: currentUser.id,
@@ -383,18 +383,22 @@ function WriteModal({ onClose, onLoginRequired }: { onClose: () => void; onLogin
         images: [],
       })
       .select('id')
-      .single()
 
     setSubmitting(false)
 
     if (error) {
+      console.error('Supabase 오류 상세:', error)
+      alert(`게시글 저장 오류: ${error.message}`)
+      return
+    }
+
+    if (!data || data.length === 0) {
       alert('게시글 저장 중 오류가 발생했습니다.')
-      console.error(error)
       return
     }
 
     onClose()
-    window.location.href = `/community/${data.id}`
+    window.location.href = `/community/${data[0].id}`
   }
 
   return (
@@ -620,13 +624,35 @@ export default function CommunityClient() {
   const supabase = createClient()
   const [activeCategory, setActiveCategory] = useState('all')
   const [sortBy, setSortBy] = useState<'latest' | 'popular' | 'comment' | 'recommend'>('latest')
-  const [posts] = useState<Post[]>(DUMMY_POSTS)
+  const [posts, setPosts] = useState<Post[]>([])
+const [feedLoading, setFeedLoading] = useState(true)
   const [loginOpen, setLoginOpen] = useState(false)
   const [writeOpen, setWriteOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
 
   // ✅ 핵심 1 — 페이지 진입 시 로그인 후 글쓰기 의도 확인 + 자동 오픈
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const { data, error } = await supabase
+        .from('community_posts')
+        .select(`
+          id, category_slug, title, content, images, tags,
+          is_anonymous, view_count, like_count, comment_count,
+          created_at,
+          profiles (nickname, level, avatar_url)
+        `)
+        .eq('is_blinded', false)
+        .order('created_at', { ascending: false })
+        .limit(30)
+
+      if (!error && data) {
+        setPosts(data as unknown as Post[])
+      }
+      setFeedLoading(false)
+    }
+    fetchPosts()
+  }, [])
   useEffect(() => {
     const intent = localStorage.getItem('community_write_intent')
     if (intent === '1') {
@@ -680,7 +706,7 @@ export default function CommunityClient() {
                 Community · 커뮤니티
               </p>
               <h1
-                className="text-[26px] md:text-[34px] font-extrabold text-white mb-2 speakable-summary"
+                className="text-[22px] md:text-[34px] font-extrabold text-white mb-2 speakable-summary"
                 style={{ letterSpacing: '-0.03em' }}
               >
                 프리미엄 포럼
@@ -697,7 +723,7 @@ export default function CommunityClient() {
                 ].map(s => (
                   <div key={s.l}>
                     <div
-                      className="text-[20px] font-black text-white"
+                      className="text-[16px] md:text-[20px] font-black text-white"
                       style={{ fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.04em' }}
                     >
                       {s.n}
@@ -855,7 +881,11 @@ export default function CommunityClient() {
 
               {/* 포스트 목록 */}
               <div className="flex flex-col gap-2 mt-2">
-                {filteredPosts.map((post, idx) => (
+                {feedLoading ? (
+                  <div className="py-10 text-center text-white/40 text-[13px] font-bold">불러오는 중...</div>
+                ) : filteredPosts.length === 0 ? (
+                  <div className="py-10 text-center text-white/40 text-[13px] font-bold">아직 게시글이 없어요</div>
+                ) : filteredPosts.map((post, idx) => (
                   <>
                     <PostCard key={post.id} post={post} onLikeToggle={() => {}} />
                     {idx === 2 && <InFeedAd key="ad-1" />}
@@ -992,10 +1022,10 @@ export default function CommunityClient() {
           </a>
           <button onClick={handleWriteClick} className="flex flex-col items-center justify-center py-1 relative">
             <div
-              className="w-10 h-10 bg-[#C9A96E] rounded-full flex items-center justify-center -mt-6"
-              style={{ boxShadow: '0 4px 16px rgba(201,169,110,0.4)' }}
+              className="w-8 h-8 bg-[#C9A96E] rounded-full flex items-center justify-center -mt-4"
+              style={{ boxShadow: '0 4px 12px rgba(201,169,110,0.4)' }}
             >
-              <Plus className="w-5 h-5 text-[#0F0F10]" />
+              <Plus className="w-4 h-4 text-[#0F0F10]" />
             </div>
             <span className="text-[9px] text-white/40 mt-1 font-bold">글쓰기</span>
           </button>
