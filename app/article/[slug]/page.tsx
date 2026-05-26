@@ -7,7 +7,8 @@ import VatCalculator from '@/components/VatCalculator';
 import React from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Phone, MapPin, Clock, ExternalLink, Eye } from 'lucide-react';
+import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
+import ArticleViewCount from '@/components/ArticleViewCount';
 import { articles } from '@/lib/data';
 import { ShareButtons } from './ShareButtons';
 import { Header } from '@/components/Header';
@@ -196,7 +197,7 @@ export default function ArticlePage({ params }: Props) {
               className="inline-flex items-center gap-2 text-cream/60 hover:text-cream uppercase transition-colors"
               style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em' }}
             >
-              <ArrowLeft className="w-3 h-3" /> {article.category}
+              <ArrowLeft className="w-3 h-3" />
             </Link>
           </div>
           <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-4 md:pb-14">
@@ -245,15 +246,7 @@ export default function ArticlePage({ params }: Props) {
                   </span>
                 </>
               )}
-              {article.viewCount && article.viewCount > 0 && (
-                <>
-                  <span className="text-cream/20">·</span>
-                  <span className="inline-flex items-center gap-1 text-cream/70" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
-                    <Eye className="w-3 h-3" />
-                    {article.viewCount.toLocaleString()}
-                  </span>
-                </>
-              )}
+              <ArticleViewCount slug={article.slug} />
             </div>
           </div>
         </div>
