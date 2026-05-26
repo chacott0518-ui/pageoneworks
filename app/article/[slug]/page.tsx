@@ -13,6 +13,7 @@ import { ShareButtons } from './ShareButtons';
 import { Header } from '@/components/Header';
 import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, extractFAQsFromBody, normalizeDate, siteSchema } from '@/lib/schemas'
 import AIQnA from '@/components/AIQnA'
+import CtaBlock from '@/components/CtaBlock'
 
 interface Props {
   params: { slug: string };
@@ -99,6 +100,10 @@ function parseBody(body: string) {
     if (line.startsWith('##TABLEROW##')) {
       const cells = line.replace(/^##TABLEROW##/, '').split('||');
       blocks.push({ type: 'tablerow', content: line, caption: cells[0] || '', extra: cells[1] || '' });
+      i++; continue;
+    }
+    if (line.startsWith('##CTABLOCK##')) {
+      blocks.push({ type: 'ctablock', content: '' });
       i++; continue;
     }
     if (line.trim() === '') { i++; continue; }
@@ -427,6 +432,9 @@ export default function ArticlePage({ params }: Props) {
                   ))}
                 </div>
               );
+            }
+            if (block.type === 'ctablock') {
+              return <CtaBlock key={i} />;
             }
             if (block.type === 'cta') {
               return (
