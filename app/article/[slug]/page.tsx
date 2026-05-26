@@ -12,7 +12,7 @@ import ArticleViewCount from '@/components/ArticleViewCount';
 import { articles } from '@/lib/data';
 import { ShareButtons } from './ShareButtons';
 import { Header } from '@/components/Header';
-import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, extractFAQsFromBody, normalizeDate, siteSchema } from '@/lib/schemas'
+import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, getHowToSchema, extractFAQsFromBody, normalizeDate, siteSchema } from '@/lib/schemas'
 import AIQnA from '@/components/AIQnA'
 import CtaBlock from '@/components/CtaBlock'
 
@@ -172,12 +172,21 @@ export default function ArticlePage({ params }: Props) {
   ])
   const speakableSchema = getSpeakableSchema(articleUrl, article.titleKo)
 
+  const howToSteps = (article.body ?? '').split('\n')
+    .map((line: string) => line.match(/^([0-9]+)단계\s*[—\-]\s*(.+)/))
+    .filter(Boolean)
+    .map((m: RegExpMatchArray | null) => ({ name: `${m![1]}단계`, text: m![2] }))
+  const howToSchema = howToSteps.length >= 2
+    ? getHowToSchema(article.titleKo, howToSteps)
+    : null
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
+      {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
       <Header />
       <ArticleJsonLd article={article} />

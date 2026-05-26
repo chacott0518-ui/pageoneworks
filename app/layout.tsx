@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import '../styles/globals.css';
 import FloatingButtons from '@/components/FloatingButtons'
+import { siteSchema } from '@/lib/schemas'
 
 const SITE_URL = 'https://www.pageoneworks.com';
 
@@ -341,6 +342,13 @@ export const metadata: Metadata = {
       'naver-site-verification': 'e022afdd6733e34ed024626ec671c1401bcc3271',
     },
   },
+  authors: [{ name: 'PAGEONEWORKS 편집부', url: 'https://www.pageoneworks.com' }],
+  creator: 'PAGEONEWORKS',
+  publisher: 'PAGEONEWORKS',
+  other: {
+    'application-name': 'PAGEONEWORKS',
+    'article:publisher': 'https://www.pageoneworks.com',
+  },
 };
 
 export default function RootLayout({
@@ -367,6 +375,7 @@ export default function RootLayout({
 />
       </head>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
         <div className="noise-overlay" aria-hidden="true" />
         {children}
         <FloatingButtons />

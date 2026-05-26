@@ -225,6 +225,21 @@ export function extractFAQsFromBody(
   return faqs
 }
 
+// ─── HowTo 스키마 만들기 (단계별 가이드 콘텐츠용) ────────────
+export function getHowToSchema(title: string, steps: { name: string; text: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: title,
+    step: steps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+    })),
+  }
+}
+
 // ─── 날짜 변환 헬퍼 ───────────────────────────────────────────
 // 2026.05.13 → 2026-05-13 (구글이 읽는 형식)
 export function normalizeDate(dateStr: string): string {

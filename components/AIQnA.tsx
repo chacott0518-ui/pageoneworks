@@ -1,8 +1,22 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { createClient } from '@/lib/supabase'
 
-const SESSION_KEY = 'pageoneworks_aiqna_used'
+function getTodayKey(userId?: string): string {
+  const date = new Date().toISOString().slice(0, 10)
+  return userId ? `ai_used_${userId}_${date}` : `ai_used_${date}`
+}
+
+function isUsedToday(userId?: string): boolean {
+  if (typeof window === 'undefined') return false
+  return localStorage.getItem(getTodayKey(userId)) === '1'
+}
+
+function markUsedToday(userId?: string): void {
+  if (typeof window === 'undefined') return
+  localStorage.setItem(getTodayKey(userId), '1')
+}
 
 interface QAEntry {
   question: string
@@ -84,11 +98,18 @@ export default function AIQnA({ category, placeholder = '이 아티클에 대해
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [sessionUsed, setSessionUsed] = useState(false)
+  const [userId, setUserId] = useState<string | undefined>(undefined)
+
+  const supabase = createClient()
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setSessionUsed(!!sessionStorage.getItem(SESSION_KEY))
+    const init = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      const uid = session?.user?.id
+      setUserId(uid)
+      setSessionUsed(isUsedToday(uid))
     }
+    init()
   }, [])
 
   const handleSubmit = useCallback(async () => {
@@ -113,8 +134,7 @@ export default function AIQnA({ category, placeholder = '이 아티클에 대해
       }
       setResult({ question: data.question, answer: data.answer })
       setQuestion('')
-      // 세션 사용 기록
-      sessionStorage.setItem(SESSION_KEY, '1')
+      markUsedToday(userId)
       setSessionUsed(true)
     } catch {
       setError('네트워크 오류가 발생했습니다.')
