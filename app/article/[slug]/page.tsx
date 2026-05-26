@@ -192,20 +192,20 @@ export default function ArticlePage({ params }: Props) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/30 to-black/50" />
           <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-4 md:pb-14">
-            <Link
-              href={`/category/${article.categorySlug}`}
-              className="inline-flex items-center gap-1.5 text-cream/55 hover:text-cream transition-colors mb-3"
-              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}
-            >
-              <ArrowLeft className="w-3 h-3" />
-              뒤로
-            </Link>
-            <span
-              className="inline-block bg-[#C9A96E] text-[#0F0F10] font-bold px-2 py-0.5 rounded-sm text-[10px] tracking-widest uppercase mb-4"
-              style={{ fontFamily: 'var(--font-space-mono)' }}
-            >
-              {article.category}
-            </span>
+            <div className="flex items-center gap-2 mb-3">
+              <Link
+                href={`/category/${article.categorySlug}`}
+                className="inline-flex items-center text-cream/55 hover:text-cream transition-colors"
+              >
+                <ArrowLeft className="w-3 h-3" />
+              </Link>
+              <span
+                className="inline-block bg-[#C9A96E] text-[#0F0F10] font-bold px-2 py-0.5 rounded-sm text-[10px] tracking-widest uppercase"
+                style={{ fontFamily: 'var(--font-space-mono)' }}
+              >
+                {article.category}
+              </span>
+            </div>
             <h1
               className="leading-tight"
               style={{
