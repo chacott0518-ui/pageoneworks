@@ -182,8 +182,8 @@ export default function ArticlePage({ params }: Props) {
       <ArticleJsonLd article={article} />
       <ReadingProgress />
 
-      <section className="relative w-full overflow-hidden" style={{ background: '#000', fontSize: 0 }}>
-        <div className="relative w-full" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
+      <section className="relative w-full overflow-hidden pt-14 md:pt-0" style={{ background: '#000', fontSize: 0 }}>
+        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
           <img
             src={article.image}
             alt={article.titleKo}
@@ -199,19 +199,14 @@ export default function ArticlePage({ params }: Props) {
               <ArrowLeft className="w-3 h-3" /> {article.category}
             </Link>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-8 md:pb-14">
-            <span
-              className="inline-block border border-cream/30 text-cream/65 px-3 py-1 mb-4 uppercase"
-              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em' }}
-            >
-              {article.category}
-            </span>
+          <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-4 md:pb-14">
             <h1
-              className="text-cream leading-tight"
+              className="leading-tight"
               style={{
                 fontFamily: 'var(--font-cormorant)',
                 fontSize: 'clamp(1.4rem, 3.5vw, 3.2rem)',
-                fontWeight: 400,
+                fontWeight: 700,
+                color: '#ffffff',
                 wordBreak: 'keep-all',
                 overflowWrap: 'break-word',
                 maxWidth: '100%',
@@ -223,23 +218,23 @@ export default function ArticlePage({ params }: Props) {
               {article.titleKo}
             </h1>
             <p
-              className="text-cream/55 mt-4 leading-relaxed max-w-[640px] pr-4 md:pr-0"
+              className="text-cream/85 mt-4 leading-relaxed max-w-[640px] pr-4 md:pr-0"
               style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.9rem, 1.5vw, 1.05rem)', fontWeight: 300 }}
             >
               {article.excerpt}
             </p>
             <div className="flex items-center gap-3 mt-4 flex-wrap">
-              <span className="text-cream/45 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
+              <span className="text-cream/70 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
                 {article.date}
               </span>
               <span className="text-cream/20">·</span>
-              <span className="text-cream/45 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
+              <span className="text-cream/70 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
                 {article.readTime} READ
               </span>
               {article.author && (
                 <>
                   <span className="text-cream/20">·</span>
-                  <span className="text-cream/45 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
+                  <span className="text-cream/70 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
                     {article.author}
                   </span>
                 </>
