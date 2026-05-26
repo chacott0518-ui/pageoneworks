@@ -168,14 +168,14 @@ export function MagazineGrid() {
         <div className="md:hidden">
           <Link href={`/article/${main.slug}`} className="group block relative overflow-hidden bg-black mb-3" style={{ aspectRatio: '3/2' }}>
             <img src={main.image} alt={main.titleKo} className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
             <div className="absolute top-3 left-3">
-              <span className="bg-black/50 text-cream/85 px-2 py-1 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.08em' }}>
+              <span className="bg-[#C9A96E] text-[#0F0F10] font-bold px-2 py-0.5 rounded-sm uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.08em' }}>
                 {main.category}
               </span>
             </div>
             <div className="absolute bottom-0 left-0 right-0 p-4">
-              <h3 className="text-cream font-light leading-snug" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.3rem, 5vw, 1.6rem)', wordBreak: 'keep-all' }}>
+              <h3 className="text-cream font-light leading-snug line-clamp-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.3rem, 5vw, 1.6rem)', wordBreak: 'keep-all' }}>
                 {main.titleKo}
               </h3>
               <p className="text-cream/40 mt-1.5 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.08em' }}>
@@ -189,9 +189,9 @@ export function MagazineGrid() {
               {mobileSwipe.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group relative overflow-hidden bg-black" style={{ aspectRatio: '4/3' }}>
                   <img src={article.image} alt={article.titleKo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
                   <div className="absolute top-2 left-2">
-                    <span className="bg-black/60 text-cream/85 px-1.5 py-1 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.06em' }}>
+                    <span className="bg-[#C9A96E] text-[#0F0F10] font-bold px-2 py-0.5 rounded-sm uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.06em' }}>
                       {article.category}
                     </span>
                   </div>
