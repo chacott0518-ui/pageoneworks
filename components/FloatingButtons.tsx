@@ -108,72 +108,36 @@ export default function FloatingButtons({ category }: FloatingButtonsProps) {
 
   return (
     <>
-      {/* ── 플로팅 버튼 그룹 ── */}
-      <div style={{
-        position: 'fixed',
-        bottom: btnBottom,
-        right: btnRight,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '10px',
-        alignItems: 'center',
-        zIndex: 99998,
-        transition: 'bottom 0.2s, right 0.2s',
-      }}>
-        {/* AI 질문 버튼 */}
-        <button
-          onClick={() => setPanelOpen(true)}
-          aria-label="AI 에디터에게 질문하기"
-          title="AI 에디터에게 질문하기"
-          style={{
-            width: btnSize,
-            height: btnSize,
-            borderRadius: '50%',
-            background: '#0a0a0a',
-            border: '1.5px solid #C4A882',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            gap: '2px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(196,168,130,0.15)',
-            transition: 'transform 0.2s',
-          }}
-          onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)'}
-          onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1)'}
-        >
-          <span style={{ fontSize: '16px', color: '#C4A882', lineHeight: 1 }}>✦</span>
-          <span style={{ fontSize: '8px', color: '#C4A882', fontFamily: 'var(--font-space-mono)', letterSpacing: '0.05em' }}>AI</span>
-        </button>
-
-        {/* 글쓰기 버튼 */}
-        <button
-          onClick={() => { window.location.href = '/community' }}
-          aria-label="커뮤니티 글쓰기"
-          title="커뮤니티 글쓰기"
-          style={{
-            width: btnSize,
-            height: btnSize,
-            borderRadius: '50%',
-            background: '#C4A882',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            gap: '2px',
-            boxShadow: '0 4px 20px rgba(196,168,130,0.25)',
-            transition: 'transform 0.2s, opacity 0.2s',
-          }}
-          onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)'}
-          onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1)'}
-        >
-          <span style={{ fontSize: '16px', color: '#0a0a0a', lineHeight: 1 }}>✏</span>
-          <span style={{ fontSize: '8px', color: '#0a0a0a', fontFamily: 'var(--font-space-mono)', letterSpacing: '0.05em', fontWeight: 700 }}>글쓰기</span>
-        </button>
-      </div>
+      {/* ── AI 플로팅 버튼 ── */}
+      <button
+        onClick={() => setPanelOpen(true)}
+        aria-label="AI 에디터에게 질문하기"
+        title="AI 에디터에게 질문하기"
+        style={{
+          position: 'fixed',
+          bottom: btnBottom,
+          right: btnRight,
+          zIndex: 99998,
+          width: btnSize,
+          height: btnSize,
+          borderRadius: '50%',
+          background: '#0a0a0a',
+          border: '1.5px solid #C4A882',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          gap: '2px',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.6), 0 0 0 1px rgba(196,168,130,0.15)',
+          transition: 'transform 0.2s, bottom 0.2s, right 0.2s',
+        }}
+        onMouseEnter={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)'}
+        onMouseLeave={e => (e.currentTarget as HTMLElement).style.transform = 'scale(1)'}
+      >
+        <span style={{ fontSize: '16px', color: '#C4A882', lineHeight: 1 }}>✦</span>
+        <span style={{ fontSize: '8px', color: '#C4A882', fontFamily: 'var(--font-space-mono)', letterSpacing: '0.05em' }}>AI</span>
+      </button>
 
       {/* ── AI Q&A 슬라이드 패널 ── */}
       {panelOpen && (
