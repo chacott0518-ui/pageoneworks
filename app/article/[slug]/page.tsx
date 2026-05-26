@@ -283,13 +283,13 @@ export default function ArticlePage({ params }: Props) {
               <div className="flex flex-col gap-5">
                 <div>
                   <p className="uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.25em', color: 'rgba(26,26,26,0.4)' }}>
-                    \uC5C5\uCCB4 \uC815\uBCF4
+                    업체 정보
                   </p>
                   <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 1.9rem)', fontWeight: 500, color: '#1a1a1a', marginBottom: '6px' }}>
-                    \uCE74\uC564\uAC00\uC774 CAR&GUY
+                    카앤가이 CAR&GUY
                   </p>
                   <p style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.9rem, 1.5vw, 1rem)', fontWeight: 300, color: 'rgba(26,26,26,0.6)', lineHeight: '1.6' }}>
-                    \uACBD\uAE30\uB3C4 \uAD11\uC8FC\uC2DC \uAD11\uB0A8\uC548\uB85C 12 · \uAD6D\uD1A0\uAD50\uD1B5\uBD80 \uC778\uC99D 1\uAE09 \uC790\uB3D9\uCC28\uACF5\uC5C5\uC0AC
+                    경기도 광주시 광남안로 12 · 국토교통부 인증 1급 자동차공업사
                   </p>
                 </div>
                 <a
@@ -298,15 +298,15 @@ export default function ArticlePage({ params }: Props) {
                   style={{ fontFamily: 'var(--font-space-mono)', fontSize: '13px', letterSpacing: '0.1em', padding: '16px 24px' }}
                 >
                   <Phone className="w-4 h-4" />
-                  \uC9C0\uAE08 \uBC14\uB85C \uC0C1\uB2F4 \uC608\uC57D\uD558\uAE30
+                  지금 바로 상담 예약하기
                 </a>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-black/8">
                 {[
-                  { num: '15+', label: '\uB144 \uC5C5\uB825' },
-                  { num: '3,200+', label: '\uB204\uC801 \uC218\uB9AC' },
-                  { num: '100%', label: '\uBCF4\uD5D8\uC811\uC218 \uC131\uACF5\uB960' },
-                  { num: '1\uAE09', label: '\uACF5\uC5C5\uC0AC \uC778\uC99D' },
+                  { num: '15+', label: '년 업력' },
+                  { num: '3,200+', label: '누적 수리' },
+                  { num: '100%', label: '보험접수 성공률' },
+                  { num: '1급', label: '공업사 인증' },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center py-2">
                     <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', fontWeight: 400, color: '#1a1a1a' }}>
@@ -499,6 +499,46 @@ export default function ArticlePage({ params }: Props) {
             );
           })}
 
+          {isCarnguy && (
+            <div style={{
+              background: '#1a1a1a',
+              borderRadius: '8px',
+              padding: '20px',
+              margin: '32px 0',
+            }}>
+              <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.15em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', marginBottom: '6px' }}>
+                카앤가이 CAR&GUY
+              </p>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.2rem, 2.5vw, 1.6rem)', fontWeight: 500, color: '#fff', marginBottom: '6px' }}>
+                수입차 사고수리 무료 상담
+              </p>
+              <p style={{ fontFamily: 'var(--font-inter)', fontSize: '14px', fontWeight: 300, color: 'rgba(255,255,255,0.55)', marginBottom: '16px' }}>
+                경기도 광주 · 강남·판교 무상 픽업 · 24시간 접수
+              </p>
+              <a
+                href="tel:027395415"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  background: '#fff',
+                  color: '#1a1a1a',
+                  padding: '14px',
+                  borderRadius: '5px',
+                  fontFamily: 'var(--font-space-mono)',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  letterSpacing: '0.06em',
+                  textDecoration: 'none',
+                }}
+              >
+                <Phone className="w-4 h-4" />
+                지금 바로 상담 예약하기
+              </a>
+            </div>
+          )}
+
           {faqBlocks.length > 0 && (
             <div className="mt-14 pt-10 border-t border-black/8">
               <h2 className="mb-8" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
@@ -519,36 +559,77 @@ export default function ArticlePage({ params }: Props) {
 
           {isCarnguy && (
             <div className="mt-14 pt-10 border-t border-black/8">
+              <div style={{
+                border: '1.5px solid #C9A96E',
+                borderRadius: '8px',
+                padding: '16px 18px',
+                margin: '0 0 32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '12px',
+                flexWrap: 'wrap' as const,
+              }}>
+                <div>
+                  <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 500, color: '#1a1a1a', marginBottom: '3px' }}>
+                    카앤가이 무료 상담 신청
+                  </p>
+                  <p style={{ fontFamily: 'var(--font-inter)', fontSize: '13px', fontWeight: 300, color: 'rgba(26,26,26,0.55)' }}>
+                    빠른 견적 · 보험 처리 대행 · 무상 픽업
+                  </p>
+                </div>
+                <a
+                  href="tel:027395415"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '7px',
+                    background: '#C9A96E',
+                    color: '#0F0F10',
+                    padding: '12px 20px',
+                    borderRadius: '4px',
+                    fontFamily: 'var(--font-space-mono)',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    textDecoration: 'none',
+                    whiteSpace: 'nowrap' as const,
+                  }}
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                  무료 상담 신청
+                </a>
+              </div>
+
               <h2 className="mb-8" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
-                \uC624\uC2DC\uB294 \uAE38
+                오시는 길
               </h2>
               <div className="w-full overflow-hidden mb-5 border border-black/8" style={{ aspectRatio: '16/9' }}>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.5!2d127.254300!3d37.423400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z7Jes6rWs6rSA7J207Yq4!5e0!3m2!1sko!2skr!4v1" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="\uCE74\uC564\uAC00\uC774 \uC704\uCE58" />
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.5!2d127.254300!3d37.423400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z7Jes6rWs6rSA7J207Yq4!5e0!3m2!1sko!2skr!4v1" width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="카앤가이 위치" />
               </div>
               <div className="flex flex-col sm:flex-row gap-3 mb-4">
                 <div className="flex items-center gap-3 flex-1 px-5 py-4 bg-white border border-black/8">
                   <MapPin className="w-4 h-4 shrink-0" style={{ color: 'rgba(26,26,26,0.4)' }} />
                   <div>
-                    <p className="uppercase mb-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}>\uC8FC\uC18C</p>
-                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>\uACBD\uAE30\uB3C4 \uAD11\uC8FC\uC2DC \uAD11\uB0A8\uC548\uB85C 12</p>
+                    <p className="uppercase mb-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}>주소</p>
+                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>경기도 광주시 광남안로 12</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 flex-1 px-5 py-4 bg-white border border-black/8">
                   <Clock className="w-4 h-4 shrink-0" style={{ color: 'rgba(26,26,26,0.4)' }} />
                   <div>
-                    <p className="uppercase mb-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}>\uC6B4\uC601\uC2DC\uAC04</p>
-                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>\uD3C9\uC77C 09:00\u201318:00 \u00B7 \uC57C\uAC04/\uC8FC\uB9D0 24h \uAE34\uAE09</p>
+                    <p className="uppercase mb-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.15em', color: 'rgba(26,26,26,0.4)' }}>운영시간</p>
+                    <p style={{ fontFamily: 'var(--font-inter)', fontSize: '15px', fontWeight: 400, color: '#1a1a1a' }}>평일 09:00–18:00 · 야간/주말 24h 긴급</p>
                   </div>
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <a href="https://map.kakao.com/link/to/\uCE74\uC564\uAC00\uC774,37.423400,127.254300" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2.5 flex-1 border border-black/20 hover:border-black/40 transition-colors" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.08em', color: 'rgba(26,26,26,0.65)', padding: '16px' }}>
+                <a href="https://map.kakao.com/link/to/카앤가이,37.423400,127.254300" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2.5 flex-1 border border-black/20 hover:border-black/40 transition-colors" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.08em', color: 'rgba(26,26,26,0.65)', padding: '16px' }}>
                   <ExternalLink className="w-4 h-4" />
-                  \uCE74\uCE74\uC624\uB9F5\uC73C\uB85C \uAE38\uCC3E\uAE30
+                  카카오맵으로 길찾기
                 </a>
                 <a href="tel:027395415" className="flex items-center justify-center gap-2.5 flex-1 bg-[#1a1a1a] text-white hover:bg-black/80 transition-colors" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.08em', padding: '16px' }}>
                   <Phone className="w-4 h-4" />
-                  \uC9C0\uAE08 \uBC14\uB85C \uC0C1\uB2F4\uD558\uAE30
+                  지금 바로 상담하기
                 </a>
               </div>
             </div>
