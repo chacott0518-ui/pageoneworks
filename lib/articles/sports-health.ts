@@ -63,8 +63,6 @@ export const sportsHealthArticles: Article[] = [
 
 ##INFOBOX##RICE 응급 처치##amber##R — Rest: 즉시 달리기 중단\nI — Ice: 20분 냉찜질, 2시간 간격 반복\nC — Compression: 압박 붕대 착용\nE — Elevation: 다리 심장보다 높게 거상\n\n48시간 내 통증이 줄지 않으면 정형외과 방문 필수\n(출처: 대한정형외과학회, 2024)##END##
 
-##CTABLOCK##
-
 ■ 러닝화 선택이 무릎 통증에 미치는 영향
 
 발 아치 타입에 맞지 않는 신발은 하지 정렬을 무너뜨려 무릎 통증을 유발합니다. 전문 러닝 샵에서 족형 분석 후 선택을 권장합니다. 러닝화 평균 교체 주기는 500~800km입니다.

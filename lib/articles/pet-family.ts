@@ -60,8 +60,6 @@ export const petFamilyArticles: Article[] = [
 
 ##IMAGE##https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200&q=85##CAPTION##반려견과 함께하는 일상 — 펫보험은 어릴수록 가입 조건이 유리하다##END##
 
-##CTABLOCK##
-
 Q. 강아지 펫보험 언제 가입하는 게 가장 좋은가요?
 A. 생후 3개월~1세 사이에 가입하면 보험료가 가장 낮고 건강 고지 부담도 없습니다. 5세 이후 종양·심장병 발생 가능성이 높아지므로 그 전에 보장 한도가 높은 상품으로 가입해두는 것이 핵심입니다. (출처: 금융감독원, 2025)
 

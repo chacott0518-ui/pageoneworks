@@ -37,7 +37,6 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
       <div className="relative z-10 min-h-screen flex flex-col pt-28 md:pt-32 pb-8 px-6 md:px-12 max-w-[1600px] mx-auto">
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
 
-          {/* 카테고리 목록 — 한국어 제거, 폰트 축소 */}
           <nav className="lg:col-span-7 flex flex-col justify-center" aria-label="카테고리 메뉴">
             <p className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-40 mb-6" style={{ fontFamily: 'var(--font-space-mono)' }}>
               Categories
@@ -56,7 +55,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
                       {cat.id}
                     </span>
                     <span
-                      className="text-base md:text-lg lg:text-xl font-medium tracking-tight leading-tight group-hover:italic transition-all duration-300 text-ink"
+                      className="text-sm md:text-base lg:text-lg font-medium tracking-tight leading-tight group-hover:italic transition-all duration-300 text-ink"
                       style={{ fontFamily: 'var(--font-cormorant)' }}
                     >
                       {cat.title}
@@ -64,15 +63,10 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
                   </Link>
                 </li>
               ))}
-              {/* ARCHIVE 별도 표기 */}
               <li className="mt-3 pt-3 border-t border-ink/10">
-                <Link
-                  href="/archive"
-                  onClick={handleClose}
-                  className="group flex items-baseline gap-4 w-fit"
-                >
+                <Link href="/archive" onClick={handleClose} className="group flex items-baseline gap-4 w-fit">
                   <span className="font-mono text-[9px] opacity-30 w-5 shrink-0" style={{ fontFamily: 'var(--font-space-mono)' }}>→</span>
-                  <span className="text-base md:text-lg font-mono uppercase tracking-widest opacity-50 group-hover:opacity-100 transition-opacity" style={{ fontFamily: 'var(--font-space-mono)' }}>
+                  <span className="text-sm md:text-base font-mono uppercase tracking-widest opacity-50 group-hover:opacity-100 transition-opacity" style={{ fontFamily: 'var(--font-space-mono)' }}>
                     ARCHIVE
                   </span>
                 </Link>
@@ -80,10 +74,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
             </ul>
           </nav>
 
-          {/* 우측 */}
           <div className="lg:col-span-5 flex flex-col justify-center gap-8 md:gap-10">
-
-            {/* 최신 아티클 */}
             <div>
               <div className="flex justify-between items-center mb-5 border-b border-ink/10 pb-3">
                 <h3 className="font-mono text-[9px] uppercase tracking-[0.25em] opacity-50" style={{ fontFamily: 'var(--font-space-mono)' }}>
@@ -114,17 +105,10 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
               </ul>
             </div>
 
-            {/* 커뮤니티 CTA */}
             <div className="border border-ink/10 p-6 bg-white/60 backdrop-blur-sm">
-              <p className="font-mono text-[8px] uppercase tracking-[0.25em] opacity-40 mb-3" style={{ fontFamily: 'var(--font-space-mono)' }}>
-                Community
-              </p>
-              <h4 className="text-xl md:text-2xl font-light mb-2" style={{ fontFamily: 'var(--font-cormorant)' }}>
-                프라이빗 커뮤니티
-              </h4>
-              <p className="text-xs opacity-60 leading-relaxed mb-5" style={{ fontFamily: 'var(--font-inter)' }}>
-                PAGEONEWORKS 멤버십에 가입하고 프리미엄 인사이트를 가장 먼저 받아보세요.
-              </p>
+              <p className="font-mono text-[8px] uppercase tracking-[0.25em] opacity-40 mb-3" style={{ fontFamily: 'var(--font-space-mono)' }}>Community</p>
+              <h4 className="text-xl md:text-2xl font-light mb-2" style={{ fontFamily: 'var(--font-cormorant)' }}>프라이빗 커뮤니티</h4>
+              <p className="text-xs opacity-60 leading-relaxed mb-5">PAGEONEWORKS 멤버십에 가입하고 프리미엄 인사이트를 가장 먼저 받아보세요.</p>
               <Link href="/community" onClick={handleClose} className="inline-flex items-center gap-2 bg-ink text-cream text-[9px] font-mono tracking-widest uppercase px-5 py-3 hover:bg-ink/80 transition-colors" style={{ fontFamily: 'var(--font-space-mono)' }}>
                 멤버십 신청 <ArrowRight className="w-3 h-3" />
               </Link>
@@ -132,13 +116,10 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
           </div>
         </div>
 
-        {/* 하단 */}
         <div className="mt-10 pt-6 border-t border-ink/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="flex gap-5 font-mono text-[9px] uppercase tracking-widest opacity-50">
             {['Cookie', 'Terms', 'Privacy'].map((item) => (
-              <Link key={item} href={`/${item.toLowerCase()}`} onClick={handleClose} className="hover:opacity-100 transition-opacity">
-                {item}
-              </Link>
+              <Link key={item} href={`/${item.toLowerCase()}`} onClick={handleClose} className="hover:opacity-100 transition-opacity">{item}</Link>
             ))}
           </div>
           <div className="flex gap-3">
