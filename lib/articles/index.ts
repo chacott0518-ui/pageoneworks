@@ -6,6 +6,10 @@ import { lifestyleArticles } from './lifestyle';
 import { beautyWellnessArticles } from './beauty-wellness';
 import { foodDiningArticles } from './food-dining';
 import { educationArticles } from './education';
+import { sportsHealthArticles } from './sports-health';
+import { cultureArtArticles } from './culture-art';
+import { petFamilyArticles } from './pet-family';
+import { globalTrendArticles } from './global-trend';
 
 function interleave<T>(...arrays: T[][]): T[] {
   const result: T[] = [];
@@ -19,12 +23,16 @@ function interleave<T>(...arrays: T[][]): T[] {
 }
 
 export const articles = interleave(
-  driveTechArticles ?? [],      // ← SEO글이 1번째 → 히어로
-  vitalityArticles ?? [],       // ← 2번째 → 오른쪽 상단
-  propertiesArticles ?? [],     // ← 3번째 → 오른쪽 하단
-  legalFinanceArticles ?? [],   // ← 4번째 → 하단 왼쪽
-  lifestyleArticles ?? [],      // ← 5번째 → 하단 중앙
-  beautyWellnessArticles ?? [], // ← 6번째 → 하단 오른쪽
-  foodDiningArticles ?? [],
-  educationArticles ?? [],
+  driveTechArticles      ?? [],
+  vitalityArticles       ?? [],
+  propertiesArticles     ?? [],
+  legalFinanceArticles   ?? [],
+  lifestyleArticles      ?? [],
+  beautyWellnessArticles ?? [],
+  foodDiningArticles     ?? [],
+  educationArticles      ?? [],
+  sportsHealthArticles   ?? [],
+  cultureArtArticles     ?? [],
+  petFamilyArticles      ?? [],
+  globalTrendArticles    ?? [],
 );
