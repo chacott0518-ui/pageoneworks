@@ -13,6 +13,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
   const [hoveredCat, setHoveredCat] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(true);
 
+  const navCategories = categories.filter((c) => c.slug !== 'archive');
   const latestArticles = articles.slice(0, 3);
   const hoveredCategory = categories.find((c) => c.slug === hoveredCat);
 
@@ -36,35 +37,46 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
       <div className="relative z-10 min-h-screen flex flex-col pt-28 md:pt-32 pb-8 px-6 md:px-12 max-w-[1600px] mx-auto">
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
 
-          {/* 카테고리 */}
-          <nav className="lg:col-span-7 flex flex-col justify-center">
-            <p className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-40 mb-8" style={{ fontFamily: 'var(--font-space-mono)' }}>
+          {/* 카테고리 목록 — 한국어 제거, 폰트 축소 */}
+          <nav className="lg:col-span-7 flex flex-col justify-center" aria-label="카테고리 메뉴">
+            <p className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-40 mb-6" style={{ fontFamily: 'var(--font-space-mono)' }}>
               Categories
             </p>
-            <ul className="flex flex-col gap-3 md:gap-4">
-              {categories.map((cat) => (
+            <ul className="flex flex-col gap-1.5 md:gap-2">
+              {navCategories.map((cat) => (
                 <li key={cat.id}>
                   <Link
                     href={`/category/${cat.slug}`}
                     onClick={handleClose}
                     onMouseEnter={() => setHoveredCat(cat.slug)}
                     onMouseLeave={() => setHoveredCat(null)}
-                    className="group flex flex-col md:flex-row md:items-baseline gap-1 md:gap-5 w-fit"
+                    className="group flex items-baseline gap-4 w-fit"
                   >
-                    <div className="flex items-baseline gap-3 md:gap-5">
-                      <span className="font-mono text-[9px] opacity-30 group-hover:opacity-70 transition-opacity" style={{ fontFamily: 'var(--font-space-mono)' }}>
-                        {cat.id}
-                      </span>
-                      <span className="text-2xl md:text-3xl lg:text-[2.5rem] font-medium tracking-tight leading-tight group-hover:italic transition-all duration-300 text-ink" style={{ fontFamily: 'var(--font-cormorant)' }}>
-                        {cat.title}
-                      </span>
-                    </div>
-                    <span className="text-xs md:text-sm italic opacity-50 group-hover:opacity-80 transition-opacity ml-8 md:ml-0" style={{ fontFamily: 'var(--font-cormorant)' }}>
-                      {cat.titleKo}
+                    <span className="font-mono text-[9px] opacity-30 group-hover:opacity-70 transition-opacity w-5 shrink-0" style={{ fontFamily: 'var(--font-space-mono)' }}>
+                      {cat.id}
+                    </span>
+                    <span
+                      className="text-xl md:text-2xl lg:text-[1.8rem] font-medium tracking-tight leading-tight group-hover:italic transition-all duration-300 text-ink"
+                      style={{ fontFamily: 'var(--font-cormorant)' }}
+                    >
+                      {cat.title}
                     </span>
                   </Link>
                 </li>
               ))}
+              {/* ARCHIVE 별도 표기 */}
+              <li className="mt-3 pt-3 border-t border-ink/10">
+                <Link
+                  href="/archive"
+                  onClick={handleClose}
+                  className="group flex items-baseline gap-4 w-fit"
+                >
+                  <span className="font-mono text-[9px] opacity-30 w-5 shrink-0" style={{ fontFamily: 'var(--font-space-mono)' }}>→</span>
+                  <span className="text-base md:text-lg font-mono uppercase tracking-widest opacity-50 group-hover:opacity-100 transition-opacity" style={{ fontFamily: 'var(--font-space-mono)' }}>
+                    ARCHIVE
+                  </span>
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -86,7 +98,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
                   <li key={article.id}>
                     <Link href={`/article/${article.slug}`} onClick={handleClose} className="group flex justify-between items-start gap-4">
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium tracking-tight group-hover:italic transition-all duration-300 truncate" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1rem' }}>
+                        <p className="font-medium tracking-tight group-hover:italic transition-all duration-300 truncate" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1rem' }}>
                           {article.titleKo}
                         </p>
                         <p className="font-mono text-[8px] uppercase tracking-widest opacity-40 mt-1" style={{ fontFamily: 'var(--font-space-mono)' }}>
