@@ -142,3 +142,13 @@ h1, h2, h3, h4, p { word-break: keep-all; overflow-wrap: break-word; }
   transition: all .2s ease;
 }
 .ep-more-mob:hover { border-color: #c9b99a; color: #c9b99a; }
+
+.tab-scroll-bar {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  flex-wrap: nowrap !important;
+}
+.tab-scroll-bar::-webkit-scrollbar { display: none !important; }

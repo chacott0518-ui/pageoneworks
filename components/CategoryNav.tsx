@@ -19,14 +19,7 @@ export function CategoryNav() {
     >
       <div className="max-w-[1600px] mx-auto px-5 md:px-8">
         <div
-          className="flex items-center gap-0"
-          style={{
-            overflowX: 'auto',
-            overflowY: 'hidden',
-            WebkitOverflowScrolling: 'touch',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-          }}
+          className="flex items-center gap-0 tab-scroll-bar"
         >
           {/* 전체 탭 */}
           <Link
@@ -67,7 +60,7 @@ export function CategoryNav() {
           {/* ARCHIVE 맨 끝 */}
           <Link
             href="/archive"
-            className={`shrink-0 py-3 px-3 md:px-4 border-b-2 transition-all duration-200 uppercase whitespace-nowrap ml-auto ${
+            className={`shrink-0 py-3 px-3 md:px-4 border-b-2 transition-all duration-200 uppercase whitespace-nowrap ${
               pathname === '/archive'
                 ? 'border-cream text-cream'
                 : 'border-transparent text-cream/45 hover:text-cream/80'

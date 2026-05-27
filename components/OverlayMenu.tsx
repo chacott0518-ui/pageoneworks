@@ -42,7 +42,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
             <p className="font-mono text-[9px] uppercase tracking-[0.3em] opacity-40 mb-6" style={{ fontFamily: 'var(--font-space-mono)' }}>
               Categories
             </p>
-            <ul className="flex flex-col gap-1.5 md:gap-2">
+            <ul className="flex flex-col gap-1 md:gap-1.5">
               {navCategories.map((cat) => (
                 <li key={cat.id}>
                   <Link
@@ -56,7 +56,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
                       {cat.id}
                     </span>
                     <span
-                      className="text-xl md:text-2xl lg:text-[1.8rem] font-medium tracking-tight leading-tight group-hover:italic transition-all duration-300 text-ink"
+                      className="text-base md:text-lg lg:text-xl font-medium tracking-tight leading-tight group-hover:italic transition-all duration-300 text-ink"
                       style={{ fontFamily: 'var(--font-cormorant)' }}
                     >
                       {cat.title}

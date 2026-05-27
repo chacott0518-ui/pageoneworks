@@ -57,20 +57,9 @@ export default function ArchiveClient() {
         </section>
 
         {/* 카테고리 필터 탭 — PC·모바일 좌우 스크롤 */}
-        <section className="sticky top-0 z-30 bg-[#0d0d0d]/95 backdrop-blur-md border-b border-white/5 px-5 md:px-12 py-3">
+        <section className="sticky top-0 z-30 bg-[#0d0d0d] border-b border-white/5 px-5 md:px-12 py-3">
           <div className="max-w-[1600px] mx-auto">
-            <div
-              style={{
-                display: 'flex',
-                gap: '8px',
-                overflowX: 'auto',
-                overflowY: 'hidden',
-                WebkitOverflowScrolling: 'touch',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-                paddingBottom: '2px',
-              }}
-            >
+          <div className="flex gap-2 pb-1 tab-scroll-bar">
               <button
                 onClick={() => handleFilter(null)}
                 className={`shrink-0 uppercase px-3 py-1.5 border transition-colors whitespace-nowrap ${

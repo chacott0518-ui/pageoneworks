@@ -66,17 +66,10 @@ export function MagazineGrid() {
 
           {/* 탭 — PC·모바일 공통 좌우 스크롤 */}
           <div
-            className="flex gap-2 pb-1"
-            style={{
-              overflowX: 'auto',
-              overflowY: 'hidden',
-              WebkitOverflowScrolling: 'touch',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
-            }}
-            role="tablist"
-            aria-label="카테고리 필터"
-          >
+  className="flex gap-2 pb-1 tab-scroll-bar"
+  role="tablist"
+  aria-label="카테고리 필터"
+>
             {tabs.map((tab) => (
               <button
                 key={tab.value}
@@ -94,9 +87,6 @@ export function MagazineGrid() {
               </button>
             ))}
           </div>
-          <style jsx>{`
-            div[role='tablist']::-webkit-scrollbar { display: none; }
-          `}</style>
         </div>
 
         {/* PC 레이아웃 */}
