@@ -129,7 +129,7 @@ A. 제품 자체의 차이보다 시술자 숙련도·주입 포인트 정확도
     readTime: '13 MIN',
     image: 'https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1487412912498-0447578fcca8?w=1600&q=85',
-    featured: true,
+    featured: false,
     tags: ['울쎄라', '슈링크', '리프팅시술', '더블로', '인모드', '강남피부과', '울쎄라가격', '얼굴리프팅2026'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##4종:비교 리프팅 시술||1회:평균 시술 시간 60~90분||6~18개월:효과 유지기간||당일 복귀:대부분 일상 가능||30대↑:주요 시술 대상||2026년:HIFU 기술 고도화##END##

@@ -13,7 +13,7 @@ export const foodDiningArticles: Article[] = [
     readTime: '10 MIN',
     image: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1600&q=85',
-    featured: false,
+    featured: true,
     tags: ['강남오마카세', '청담오마카세', '서울오마카세추천', '오마카세가격', '미쉐린오마카세', '강남일식', '오마카세예약', '강남파인다이닝', 'gangnam omakase', '런치오마카세'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##10만~40만 원:1인 평균 가격||12~20코스:평균 코스 수||1~3개월:평균 예약 대기||20~40석:평균 좌석 수||3곳:2026 미쉐린 스타||12시~:런치 시작 시간##END##
@@ -119,7 +119,7 @@ A. 청담동은 역사 있는 장인 셰프 레스토랑이 많고, 강남역·�
     readTime: '12 MIN',
     image: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=1600&q=85',
-    featured: true,
+    featured: false,
     tags: ['파인다이닝', '서울파인다이닝', '청담레스토랑', '한남맛집', '강남파인다이닝', '코스요리', '서울고급식당', '캐치테이블예약'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##TOP 10:추천 레스토랑||5만~50만원:1인 코스 범위||수주~수개월:인기 레스토랑 예약 대기||3곳:청담·한남·성수 핵심 지역||2026년:서울 파인다이닝 전성시대||캐치테이블:국내 1위 예약 플랫폼##END##
@@ -281,7 +281,7 @@ A. 완전히 괜찮습니다. 서울 파인다이닝 문화에서 1인 식사는
     readTime: '8 MIN',
     image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85',
     heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85',
-    featured: true,
+    featured: false,
     tags: ['미쉐린', '파인다이닝', '서울맛집'],
     author: 'PAGEONEWORKS 편집부',
   },

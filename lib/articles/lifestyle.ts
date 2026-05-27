@@ -13,7 +13,7 @@ export const lifestyleArticles: Article[] = [
     readTime: '9 MIN',
     image: 'https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?w=1600&q=85',
-    featured: false,
+    featured: true,
     tags: ['제주도렌트카없이', '제주여행버스', '제주대중교통', '제주도여행2026', '제주버스노선', '제주전기자전거', '제주도혼자여행', '제주여행경비', 'jeju travel', '제주패키지'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##1일 2만 원~:대중교통 총비용||15분:공항→제주시 버스||4개 노선:주요 관광버스||1,200원:시내버스 기본요금||5,500원:공항 리무진 버스||3일 2박:렌트카 없는 최적 일정##END##
@@ -520,7 +520,7 @@ A. 홍콩은 미술품 수출입에 관세가 없습니다. 한국으로 반입 
     readTime: '15 MIN',
     image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85',
-    featured: false,
+    featured: true,
     tags: ['미쉐린서울', '파인다이닝', '서울레스토랑'],
     author: 'PAGEONEWORKS',
     body: `미쉐린 가이드가 서울에 처음 발을 들인 것은 2017년이었다. 그로부터 10년이 채 되지 않아 서울은 아시아에서 가장 역동적인 파인다이닝 도시 중 하나로 자리매김했다. 2026년판 미쉐린 가이드 서울은 3스타 7개, 2스타 12개, 1스타 67개, 빕 구르망 68개로 역대 최대 규모의 등재 목록을 기록했다. 숫자보다 중요한 것은 그 안의 이야기다. 어떤 레스토랑이 새롭게 별을 받았고, 어떤 셰프가 서울 다이닝 씬의 방향을 바꾸고 있는가.
