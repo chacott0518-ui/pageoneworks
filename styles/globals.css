@@ -23,19 +23,6 @@ html {
   text-size-adjust: 100%;
 }
 
-body {
-  background-color: #0a0a0a;
-  color: #f5f2ed;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  word-break: keep-all;
-  overflow-wrap: break-word;
-}
-
 [style*="space-mono"],
 [style*="Space Mono"] {
   font-size: max(var(--text-mono-xs), 11px) !important;

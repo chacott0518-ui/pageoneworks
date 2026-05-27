@@ -59,39 +59,22 @@ export default function ArchiveClient() {
         {/* 카테고리 필터 탭 — PC·모바일 좌우 스크롤 */}
         <section className="sticky top-0 z-30 bg-[#0d0d0d] border-b border-white/5 px-5 md:px-12 py-3">
           <div className="max-w-[1600px] mx-auto">
-          <div className="flex gap-2 pb-1 tab-scroll-bar">
-              <button
-                onClick={() => handleFilter(null)}
-                className={`shrink-0 uppercase px-3 py-1.5 border transition-colors whitespace-nowrap ${
-                  !activeFilter
-                    ? 'border-cream text-cream'
-                    : 'border-white/15 text-cream/40 hover:border-white/30 hover:text-cream/70'
-                }`}
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.15em' }}
-              >
-                ALL
-              </button>
-
-              {categories
-                .filter((cat) => cat.slug !== 'archive')
-                .map((cat) => (
-                  <button
-                    key={cat.slug}
-                    onClick={() => handleFilter(cat.slug)}
-                    className={`shrink-0 uppercase px-3 py-1.5 border transition-colors whitespace-nowrap ${
-                      activeFilter === cat.slug
-                        ? 'border-cream text-cream'
-                        : 'border-white/15 text-cream/40 hover:border-white/30 hover:text-cream/70'
-                    }`}
-                    style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.15em' }}
-                  >
-                    {cat.title}
-                  </button>
-                ))}
-
-              {/* 모바일 우측 여백 */}
-              <span className="shrink-0 w-4 md:hidden" />
+          <div style={{ position: 'relative' }}>
+            <div
+              style={{ display: 'flex', gap: '8px', overflowX: 'auto', overflowY: 'hidden', scrollbarWidth: 'none', msOverflowStyle: 'none', cursor: 'grab', userSelect: 'none', paddingRight: '48px', paddingBottom: '2px' }}
+              onMouseDown={(e) => { const el = e.currentTarget; el.dataset.down = '1'; el.dataset.startX = String(e.pageX - el.offsetLeft); el.dataset.sl = String(el.scrollLeft); el.style.cursor = 'grabbing'; }}
+              onMouseLeave={(e) => { e.currentTarget.dataset.down = '0'; e.currentTarget.style.cursor = 'grab'; }}
+              onMouseUp={(e) => { e.currentTarget.dataset.down = '0'; e.currentTarget.style.cursor = 'grab'; }}
+              onMouseMove={(e) => { const el = e.currentTarget; if (el.dataset.down !== '1') return; e.preventDefault(); el.scrollLeft = Number(el.dataset.sl) - (e.pageX - el.offsetLeft - Number(el.dataset.startX)); }}
+            >
+              <button onClick={() => handleFilter(null)} className={`shrink-0 uppercase px-3 py-1.5 border transition-colors whitespace-nowrap ${!activeFilter ? 'border-cream text-cream' : 'border-white/15 text-cream/40 hover:border-white/30 hover:text-cream/70'}`} style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.15em' }}>ALL</button>
+              {categories.filter((cat) => cat.slug !== 'archive').map((cat) => (
+                <button key={cat.slug} onClick={() => handleFilter(cat.slug)} className={`shrink-0 uppercase px-3 py-1.5 border transition-colors whitespace-nowrap ${activeFilter === cat.slug ? 'border-cream text-cream' : 'border-white/15 text-cream/40 hover:border-white/30 hover:text-cream/70'}`} style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.15em' }}>{cat.title}</button>
+              ))}
+              <span className="shrink-0 w-8" />
             </div>
+            <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '60px', background: 'linear-gradient(to right, transparent, #0d0d0d)', pointerEvents: 'none' }} />
+          </div>
           </div>
         </section>
 

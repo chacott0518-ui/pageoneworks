@@ -64,28 +64,35 @@ export function MagazineGrid() {
             </Link>
           </div>
 
-          {/* 탭 — PC·모바일 공통 좌우 스크롤 */}
-          <div
-  className="flex gap-2 pb-1 tab-scroll-bar"
-  role="tablist"
-  aria-label="카테고리 필터"
->
-            {tabs.map((tab) => (
-              <button
-                key={tab.value}
-                onClick={() => setActiveTab(tab.value)}
-                role="tab"
-                aria-selected={activeTab === tab.value}
-                className={`shrink-0 uppercase px-3 py-2 border transition-all duration-200 ${
-                  activeTab === tab.value
-                    ? 'border-cream text-cream bg-cream/5'
-                    : 'border-white/15 text-cream/40 hover:border-white/35 hover:text-cream/65'
-                }`}
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}
-              >
-                {tab.label}
-              </button>
-            ))}
+          {/* 탭 — PC·모바일 공통 좌우 스크롤 + 드래그 */}
+          <div style={{ position: 'relative' }}>
+            <div
+              role="tablist"
+              aria-label="카테고리 필터"
+              style={{ display: 'flex', gap: '8px', overflowX: 'auto', overflowY: 'hidden', scrollbarWidth: 'none', msOverflowStyle: 'none', cursor: 'grab', userSelect: 'none', paddingRight: '48px' }}
+              onMouseDown={(e) => { const el = e.currentTarget; el.dataset.down = '1'; el.dataset.startX = String(e.pageX - el.offsetLeft); el.dataset.sl = String(el.scrollLeft); el.style.cursor = 'grabbing'; }}
+              onMouseLeave={(e) => { e.currentTarget.dataset.down = '0'; e.currentTarget.style.cursor = 'grab'; }}
+              onMouseUp={(e) => { e.currentTarget.dataset.down = '0'; e.currentTarget.style.cursor = 'grab'; }}
+              onMouseMove={(e) => { const el = e.currentTarget; if (el.dataset.down !== '1') return; e.preventDefault(); el.scrollLeft = Number(el.dataset.sl) - (e.pageX - el.offsetLeft - Number(el.dataset.startX)); }}
+            >
+              {tabs.map((tab) => (
+                <button
+                  key={tab.value}
+                  onClick={() => setActiveTab(tab.value)}
+                  role="tab"
+                  aria-selected={activeTab === tab.value}
+                  className={`shrink-0 uppercase px-3 py-2 border transition-all duration-200 ${
+                    activeTab === tab.value
+                      ? 'border-cream text-cream bg-cream/5'
+                      : 'border-white/15 text-cream/40 hover:border-white/35 hover:text-cream/65'
+                  }`}
+                  style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+            <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: '60px', background: 'linear-gradient(to right, transparent, #111)', pointerEvents: 'none' }} />
           </div>
         </div>
 
