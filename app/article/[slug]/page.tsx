@@ -5,6 +5,7 @@ import PregnancyCalculator from '@/components/PregnancyCalculator';
 import TaxCalculator from '@/components/TaxCalculator';
 import VatCalculator from '@/components/VatCalculator';
 import React from 'react';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
@@ -194,10 +195,13 @@ export default function ArticlePage({ params }: Props) {
 
       <section className="relative w-full overflow-hidden pt-14 md:pt-0" style={{ background: '#000', fontSize: 0 }}>
         <div className="relative w-full overflow-hidden" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
-          <img
+        <Image
             src={article.image}
             alt={article.titleKo}
-            className="absolute inset-0 w-full h-full object-cover opacity-70"
+            fill
+            className="object-cover opacity-70"
+            priority
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/30 to-black/50" />
           <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-4 md:pb-14">
@@ -325,7 +329,9 @@ export default function ArticlePage({ params }: Props) {
             if (block.type === 'image') {
               return (
                 <figure key={i} className="my-8 md:my-10">
-                  <img src={block.content} alt={block.caption || ''} className="w-full object-cover" style={{ aspectRatio: '16/9' }} loading="lazy" />
+                  <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
+                    <Image src={block.content} alt={block.caption || ''} fill className="object-cover" sizes="(max-width: 760px) 100vw, 760px" loading="lazy" />
+                  </div>
                   {block.caption && (
                     <figcaption className="text-center mt-3 px-5 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
                       {block.caption}
@@ -650,7 +656,7 @@ export default function ArticlePage({ params }: Props) {
                 {related.map((rel) => (
                   <Link key={rel.id} href={`/article/${rel.slug}`} className="group">
                     <div className="overflow-hidden aspect-video mb-4">
-                      <img src={rel.image} alt={rel.titleKo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    <Image src={rel.image} alt={rel.titleKo} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 400px" loading="lazy" />
                     </div>
                     <p className="uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
                       {rel.category}
