@@ -196,7 +196,7 @@ export default function ArticlePage({ params }: Props) {
       <section className="relative w-full overflow-hidden pt-14 md:pt-0" style={{ background: '#000', fontSize: 0 }}>
         <div className="relative w-full overflow-hidden" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
         <Image
-            src={article.image}
+            src={article.heroImage ?? article.image}
             alt={article.titleKo}
             fill
             className="object-cover opacity-70"
@@ -655,7 +655,7 @@ export default function ArticlePage({ params }: Props) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {related.map((rel) => (
                   <Link key={rel.id} href={`/article/${rel.slug}`} className="group">
-                    <div className="overflow-hidden aspect-video mb-4">
+                    <div className="relative overflow-hidden aspect-video mb-4">
                     <Image src={rel.image} alt={rel.titleKo} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 400px" loading="lazy" />
                     </div>
                     <p className="uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
