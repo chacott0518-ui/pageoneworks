@@ -41,7 +41,7 @@ export function TrendingSidebar({
                 className="block px-3 py-2.5 transition-colors hover:bg-white/[0.025]"
                 style={{ borderBottom: i < trending.length - 1 ? `0.5px solid rgba(255,255,255,0.04)` : undefined }}
               >
-                <div className="flex gap-2">
+                <div className="flex gap-2 min-w-0">
                   <span
                     className="w-5 shrink-0 text-[11px] font-medium"
                     style={{ color: isFirst ? COMMUNITY_COLORS.gold : COMMUNITY_COLORS.meta, fontVariantNumeric: 'tabular-nums' }}
@@ -49,7 +49,15 @@ export function TrendingSidebar({
                     {rank}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[12px] font-medium truncate" style={{ color: COMMUNITY_COLORS.text }}>
+                    <p
+                      className="text-[12px] font-medium"
+                      style={{
+                        color: COMMUNITY_COLORS.text,
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                      }}
+                    >
                       {p.title}
                     </p>
                     <p className="text-[10px] font-normal mt-0.5" style={{ color: COMMUNITY_COLORS.meta }}>
@@ -111,8 +119,8 @@ function StatCell({ label, value }: { label: string; value: number }) {
         {label}
       </p>
       <p
-        className="text-[14px] font-medium mt-1"
-        style={{ color: COMMUNITY_COLORS.text, fontVariantNumeric: 'tabular-nums' }}
+        className="text-[14px] mt-1"
+        style={{ color: '#C9A96E', fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}
       >
         {value.toLocaleString()}
       </p>

@@ -9,13 +9,13 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { createClient } from '@/lib/supabase'
 import { Clock, Flame, MessageCircle, X } from 'lucide-react'
-import { CategorySidebar } from './CategorySidebar'
+import { CategorySidebar, MobileCategoryChips } from './CategorySidebar'
 import { PostCard } from './PostCard'
 import { TrendingSidebar } from './TrendingSidebar'
 import { Pagination } from './Pagination'
 import { MobileTabBar } from './MobileTabBar'
 import { SkeletonPostList } from './SkeletonPostCard'
-import { COMMUNITY_CATEGORIES, COMMUNITY_COLORS } from './constants'
+import { COMMUNITY_COLORS } from './constants'
 import type {
   CategoryCountMap,
   CommunityPost,
@@ -24,6 +24,7 @@ import type {
   SortKey,
   TrendingPost,
 } from './types'
+
 type PinnedNotice = {
   id: string
   title: string
@@ -37,6 +38,7 @@ export default function CommunityClient({
   initialTrending,
   initialCategoryCounts,
   pinnedNotice,
+  noticeFallbackText,
   profile,
   currentCategory,
   currentSort,
@@ -48,6 +50,7 @@ export default function CommunityClient({
   initialTrending: TrendingPost[]
   initialCategoryCounts: CategoryCountMap
   pinnedNotice: PinnedNotice
+  noticeFallbackText: string
   profile: ProfileMini | null
   currentCategory: string
   currentSort: SortKey
@@ -118,9 +121,10 @@ export default function CommunityClient({
   }, [router, supabase])
 
   const isPopularMobileView = currentSort === 'popular'
+  const noticeTitle = displayPinned?.title ?? noticeFallbackText
 
   return (
-    <>
+    <div className="pb-[56px] min-[1200px]:pb-0">
       <Header />
 
       {loginOpen && (
@@ -144,7 +148,7 @@ export default function CommunityClient({
       )}
 
       <main
-        className="min-h-screen pt-[60px] pb-0 xl:pb-0"
+        className="min-h-screen pt-[60px]"
         style={{ background: COMMUNITY_COLORS.bg, fontFamily: 'Inter, Pretendard, sans-serif' }}
       >
         <div className="border-b px-4 md:px-6 py-5" style={{ borderColor: COMMUNITY_COLORS.border, background: 'rgba(255,255,255,0.02)' }}>
@@ -161,36 +165,10 @@ export default function CommunityClient({
           </div>
         </div>
 
-        {/* 모바일 카테고리 칩 */}
-        <div
-          className="min-[1200px]:hidden sticky top-[60px] z-30 border-b"
-          style={{ borderColor: COMMUNITY_COLORS.border, background: 'rgba(13,13,15,0.98)', backdropFilter: 'blur(12px)' }}
-        >
-          <div
-            className="max-w-[1400px] mx-auto px-4 py-2.5 flex gap-1.5 overflow-x-auto"
-            style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
-          >
-            {COMMUNITY_CATEGORIES.map((c) => {
-              const active = currentCategory === c.slug
-              return (
-                <button
-                  key={c.slug}
-                  type="button"
-                  onClick={() => navigate({ category: c.slug, page: 1 })}
-                  className="shrink-0 px-3 py-1.5 text-[12px] font-medium whitespace-nowrap"
-                  style={{
-                    borderRadius: '999px',
-                    border: `0.5px solid ${active ? 'rgba(201,169,110,0.35)' : COMMUNITY_COLORS.border}`,
-                    color: active ? COMMUNITY_COLORS.gold : COMMUNITY_COLORS.sub,
-                    background: active ? 'rgba(201,169,110,0.10)' : COMMUNITY_COLORS.surface,
-                  }}
-                >
-                  {c.label}
-                </button>
-              )
-            })}
-          </div>
-        </div>
+        <MobileCategoryChips
+          activeCategory={currentCategory}
+          onSelect={(slug) => navigate({ category: slug, page: 1 })}
+        />
 
         <div className="max-w-[1400px] mx-auto px-4 md:px-6">
           <div className="flex gap-5">
@@ -202,8 +180,8 @@ export default function CommunityClient({
             />
 
             <section className="flex-1 min-w-0 py-5 min-[1200px]:border-r min-[1200px]:pr-5" style={{ borderColor: COMMUNITY_COLORS.border }}>
-              {/* 공지 배너 */}
-              {displayPinned && (
+              {/* 공지 배너 — 핀 글 없어도 기본 문구 표시 (모바일 포함) */}
+              {displayPinned ? (
                 <Link
                   href={`/community/${displayPinned.id}`}
                   className="block mb-4 px-4 py-3 rounded-lg transition-colors hover:bg-[rgba(201,169,110,0.08)]"
@@ -212,30 +190,17 @@ export default function CommunityClient({
                     background: 'rgba(201,169,110,0.06)',
                   }}
                 >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className="text-[9px] font-medium px-1.5 py-0.5 shrink-0"
-                      style={{ background: COMMUNITY_COLORS.gold, color: '#0d0d0f', borderRadius: '4px' }}
-                    >
-                      공지
-                    </span>
-                    <span className="flex-1 text-[12px] font-medium truncate" style={{ color: COMMUNITY_COLORS.text }}>
-                      {displayPinned.title}
-                    </span>
-                    <span className="text-[11px] font-medium shrink-0" style={{ color: COMMUNITY_COLORS.gold }}>
-                      전체 →
-                    </span>
-                  </div>
+                  <NoticeBannerContent title={noticeTitle} linked />
                 </Link>
-              )}
-
-              {/* 모바일 한 줄 공지 fallback */}
-              {!displayPinned && (
+              ) : (
                 <div
-                  className="min-[1200px]:hidden mb-3 px-3 py-2 rounded-lg text-[11px] font-medium truncate"
-                  style={{ background: 'rgba(201,169,110,0.06)', color: COMMUNITY_COLORS.sub }}
+                  className="block mb-4 px-4 py-3 rounded-lg"
+                  style={{
+                    borderLeft: `2px solid ${COMMUNITY_COLORS.gold}`,
+                    background: 'rgba(201,169,110,0.06)',
+                  }}
                 >
-                  커뮤니티 이용 규칙을 준수해 주세요.
+                  <NoticeBannerContent title={noticeTitle} linked={false} />
                 </div>
               )}
 
@@ -266,7 +231,17 @@ export default function CommunityClient({
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <div className="flex-1 min-w-0">
-                        <p className="text-[12px] font-medium truncate" style={{ color: COMMUNITY_COLORS.text }}>{p.title}</p>
+                        <p
+                          className="text-[12px] font-medium"
+                          style={{
+                            color: COMMUNITY_COLORS.text,
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}
+                        >
+                          {p.title}
+                        </p>
                         <p className="text-[10px] font-normal" style={{ color: COMMUNITY_COLORS.meta }}>
                           {p.category_slug} · 조회 {(p.view_count ?? 0).toLocaleString()}
                         </p>
@@ -291,9 +266,7 @@ export default function CommunityClient({
                   displayPosts.map((post, idx) => (
                     <div key={post.id}>
                       <PostCard post={post} />
-                      {(idx + 1) % 5 === 0 && (
-                        <MobileInlineAd index={idx} />
-                      )}
+                      {(idx + 1) % 5 === 0 && <MobileInlineAd />}
                     </div>
                   ))
                 )}
@@ -310,7 +283,28 @@ export default function CommunityClient({
       </main>
 
       <Footer />
-    </>
+    </div>
+  )
+}
+
+function NoticeBannerContent({ title, linked }: { title: string; linked: boolean }) {
+  return (
+    <div className="flex items-center gap-2 min-w-0">
+      <span
+        className="text-[9px] font-medium px-1.5 py-0.5 shrink-0"
+        style={{ background: COMMUNITY_COLORS.gold, color: '#0d0d0f', borderRadius: '4px' }}
+      >
+        공지
+      </span>
+      <span className="flex-1 text-[12px] font-medium truncate" style={{ color: COMMUNITY_COLORS.text }}>
+        {title}
+      </span>
+      {linked && (
+        <span className="text-[11px] font-medium shrink-0" style={{ color: COMMUNITY_COLORS.gold }}>
+          전체 →
+        </span>
+      )}
+    </div>
   )
 }
 
@@ -343,23 +337,23 @@ function SortTab({
   )
 }
 
-function MobileInlineAd({ index }: { index: number }) {
+function MobileInlineAd() {
   return (
     <div
-      className="min-[1200px]:hidden mx-3 my-2 px-3 py-3 rounded-lg"
-      style={{ border: `0.5px solid ${COMMUNITY_COLORS.border}`, background: 'rgba(255,255,255,0.02)' }}
+      className="min-[1200px]:hidden"
+      style={{
+        margin: '8px 12px',
+        padding: '12px',
+        background: 'rgba(255,255,255,0.02)',
+        border: '0.5px solid rgba(255,255,255,0.06)',
+        borderRadius: '8px',
+        fontSize: '11px',
+        fontWeight: 400,
+        color: 'rgba(255,255,255,0.25)',
+        textAlign: 'center',
+      }}
     >
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-[8px] font-medium px-1 py-0.5" style={{ color: COMMUNITY_COLORS.meta, border: `0.5px solid ${COMMUNITY_COLORS.border}`, borderRadius: '3px' }}>
-          AD
-        </span>
-        <span className="text-[11px] font-medium" style={{ color: COMMUNITY_COLORS.sub }}>
-          Sponsored
-        </span>
-      </div>
-      <div className="h-16 rounded-md flex items-center justify-center text-[11px] font-normal" style={{ background: 'rgba(255,255,255,0.03)', color: COMMUNITY_COLORS.meta }}>
-        네이티브 광고 영역 #{Math.floor(index / 5) + 1}
-      </div>
+      AD · 광고 영역
     </div>
   )
 }

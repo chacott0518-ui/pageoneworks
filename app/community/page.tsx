@@ -18,6 +18,9 @@ import { getKstTodayStartISO, parsePage, parseSort } from '@/components/communit
 const PAGE_URL = 'https://www.pageoneworks.com/community'
 const BASE_URL = 'https://www.pageoneworks.com'
 
+const DEFAULT_NOTICE_TEXT =
+  '커뮤니티 이용 규칙을 준수해 주세요. 광고·도배·욕설 금지'
+
 export const metadata: Metadata = {
   title: '프리미엄 커뮤니티 포럼 | PAGEONEWORKS',
   description:
@@ -304,6 +307,7 @@ export default async function CommunityPage({
           initialTrending={trending}
           initialCategoryCounts={categoryCounts}
           pinnedNotice={pinnedRaw ?? null}
+          noticeFallbackText={DEFAULT_NOTICE_TEXT}
           profile={profile}
           currentCategory={category}
           currentSort={sort}

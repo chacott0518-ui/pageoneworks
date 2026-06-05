@@ -6,6 +6,55 @@ import { PenLine } from 'lucide-react'
 import { COMMUNITY_CATEGORIES, COMMUNITY_COLORS } from './constants'
 import type { CategoryCountMap } from './types'
 
+export function MobileCategoryChips({
+  activeCategory,
+  onSelect,
+}: {
+  activeCategory: string
+  onSelect: (slug: string) => void
+}) {
+  return (
+    <div
+      className="min-[1200px]:hidden sticky top-[60px] z-30 border-b"
+      style={{ borderColor: COMMUNITY_COLORS.border, background: 'rgba(13,13,15,0.98)', backdropFilter: 'blur(12px)' }}
+    >
+      <div
+        className="community-chip-scroll max-w-[1400px] mx-auto px-4 py-2.5 flex gap-1.5 overflow-x-auto"
+        style={{
+          scrollbarWidth: 'none',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        {COMMUNITY_CATEGORIES.map((c) => {
+          const active = activeCategory === c.slug
+          return (
+            <button
+              key={c.slug}
+              type="button"
+              onClick={() => onSelect(c.slug)}
+              className="shrink-0 px-3 py-1.5 text-[12px] font-medium"
+              style={{
+                whiteSpace: 'nowrap',
+                borderRadius: '999px',
+                border: `0.5px solid ${active ? 'rgba(201,169,110,0.35)' : COMMUNITY_COLORS.border}`,
+                color: active ? COMMUNITY_COLORS.gold : COMMUNITY_COLORS.sub,
+                background: active ? 'rgba(201,169,110,0.10)' : COMMUNITY_COLORS.surface,
+              }}
+            >
+              {c.label}
+            </button>
+          )
+        })}
+      </div>
+      <style jsx>{`
+        .community-chip-scroll::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
+    </div>
+  )
+}
+
 export function CategorySidebar({
   activeCategory,
   categoryCounts,
