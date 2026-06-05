@@ -12,6 +12,7 @@ import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
 import ArticleViewCount from '@/components/ArticleViewCount';
 import { articles } from '@/lib/data';
 import { ShareButtons } from './ShareButtons';
+import { HeroImage } from './HeroImage';
 import { Header } from '@/components/Header';
 import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, getHowToSchema, extractFAQsFromBody, normalizeDate, siteSchema } from '@/lib/schemas'
 import AIQnA from '@/components/AIQnA'
@@ -194,14 +195,10 @@ export default function ArticlePage({ params }: Props) {
       <ReadingProgress />
 
       <section className="relative w-full overflow-hidden pt-14 md:pt-0" style={{ background: '#000', fontSize: 0 }}>
-        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial' }}>
-        <Image
+        <div className="relative w-full overflow-hidden" style={{ aspectRatio: '21/9', minHeight: '320px', fontSize: 'initial', backgroundColor: '#1a1a1a' }}>
+        <HeroImage
             src={article.heroImage ?? article.image}
             alt={article.titleKo}
-            fill
-            className="object-cover opacity-70"
-            priority
-            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/30 to-black/50" />
           <div className="absolute bottom-0 left-0 right-0 px-5 md:px-10 pb-4 md:pb-14">
