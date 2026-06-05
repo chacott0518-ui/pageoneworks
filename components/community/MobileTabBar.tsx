@@ -3,70 +3,95 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { Bell, Flame, Home, PenLine, User } from 'lucide-react'
-import { COMMUNITY_COLORS } from './constants'
+
+const ACTIVE = '#C9A96E'
+const INACTIVE = 'rgba(255,255,255,0.35)'
 
 export function MobileTabBar({ onWrite }: { onWrite: () => void }) {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
-  const sort = searchParams.get('sort')
-  const isCommunity = pathname === '/community'
-  const isPopular = isCommunity && sort === 'popular'
-  const isHome = pathname === '/' || (isCommunity && sort !== 'popular')
+  const [sort, setSort] = useState<string | null>(null)
+
+  useEffect(() => {
+    setSort(new URLSearchParams(window.location.search).get('sort'))
+  }, [pathname])
+
+  const isHome = pathname === '/'
+  const isPopular = pathname === '/community' && sort === 'popular'
   const isMy = pathname.startsWith('/mypage')
 
   return (
-    <nav
-      className="min-[1200px]:hidden grid grid-cols-5"
+    <div
       style={{
         position: 'fixed',
         bottom: 0,
         left: 0,
         right: 0,
-        zIndex: 100,
+        zIndex: 9999,
         height: '56px',
         background: 'rgba(13,13,15,0.98)',
-        backdropFilter: 'blur(12px)',
         borderTop: '0.5px solid rgba(255,255,255,0.07)',
+        display: 'flex',
+        alignItems: 'center',
         fontFamily: 'Inter, Pretendard, sans-serif',
       }}
     >
-      <Tab href="/" active={isHome && pathname === '/'} icon={<Home className="w-[18px] h-[18px]" />} label="홈" />
-      <Tab
+      <TabItem href="/" active={isHome} icon={<Home style={{ width: 18, height: 18 }} />} label="홈" />
+      <TabItem
         href="/community?sort=popular"
         active={isPopular}
-        icon={<Flame className="w-[18px] h-[18px]" />}
+        icon={<Flame style={{ width: 18, height: 18 }} />}
         label="인기"
       />
-      <div className="flex flex-col items-center justify-center">
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <button
           type="button"
           onClick={onWrite}
-          className="flex items-center justify-center -mt-4"
+          aria-label="글쓰기"
           style={{
             width: '44px',
             height: '44px',
             borderRadius: '50%',
             background: '#C9A96E',
-            color: '#0d0d0f',
+            border: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '-16px',
+            cursor: 'pointer',
             boxShadow: '0 6px 18px rgba(201,169,110,0.28)',
           }}
-          aria-label="글쓰기"
         >
-          <PenLine className="w-[18px] h-[18px]" style={{ color: '#0d0d0f' }} />
+          <PenLine style={{ width: 18, height: 18, color: '#0d0d0f' }} />
         </button>
-        <span className="text-[9px] font-medium mt-0.5" style={{ color: 'rgba(255,255,255,0.3)' }}>
+        <span
+          style={{
+            fontSize: '9px',
+            fontWeight: 500,
+            color: INACTIVE,
+            marginTop: '2px',
+          }}
+        >
           글쓰기
         </span>
       </div>
-      <Tab href="#" active={false} icon={<Bell className="w-[18px] h-[18px]" />} label="알림" />
-      <Tab href="/mypage" active={isMy} icon={<User className="w-[18px] h-[18px]" />} label="마이" />
-    </nav>
+      <TabItem href="#" active={false} icon={<Bell style={{ width: 18, height: 18 }} />} label="알림" />
+      <TabItem href="/mypage" active={isMy} icon={<User style={{ width: 18, height: 18 }} />} label="마이" />
+    </div>
   )
 }
 
-function Tab({
+function TabItem({
   href,
   active,
   icon,
@@ -77,11 +102,23 @@ function Tab({
   icon: React.ReactNode
   label: string
 }) {
-  const color = active ? COMMUNITY_COLORS.gold : 'rgba(255,255,255,0.3)'
+  const color = active ? ACTIVE : INACTIVE
   return (
-    <Link href={href} className="flex flex-col items-center justify-center gap-0.5" style={{ color }}>
+    <Link
+      href={href}
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '2px',
+        textDecoration: 'none',
+        color,
+      }}
+    >
       {icon}
-      <span className="text-[9px] font-medium">{label}</span>
+      <span style={{ fontSize: '9px', fontWeight: 500 }}>{label}</span>
     </Link>
   )
 }

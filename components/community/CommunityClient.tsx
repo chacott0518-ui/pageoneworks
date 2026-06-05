@@ -124,7 +124,7 @@ export default function CommunityClient({
   const noticeTitle = displayPinned?.title ?? noticeFallbackText
 
   return (
-    <div className="pb-[56px] min-[1200px]:pb-0">
+    <div className="pb-[72px] min-[1200px]:pb-0">
       <Header />
 
       {loginOpen && (
@@ -266,7 +266,7 @@ export default function CommunityClient({
                   displayPosts.map((post, idx) => (
                     <div key={post.id}>
                       <PostCard post={post} />
-                      {(idx + 1) % 5 === 0 && <MobileInlineAd />}
+                      {idx % 4 === 3 && <MobileInlineAd />}
                     </div>
                   ))
                 )}
@@ -340,14 +340,12 @@ function SortTab({
 function MobileInlineAd() {
   return (
     <div
-      className="min-[1200px]:hidden"
       style={{
-        margin: '8px 12px',
-        padding: '12px',
         background: 'rgba(255,255,255,0.02)',
         border: '0.5px solid rgba(255,255,255,0.06)',
         borderRadius: '8px',
-        fontSize: '11px',
+        padding: '12px 16px',
+        fontSize: '10px',
         fontWeight: 400,
         color: 'rgba(255,255,255,0.25)',
         textAlign: 'center',
