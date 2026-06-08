@@ -4,17 +4,17 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { HOT_CATEGORIES, COMMUNITY_COLORS } from './constants'
+import { HOT_CATEGORIES } from './constants'
 import { timeAgoKorean } from './utils'
 import type { CommunityPost } from './types'
 
-const META_STYLE: React.CSSProperties = {
-  fontSize: '10px',
-  color: 'rgba(255,255,255,0.25)',
-  whiteSpace: 'nowrap',
-  lineHeight: 1,
-  fontVariantNumeric: 'tabular-nums',
-}
+const STAT_COLOR = 'rgba(255,255,255,0.6)'
+const TIME_COLOR = 'rgba(255,255,255,0.45)'
+const TITLE_COLOR = 'rgba(255,255,255,0.82)'
+const TITLE_HOVER = 'rgba(255,255,255,0.98)'
+const BADGE_TEXT = 'rgba(255,255,255,0.7)'
+const BADGE_BG = 'rgba(255,255,255,0.07)'
+const HOT_BG = 'rgba(232,112,90,0.12)'
 
 export function PostCard({ post }: { post: CommunityPost }) {
   const pinned = Boolean(post.is_pinned)
@@ -23,6 +23,14 @@ export function PostCard({ post }: { post: CommunityPost }) {
 
   const baseBg = pinned ? 'rgba(201,169,110,0.04)' : 'transparent'
   const hoverBg = pinned ? 'rgba(201,169,110,0.08)' : 'rgba(255,255,255,0.04)'
+
+  const statStyle: React.CSSProperties = {
+    fontSize: '10px',
+    color: STAT_COLOR,
+    whiteSpace: 'nowrap',
+    lineHeight: 1,
+    fontVariantNumeric: 'tabular-nums',
+  }
 
   return (
     <Link
@@ -58,8 +66,8 @@ export function PostCard({ post }: { post: CommunityPost }) {
             padding: '2px 8px',
             borderRadius: '4px',
             fontSize: '10px',
-            background: isHot ? 'rgba(232,112,90,0.12)' : 'rgba(255,255,255,0.06)',
-            color: isHot ? COMMUNITY_COLORS.hot : COMMUNITY_COLORS.text,
+            background: isHot ? HOT_BG : BADGE_BG,
+            color: isHot ? '#E8705A' : BADGE_TEXT,
             lineHeight: 1.2,
             whiteSpace: 'nowrap',
           }}
@@ -70,7 +78,7 @@ export function PostCard({ post }: { post: CommunityPost }) {
         <span
           className="flex-1 min-w-0 text-[13px] font-medium truncate"
           style={{
-            color: hovered ? 'rgba(255,255,255,0.95)' : COMMUNITY_COLORS.text,
+            color: hovered ? TITLE_HOVER : TITLE_COLOR,
             lineHeight: 1.2,
             transition: 'color 150ms ease',
           }}
@@ -79,10 +87,10 @@ export function PostCard({ post }: { post: CommunityPost }) {
         </span>
 
         <div className="shrink-0 flex items-center" style={{ gap: '8px' }}>
-          <span style={META_STYLE}>👍{(post.like_count ?? 0).toLocaleString()}</span>
-          <span style={META_STYLE}>💬{(post.comment_count ?? 0).toLocaleString()}</span>
-          <span style={META_STYLE}>👁{(post.view_count ?? 0).toLocaleString()}</span>
-          <span style={META_STYLE}>{timeAgoKorean(post.created_at)}</span>
+          <span style={statStyle}>👍{(post.like_count ?? 0).toLocaleString()}</span>
+          <span style={statStyle}>💬{(post.comment_count ?? 0).toLocaleString()}</span>
+          <span style={statStyle}>👁{(post.view_count ?? 0).toLocaleString()}</span>
+          <span style={{ ...statStyle, color: TIME_COLOR }}>{timeAgoKorean(post.created_at)}</span>
         </div>
       </div>
     </Link>

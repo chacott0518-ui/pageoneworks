@@ -7,6 +7,13 @@ import { COMMUNITY_COLORS } from './constants'
 import type { CommunityStats, ProfileMini, TrendingPost } from './types'
 import { AvatarCard } from './AvatarCard'
 
+const GOLD = '#C9A96E'
+const TITLE_COLOR = 'rgba(255,255,255,0.75)'
+const SUB_COLOR = 'rgba(255,255,255,0.45)'
+const SECTION_TITLE = 'rgba(255,255,255,0.5)'
+const STAT_LABEL = 'rgba(255,255,255,0.5)'
+const RANK_OTHER = 'rgba(255,255,255,0.3)'
+
 export function TrendingSidebar({
   trending,
   stats,
@@ -24,7 +31,7 @@ export function TrendingSidebar({
       {profile && <AvatarCard profile={profile} />}
 
       <div className="mb-5">
-        <p className="text-[11px] font-medium mb-3" style={{ color: COMMUNITY_COLORS.text }}>
+        <p className="text-[11px] font-medium mb-3" style={{ color: SECTION_TITLE }}>
           🔥 실시간 인기글
         </p>
         <div
@@ -44,7 +51,7 @@ export function TrendingSidebar({
                 <div className="flex gap-2 min-w-0">
                   <span
                     className="w-5 shrink-0 text-[11px] font-medium"
-                    style={{ color: isFirst ? COMMUNITY_COLORS.gold : COMMUNITY_COLORS.meta, fontVariantNumeric: 'tabular-nums' }}
+                    style={{ color: isFirst ? GOLD : RANK_OTHER, fontVariantNumeric: 'tabular-nums' }}
                   >
                     {rank}
                   </span>
@@ -52,7 +59,7 @@ export function TrendingSidebar({
                     <p
                       className="text-[12px] font-medium"
                       style={{
-                        color: COMMUNITY_COLORS.text,
+                        color: TITLE_COLOR,
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
@@ -60,7 +67,7 @@ export function TrendingSidebar({
                     >
                       {p.title}
                     </p>
-                    <p className="text-[10px] font-normal mt-0.5" style={{ color: COMMUNITY_COLORS.meta }}>
+                    <p className="text-[10px] font-normal mt-0.5" style={{ color: SUB_COLOR }}>
                       {p.category_slug} · 조회 {(p.view_count ?? 0).toLocaleString()}
                     </p>
                   </div>
@@ -72,7 +79,7 @@ export function TrendingSidebar({
       </div>
 
       <div className="mb-5">
-        <p className="text-[11px] font-medium mb-3" style={{ color: COMMUNITY_COLORS.text }}>
+        <p className="text-[11px] font-medium mb-3" style={{ color: SECTION_TITLE }}>
           📊 오늘 통계
         </p>
         <div className="grid grid-cols-2 gap-2">
@@ -86,7 +93,7 @@ export function TrendingSidebar({
       <div>
         <p
           className="text-[8px] font-medium mb-2 uppercase"
-          style={{ letterSpacing: '1px', color: COMMUNITY_COLORS.meta }}
+          style={{ letterSpacing: '1px', color: SECTION_TITLE }}
         >
           AD
         </p>
@@ -98,7 +105,7 @@ export function TrendingSidebar({
             border: `0.5px solid ${COMMUNITY_COLORS.border}`,
             borderRadius: '8px',
             background: COMMUNITY_COLORS.surface,
-            color: COMMUNITY_COLORS.meta,
+            color: SUB_COLOR,
             fontSize: '11px',
           }}
         >
@@ -115,12 +122,12 @@ function StatCell({ label, value }: { label: string; value: number }) {
       className="rounded-lg px-3 py-2.5"
       style={{ background: COMMUNITY_COLORS.surface, border: `0.5px solid ${COMMUNITY_COLORS.border}` }}
     >
-      <p className="text-[10px] font-normal" style={{ color: COMMUNITY_COLORS.meta }}>
+      <p className="text-[10px] font-normal" style={{ color: STAT_LABEL }}>
         {label}
       </p>
       <p
         className="text-[14px] mt-1"
-        style={{ color: '#C9A96E', fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}
+        style={{ color: GOLD, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}
       >
         {value.toLocaleString()}
       </p>

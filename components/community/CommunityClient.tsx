@@ -5,7 +5,6 @@
 import { useCallback, useEffect, useMemo, useState, useTransition } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Footer } from '@/components/Footer'
 import { createClient } from '@/lib/supabase'
 import { Clock, Flame, MessageCircle, X } from 'lucide-react'
 import { CategorySidebar, MobileCategoryChips } from './CategorySidebar'
@@ -17,8 +16,6 @@ import { SkeletonPostList } from './SkeletonPostCard'
 import { NoticeBanner, type CommunityNoticeItem } from './NoticeBanner'
 import { PcHeroAd, MobileHeroAd, type HeroAdData } from './HeroAdBanner'
 import { COMMUNITY_COLORS } from './constants'
-
-/** 서버에서 전달된 목록은 항상 동기화. 동일 세션 내 중복 클라이언트 요청 방지용 staleTime(60s)은 page.tsx 서버 fetch에 적용됨. */
 import type {
   CategoryCountMap,
   CommunityPost,
@@ -27,6 +24,14 @@ import type {
   SortKey,
   TrendingPost,
 } from './types'
+
+const TEXT_DATE = 'rgba(255,255,255,0.5)'
+const TEXT_SORT_INACTIVE = 'rgba(255,255,255,0.55)'
+const TEXT_TRENDING_TITLE = 'rgba(255,255,255,0.75)'
+const TEXT_TRENDING_SUB = 'rgba(255,255,255,0.45)'
+const TEXT_FOOTER = 'rgba(255,255,255,0.35)'
+const GOLD = '#C9A96E'
+const BG = '#0d0d0f'
 
 export default function CommunityClient({
   initialPosts,
@@ -196,20 +201,19 @@ export default function CommunityClient({
             <section className="flex-1 min-w-0 py-5 min-[1200px]:border-r min-[1200px]:pr-5" style={{ borderColor: COMMUNITY_COLORS.border }}>
               <NoticeBanner notices={displayNotices} />
 
-              {/* 정렬 탭 */}
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-3 flex-wrap">
                 <SortTab active={currentSort === 'latest'} icon={<Clock className="w-3.5 h-3.5" />} label="최신순" onClick={() => navigate({ sort: 'latest', page: 1 })} />
                 <SortTab active={currentSort === 'popular'} icon={<Flame className="w-3.5 h-3.5" />} label="인기순" onClick={() => navigate({ sort: 'popular', page: 1 })} />
                 <SortTab active={currentSort === 'comment'} icon={<MessageCircle className="w-3.5 h-3.5" />} label="댓글많은순" onClick={() => navigate({ sort: 'comment', page: 1 })} />
-                <span className="ml-auto text-[11px] font-medium" style={{ color: COMMUNITY_COLORS.meta }}>
+                <WriteButton onClick={handleWrite} />
+                <span className="ml-auto text-[11px] font-medium" style={{ color: TEXT_DATE }}>
                   페이지 {page} / {totalPages}
                 </span>
               </div>
 
-              {/* 모바일 인기 탭 전용: TOP5 */}
               {isPopularMobileView && (
                 <div className="min-[1200px]:hidden mb-4 rounded-xl overflow-hidden" style={{ border: `0.5px solid ${COMMUNITY_COLORS.border}`, background: COMMUNITY_COLORS.surface }}>
-                  <p className="px-3 py-2 text-[11px] font-medium" style={{ color: COMMUNITY_COLORS.text }}>
+                  <p className="px-3 py-2 text-[11px] font-medium" style={{ color: 'rgba(255,255,255,0.5)' }}>
                     🔥 실시간 인기글 TOP5
                   </p>
                   {displayTrending.map((p, i) => (
@@ -219,14 +223,14 @@ export default function CommunityClient({
                       className="flex gap-2 px-3 py-2 border-t"
                       style={{ borderColor: 'rgba(255,255,255,0.04)' }}
                     >
-                      <span className="text-[11px] font-medium w-5" style={{ color: i === 0 ? COMMUNITY_COLORS.gold : COMMUNITY_COLORS.meta }}>
+                      <span className="text-[11px] font-medium w-5" style={{ color: i === 0 ? GOLD : 'rgba(255,255,255,0.3)' }}>
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <div className="flex-1 min-w-0">
                         <p
                           className="text-[12px] font-medium"
                           style={{
-                            color: COMMUNITY_COLORS.text,
+                            color: TEXT_TRENDING_TITLE,
                             whiteSpace: 'nowrap',
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
@@ -234,7 +238,7 @@ export default function CommunityClient({
                         >
                           {p.title}
                         </p>
-                        <p className="text-[10px] font-normal" style={{ color: COMMUNITY_COLORS.meta }}>
+                        <p className="text-[10px] font-normal" style={{ color: TEXT_TRENDING_SUB }}>
                           {p.category_slug} · 조회 {(p.view_count ?? 0).toLocaleString()}
                         </p>
                       </div>
@@ -243,7 +247,6 @@ export default function CommunityClient({
                 </div>
               )}
 
-              {/* 글 목록 */}
               <div
                 className="rounded-xl overflow-hidden"
                 style={{ border: `0.5px solid ${COMMUNITY_COLORS.border}`, background: COMMUNITY_COLORS.surface }}
@@ -271,11 +274,46 @@ export default function CommunityClient({
           </div>
         </div>
 
+        <CommunityFooter />
+
         <MobileTabBar onWrite={handleWrite} />
       </main>
-
-      <Footer />
     </div>
+  )
+}
+
+function WriteButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="shrink-0"
+      style={{
+        background: GOLD,
+        color: BG,
+        fontWeight: 500,
+        padding: '6px 16px',
+        borderRadius: '20px',
+        fontSize: '12px',
+        border: 'none',
+        cursor: 'pointer',
+        transition: 'all 150ms ease',
+        fontFamily: 'Inter, Pretendard, sans-serif',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = '#D4B47A'
+        e.currentTarget.style.transform = 'translateY(-1px)'
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = GOLD
+        e.currentTarget.style.transform = 'translateY(0)'
+      }}
+      onMouseDown={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)'
+      }}
+    >
+      ✏ 글쓰기
+    </button>
   )
 }
 
@@ -298,13 +336,111 @@ function SortTab({
       style={{
         borderRadius: '999px',
         border: `0.5px solid ${active ? 'rgba(201,169,110,0.35)' : COMMUNITY_COLORS.border}`,
-        color: active ? COMMUNITY_COLORS.gold : COMMUNITY_COLORS.sub,
+        color: active ? GOLD : TEXT_SORT_INACTIVE,
         background: active ? 'rgba(201,169,110,0.10)' : 'transparent',
+        transition: 'all 150ms ease',
+        cursor: 'pointer',
       }}
     >
       {icon}
       {label}
     </button>
+  )
+}
+
+function CommunityFooter() {
+  const linkStyle: React.CSSProperties = {
+    color: TEXT_FOOTER,
+    textDecoration: 'none',
+    fontSize: '11px',
+    fontWeight: 400,
+    letterSpacing: '0.02em',
+  }
+
+  const footerBase: React.CSSProperties = {
+    background: 'rgba(255,255,255,0.02)',
+    borderTop: '0.5px solid rgba(255,255,255,0.06)',
+    fontFamily: 'Inter, Pretendard, sans-serif',
+    color: TEXT_FOOTER,
+    fontSize: '11px',
+    fontWeight: 400,
+  }
+
+  return (
+    <>
+      <footer className="hidden min-[1200px]:block" style={{ ...footerBase, height: '64px' }}>
+        <div
+          className="max-w-[1400px] mx-auto h-full px-6 flex items-center justify-between gap-4"
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <span style={{ color: TEXT_FOOTER, whiteSpace: 'nowrap' }}>프리미엄 인사이트를 가장 먼저 받아보세요</span>
+            <Link
+              href="/mypage"
+              style={{
+                ...linkStyle,
+                color: GOLD,
+                fontWeight: 500,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              구독 신청 →
+            </Link>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap justify-end" style={{ color: TEXT_FOOTER }}>
+            <span>USENAD CO., LTD.</span>
+            <span style={{ opacity: 0.5 }}>·</span>
+            <span>CEO: 김세준</span>
+            <span style={{ opacity: 0.5 }}>·</span>
+            <span>206-31-95055</span>
+            <span style={{ opacity: 0.5 }}>·</span>
+            <Link href="/privacy" style={linkStyle}>PRIVACY</Link>
+            <Link href="/terms" style={linkStyle}>TERMS</Link>
+            <Link href="/cookie" style={linkStyle}>COOKIE</Link>
+          </div>
+        </div>
+      </footer>
+
+      <footer
+        className="min-[1200px]:hidden"
+        style={{
+          ...footerBase,
+          padding: '16px 16px 72px',
+        }}
+      >
+        <p style={{ margin: '0 0 8px', color: TEXT_FOOTER, textAlign: 'center' }}>
+          프리미엄 인사이트를 가장 먼저 받아보세요
+        </p>
+        <Link
+          href="/mypage"
+          style={{
+            display: 'block',
+            width: '100%',
+            textAlign: 'center',
+            padding: '10px 16px',
+            marginBottom: '16px',
+            borderRadius: '8px',
+            border: `0.5px solid rgba(201,169,110,0.35)`,
+            color: GOLD,
+            fontWeight: 500,
+            fontSize: '12px',
+            textDecoration: 'none',
+          }}
+        >
+          구독 신청 →
+        </Link>
+        <p style={{ margin: '0 0 4px', textAlign: 'center', lineHeight: 1.5 }}>
+          USENAD CO., LTD. · CEO: 김세준
+        </p>
+        <p style={{ margin: '0 0 12px', textAlign: 'center', lineHeight: 1.5 }}>
+          206-31-95055
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px' }}>
+          <Link href="/privacy" style={linkStyle}>PRIVACY</Link>
+          <Link href="/terms" style={linkStyle}>TERMS</Link>
+          <Link href="/cookie" style={linkStyle}>COOKIE</Link>
+        </div>
+      </footer>
+    </>
   )
 }
 
