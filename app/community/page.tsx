@@ -19,9 +19,6 @@ import { getKstTodayStartISO, parsePage, parseSort } from '@/components/communit
 const PAGE_URL = 'https://www.pageoneworks.com/community'
 const BASE_URL = 'https://www.pageoneworks.com'
 
-const DEFAULT_NOTICE_TEXT =
-  '커뮤니티 이용 규칙을 준수해 주세요. 광고·도배·욕설 금지'
-
 const POST_LIST_COLUMNS =
   'id,title,category_slug,like_count,comment_count,view_count,created_at,is_pinned,user_id'
 
@@ -210,6 +207,16 @@ async function fetchStats(supabase: ReturnType<typeof createServerSupabaseClient
   }
 }
 
+async function fetchActiveNotices(supabase: ReturnType<typeof createServerSupabaseClient>) {
+  const { data, error } = await supabase
+    .from('community_notices')
+    .select('id, title, content')
+    .eq('is_active', true)
+    .order('display_order', { ascending: true })
+  if (error) return []
+  return data ?? []
+}
+
 function CommunityLoadingFallback() {
   return (
     <div
@@ -266,7 +273,7 @@ export default async function CommunityPage({
   const [
     { data: postsRaw, count: totalCount },
     { data: trendingRaw },
-    { data: pinnedRaw },
+    activeNotices,
     stats,
     categoryCounts,
     { data: { user } },
@@ -278,14 +285,7 @@ export default async function CommunityPage({
       .or(hiddenFilter)
       .order('view_count', { ascending: false })
       .limit(5),
-    supabase
-      .from('community_posts')
-      .select('id,title,category_slug,is_pinned')
-      .or(hiddenFilter)
-      .eq('is_pinned', true)
-      .order('created_at', { ascending: false })
-      .limit(1)
-      .maybeSingle(),
+    fetchActiveNotices(supabase),
     fetchStats(supabase),
     fetchCategoryCounts(supabase),
     supabase.auth.getUser(),
@@ -332,8 +332,7 @@ export default async function CommunityPage({
           initialStats={stats}
           initialTrending={trending}
           initialCategoryCounts={categoryCounts}
-          pinnedNotice={pinnedRaw ?? null}
-          noticeFallbackText={DEFAULT_NOTICE_TEXT}
+          initialNotices={activeNotices}
           profile={profile}
           currentCategory={category}
           currentSort={sort}

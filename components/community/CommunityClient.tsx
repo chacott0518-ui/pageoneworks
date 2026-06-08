@@ -14,6 +14,7 @@ import { TrendingSidebar } from './TrendingSidebar'
 import { Pagination } from './Pagination'
 import { MobileTabBar } from './MobileTabBar'
 import { SkeletonPostList } from './SkeletonPostCard'
+import { NoticeBanner, type CommunityNoticeItem } from './NoticeBanner'
 import { COMMUNITY_COLORS } from './constants'
 import type {
   CategoryCountMap,
@@ -24,20 +25,12 @@ import type {
   TrendingPost,
 } from './types'
 
-type PinnedNotice = {
-  id: string
-  title: string
-  category_slug: string
-  is_pinned: boolean | null
-} | null
-
 export default function CommunityClient({
   initialPosts,
   initialStats,
   initialTrending,
   initialCategoryCounts,
-  pinnedNotice,
-  noticeFallbackText,
+  initialNotices,
   profile,
   currentCategory,
   currentSort,
@@ -48,8 +41,7 @@ export default function CommunityClient({
   initialStats: CommunityStats
   initialTrending: TrendingPost[]
   initialCategoryCounts: CategoryCountMap
-  pinnedNotice: PinnedNotice
-  noticeFallbackText: string
+  initialNotices: CommunityNoticeItem[]
   profile: ProfileMini | null
   currentCategory: string
   currentSort: SortKey
@@ -66,11 +58,15 @@ export default function CommunityClient({
   const [displayStats] = useState(initialStats)
   const [displayTrending] = useState(initialTrending)
   const [displayCategoryCounts] = useState(initialCategoryCounts)
-  const [displayPinned] = useState(pinnedNotice)
+  const [displayNotices, setDisplayNotices] = useState(initialNotices)
 
   useEffect(() => {
     setDisplayPosts(initialPosts)
   }, [initialPosts])
+
+  useEffect(() => {
+    setDisplayNotices(initialNotices)
+  }, [initialNotices])
 
   useEffect(() => {
     const style = document.createElement('style')
@@ -131,7 +127,6 @@ export default function CommunityClient({
   }, [router, supabase])
 
   const isPopularMobileView = currentSort === 'popular'
-  const noticeTitle = displayPinned?.title ?? noticeFallbackText
 
   return (
     <div className="pb-[72px] min-[1200px]:pb-0">
@@ -188,29 +183,7 @@ export default function CommunityClient({
             />
 
             <section className="flex-1 min-w-0 py-5 min-[1200px]:border-r min-[1200px]:pr-5" style={{ borderColor: COMMUNITY_COLORS.border }}>
-              {/* 공지 배너 — 핀 글 없어도 기본 문구 표시 (모바일 포함) */}
-              {displayPinned ? (
-                <Link
-                  href={`/community/${displayPinned.id}`}
-                  className="block mb-4 px-4 py-3 rounded-lg transition-colors hover:bg-[rgba(201,169,110,0.08)]"
-                  style={{
-                    borderLeft: `2px solid ${COMMUNITY_COLORS.gold}`,
-                    background: 'rgba(201,169,110,0.06)',
-                  }}
-                >
-                  <NoticeBannerContent title={noticeTitle} linked />
-                </Link>
-              ) : (
-                <div
-                  className="block mb-4 px-4 py-3 rounded-lg"
-                  style={{
-                    borderLeft: `2px solid ${COMMUNITY_COLORS.gold}`,
-                    background: 'rgba(201,169,110,0.06)',
-                  }}
-                >
-                  <NoticeBannerContent title={noticeTitle} linked={false} />
-                </div>
-              )}
+              <NoticeBanner notices={displayNotices} />
 
               {/* 정렬 탭 */}
               <div className="flex items-center gap-2 mb-3">
@@ -291,27 +264,6 @@ export default function CommunityClient({
       </main>
 
       <Footer />
-    </div>
-  )
-}
-
-function NoticeBannerContent({ title, linked }: { title: string; linked: boolean }) {
-  return (
-    <div className="flex items-center gap-2 min-w-0">
-      <span
-        className="text-[9px] font-medium px-1.5 py-0.5 shrink-0"
-        style={{ background: COMMUNITY_COLORS.gold, color: '#0d0d0f', borderRadius: '4px' }}
-      >
-        공지
-      </span>
-      <span className="flex-1 text-[12px] font-medium truncate" style={{ color: COMMUNITY_COLORS.text }}>
-        {title}
-      </span>
-      {linked && (
-        <span className="text-[11px] font-medium shrink-0" style={{ color: COMMUNITY_COLORS.gold }}>
-          전체 →
-        </span>
-      )}
     </div>
   )
 }

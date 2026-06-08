@@ -152,6 +152,7 @@ export default function FloatingButtons({ category }: FloatingButtonsProps) {
   const panelWidth = isMobile ? '100vw' : 'min(460px, 100vw)'
 
   if (pathname.startsWith('/community')) return null
+  if (pathname.startsWith('/admin')) return null
 
   return (
     <>

@@ -3,6 +3,7 @@
 'use client'
 
 import { createContext, useCallback, useContext, useState, type ReactNode } from 'react'
+import { ADMIN_THEME } from '@/lib/admin/constants'
 
 export type ToastType = 'success' | 'error' | 'warning'
 
@@ -19,9 +20,9 @@ type ToastContextValue = {
 const ToastContext = createContext<ToastContextValue | null>(null)
 
 const BG_MAP: Record<ToastType, string> = {
-  success: 'rgba(70,200,100,0.92)',
-  error: 'rgba(255,70,70,0.92)',
-  warning: 'rgba(255,180,0,0.92)',
+  success: ADMIN_THEME.success,
+  error: ADMIN_THEME.danger,
+  warning: ADMIN_THEME.warning,
 }
 
 export function ToastProvider({ children }: { children: ReactNode }) {
@@ -41,12 +42,12 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       <div
         style={{
           position: 'fixed',
-          bottom: '24px',
-          right: '24px',
+          bottom: 24,
+          right: 24,
           zIndex: 100000,
           display: 'flex',
           flexDirection: 'column',
-          gap: '8px',
+          gap: 8,
           pointerEvents: 'none',
         }}
       >
@@ -54,13 +55,13 @@ export function ToastProvider({ children }: { children: ReactNode }) {
           <div
             key={toast.id}
             style={{
-              minWidth: '240px',
-              maxWidth: '360px',
+              minWidth: 240,
+              maxWidth: 360,
               padding: '12px 16px',
-              borderRadius: '8px',
+              borderRadius: 8,
               background: BG_MAP[toast.type],
-              color: '#0a0a0c',
-              fontSize: '13px',
+              color: ADMIN_THEME.bg,
+              fontSize: 13,
               fontWeight: 500,
               fontFamily: 'Inter, Pretendard, sans-serif',
               boxShadow: '0 8px 24px rgba(0,0,0,0.35)',

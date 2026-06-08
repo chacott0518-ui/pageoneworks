@@ -6,15 +6,11 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useMemo, useState, type ReactNode } from 'react'
 import { createClient } from '@/lib/supabase'
+import { ADMIN_THEME } from '@/lib/admin/constants'
 import { ConfirmProvider } from './ConfirmModal'
 import { ToastProvider } from './Toast'
 
-const BG = '#0a0a0c'
-const SURFACE = 'rgba(255,255,255,0.03)'
-const BORDER = '0.5px solid rgba(255,255,255,0.06)'
-const GOLD = '#C9A96E'
-const TEXT = 'rgba(255,255,255,0.82)'
-const SUB = 'rgba(255,255,255,0.4)'
+const { bg: BG, surface: SURFACE, border: BORDER, gold: GOLD, text: TEXT, sub: SUB } = ADMIN_THEME
 
 const NAV = [
   { href: '/admin', label: '대시보드', icon: '📊' },
@@ -29,9 +25,11 @@ const NAV = [
 export function AdminLayoutClient({
   children,
   nickname,
+  isSuperAdmin,
 }: {
   children: ReactNode
   nickname: string
+  isSuperAdmin: boolean
 }) {
   const pathname = usePathname()
   const router = useRouter()
@@ -43,64 +41,86 @@ export function AdminLayoutClient({
     router.push('/login')
   }
 
-  const navContent = (
-    <>
-      <div style={{ padding: '24px 16px', borderBottom: BORDER }}>
-        <p style={{ fontSize: '18px', fontWeight: 500, color: GOLD, margin: 0, letterSpacing: '0.12em' }}>ADMIN</p>
-        <p style={{ fontSize: '11px', fontWeight: 400, color: SUB, margin: '4px 0 0' }}>PAGEONEWORKS</p>
+  const navLinks = (
+    <nav style={{ flex: 1, padding: 8 }}>
+      {NAV.map((item) => {
+        const active = item.href === '/admin' ? pathname === '/admin' : pathname.startsWith(item.href)
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            onClick={() => setMenuOpen(false)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              minHeight: 44,
+              height: 52,
+              padding: '0 12px',
+              marginBottom: 4,
+              borderRadius: 8,
+              textDecoration: 'none',
+              fontSize: 13,
+              fontWeight: 500,
+              color: active ? GOLD : TEXT,
+              background: active ? 'rgba(201,169,110,0.1)' : 'transparent',
+              transition: '150ms',
+            }}
+          >
+            <span>{item.icon}</span>
+            {item.label}
+          </Link>
+        )
+      })}
+    </nav>
+  )
+
+  const sidebarHeader = (
+    <div style={{ padding: '24px 16px', borderBottom: BORDER }}>
+      <p style={{ fontSize: 18, fontWeight: 500, color: GOLD, margin: 0, letterSpacing: '0.12em' }}>ADMIN</p>
+      <p style={{ fontSize: 11, fontWeight: 400, color: SUB, margin: '4px 0 0' }}>PAGEONEWORKS</p>
+    </div>
+  )
+
+  const sidebarFooter = (
+    <div style={{ padding: 16, borderTop: BORDER }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+        <p style={{ fontSize: 12, fontWeight: 500, color: TEXT, margin: 0 }}>{nickname}</p>
+        {isSuperAdmin && (
+          <span
+            style={{
+              fontSize: 10,
+              fontWeight: 500,
+              color: GOLD,
+              padding: '2px 6px',
+              borderRadius: 4,
+              border: BORDER,
+              background: 'rgba(201,169,110,0.1)',
+            }}
+          >
+            SUPER
+          </span>
+        )}
       </div>
-      <nav style={{ flex: 1, padding: '8px' }}>
-        {NAV.map((item) => {
-          const active = item.href === '/admin' ? pathname === '/admin' : pathname.startsWith(item.href)
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '10px',
-                minHeight: '44px',
-                padding: '0 12px',
-                marginBottom: '4px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                fontSize: '13px',
-                fontWeight: 500,
-                color: active ? GOLD : TEXT,
-                background: active ? 'rgba(201,169,110,0.1)' : 'transparent',
-                transition: '150ms',
-              }}
-            >
-              <span>{item.icon}</span>
-              {item.label}
-            </Link>
-          )
-        })}
-      </nav>
-      <div style={{ padding: '16px', borderTop: BORDER }}>
-        <p style={{ fontSize: '12px', fontWeight: 500, color: TEXT, margin: '0 0 8px' }}>{nickname}</p>
-        <button
-          type="button"
-          onClick={handleLogout}
-          style={{
-            width: '100%',
-            minHeight: '44px',
-            borderRadius: '8px',
-            border: BORDER,
-            background: SURFACE,
-            color: SUB,
-            fontSize: '12px',
-            fontWeight: 500,
-            cursor: 'pointer',
-            transition: '150ms',
-          }}
-        >
-          로그아웃
-        </button>
-      </div>
-    </>
+      <button
+        type="button"
+        onClick={handleLogout}
+        style={{
+          width: '100%',
+          minHeight: 44,
+          borderRadius: 8,
+          border: BORDER,
+          background: SURFACE,
+          color: SUB,
+          fontSize: 12,
+          fontWeight: 500,
+          cursor: 'pointer',
+          transition: '150ms',
+        }}
+      >
+        로그아웃
+      </button>
+    </div>
   )
 
   return (
@@ -114,7 +134,7 @@ export function AdminLayoutClient({
               position: 'sticky',
               top: 0,
               zIndex: 50,
-              height: '56px',
+              height: 52,
               padding: '0 16px',
               alignItems: 'center',
               justifyContent: 'space-between',
@@ -122,19 +142,19 @@ export function AdminLayoutClient({
               borderBottom: BORDER,
             }}
           >
-            <span style={{ fontSize: '16px', fontWeight: 500, color: GOLD, letterSpacing: '0.1em' }}>ADMIN</span>
+            <span style={{ fontSize: 16, fontWeight: 500, color: GOLD, letterSpacing: '0.1em' }}>ADMIN</span>
             <button
               type="button"
               aria-label="메뉴"
               onClick={() => setMenuOpen(true)}
               style={{
-                minWidth: '44px',
-                minHeight: '44px',
+                minWidth: 44,
+                minHeight: 44,
                 border: BORDER,
-                borderRadius: '8px',
+                borderRadius: 8,
                 background: SURFACE,
                 color: TEXT,
-                fontSize: '18px',
+                fontSize: 18,
                 cursor: 'pointer',
               }}
             >
@@ -158,19 +178,21 @@ export function AdminLayoutClient({
                   type="button"
                   onClick={() => setMenuOpen(false)}
                   style={{
-                    minWidth: '44px',
-                    minHeight: '44px',
+                    minWidth: 44,
+                    minHeight: 44,
                     border: 'none',
                     background: 'transparent',
                     color: TEXT,
-                    fontSize: '24px',
+                    fontSize: 24,
                     cursor: 'pointer',
                   }}
                 >
                   ×
                 </button>
               </div>
-              {navContent}
+              {sidebarHeader}
+              {navLinks}
+              {sidebarFooter}
             </div>
           )}
 
@@ -178,7 +200,7 @@ export function AdminLayoutClient({
             <aside
               className="admin-sidebar"
               style={{
-                width: '220px',
+                width: 220,
                 flexShrink: 0,
                 minHeight: '100vh',
                 borderRight: BORDER,
@@ -190,7 +212,9 @@ export function AdminLayoutClient({
                 alignSelf: 'flex-start',
               }}
             >
-              {navContent}
+              {sidebarHeader}
+              {navLinks}
+              {sidebarFooter}
             </aside>
             <main className="admin-main" style={{ flex: 1, minWidth: 0, padding: '24px 16px' }}>
               {children}
