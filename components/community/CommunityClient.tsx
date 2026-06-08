@@ -5,7 +5,6 @@
 import { useCallback, useEffect, useMemo, useState, useTransition } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { createClient } from '@/lib/supabase'
 import { Clock, Flame, MessageCircle, X } from 'lucide-react'
@@ -125,8 +124,6 @@ export default function CommunityClient({
 
   return (
     <div className="pb-[72px] min-[1200px]:pb-0">
-      <Header />
-
       {loginOpen && (
         <LoginModal
           onClose={() => setLoginOpen(false)}
