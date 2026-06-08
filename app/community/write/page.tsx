@@ -122,7 +122,7 @@ export default async function CommunityWritePage() {
   const schemas = buildSchemas()
 
   return (
-    <>
+    <div style={{ background: '#0d0d0f', minHeight: '100vh' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.discussionForumSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.webPageSchema) }} />
@@ -131,6 +131,6 @@ export default async function CommunityWritePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.organizationSchema) }} />
       <WriteForm userId={user.id} />
-    </>
+    </div>
   )
 }

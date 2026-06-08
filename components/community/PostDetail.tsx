@@ -171,7 +171,7 @@ export default function PostDetail({
   const loadReactions = useCallback(async (userId?: string) => {
     const { data } = await supabase
       .from('post_reactions')
-      .select('id, user_id, reaction_type')
+      .select('reaction_type, user_id')
       .eq('post_id', postId)
 
     const counts: Record<string, number> = {}
@@ -202,7 +202,7 @@ export default function PostDetail({
     setLoadingComments(true)
     const { data } = await supabase
       .from('community_comments')
-      .select('id, user_id, content, is_anonymous, created_at, parent_id, profiles(nickname, level, avatar_url)')
+      .select('id, content, user_id, parent_id, created_at, is_anonymous, profiles(nickname, avatar_url)')
       .eq('post_id', postId)
       .order('created_at', { ascending: true })
 
@@ -239,13 +239,9 @@ export default function PostDetail({
       if (Number.isFinite(ts) && now - ts < VIEW_CACHE_MS) return
     }
 
-    fetch(`/api/community/views/${postId}`, { method: 'POST' })
-      .then((res) => res.json())
-      .then((data: { view_count?: number }) => {
-        if (typeof data.view_count === 'number') setViewCount(data.view_count)
-        localStorage.setItem(key, String(now))
-      })
-      .catch(() => {})
+    setViewCount((v) => v + 1)
+    localStorage.setItem(key, String(now))
+    fetch(`/api/community/views/${postId}`, { method: 'POST' }).catch(() => {})
   }, [postId])
 
   const handleReaction = async (type: ReactionKey) => {
@@ -509,28 +505,48 @@ export default function PostDetail({
                     marginBottom: '16px',
                   }}
                 >
-                  {REACTIONS.map((r) => (
-                    <button
-                      key={r.key}
-                      type="button"
-                      onClick={() => handleReaction(r.key)}
-                      disabled={submitting}
-                      style={{
-                        minHeight: '44px',
-                        padding: '8px 12px',
-                        borderRadius: '8px',
-                        border: CARD_BORDER,
-                        background: myReaction === r.key ? 'rgba(201,169,110,0.10)' : 'transparent',
-                        color: myReaction === r.key ? GOLD : SUB,
-                        fontSize: '12px',
-                        fontWeight: 500,
-                        cursor: 'pointer',
-                      }}
-                    >
-                      {r.label}
-                      {(reactionCounts[r.key] ?? 0) > 0 ? ` ${reactionCounts[r.key]}` : ''}
-                    </button>
-                  ))}
+                  {REACTIONS.map((r) => {
+                    const active = myReaction === r.key
+                    return (
+                      <button
+                        key={r.key}
+                        type="button"
+                        onClick={() => handleReaction(r.key)}
+                        disabled={submitting}
+                        style={{
+                          minHeight: '44px',
+                          padding: '8px 12px',
+                          borderRadius: '8px',
+                          border: active ? `0.5px solid ${GOLD}` : '0.5px solid rgba(255,255,255,0.08)',
+                          background: active ? 'rgba(201,169,110,0.15)' : 'rgba(255,255,255,0.04)',
+                          color: active ? GOLD : SUB,
+                          fontSize: '12px',
+                          fontWeight: 500,
+                          cursor: 'pointer',
+                          transition: 'all 150ms ease',
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!active) {
+                            e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
+                            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'
+                            e.currentTarget.style.transform = 'translateY(-1px)'
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!active) {
+                            e.currentTarget.style.background = 'rgba(255,255,255,0.04)'
+                            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'
+                            e.currentTarget.style.transform = 'translateY(0)'
+                          }
+                        }}
+                      >
+                        {r.label}
+                        {(reactionCounts[r.key] ?? 0) > 0 ? (
+                          <span style={{ color: active ? GOLD : SUB }}> {reactionCounts[r.key]}</span>
+                        ) : null}
+                      </button>
+                    )
+                  })}
                 </div>
 
                 <div
@@ -543,55 +559,19 @@ export default function PostDetail({
                     color: SUB,
                   }}
                 >
-                  <button
-                    type="button"
-                    onClick={() => {
-                      navigator.clipboard.writeText(window.location.href)
-                      alert('링크가 복사되었습니다.')
-                    }}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: SUB,
-                      cursor: 'pointer',
-                      minHeight: '44px',
-                      padding: '0 8px',
-                    }}
-                  >
-                    공유하기
-                  </button>
+                  <ActionTextButton label="공유하기" onClick={() => {
+                    navigator.clipboard.writeText(window.location.href)
+                    alert('링크가 복사되었습니다.')
+                  }} />
                   <span style={{ color: META }}>·</span>
-                  <button
-                    type="button"
+                  <ActionTextButton
+                    label={bookmarked ? '북마크됨' : '북마크'}
+                    active={bookmarked}
                     onClick={handleBookmark}
                     disabled={submitting}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: bookmarked ? GOLD : SUB,
-                      cursor: 'pointer',
-                      minHeight: '44px',
-                      padding: '0 8px',
-                    }}
-                  >
-                    {bookmarked ? '북마크됨' : '북마크'}
-                  </button>
+                  />
                   <span style={{ color: META }}>·</span>
-                  <button
-                    type="button"
-                    onClick={handleReport}
-                    disabled={submitting}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: SUB,
-                      cursor: 'pointer',
-                      minHeight: '44px',
-                      padding: '0 8px',
-                    }}
-                  >
-                    신고하기
-                  </button>
+                  <ActionTextButton label="신고하기" onClick={handleReport} disabled={submitting} />
                 </div>
               </article>
 
@@ -615,11 +595,13 @@ export default function PostDetail({
                         value={commentText}
                         onChange={(e) => setCommentText(e.target.value)}
                         placeholder="댓글을 입력하세요"
-                        rows={3}
+                        className="post-comment-input"
                         style={{
                           width: '100%',
+                          height: '80px',
                           background: 'transparent',
-                          border: 'none',
+                          border: '0.5px solid rgba(255,255,255,0.06)',
+                          borderRadius: '8px',
                           outline: 'none',
                           resize: 'none',
                           fontSize: '14px',
@@ -627,6 +609,14 @@ export default function PostDetail({
                           color: TEXT,
                           lineHeight: 1.6,
                           marginBottom: '12px',
+                          padding: '8px 12px',
+                          transition: 'all 150ms ease',
+                        }}
+                        onFocus={(e) => {
+                          e.currentTarget.style.borderColor = 'rgba(201,169,110,0.4)'
+                        }}
+                        onBlur={(e) => {
+                          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
                         }}
                       />
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -802,8 +792,58 @@ export default function PostDetail({
 
       <Footer />
       <MobileTabBar onWrite={handleWrite} />
-      <style dangerouslySetInnerHTML={{ __html: POST_DETAIL_CSS }} />
+      <style dangerouslySetInnerHTML={{ __html: `${POST_DETAIL_CSS}
+@media (max-width: 768px) {
+  .post-comment-input { height: 72px !important; }
+  .post-reply-input { height: 64px !important; }
+}
+`}} />
     </div>
+  )
+}
+
+function ActionTextButton({
+  label,
+  onClick,
+  active,
+  disabled,
+}: {
+  label: string
+  onClick: () => void
+  active?: boolean
+  disabled?: boolean
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        background: 'transparent',
+        border: 'none',
+        color: active ? GOLD : SUB,
+        cursor: disabled ? 'not-allowed' : 'pointer',
+        minHeight: '44px',
+        padding: '0 8px',
+        borderRadius: '4px',
+        transition: 'all 150ms ease',
+        opacity: disabled ? 0.5 : 1,
+      }}
+      onMouseEnter={(e) => {
+        if (!disabled && !active) {
+          e.currentTarget.style.background = 'rgba(255,255,255,0.06)'
+          e.currentTarget.style.color = 'rgba(255,255,255,0.7)'
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!active) {
+          e.currentTarget.style.background = 'transparent'
+          e.currentTarget.style.color = SUB
+        }
+      }}
+    >
+      {label}
+    </button>
   )
 }
 
@@ -856,20 +896,20 @@ function CommentBlock({
   const isAuthor = postAuthorNickname && comment.profiles?.nickname === postAuthorNickname
 
   return (
-    <div style={{ marginLeft: isReply ? '16px' : 0 }}>
+    <div style={{ marginLeft: isReply ? '28px' : 0 }}>
       <div
         style={{
-          background: isReply ? 'rgba(255,255,255,0.02)' : CARD_BG,
-          border: CARD_BORDER,
-          borderRadius: '8px',
-          padding: '16px',
+          background: isReply ? 'rgba(255,255,255,0.02)' : 'transparent',
+          borderBottom: isReply ? 'none' : CARD_BORDER,
+          borderRadius: isReply ? '8px' : 0,
+          padding: '12px 0',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
           <AvatarInitial name={name} size={28} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-              <span style={{ fontSize: '13px', fontWeight: 500, color: TEXT }}>{name}</span>
+              <span style={{ fontSize: '12px', fontWeight: 500, color: TEXT }}>{name}</span>
               {isAuthor && (
                 <span
                   style={{
@@ -888,10 +928,10 @@ function CommentBlock({
                 {timeAgoKorean(comment.created_at)}
               </span>
             </div>
-            <p style={{ fontSize: '14px', fontWeight: 400, color: TEXT, lineHeight: 1.6, margin: '8px 0 0' }}>
+            <p style={{ fontSize: '13px', fontWeight: 400, color: TEXT, lineHeight: 1.5, margin: '4px 0 0' }}>
               {comment.content}
             </p>
-            <div style={{ display: 'flex', gap: '12px', marginTop: '8px' }}>
+            <div style={{ display: 'flex', gap: '12px', marginTop: '4px' }}>
               {!isReply && onToggleReply && hasUser && (
                 <button
                   type="button"
@@ -934,21 +974,29 @@ function CommentBlock({
 
         {replyOpen && hasUser && onReplyTextChange && onSubmitReply && (
           <div style={{ display: 'flex', gap: '8px', marginTop: '8px', paddingLeft: '36px' }}>
-            <input
-              type="text"
+            <textarea
               value={replyText}
               onChange={(e) => onReplyTextChange(e.target.value)}
               placeholder="답글 입력..."
+              className="post-reply-input"
               style={{
                 flex: 1,
-                minHeight: '44px',
-                padding: '0 12px',
+                height: '64px',
+                padding: '8px 12px',
                 borderRadius: '8px',
                 border: CARD_BORDER,
                 background: 'rgba(255,255,255,0.04)',
                 color: TEXT,
                 fontSize: '13px',
                 outline: 'none',
+                resize: 'none',
+                transition: 'all 150ms ease',
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(201,169,110,0.4)'
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
               }}
             />
             <button

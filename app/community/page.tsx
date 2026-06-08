@@ -20,7 +20,7 @@ const PAGE_URL = 'https://www.pageoneworks.com/community'
 const BASE_URL = 'https://www.pageoneworks.com'
 
 const POST_LIST_COLUMNS =
-  'id,title,category_slug,like_count,comment_count,view_count,created_at,is_pinned,user_id'
+  'id,title,category_slug,like_count,comment_count,view_count,created_at,is_pinned,user_id,is_anonymous,profiles(nickname,avatar_url,level)'
 
 export const metadata: Metadata = {
   title: '프리미엄 커뮤니티 포럼 | PAGEONEWORKS',
@@ -217,6 +217,19 @@ async function fetchActiveNotices(supabase: ReturnType<typeof createServerSupaba
   return data ?? []
 }
 
+async function fetchHeroAds(supabase: ReturnType<typeof createServerSupabaseClient>) {
+  const { data, error } = await supabase
+    .from('ad_banners')
+    .select('slot_name, image_url, link_url, is_active')
+    .in('slot_name', ['pc_hero', 'mobile_hero'])
+  if (error) return { pc: null, mobile: null }
+  const rows = data ?? []
+  return {
+    pc: rows.find((r) => r.slot_name === 'pc_hero') ?? null,
+    mobile: rows.find((r) => r.slot_name === 'mobile_hero') ?? null,
+  }
+}
+
 function CommunityLoadingFallback() {
   return (
     <div
@@ -274,6 +287,7 @@ export default async function CommunityPage({
     { data: postsRaw, count: totalCount },
     { data: trendingRaw },
     activeNotices,
+    heroAds,
     stats,
     categoryCounts,
     { data: { user } },
@@ -286,6 +300,7 @@ export default async function CommunityPage({
       .order('view_count', { ascending: false })
       .limit(5),
     fetchActiveNotices(supabase),
+    fetchHeroAds(supabase),
     fetchStats(supabase),
     fetchCategoryCounts(supabase),
     supabase.auth.getUser(),
@@ -333,6 +348,8 @@ export default async function CommunityPage({
           initialTrending={trending}
           initialCategoryCounts={categoryCounts}
           initialNotices={activeNotices}
+          initialPcHeroAd={heroAds.pc}
+          initialMobileHeroAd={heroAds.mobile}
           profile={profile}
           currentCategory={category}
           currentSort={sort}

@@ -120,12 +120,34 @@ export function CategorySidebar({
       <button
         type="button"
         onClick={onWrite}
-        className="mt-4 w-full flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-medium transition-colors"
+        className="mt-4 w-full flex items-center justify-center gap-1.5 py-2.5 text-[12px] font-medium"
         style={{
           borderRadius: '6px',
           border: `0.5px solid ${COMMUNITY_COLORS.gold}`,
           color: COMMUNITY_COLORS.gold,
           background: 'rgba(201,169,110,0.06)',
+          cursor: 'pointer',
+          transition: 'all 150ms ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = 'rgba(201,169,110,0.15)'
+          e.currentTarget.style.borderColor = 'rgba(201,169,110,0.4)'
+          e.currentTarget.style.transform = 'translateY(-1px)'
+          e.currentTarget.style.boxShadow = '0 4px 12px rgba(201,169,110,0.15)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = 'rgba(201,169,110,0.06)'
+          e.currentTarget.style.borderColor = COMMUNITY_COLORS.gold
+          e.currentTarget.style.transform = 'translateY(0)'
+          e.currentTarget.style.boxShadow = 'none'
+        }}
+        onMouseDown={(e) => {
+          e.currentTarget.style.transform = 'translateY(0)'
+        }}
+        onMouseUp={(e) => {
+          if (e.currentTarget.matches(':hover')) {
+            e.currentTarget.style.transform = 'translateY(-1px)'
+          }
         }}
       >
         <PenLine className="w-3.5 h-3.5" />

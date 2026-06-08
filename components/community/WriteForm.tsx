@@ -17,8 +17,31 @@ const META = 'rgba(255,255,255,0.25)'
 const GOLD = '#C9A96E'
 const CARD_BG = 'rgba(255,255,255,0.03)'
 const CARD_BORDER = '0.5px solid rgba(255,255,255,0.06)'
+const FOCUS_BORDER = 'rgba(201,169,110,0.4)'
+const FOCUS_SHADOW = '0 0 0 2px rgba(201,169,110,0.08)'
 
 const WRITE_CATEGORIES = COMMUNITY_CATEGORIES.filter((c) => c.slug !== 'all')
+
+function focusField(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+  e.currentTarget.style.borderColor = FOCUS_BORDER
+  e.currentTarget.style.boxShadow = FOCUS_SHADOW
+}
+
+function blurField(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
+  e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'
+  e.currentTarget.style.boxShadow = 'none'
+}
+
+const fieldStyle: React.CSSProperties = {
+  borderRadius: '8px',
+  border: CARD_BORDER,
+  background: 'rgba(255,255,255,0.04)',
+  color: TEXT,
+  fontSize: '14px',
+  fontWeight: 400,
+  outline: 'none',
+  transition: 'all 150ms ease',
+}
 
 export default function WriteForm({ userId }: { userId: string }) {
   const router = useRouter()
@@ -127,17 +150,9 @@ export default function WriteForm({ userId }: { userId: string }) {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                style={{
-                  minHeight: '44px',
-                  padding: '0 12px',
-                  borderRadius: '8px',
-                  border: CARD_BORDER,
-                  background: 'rgba(255,255,255,0.04)',
-                  color: TEXT,
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  outline: 'none',
-                }}
+                onFocus={focusField}
+                onBlur={blurField}
+                style={{ ...fieldStyle, minHeight: '44px', padding: '0 12px' }}
               >
                 {WRITE_CATEGORIES.map((c) => (
                   <option key={c.slug} value={c.slug} style={{ background: '#141416' }}>
@@ -155,17 +170,9 @@ export default function WriteForm({ userId }: { userId: string }) {
                 onChange={(e) => setTitle(e.target.value.slice(0, 100))}
                 placeholder="제목을 입력하세요"
                 maxLength={100}
-                style={{
-                  minHeight: '44px',
-                  padding: '0 12px',
-                  borderRadius: '8px',
-                  border: CARD_BORDER,
-                  background: 'rgba(255,255,255,0.04)',
-                  color: TEXT,
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  outline: 'none',
-                }}
+                onFocus={focusField}
+                onBlur={blurField}
+                style={{ ...fieldStyle, minHeight: '44px', padding: '0 12px' }}
               />
               <span style={{ fontSize: '11px', fontWeight: 400, color: META, textAlign: 'right' }}>
                 {title.length}/100
@@ -180,18 +187,14 @@ export default function WriteForm({ userId }: { userId: string }) {
                 placeholder="내용을 입력하세요"
                 rows={12}
                 maxLength={5000}
+                onFocus={focusField}
+                onBlur={blurField}
                 style={{
+                  ...fieldStyle,
                   width: '100%',
                   padding: '12px',
-                  borderRadius: '8px',
-                  border: CARD_BORDER,
-                  background: 'rgba(255,255,255,0.04)',
-                  color: TEXT,
-                  fontSize: '14px',
-                  fontWeight: 400,
                   lineHeight: 1.8,
                   resize: 'vertical',
-                  outline: 'none',
                 }}
               />
               <span style={{ fontSize: '11px', fontWeight: 400, color: META, textAlign: 'right' }}>
@@ -210,6 +213,8 @@ export default function WriteForm({ userId }: { userId: string }) {
                   type="text"
                   value={tagInput}
                   onChange={(e) => setTagInput(e.target.value)}
+                  onFocus={focusField}
+                  onBlur={blurField}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') {
                       e.preventDefault()
@@ -217,17 +222,7 @@ export default function WriteForm({ userId }: { userId: string }) {
                     }
                   }}
                   placeholder="예: 부동산, 투자"
-                  style={{
-                    flex: 1,
-                    minHeight: '44px',
-                    padding: '0 12px',
-                    borderRadius: '8px',
-                    border: CARD_BORDER,
-                    background: 'rgba(255,255,255,0.04)',
-                    color: TEXT,
-                    fontSize: '14px',
-                    outline: 'none',
-                  }}
+                  style={{ ...fieldStyle, flex: 1, minHeight: '44px', padding: '0 12px' }}
                 />
                 <button
                   type="button"
@@ -327,10 +322,40 @@ export default function WriteForm({ userId }: { userId: string }) {
                 color: BG,
                 fontSize: '14px',
                 fontWeight: 500,
-                cursor: 'pointer',
+                cursor: !title.trim() || !content.trim() || submitting ? 'not-allowed' : 'pointer',
                 opacity: !title.trim() || !content.trim() || submitting ? 0.4 : 1,
+                transition: 'all 150ms ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+              }}
+              onMouseEnter={(e) => {
+                if (!submitting && title.trim() && content.trim()) {
+                  e.currentTarget.style.background = '#D4B47A'
+                  e.currentTarget.style.transform = 'translateY(-1px)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = GOLD
+                e.currentTarget.style.transform = 'translateY(0)'
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
               }}
             >
+              {submitting && (
+                <span
+                  style={{
+                    width: 14,
+                    height: 14,
+                    border: '2px solid rgba(13,13,15,0.2)',
+                    borderTopColor: BG,
+                    borderRadius: '50%',
+                    animation: 'write-spin 0.8s linear infinite',
+                  }}
+                />
+              )}
               {submitting ? '게시 중...' : '게시하기'}
             </button>
           </div>
@@ -340,6 +365,7 @@ export default function WriteForm({ userId }: { userId: string }) {
       <MobileTabBar onWrite={handleWrite} />
 
       <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes write-spin { to { transform: rotate(360deg); } }
         @media (max-width: 768px) {
           .community-write-root { padding-bottom: 72px !important; }
           .community-write-container { padding: 16px !important; }

@@ -3,6 +3,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useState } from 'react'
 import { HOT_CATEGORIES, COMMUNITY_COLORS } from './constants'
 import { timeAgoKorean } from './utils'
 import type { CommunityPost } from './types'
@@ -18,25 +19,26 @@ const META_STYLE: React.CSSProperties = {
 export function PostCard({ post }: { post: CommunityPost }) {
   const pinned = Boolean(post.is_pinned)
   const isHot = HOT_CATEGORIES.has(post.category_slug)
+  const [hovered, setHovered] = useState(false)
+
+  const baseBg = pinned ? 'rgba(201,169,110,0.04)' : 'transparent'
+  const hoverBg = pinned ? 'rgba(201,169,110,0.08)' : 'rgba(255,255,255,0.04)'
 
   return (
     <Link
       href={`/community/${post.id}`}
-      className="group block"
+      className="block"
       style={{
         height: '52px',
         borderBottom: '0.5px solid rgba(255,255,255,0.04)',
-        background: pinned ? 'rgba(201,169,110,0.04)' : 'transparent',
-        transition: 'background 150ms ease',
+        background: hovered ? hoverBg : baseBg,
+        borderLeft: hovered ? '2px solid rgba(201,169,110,0.3)' : '2px solid transparent',
+        transform: hovered ? 'translateX(2px)' : 'translateX(0)',
+        transition: 'all 150ms ease',
+        cursor: 'pointer',
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = pinned
-          ? 'rgba(201,169,110,0.06)'
-          : 'rgba(255,255,255,0.025)'
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = pinned ? 'rgba(201,169,110,0.04)' : 'transparent'
-      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <div
         className="h-full flex items-center gap-2 px-3 min-w-0"
@@ -51,9 +53,11 @@ export function PostCard({ post }: { post: CommunityPost }) {
         )}
 
         <span
-          className="shrink-0 px-1.5 py-0.5 text-[10px] font-medium"
+          className="shrink-0 font-medium"
           style={{
+            padding: '2px 8px',
             borderRadius: '4px',
+            fontSize: '10px',
             background: isHot ? 'rgba(232,112,90,0.12)' : 'rgba(255,255,255,0.06)',
             color: isHot ? COMMUNITY_COLORS.hot : COMMUNITY_COLORS.text,
             lineHeight: 1.2,
@@ -65,7 +69,11 @@ export function PostCard({ post }: { post: CommunityPost }) {
 
         <span
           className="flex-1 min-w-0 text-[13px] font-medium truncate"
-          style={{ color: COMMUNITY_COLORS.text, lineHeight: 1.2 }}
+          style={{
+            color: hovered ? 'rgba(255,255,255,0.95)' : COMMUNITY_COLORS.text,
+            lineHeight: 1.2,
+            transition: 'color 150ms ease',
+          }}
         >
           {post.title}
         </span>

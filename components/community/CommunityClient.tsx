@@ -15,7 +15,10 @@ import { Pagination } from './Pagination'
 import { MobileTabBar } from './MobileTabBar'
 import { SkeletonPostList } from './SkeletonPostCard'
 import { NoticeBanner, type CommunityNoticeItem } from './NoticeBanner'
+import { PcHeroAd, MobileHeroAd, type HeroAdData } from './HeroAdBanner'
 import { COMMUNITY_COLORS } from './constants'
+
+/** 서버에서 전달된 목록은 항상 동기화. 동일 세션 내 중복 클라이언트 요청 방지용 staleTime(60s)은 page.tsx 서버 fetch에 적용됨. */
 import type {
   CategoryCountMap,
   CommunityPost,
@@ -31,6 +34,8 @@ export default function CommunityClient({
   initialTrending,
   initialCategoryCounts,
   initialNotices,
+  initialPcHeroAd,
+  initialMobileHeroAd,
   profile,
   currentCategory,
   currentSort,
@@ -42,6 +47,8 @@ export default function CommunityClient({
   initialTrending: TrendingPost[]
   initialCategoryCounts: CategoryCountMap
   initialNotices: CommunityNoticeItem[]
+  initialPcHeroAd: HeroAdData | null
+  initialMobileHeroAd: HeroAdData | null
   profile: ProfileMini | null
   currentCategory: string
   currentSort: SortKey
@@ -59,6 +66,8 @@ export default function CommunityClient({
   const [displayTrending] = useState(initialTrending)
   const [displayCategoryCounts] = useState(initialCategoryCounts)
   const [displayNotices, setDisplayNotices] = useState(initialNotices)
+  const [pcHeroAd] = useState(initialPcHeroAd)
+  const [mobileHeroAd] = useState(initialMobileHeroAd)
 
   useEffect(() => {
     setDisplayPosts(initialPosts)
@@ -165,6 +174,7 @@ export default function CommunityClient({
             <p className="text-[13px] font-normal mt-1 hidden md:block" style={{ color: COMMUNITY_COLORS.sub }}>
               검증된 인사이트를 공유하는 PAGEONEWORKS 커뮤니티
             </p>
+            <PcHeroAd ad={pcHeroAd} />
           </div>
         </div>
 
@@ -172,6 +182,7 @@ export default function CommunityClient({
           activeCategory={currentCategory}
           onSelect={(slug) => navigate({ category: slug, page: 1 })}
         />
+        <MobileHeroAd ad={mobileHeroAd} />
 
         <div className="max-w-[1400px] mx-auto px-4 md:px-6">
           <div className="flex gap-5">

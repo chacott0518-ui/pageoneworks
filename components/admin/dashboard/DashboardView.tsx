@@ -14,6 +14,24 @@ import { StatusBadge } from './StatusBadge'
 
 const T = ADMIN_THEME
 
+const adminBtnHover = {
+  onMouseEnter: (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.opacity = '0.85'
+  },
+  onMouseLeave: (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.opacity = '1'
+  },
+}
+
+const rowHover = {
+  onMouseEnter: (e: React.MouseEvent<HTMLTableRowElement>) => {
+    e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
+  },
+  onMouseLeave: (e: React.MouseEvent<HTMLTableRowElement>) => {
+    e.currentTarget.style.background = 'transparent'
+  },
+}
+
 type Stats = {
   todayPosts: number
   yesterdayPosts: number
@@ -194,7 +212,7 @@ export function DashboardView() {
               </thead>
               <tbody>
                 {posts.map((p) => (
-                  <tr key={p.id} style={{ borderTop: T.border }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.025)' }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}>
+                  <tr key={p.id} style={{ borderTop: T.border, transition: 'background 150ms ease' }} {...rowHover}>
                     <td style={{ padding: 8, color: T.text }}>
                       <Link href={`/community/${p.id}`} target="_blank" style={{ color: T.text, textDecoration: 'none' }}>{p.title}</Link>
                     </td>
@@ -204,10 +222,10 @@ export function DashboardView() {
                     <td style={{ padding: 8, color: T.meta }}>{p.view_count ?? 0}</td>
                     <td style={{ padding: 8 }}>
                       <div style={{ display: 'flex', gap: 4 }}>
-                        <button type="button" onClick={() => toggleBlind(p)} style={{ padding: '4px 8px', fontSize: 11, border: T.border, borderRadius: 4, background: T.surface, color: T.warning, cursor: 'pointer' }}>
+                        <button type="button" onClick={() => toggleBlind(p)} {...adminBtnHover} style={{ padding: '4px 8px', fontSize: 11, border: T.border, borderRadius: 4, background: T.surface, color: T.warning, cursor: 'pointer', transition: 'all 150ms ease' }}>
                           {p.is_hidden ? '해제' : '블라인드'}
                         </button>
-                        <button type="button" onClick={() => deletePost(p)} style={{ padding: '4px 8px', fontSize: 11, border: 'none', borderRadius: 4, background: T.danger, color: T.bg, cursor: 'pointer' }}>
+                        <button type="button" onClick={() => deletePost(p)} {...adminBtnHover} style={{ padding: '4px 8px', fontSize: 11, border: 'none', borderRadius: 4, background: T.danger, color: T.bg, cursor: 'pointer', transition: 'all 150ms ease' }}>
                           삭제
                         </button>
                       </div>

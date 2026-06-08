@@ -52,7 +52,25 @@ const btnStyle: React.CSSProperties = {
   fontSize: 12,
   fontWeight: 500,
   cursor: 'pointer',
-  transition: '150ms',
+  transition: 'all 150ms ease',
+}
+
+const adminBtnHover = {
+  onMouseEnter: (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.opacity = '0.85'
+  },
+  onMouseLeave: (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.currentTarget.style.opacity = '1'
+  },
+}
+
+const rowHover = {
+  onMouseEnter: (e: React.MouseEvent<HTMLTableRowElement>) => {
+    e.currentTarget.style.background = 'rgba(255,255,255,0.03)'
+  },
+  onMouseLeave: (e: React.MouseEvent<HTMLTableRowElement>) => {
+    e.currentTarget.style.background = 'transparent'
+  },
 }
 
 export function PostsManager() {
@@ -187,9 +205,9 @@ export function PostsManager() {
 
   const actionButtons = (post: PostRow) => (
     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
-      <button type="button" onClick={() => togglePin(post)} style={btnStyle} title="공지">📌</button>
-      <button type="button" onClick={() => toggleHidden(post)} style={btnStyle} title="블라인드">🚫</button>
-      <button type="button" onClick={() => deleteOne(post.id)} style={{ ...btnStyle, background: T.danger, color: T.bg, border: 'none' }} title="삭제">🗑️</button>
+      <button type="button" onClick={() => togglePin(post)} {...adminBtnHover} style={btnStyle} title="공지">📌</button>
+      <button type="button" onClick={() => toggleHidden(post)} {...adminBtnHover} style={btnStyle} title="블라인드">🚫</button>
+      <button type="button" onClick={() => deleteOne(post.id)} {...adminBtnHover} style={{ ...btnStyle, background: T.danger, color: T.bg, border: 'none' }} title="삭제">🗑️</button>
     </div>
   )
 
@@ -250,7 +268,7 @@ export function PostsManager() {
             ) : posts.length === 0 ? (
               <tr><td colSpan={9} style={{ padding: 24, textAlign: 'center', color: T.meta }}>글이 없습니다</td></tr>
             ) : posts.map((post) => (
-              <tr key={post.id} style={{ borderTop: T.border }} onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.025)' }} onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent' }}>
+              <tr key={post.id} style={{ borderTop: T.border, transition: 'background 150ms ease' }} {...rowHover}>
                 <td style={{ padding: 8 }}><input type="checkbox" checked={selected.has(post.id)} onChange={() => {
                   setSelected((prev) => { const n = new Set(prev); if (n.has(post.id)) n.delete(post.id); else n.add(post.id); return n })
                 }} /></td>
