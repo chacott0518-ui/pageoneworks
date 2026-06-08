@@ -4,6 +4,7 @@
 
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { Header } from '@/components/Header'
@@ -20,6 +21,7 @@ const META = 'rgba(255,255,255,0.25)'
 const GOLD = '#C9A96E'
 const CARD_BG = 'rgba(255,255,255,0.03)'
 const CARD_BORDER = '0.5px solid rgba(255,255,255,0.06)'
+const VIEW_CACHE_MS = 60 * 60 * 1000
 
 export type PostDetailData = {
   id: string
@@ -63,43 +65,22 @@ const REACTIONS = [
   { key: 'sad', label: '😢슬퍼요' },
 ] as const
 
+type ReactionKey = (typeof REACTIONS)[number]['key']
+
 const POST_DETAIL_CSS = `
 @media (max-width: 768px) {
-  .post-detail-root {
-    padding-bottom: 72px !important;
-  }
-  .post-detail-container {
-    padding: 16px !important;
-  }
-  .post-detail-layout {
-    flex-direction: column !important;
-  }
-  .post-detail-main {
-    flex: 1 1 100% !important;
-    width: 100% !important;
-  }
-  .post-detail-sidebar {
-    flex: 1 1 100% !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-  .post-detail-card {
-    padding: 16px !important;
-  }
-  .post-detail-title {
-    font-size: 20px !important;
-  }
-  .post-detail-body {
-    font-size: 13px !important;
-  }
-  .post-detail-meta {
-    font-size: 10px !important;
-  }
+  .post-detail-root { padding-bottom: 72px !important; }
+  .post-detail-container { padding: 16px !important; }
+  .post-detail-layout { flex-direction: column !important; }
+  .post-detail-main { flex: 1 1 100% !important; width: 100% !important; }
+  .post-detail-sidebar { flex: 1 1 100% !important; max-width: 100% !important; width: 100% !important; }
+  .post-detail-card { padding: 16px !important; }
+  .post-detail-title { font-size: 20px !important; }
+  .post-detail-body { font-size: 13px !important; }
+  .post-detail-meta { font-size: 10px !important; }
 }
 @media (min-width: 769px) {
-  .post-detail-root {
-    padding-bottom: 0 !important;
-  }
+  .post-detail-root { padding-bottom: 0 !important; }
 }
 `
 
@@ -111,13 +92,7 @@ function formatDate(iso: string) {
   })
 }
 
-function AvatarInitial({
-  name,
-  size = 32,
-}: {
-  name: string
-  size?: number
-}) {
+function AvatarInitial({ name, size = 32 }: { name: string; size?: number }) {
   return (
     <div
       style={{
@@ -140,6 +115,29 @@ function AvatarInitial({
   )
 }
 
+function CommentSkeleton() {
+  return (
+    <div
+      className="animate-pulse"
+      style={{
+        background: CARD_BG,
+        border: CARD_BORDER,
+        borderRadius: '8px',
+        padding: '16px',
+        marginBottom: '8px',
+      }}
+    >
+      <div style={{ display: 'flex', gap: '8px' }}>
+        <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
+        <div style={{ flex: 1 }}>
+          <div style={{ width: '80px', height: 12, borderRadius: 4, background: 'rgba(255,255,255,0.06)', marginBottom: 8 }} />
+          <div style={{ width: '100%', height: 14, borderRadius: 4, background: 'rgba(255,255,255,0.04)' }} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function PostDetail({
   postId,
   initialPost,
@@ -155,11 +153,12 @@ export default function PostDetail({
   const supabase = useMemo(() => createClient(), [])
 
   const [post] = useState<PostDetailData>(initialPost)
+  const [viewCount, setViewCount] = useState(initialPost.view_count ?? 0)
   const [comments, setComments] = useState<Comment[]>([])
   const [loadingComments, setLoadingComments] = useState(true)
-  const [liked, setLiked] = useState(false)
-  const [likeCount, setLikeCount] = useState(initialPost.like_count ?? 0)
-  const [activeReaction, setActiveReaction] = useState<string | null>(null)
+  const [reactionCounts, setReactionCounts] = useState<Record<string, number>>({})
+  const [myReaction, setMyReaction] = useState<ReactionKey | null>(null)
+  const [bookmarked, setBookmarked] = useState(false)
   const [commentText, setCommentText] = useState('')
   const [replyText, setReplyText] = useState<Record<string, string>>({})
   const [replyOpen, setReplyOpen] = useState<Record<string, boolean>>({})
@@ -169,7 +168,38 @@ export default function PostDetail({
   const authorName = post.is_anonymous ? '익명' : post.profiles?.nickname ?? '회원'
   const lv = levelLabel(post.profiles?.level ?? 1)
 
+  const loadReactions = useCallback(async (userId?: string) => {
+    const { data } = await supabase
+      .from('post_reactions')
+      .select('id, user_id, reaction_type')
+      .eq('post_id', postId)
+
+    const counts: Record<string, number> = {}
+    let mine: ReactionKey | null = null
+    for (const row of data ?? []) {
+      const type = row.reaction_type as string
+      counts[type] = (counts[type] ?? 0) + 1
+      if (userId && row.user_id === userId) mine = type as ReactionKey
+    }
+    setReactionCounts(counts)
+    setMyReaction(mine)
+  }, [postId, supabase])
+
+  const loadBookmark = useCallback(
+    async (userId: string) => {
+      const { data } = await supabase
+        .from('bookmarks')
+        .select('id')
+        .eq('user_id', userId)
+        .eq('post_id', postId)
+        .maybeSingle()
+      setBookmarked(Boolean(data))
+    },
+    [postId, supabase]
+  )
+
   const loadComments = useCallback(async () => {
+    setLoadingComments(true)
     const { data } = await supabase
       .from('community_comments')
       .select('id, user_id, content, is_anonymous, created_at, parent_id, profiles(nickname, level, avatar_url)')
@@ -189,25 +219,93 @@ export default function PostDetail({
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) setCurrentUser({ id: user.id })
+      if (user) {
+        setCurrentUser({ id: user.id })
+        void loadReactions(user.id)
+        void loadBookmark(user.id)
+      } else {
+        void loadReactions()
+      }
     })
-    loadComments()
-  }, [loadComments, supabase])
+    void loadComments()
+  }, [loadBookmark, loadComments, loadReactions, supabase])
 
-  const handleLike = async () => {
+  useEffect(() => {
+    const key = `community_view_${postId}`
+    const raw = localStorage.getItem(key)
+    const now = Date.now()
+    if (raw) {
+      const ts = Number(raw)
+      if (Number.isFinite(ts) && now - ts < VIEW_CACHE_MS) return
+    }
+
+    fetch(`/api/community/views/${postId}`, { method: 'POST' })
+      .then((res) => res.json())
+      .then((data: { view_count?: number }) => {
+        if (typeof data.view_count === 'number') setViewCount(data.view_count)
+        localStorage.setItem(key, String(now))
+      })
+      .catch(() => {})
+  }, [postId])
+
+  const handleReaction = async (type: ReactionKey) => {
     if (!currentUser) {
       router.push('/login')
       return
     }
-    if (liked) {
-      await supabase.from('community_likes').delete().eq('user_id', currentUser.id).eq('post_id', postId)
-      setLiked(false)
-      setLikeCount((n) => n - 1)
+    setSubmitting(true)
+    if (myReaction === type) {
+      await supabase
+        .from('post_reactions')
+        .delete()
+        .eq('user_id', currentUser.id)
+        .eq('post_id', postId)
+        .eq('reaction_type', type)
     } else {
-      await supabase.from('community_likes').insert({ user_id: currentUser.id, post_id: postId })
-      setLiked(true)
-      setLikeCount((n) => n + 1)
+      if (myReaction) {
+        await supabase.from('post_reactions').delete().eq('user_id', currentUser.id).eq('post_id', postId)
+      }
+      await supabase.from('post_reactions').insert({
+        user_id: currentUser.id,
+        post_id: postId,
+        reaction_type: type,
+      })
     }
+    await loadReactions(currentUser.id)
+    setSubmitting(false)
+  }
+
+  const handleBookmark = async () => {
+    if (!currentUser) {
+      router.push('/login')
+      return
+    }
+    setSubmitting(true)
+    if (bookmarked) {
+      await supabase.from('bookmarks').delete().eq('user_id', currentUser.id).eq('post_id', postId)
+      setBookmarked(false)
+    } else {
+      await supabase.from('bookmarks').insert({ user_id: currentUser.id, post_id: postId })
+      setBookmarked(true)
+    }
+    setSubmitting(false)
+  }
+
+  const handleReport = async () => {
+    if (!currentUser) {
+      router.push('/login')
+      return
+    }
+    if (!confirm('이 글을 신고하시겠습니까?')) return
+    setSubmitting(true)
+    const { error } = await supabase.from('reports').insert({
+      user_id: currentUser.id,
+      post_id: postId,
+      reason: 'user_report',
+    })
+    setSubmitting(false)
+    if (error) alert('신고 처리 중 오류가 발생했습니다.')
+    else alert('신고가 접수되었습니다.')
   }
 
   const handleComment = async () => {
@@ -291,7 +389,6 @@ export default function PostDetail({
           </button>
 
           <div className="post-detail-layout" style={{ display: 'flex', gap: '24px', alignItems: 'flex-start' }}>
-            {/* 좌측 본문 70% */}
             <div className="post-detail-main" style={{ flex: '1 1 70%', minWidth: 0 }}>
               <article
                 className="post-detail-card"
@@ -348,7 +445,7 @@ export default function PostDetail({
                   <span>·</span>
                   <span>{formatDate(post.created_at)}</span>
                   <span>·</span>
-                  <span>조회 {(post.view_count ?? 0).toLocaleString()}</span>
+                  <span>조회 {viewCount.toLocaleString()}</span>
                 </div>
 
                 <div
@@ -365,6 +462,33 @@ export default function PostDetail({
                   {post.content}
                 </div>
 
+                {post.images && post.images.length > 0 && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '24px' }}>
+                    {post.images.map((src, i) => (
+                      <div
+                        key={src}
+                        style={{
+                          position: 'relative',
+                          width: '100%',
+                          minHeight: '200px',
+                          borderRadius: '8px',
+                          overflow: 'hidden',
+                          border: CARD_BORDER,
+                        }}
+                      >
+                        <Image
+                          src={src}
+                          alt={`${post.title} 이미지 ${i + 1}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 70vw"
+                          loading="lazy"
+                          style={{ objectFit: 'contain', background: 'rgba(0,0,0,0.2)' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 {post.tags && post.tags.length > 0 && (
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '24px' }}>
                     {post.tags.map((tag) => (
@@ -375,7 +499,6 @@ export default function PostDetail({
                   </div>
                 )}
 
-                {/* 반응바 */}
                 <div
                   style={{
                     display: 'flex',
@@ -390,33 +513,26 @@ export default function PostDetail({
                     <button
                       key={r.key}
                       type="button"
-                      onClick={() => {
-                        if (r.key === 'like') handleLike()
-                        else setActiveReaction(activeReaction === r.key ? null : r.key)
-                      }}
+                      onClick={() => handleReaction(r.key)}
+                      disabled={submitting}
                       style={{
                         minHeight: '44px',
                         padding: '8px 12px',
                         borderRadius: '8px',
                         border: CARD_BORDER,
-                        background:
-                          (r.key === 'like' && liked) || activeReaction === r.key
-                            ? 'rgba(201,169,110,0.10)'
-                            : 'transparent',
-                        color:
-                          (r.key === 'like' && liked) || activeReaction === r.key ? GOLD : SUB,
+                        background: myReaction === r.key ? 'rgba(201,169,110,0.10)' : 'transparent',
+                        color: myReaction === r.key ? GOLD : SUB,
                         fontSize: '12px',
                         fontWeight: 500,
                         cursor: 'pointer',
                       }}
                     >
                       {r.label}
-                      {r.key === 'like' ? ` ${likeCount}` : ''}
+                      {(reactionCounts[r.key] ?? 0) > 0 ? ` ${reactionCounts[r.key]}` : ''}
                     </button>
                   ))}
                 </div>
 
-                {/* 액션버튼 */}
                 <div
                   style={{
                     display: 'flex',
@@ -447,20 +563,24 @@ export default function PostDetail({
                   <span style={{ color: META }}>·</span>
                   <button
                     type="button"
+                    onClick={handleBookmark}
+                    disabled={submitting}
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: SUB,
+                      color: bookmarked ? GOLD : SUB,
                       cursor: 'pointer',
                       minHeight: '44px',
                       padding: '0 8px',
                     }}
                   >
-                    북마크
+                    {bookmarked ? '북마크됨' : '북마크'}
                   </button>
                   <span style={{ color: META }}>·</span>
                   <button
                     type="button"
+                    onClick={handleReport}
+                    disabled={submitting}
                     style={{
                       background: 'none',
                       border: 'none',
@@ -475,7 +595,6 @@ export default function PostDetail({
                 </div>
               </article>
 
-              {/* 댓글 섹션 */}
               <section style={{ marginBottom: '16px' }}>
                 <p style={{ fontSize: '14px', fontWeight: 500, color: TEXT, marginBottom: '12px' }}>
                   댓글 {totalComments}개
@@ -545,9 +664,11 @@ export default function PostDetail({
                 </div>
 
                 {loadingComments ? (
-                  <p style={{ fontSize: '13px', color: SUB, textAlign: 'center', padding: '24px' }}>
-                    댓글 불러오는 중...
-                  </p>
+                  <div>
+                    {Array.from({ length: 4 }).map((_, i) => (
+                      <CommentSkeleton key={i} />
+                    ))}
+                  </div>
                 ) : comments.length === 0 ? (
                   <div
                     style={{
@@ -587,7 +708,6 @@ export default function PostDetail({
               </section>
             </div>
 
-            {/* 우측 사이드바 30% */}
             <aside className="post-detail-sidebar" style={{ flex: '0 0 30%', minWidth: 0, maxWidth: '320px' }}>
               <SidebarCard title="작성자">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -610,12 +730,7 @@ export default function PostDetail({
                       <Link
                         key={r.id}
                         href={`/community/${r.id}`}
-                        style={{
-                          display: 'block',
-                          textDecoration: 'none',
-                          padding: '8px',
-                          borderRadius: '6px',
-                        }}
+                        style={{ display: 'block', textDecoration: 'none', padding: '8px', borderRadius: '6px' }}
                       >
                         <p
                           style={{

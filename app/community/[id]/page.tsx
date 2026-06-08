@@ -5,25 +5,12 @@ import dynamic from 'next/dynamic'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
+import { SkeletonPostList } from '@/components/community/SkeletonPostCard'
 import type { TrendingPost } from '@/components/community/types'
 import type { Metadata } from 'next'
 
 const PostDetail = dynamic(() => import('@/components/community/PostDetail'), {
-  loading: () => (
-    <div
-      style={{
-        minHeight: '100vh',
-        background: '#0d0d0f',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'rgba(255,255,255,0.4)',
-        fontFamily: 'Inter, Pretendard, sans-serif',
-      }}
-    >
-      불러오는 중...
-    </div>
-  ),
+  loading: () => <PostDetailLoadingFallback />,
 })
 
 interface Props {
@@ -32,6 +19,9 @@ interface Props {
 
 const BASE_URL = 'https://www.pageoneworks.com'
 const HIDDEN_FILTER = 'is_hidden.is.null,is_hidden.eq.false'
+
+const POST_COLUMNS =
+  'id,user_id,title,content,category_slug,tags,images,is_anonymous,view_count,like_count,comment_count,created_at'
 
 type PostProfile = {
   nickname: string
@@ -68,6 +58,47 @@ function normalizeProfile<T extends { profiles?: PostProfile | PostProfile[] | n
   const p = row.profiles
   const profiles = Array.isArray(p) ? p[0] ?? null : p ?? null
   return { ...row, profiles }
+}
+
+function PostDetailLoadingFallback() {
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        background: '#0d0d0f',
+        paddingTop: '60px',
+        fontFamily: 'Inter, Pretendard, sans-serif',
+      }}
+    >
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '24px 16px' }}>
+        <div
+          className="animate-pulse"
+          style={{
+            height: 24,
+            width: 160,
+            borderRadius: 6,
+            background: 'rgba(255,255,255,0.06)',
+            marginBottom: 16,
+          }}
+        />
+        <div
+          style={{
+            borderRadius: 8,
+            border: '0.5px solid rgba(255,255,255,0.06)',
+            background: 'rgba(255,255,255,0.03)',
+            padding: 16,
+            marginBottom: 16,
+          }}
+        >
+          <div style={{ height: 14, width: 80, borderRadius: 4, background: 'rgba(255,255,255,0.06)', marginBottom: 12 }} />
+          <div style={{ height: 28, width: '70%', borderRadius: 4, background: 'rgba(255,255,255,0.06)', marginBottom: 16 }} />
+          <div style={{ height: 12, width: 200, borderRadius: 4, background: 'rgba(255,255,255,0.04)', marginBottom: 24 }} />
+          <div style={{ height: 120, borderRadius: 4, background: 'rgba(255,255,255,0.04)' }} />
+        </div>
+        <SkeletonPostList count={4} />
+      </div>
+    </div>
+  )
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -119,13 +150,11 @@ export default async function PostPage({ params }: Props) {
 
   const { data: post } = await supabase
     .from('community_posts')
-    .select('*, profiles(nickname, avatar_url, level)')
+    .select(`${POST_COLUMNS}, profiles(nickname, avatar_url, level)`)
     .eq('id', params.id)
     .single()
 
   if (!post) notFound()
-
-  await supabase.rpc('increment_view_count', { post_id: params.id })
 
   const [{ data: relatedRaw }, { data: trendingRaw }] = await Promise.all([
     supabase
@@ -135,7 +164,7 @@ export default async function PostPage({ params }: Props) {
       .neq('id', params.id)
       .or(HIDDEN_FILTER)
       .order('created_at', { ascending: false })
-      .limit(5),
+      .limit(3),
     supabase
       .from('community_posts')
       .select('id, category_slug, title, view_count, comment_count, created_at')
@@ -160,11 +189,8 @@ export default async function PostPage({ params }: Props) {
     text: post.content,
     url: postUrl,
     datePublished: post.created_at,
-    dateModified: post.updated_at ?? post.created_at,
-    author: {
-      '@type': 'Person',
-      name: authorName,
-    },
+    dateModified: post.created_at,
+    author: { '@type': 'Person', name: authorName },
     publisher: {
       '@type': 'Organization',
       name: 'PAGEONEWORKS',
@@ -267,23 +293,7 @@ export default async function PostPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
-      <Suspense
-        fallback={
-          <div
-            style={{
-              minHeight: '100vh',
-              background: '#0d0d0f',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'rgba(255,255,255,0.4)',
-              fontFamily: 'Inter, Pretendard, sans-serif',
-            }}
-          >
-            불러오는 중...
-          </div>
-        }
-      >
+      <Suspense fallback={<PostDetailLoadingFallback />}>
         <PostDetail
           postId={params.id}
           initialPost={initialPost}
