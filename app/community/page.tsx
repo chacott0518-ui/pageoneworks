@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import CommunityClient from '@/components/community/CommunityClient'
+import { SkeletonPostList } from '@/components/community/SkeletonPostCard'
 import { COMMUNITY_CATEGORIES, PAGE_SIZE } from '@/components/community/constants'
 import type {
   CategoryCountMap,
@@ -20,6 +21,9 @@ const BASE_URL = 'https://www.pageoneworks.com'
 
 const DEFAULT_NOTICE_TEXT =
   '커뮤니티 이용 규칙을 준수해 주세요. 광고·도배·욕설 금지'
+
+const POST_LIST_COLUMNS =
+  'id,title,category_slug,like_count,comment_count,view_count,created_at,is_pinned,user_id'
 
 export const metadata: Metadata = {
   title: '프리미엄 커뮤니티 포럼 | PAGEONEWORKS',
@@ -206,6 +210,30 @@ async function fetchStats(supabase: ReturnType<typeof createServerSupabaseClient
   }
 }
 
+function CommunityLoadingFallback() {
+  return (
+    <div
+      className="min-h-screen pt-[60px] pb-[72px] min-[1200px]:pb-0"
+      style={{ background: '#0d0d0f', fontFamily: 'Inter, Pretendard, sans-serif' }}
+    >
+      <div className="border-b px-4 md:px-6 py-5" style={{ borderColor: 'rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}>
+        <div className="max-w-[1400px] mx-auto">
+          <div className="h-3 w-16 rounded animate-pulse mb-2" style={{ background: 'rgba(255,255,255,0.06)' }} />
+          <div className="h-7 w-48 rounded animate-pulse" style={{ background: 'rgba(255,255,255,0.06)' }} />
+        </div>
+      </div>
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6 py-5">
+        <div
+          className="rounded-xl overflow-hidden"
+          style={{ border: '0.5px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.03)' }}
+        >
+          <SkeletonPostList count={8} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default async function CommunityPage({
   searchParams,
 }: {
@@ -222,10 +250,7 @@ export default async function CommunityPage({
 
   let listQuery = supabase
     .from('community_posts')
-    .select(
-      'id,user_id,category_slug,title,content,view_count,like_count,comment_count,is_pinned,is_hidden,created_at',
-      { count: 'exact' }
-    )
+    .select(POST_LIST_COLUMNS, { count: 'exact' })
     .or(hiddenFilter)
 
   if (category !== 'all') {
@@ -270,13 +295,23 @@ export default async function CommunityPage({
   if (user) {
     const { data: profileRow } = await supabase
       .from('profiles')
-      .select('id,nickname,avatar_url,level,post_count,is_admin')
+      .select('id,nickname,avatar_url,level')
       .eq('id', user.id)
       .maybeSingle()
-    if (profileRow) profile = profileRow as ProfileMini
+    if (profileRow) {
+      profile = {
+        ...profileRow,
+        post_count: null,
+        is_admin: null,
+      } as ProfileMini
+    }
   }
 
-  const initialPosts = (postsRaw ?? []) as CommunityPost[]
+  const initialPosts = (postsRaw ?? []).map((row) => ({
+    ...row,
+    content: '',
+    is_hidden: null,
+  })) as CommunityPost[]
   const trending = (trendingRaw ?? []) as TrendingPost[]
   const totalPages = Math.max(1, Math.ceil((totalCount ?? 0) / PAGE_SIZE))
   const schemas = buildSchemas()
@@ -291,16 +326,7 @@ export default async function CommunityPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.organizationSchema) }} />
 
-      <Suspense
-        fallback={
-          <div
-            className="min-h-screen flex items-center justify-center"
-            style={{ background: '#0d0d0f', color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter, Pretendard, sans-serif' }}
-          >
-            불러오는 중...
-          </div>
-        }
-      >
+      <Suspense fallback={<CommunityLoadingFallback />}>
         <CommunityClient
           initialPosts={initialPosts}
           initialStats={stats}

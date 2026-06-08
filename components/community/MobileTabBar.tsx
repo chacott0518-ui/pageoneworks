@@ -32,6 +32,12 @@ const TABBAR_CSS = `
     display: flex;
   }
 }
+
+@media (min-width: 769px) {
+  .community-mobile-tabbar {
+    display: none !important;
+  }
+}
 `
 
 export function MobileTabBar({ onWrite }: { onWrite: () => void }) {
@@ -49,7 +55,7 @@ export function MobileTabBar({ onWrite }: { onWrite: () => void }) {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: TABBAR_CSS }} />
-      <nav className="community-mobile-tabbar">
+      <nav className="community-mobile-tabbar" aria-label="커뮤니티 하단 탭">
         <TabItem href="/" active={isHome} icon={<Home style={{ width: 18, height: 18 }} />} label="홈" />
         <TabItem
           href="/community?sort=popular"

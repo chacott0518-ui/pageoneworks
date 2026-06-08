@@ -73,6 +73,17 @@ export default function CommunityClient({
   }, [initialPosts])
 
   useEffect(() => {
+    const style = document.createElement('style')
+    style.id = 'community-hide-floating-buttons'
+    style.textContent =
+      'button[aria-label="AI 에디터에게 질문하기"] { display: none !important; visibility: hidden !important; pointer-events: none !important; }'
+    document.head.appendChild(style)
+    return () => {
+      style.remove()
+    }
+  }, [])
+
+  useEffect(() => {
     const intent = localStorage.getItem('community_write_intent')
     if (intent === '1') {
       localStorage.removeItem('community_write_intent')

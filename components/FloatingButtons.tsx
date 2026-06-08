@@ -1,6 +1,9 @@
+// components/FloatingButtons.tsx
+
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 
 const SESSION_KEY = 'pageoneworks_aiqna_used'
@@ -48,6 +51,7 @@ function renderAnswer(text: string) {
 }
 
 export default function FloatingButtons({ category }: FloatingButtonsProps) {
+  const pathname = usePathname()
   const [panelOpen, setPanelOpen] = useState(false)
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
@@ -146,6 +150,8 @@ export default function FloatingButtons({ category }: FloatingButtonsProps) {
   const btnRight = isMobile ? '16px' : '40px'
   const btnSize = isMobile ? '48px' : '52px'
   const panelWidth = isMobile ? '100vw' : 'min(460px, 100vw)'
+
+  if (pathname.startsWith('/community')) return null
 
   return (
     <>
