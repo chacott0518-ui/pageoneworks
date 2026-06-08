@@ -10,6 +10,7 @@ import { Clock, Flame, MessageCircle, X } from 'lucide-react'
 import { CategorySidebar, MobileCategoryChips } from './CategorySidebar'
 import { PostCard } from './PostCard'
 import { TrendingSidebar } from './TrendingSidebar'
+import { AvatarCard } from './AvatarCard'
 import { Pagination } from './Pagination'
 import { MobileTabBar } from './MobileTabBar'
 import { SkeletonPostList } from './SkeletonPostCard'
@@ -31,7 +32,6 @@ const TEXT_TRENDING_TITLE = 'rgba(255,255,255,0.75)'
 const TEXT_TRENDING_SUB = 'rgba(255,255,255,0.45)'
 const TEXT_FOOTER = 'rgba(255,255,255,0.35)'
 const GOLD = '#C9A96E'
-const BG = '#0d0d0f'
 
 export default function CommunityClient({
   initialPosts,
@@ -87,6 +87,17 @@ export default function CommunityClient({
     style.id = 'community-hide-floating-buttons'
     style.textContent =
       'button[aria-label="AI 에디터에게 질문하기"] { display: none !important; visibility: hidden !important; pointer-events: none !important; }'
+    document.head.appendChild(style)
+    return () => {
+      style.remove()
+    }
+  }, [])
+
+  useEffect(() => {
+    const style = document.createElement('style')
+    style.id = 'community-right-sidebar-layout'
+    style.textContent =
+      '.community-right-sidebar > aside { display: block !important; width: 100% !important; padding: 0 !important; }'
     document.head.appendChild(style)
     return () => {
       style.remove()
@@ -205,7 +216,6 @@ export default function CommunityClient({
                 <SortTab active={currentSort === 'latest'} icon={<Clock className="w-3.5 h-3.5" />} label="최신순" onClick={() => navigate({ sort: 'latest', page: 1 })} />
                 <SortTab active={currentSort === 'popular'} icon={<Flame className="w-3.5 h-3.5" />} label="인기순" onClick={() => navigate({ sort: 'popular', page: 1 })} />
                 <SortTab active={currentSort === 'comment'} icon={<MessageCircle className="w-3.5 h-3.5" />} label="댓글많은순" onClick={() => navigate({ sort: 'comment', page: 1 })} />
-                <WriteButton onClick={handleWrite} />
                 <span className="ml-auto text-[11px] font-medium" style={{ color: TEXT_DATE }}>
                   페이지 {page} / {totalPages}
                 </span>
@@ -270,7 +280,12 @@ export default function CommunityClient({
               <Pagination page={page} totalPages={totalPages} onPageChange={(p) => navigate({ page: p })} />
             </section>
 
-            <TrendingSidebar trending={displayTrending} stats={displayStats} profile={profile} />
+            <RightSidebarColumn
+              profile={profile}
+              trending={displayTrending}
+              stats={displayStats}
+              onWrite={handleWrite}
+            />
           </div>
         </div>
 
@@ -282,37 +297,76 @@ export default function CommunityClient({
   )
 }
 
-function WriteButton({ onClick }: { onClick: () => void }) {
+function RightSidebarColumn({
+  profile,
+  trending,
+  stats,
+  onWrite,
+}: {
+  profile: ProfileMini | null
+  trending: TrendingPost[]
+  stats: CommunityStats
+  onWrite: () => void
+}) {
+  return (
+    <div
+      className="community-right-sidebar hidden min-[1200px]:block w-[220px] shrink-0 py-6 pl-4"
+      style={{ fontFamily: 'Inter, Pretendard, sans-serif' }}
+    >
+      {profile && <AvatarCard profile={profile} />}
+      <SidebarWriteButton onClick={onWrite} />
+      <TrendingSidebar trending={trending} stats={stats} profile={null} />
+    </div>
+  )
+}
+
+function SidebarWriteButton({ onClick }: { onClick: () => void }) {
+  const baseStyle: React.CSSProperties = {
+    width: '100%',
+    background: 'rgba(201,169,110,0.1)',
+    border: '1px solid rgba(201,169,110,0.3)',
+    color: GOLD,
+    fontSize: '13px',
+    fontWeight: 500,
+    padding: '10px 16px',
+    borderRadius: '8px',
+    textAlign: 'center',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '6px',
+    transition: 'all 150ms ease',
+    fontFamily: 'Inter, Pretendard, sans-serif',
+    marginBottom: '20px',
+    boxShadow: 'none',
+    transform: 'translateY(0)',
+  }
+
   return (
     <button
       type="button"
       onClick={onClick}
-      className="shrink-0"
-      style={{
-        background: GOLD,
-        color: BG,
-        fontWeight: 500,
-        padding: '6px 16px',
-        borderRadius: '20px',
-        fontSize: '12px',
-        border: 'none',
-        cursor: 'pointer',
-        transition: 'all 150ms ease',
-        fontFamily: 'Inter, Pretendard, sans-serif',
-      }}
+      className="hidden min-[1200px]:flex"
+      style={baseStyle}
       onMouseEnter={(e) => {
-        e.currentTarget.style.background = '#D4B47A'
+        e.currentTarget.style.background = 'rgba(201,169,110,0.18)'
+        e.currentTarget.style.borderColor = 'rgba(201,169,110,0.5)'
         e.currentTarget.style.transform = 'translateY(-1px)'
+        e.currentTarget.style.boxShadow = '0 4px 12px rgba(201,169,110,0.15)'
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = GOLD
+        e.currentTarget.style.background = 'rgba(201,169,110,0.1)'
+        e.currentTarget.style.borderColor = 'rgba(201,169,110,0.3)'
         e.currentTarget.style.transform = 'translateY(0)'
+        e.currentTarget.style.boxShadow = 'none'
       }}
       onMouseDown={(e) => {
         e.currentTarget.style.transform = 'translateY(0)'
       }}
     >
-      ✏ 글쓰기
+      <span>✏</span>
+      <span>글쓰기</span>
     </button>
   )
 }
