@@ -12,8 +12,8 @@ export const petFamilyArticles: Article[] = [
     date: '2026.06.09',
     readTime: '12 MIN',
     image: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80',
-    heroImage: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=1600&q=85',
-    featured: false,
+    heroImage: 'https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?w=1600&q=85',
+    featured: true,
     tags: ['슬개골탈구', '강아지슬개골', '소형견슬개골', '강아지수술', '슬개골탈구수술비용', '강아지다리절뚝', '말티즈슬개골', '푸들슬개골', '반려견건강', '강아지정형외과'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##7%:소형견 슬개골 탈구 발생률||4등급:탈구 심각도 분류||50%:양측 발생 비율||3~6개월:수술 후 완전 회복||1~4등급:치료 방법 결정 기준||90%이상:수술 후 정상 보행 회복률##END##

@@ -13,7 +13,7 @@ export const driveTechArticles: Article[] = [
     readTime: '12 MIN',
     image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1600&q=85',
-    featured: false,
+    featured: true,
     tags: ['아이폰17', '갤럭시S26', '아이폰vs갤럭시', '스마트폰추천2026', '아이폰17후기', '갤럭시S26후기', '스마트폰비교', '아이폰갤럭시차이', '2026스마트폰', '폰추천'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##6개월:실사용 비교 기간||5가지:비교 핵심 기준||200만원대:양측 출고가||A19 Biotic:아이폰17 칩셋||Exynos 2600:갤럭시S26 칩셋||10배:최대 광학 줌 배율##END##

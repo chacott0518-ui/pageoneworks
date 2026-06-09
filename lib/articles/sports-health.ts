@@ -13,7 +13,7 @@ export const sportsHealthArticles: Article[] = [
     readTime: '11 MIN',
     image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1600&q=85',
-    featured: false,
+    featured: true,
     tags: ['HIIT', '저강도유산소', '체지방감량', '유산소운동', 'LISS', '인터벌트레이닝', '칼로리소모', '운동다이어트', '체지방燃燒', '2026운동'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##25~30%:HIIT 사후연소 효과||60~70%:LISS 목표 심박수 구간||20분:HIIT 권장 운동 시간||45~60분:LISS 권장 운동 시간||2:1:HIIT 운동·휴식 비율||주3회:HIIT 최대 권장 횟수##END##
@@ -57,7 +57,7 @@ LISS는 관절 부담이 적고 회복이 빠릅니다. 초보자·부상 회복
 체지방 감량 목적의 최적 전략은 주 2회 HIIT + 주 2~3회 LISS 병행입니다. HIIT로 대사율을 높이고 LISS로 지방 직접 연소와 회복을 병행하면 시너지 효과가 발생합니다.
 (출처: 대한비만학회, 운동 방법별 체지방 감량 효과 비교, 2024)
 
-##IMAGE##https://images.unsplash.com/photo-1538805060514-97d9cc172c2d?w=1200&q=85##CAPTION##저강도 유산소 — 지방을 직접 에너지원으로 사용하는 비율이 높다##END##
+##IMAGE##https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=1200&q=85##CAPTION##저강도 유산소 — 지방을 직접 에너지원으로 사용하는 비율이 높다##END##
 
 ■ 체력 수준별 추천 전략
 
@@ -107,7 +107,7 @@ A. 나이 제한은 없지만 강도 조절이 필요합니다. 50대 이상은 
     readTime: '12 MIN',
     image: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&q=80',
     heroImage: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1600&q=85',
-    featured: true,
+    featured: false,
     tags: ['수면의질', '수면장애', '깊은잠자는법', '불면증해결', '수면루틴', '멜라토닌', '코르티솔수면', '수면개선2026', 'sleep quality', '피곤한이유'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##33%:성인 수면 부족 비율||4단계:수면 사이클 구성||90분:1회 수면 사이클||16시간:각성 후 수면 압력 최대||23시:멜라토닌 분비 최적 시작||7~9시간:성인 권장 수면 시간##END##

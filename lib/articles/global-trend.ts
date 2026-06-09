@@ -11,9 +11,9 @@ export const globalTrendArticles: Article[] = [
     excerpt: 'ChatGPT·Claude·Perplexity·Gamma·Notion AI를 실무에 적용하는 방법을 정리했습니다. 각 툴의 강점·약점·실전 활용법을 직종별로 구체적으로 안내합니다.',
     date: '2026.06.09',
     readTime: '13 MIN',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80',
-    heroImage: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1600&q=85',
-    featured: false,
+    image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1600&q=85',
+    featured: true,
     tags: ['AI툴추천', '직장인AI', 'ChatGPT활용법', 'Claude사용법', 'Perplexity', 'AI업무자동화', '생산성향상', 'AI에이전트2026', '업무AI', 'Notion AI'],
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##77%:AI 툴 도입 기업 비율||300%:평균 업무 생산성 향상||5가지:핵심 AI 툴||2026:AI 에이전트 원년||40%:반복 업무 자동화 가능 비율||10분:AI로 줄이는 평균 보고서 작성 시간##END##
