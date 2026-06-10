@@ -420,7 +420,7 @@ export default function ArticlePage({ params }: Props) {
               ) : null;
               const imgBox = (img: { url: string; cap: string }, extraStyle: React.CSSProperties = {}) => (
                 <div style={{ position: 'relative', overflow: 'hidden', ...extraStyle }}>
-                  <img src={img.url} alt={img.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                  <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" style={{ objectFit: 'cover', display: 'block' }} />
                   {capOverlay(img.cap)}
                 </div>
               );
@@ -433,7 +433,7 @@ export default function ArticlePage({ params }: Props) {
                     {imgBox(mImgs[0], { gridColumn: '1 / -1', aspectRatio: '21/8' })}
                     {mImgs.slice(1).map((img, mi) => (
                       <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3' }}>
-                        <img src={img.url} alt={img.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                        <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" style={{ objectFit: 'cover', display: 'block' }} />
                         {capOverlay(img.cap)}
                       </div>
                     ))}
@@ -444,7 +444,7 @@ export default function ArticlePage({ params }: Props) {
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', margin: '32px 0' }}>
                   {mImgs.slice(0, 4).map((img, mi) => (
                     <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1/1' }}>
-                      <img src={img.url} alt={img.cap} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} loading="lazy" />
+                      <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" style={{ objectFit: 'cover', display: 'block' }} />
                       {capOverlay(img.cap)}
                     </div>
                   ))}

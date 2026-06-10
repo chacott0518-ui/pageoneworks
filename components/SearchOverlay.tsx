@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Fuse from 'fuse.js';
 import { X } from 'lucide-react';
@@ -218,14 +219,15 @@ export function SearchOverlay({ isOpen, onClose }: Props) {
                     className="group block"
                   >
                     <div
-                      className="overflow-hidden mb-2 bg-[#1a1a1a]"
+                      className="relative overflow-hidden mb-2 bg-[#1a1a1a]"
                       style={{ aspectRatio: '4/3' }}
                     >
-                      <img
+                      <Image
                         src={article.image}
                         alt={article.titleKo}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                        loading="lazy"
+                        fill
+                        sizes="25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     </div>
                     <p
@@ -392,14 +394,15 @@ export function SearchOverlay({ isOpen, onClose }: Props) {
                   className="group block"
                 >
                   <div
-                    className="overflow-hidden mb-1.5 bg-[#1a1a1a]"
+                    className="relative overflow-hidden mb-1.5 bg-[#1a1a1a]"
                     style={{ aspectRatio: '4/3' }}
                   >
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.titleKo}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                      loading="lazy"
+                      fill
+                      sizes="33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                   </div>
                   <p

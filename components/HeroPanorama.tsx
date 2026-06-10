@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
+import Image from 'next/image';
 
 const slides = [
   {
@@ -87,19 +88,26 @@ export function HeroPanorama() {
 
       <div ref={parallaxRef} className="absolute inset-0" style={{ willChange: 'transform' }}>
         {slides.map((s, i) => (
-          <img
+          <div
             key={i}
-            src={s.image}
-            alt=""
-            aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 overflow-hidden"
             style={{
               opacity: i === current ? 1 : i === prev ? 0 : 0,
-              transform: 'scale(1.05)',
               transition: 'opacity 1.2s ease-in-out',
               zIndex: i === current ? 2 : i === prev ? 1 : 0,
             }}
-          />
+          >
+            <Image
+              src={s.image}
+              alt=""
+              aria-hidden
+              fill
+              sizes="100vw"
+              className="object-cover"
+              style={{ transform: 'scale(1.05)' }}
+              priority={i === 0}
+            />
+          </div>
         ))}
       </div>
 

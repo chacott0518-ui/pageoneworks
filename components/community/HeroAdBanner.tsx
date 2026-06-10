@@ -3,6 +3,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { COMMUNITY_COLORS } from './constants'
 
 export type HeroAdData = {
@@ -18,11 +19,15 @@ export function PcHeroAd({ ad }: { ad: HeroAdData | null }) {
   const hasImage = Boolean(ad?.image_url && ad.is_active)
 
   const inner = hasImage ? (
-    <img
-      src={ad!.image_url!}
-      alt="광고"
-      style={{ maxWidth: '100%', maxHeight: 90, objectFit: 'contain' }}
-    />
+    <div style={{ position: 'relative', width: '100%', height: 90 }}>
+      <Image
+        src={ad!.image_url!}
+        alt="광고"
+        fill
+        sizes="(min-width: 1200px) 100vw, 0px"
+        style={{ objectFit: 'contain' }}
+      />
+    </div>
   ) : (
     <span style={{ fontSize: 10, fontWeight: 400, color: 'rgba(255,255,255,0.2)' }}>{PLACEHOLDER}</span>
   )
@@ -58,11 +63,15 @@ export function MobileHeroAd({ ad }: { ad: HeroAdData | null }) {
   const hasImage = Boolean(ad?.image_url && ad.is_active)
 
   const inner = hasImage ? (
-    <img
-      src={ad!.image_url!}
-      alt="광고"
-      style={{ maxWidth: '100%', maxHeight: 50, objectFit: 'contain' }}
-    />
+    <div style={{ position: 'relative', width: '100%', height: 50 }}>
+      <Image
+        src={ad!.image_url!}
+        alt="광고"
+        fill
+        sizes="100vw"
+        style={{ objectFit: 'contain' }}
+      />
+    </div>
   ) : (
     <span style={{ fontSize: 10, fontWeight: 400, color: 'rgba(255,255,255,0.2)' }}>{PLACEHOLDER}</span>
   )

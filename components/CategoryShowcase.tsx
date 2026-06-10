@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { categories } from '@/lib/data';
 
@@ -40,14 +41,12 @@ export function CategoryShowcase() {
               className="group relative overflow-hidden h-[220px]"
               aria-label={`${cat.title} — ${cat.descKo}`}
             >
-              <img
+              <Image
                 src={cat.image}
                 alt={`${cat.titleKo} | ${cat.descKo} — PAGEONEWORKS 프리미엄 매거진`}
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
-                loading="lazy"
-                decoding="async"
-                width={800}
-                height={220}
+                fill
+                sizes="50vw"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-black/45 group-hover:bg-black/35 transition-colors duration-300" />
               <div className="absolute inset-0 flex flex-col justify-end p-6">
@@ -89,14 +88,12 @@ export function CategoryShowcase() {
               className="group relative overflow-hidden h-[220px] w-full block"
               aria-label="ARCHIVE — 전체 아티클 저장소"
             >
-              <img
+              <Image
                 src={archiveCat.image}
                 alt="PAGEONEWORKS 전체 아티클 아카이브 — 프리미엄 매거진 콘텐츠 모음"
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
-                loading="lazy"
-                decoding="async"
-                width={1600}
-                height={160}
+                fill
+                sizes="100vw"
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/20 group-hover:from-black/55 transition-colors duration-300" />
               <div className="absolute inset-0 flex items-center justify-between px-8">
@@ -148,14 +145,12 @@ export function CategoryShowcase() {
               style={{ aspectRatio: '4/3' }}
               aria-label={`${cat.title} — ${cat.titleKo}`}
             >
-              <img
+              <Image
                 src={cat.image}
                 alt={`${cat.titleKo} | ${cat.descKo} — PAGEONEWORKS`}
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
-                loading="lazy"
-                decoding="async"
-                width={400}
-                height={300}
+                fill
+                sizes="50vw"
+                className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300" />
               <div className="absolute inset-0 flex flex-col justify-end p-3">
@@ -191,14 +186,12 @@ export function CategoryShowcase() {
               style={{ aspectRatio: '4/3' }}
               aria-label="ARCHIVE — 전체 아티클"
             >
-              <img
+              <Image
                 src={archiveCat.image}
                 alt="PAGEONEWORKS 전체 아티클 아카이브"
-                className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
-                loading="lazy"
-                decoding="async"
-                width={800}
-                height={300}
+                fill
+                sizes="100vw"
+                className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/20" />
               <div className="absolute inset-0 flex items-center justify-between px-4">

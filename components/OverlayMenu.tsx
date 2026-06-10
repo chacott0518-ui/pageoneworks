@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, Instagram } from 'lucide-react';
 import { categories, articles } from '@/lib/data';
@@ -29,8 +30,8 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
       }`}
     >
       {hoveredCategory && (
-        <div className="absolute inset-0 z-0 pointer-events-none" style={{ opacity: 0.08 }}>
-          <img src={hoveredCategory.image} alt="" className="w-full h-full object-cover" aria-hidden="true" />
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" style={{ opacity: 0.08 }}>
+          <Image src={hoveredCategory.image} alt="" fill sizes="100vw" className="object-cover" aria-hidden />
         </div>
       )}
 

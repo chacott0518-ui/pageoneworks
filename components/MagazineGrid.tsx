@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { articles, categories } from '@/lib/data';
@@ -105,11 +106,13 @@ export function MagazineGrid() {
               style={{ aspectRatio: '4/3' }}
               itemProp="url"
             >
-              <img
+              <Image
                 src={main.heroImage ?? main.image}
                 alt={main.titleKo}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 100vw, 66vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                priority
                 itemProp="image"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
@@ -136,11 +139,12 @@ export function MagazineGrid() {
               {side.length > 0 ? side.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group relative overflow-hidden bg-black flex-1">
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.titleKo}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      loading="lazy"
+                      fill
+                      sizes="33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
                     <div className="absolute top-3 left-3">
@@ -174,11 +178,12 @@ export function MagazineGrid() {
               {bottom.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group">
                   <div className="relative overflow-hidden mb-3 bg-black" style={{ aspectRatio: '4/3' }}>
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.titleKo}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      loading="lazy"
+                      fill
+                      sizes="33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                     <div className="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors duration-500" />
                     <div className="absolute top-2.5 left-2.5">
@@ -217,11 +222,13 @@ export function MagazineGrid() {
             className="group block relative overflow-hidden bg-black mb-3"
             style={{ aspectRatio: '3/2' }}
           >
-            <img
+            <Image
               src={main.heroImage ?? main.image}
               alt={main.titleKo}
-              className="w-full h-full object-cover"
-              loading="lazy"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
             />
             <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
             <div className="absolute top-3 left-3">
@@ -246,11 +253,12 @@ export function MagazineGrid() {
             <div className="grid grid-cols-2 gap-2 mb-5">
               {mobileSwipe.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group relative overflow-hidden bg-black" style={{ aspectRatio: '4/3' }}>
-                  <img
+                  <Image
                     src={article.image}
                     alt={article.titleKo}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
+                    fill
+                    sizes="50vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
                   <div className="absolute top-2 left-2">

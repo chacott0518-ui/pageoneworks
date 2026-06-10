@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { X, Search, User } from 'lucide-react';
@@ -120,7 +121,9 @@ export function Header() {
                   style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.12em', padding: '7px 10px' }}
                 >
                   {avatarUrl ? (
-                    <img src={avatarUrl} alt="프로필" style={{ width: '22px', height: '22px', borderRadius: '50%' }} />
+                    <span className="relative shrink-0" style={{ width: '22px', height: '22px' }}>
+                      <Image src={avatarUrl} alt="프로필" fill sizes="22px" className="rounded-full object-cover" />
+                    </span>
                   ) : (
                     <User style={{ width: '14px', height: '14px' }} />
                   )}
@@ -282,7 +285,11 @@ export function Header() {
                 className="flex-1 flex items-center justify-center gap-2 uppercase transition-all hover:border-cream/50 hover:text-cream"
                 style={{ border: '1px solid rgba(245,242,237,0.18)', color: 'rgba(245,242,237,0.6)', fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.15em', padding: '10px', lineHeight: 1 }}
               >
-                {avatarUrl && <img src={avatarUrl} alt="" style={{ width: '16px', height: '16px', borderRadius: '50%' }} />}
+                {avatarUrl && (
+                  <span className="relative shrink-0" style={{ width: '16px', height: '16px' }}>
+                    <Image src={avatarUrl} alt="" fill sizes="16px" className="rounded-full object-cover" />
+                  </span>
+                )}
                 {userName}
               </Link>
               <button

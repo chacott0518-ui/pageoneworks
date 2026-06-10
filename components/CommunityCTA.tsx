@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 
 const plans = [
@@ -73,8 +74,8 @@ export function CommunityCTA() {
                 className={`flex items-center gap-4 p-4 border transition-colors ${plan.highlight ? 'border-gold/40 bg-gold/5' : 'border-white/8 hover:border-white/15'}`}>
 
                 {/* 썸네일 */}
-                <div className="shrink-0 w-14 h-14 overflow-hidden">
-                  <img src={plan.image} alt={plan.title} className="w-full h-full object-cover" />
+                <div className="relative shrink-0 w-14 h-14 overflow-hidden">
+                  <Image src={plan.image} alt={plan.title} fill sizes="56px" className="object-cover" />
                 </div>
 
                 {/* 텍스트 */}
