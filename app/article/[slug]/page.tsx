@@ -105,6 +105,10 @@ function parseBody(body: string) {
       blocks.push({ type: 'tablerow', content: line, caption: cells[0] || '', extra: cells[1] || '' });
       i++; continue;
     }
+    if (line.startsWith('##YEONSEI##')) {
+      blocks.push({ type: 'yeonsi', content: '' });
+      i++; continue;
+    }
     if (line.startsWith('##CTABLOCK##')) {
       blocks.push({ type: 'ctablock', content: '' });
       i++; continue;
@@ -444,6 +448,17 @@ export default function ArticlePage({ params }: Props) {
                       {capOverlay(img.cap)}
                     </div>
                   ))}
+                </div>
+              );
+            }
+            if (block.type === 'yeonsei') {
+              return (
+                <div key={i} style={{ margin: '8px 0 24px', fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)', fontWeight: 300, color: 'rgba(26,26,26,0.75)', lineHeight: '1.75' }}>
+                  전문의 자문 및 비밀 상담: 연세365산부인과
+                  <br />
+                  <a href="https://www.yeonsei365.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1a1aff', textDecoration: 'underline' }}>
+                    홈페이지 방문하기
+                  </a>
                 </div>
               );
             }
