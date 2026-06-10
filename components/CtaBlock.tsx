@@ -2,103 +2,68 @@
 
 export default function CtaBlock() {
   return (
-    <div style={{
-      border: '0.5px solid #3a2030',
-      borderRadius: '10px',
-      padding: '16px',
-      background: '#221018',
-      margin: '32px 0',
-    }}>
-      <p style={{
-        fontSize: '13px',
-        fontWeight: 500,
-        color: '#e8a0b8',
-        margin: '0 0 3px',
-        fontFamily: 'var(--font-inter)',
-      }}>
-        연세365산부인과 — 무료 상담
-      </p>
-      <p style={{
-        fontSize: '11px',
-        color: '#8a5a6a',
-        margin: '0 0 14px',
-        lineHeight: 1.5,
-        fontFamily: 'var(--font-inter)',
-      }}>
-        비밀 보장 · 당일 수술 가능 · 사당역 4번출구
-      </p>
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gap: '8px',
-      }}>
-        <a
-          href="http://pf.kakao.com/_TpaBj/chat"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="카카오톡 상담"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '14px 6px',
-            borderRadius: '8px',
-            background: '#3d2a18',
-            border: '0.5px solid #5a3a22',
-            textDecoration: 'none',
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.opacity = '0.75')}
-          onMouseOut={(e) => (e.currentTarget.style.opacity = '1')}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#FEE500" d="M12 3C6.477 3 2 6.72 2 11.3c0 2.88 1.73 5.42 4.36 6.93L5.2 21.5l4.72-2.6c.67.1 1.37.16 2.08.16 5.523 0 10-3.72 10-8.3C22 6.72 17.523 3 12 3z" />
-          </svg>
-        </a>
+    <div className="relative my-12 overflow-hidden rounded-[20px] border border-[#2a2a2c] bg-[#0F0F10] px-6 py-10 md:px-12 md:py-[52px]">
 
-        <a
-          href="tel:02-585-3650"
-          aria-label="전화 상담"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '14px 6px',
-            borderRadius: '8px',
-            background: '#2a1020',
-            border: '1px solid #5a2a40',
-            textDecoration: 'none',
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.background = '#3a1828')}
-          onMouseOut={(e) => (e.currentTarget.style.background = '#2a1020')}
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e8a0b8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-          </svg>
-        </a>
+      {/* 장식 원 */}
+      <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#C9A96E] opacity-[0.05]" />
 
-        <a
-          href="https://www.yeonsei365.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="홈페이지"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '14px 6px',
-            borderRadius: '8px',
-            background: '#1e1218',
-            border: '0.5px solid #3a2030',
-            textDecoration: 'none',
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.background = '#2a1820')}
-          onMouseOut={(e) => (e.currentTarget.style.background = '#1e1218')}
+      {/* 아이웨어 뱃지 */}
+      <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[rgba(201,169,110,0.3)] bg-[rgba(201,169,110,0.12)] px-4 py-1.5 text-[11px] font-medium tracking-wider text-[#C9A96E]">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#C9A96E]" />
+        PAGEONEWORKS SEO·GEO 전문 서비스
+      </div>
+
+      {/* 헤드라인 */}
+      <h3 className="mb-3 text-[20px] font-bold leading-snug tracking-tight text-white md:text-[26px]">
+        구글 AI 오버뷰·네이버 AI 브리핑,<br />
+        지금 바로 상위에 올리세요.
+      </h3>
+
+      {/* 서브 텍스트 */}
+      <p className="mb-8 text-[13px] leading-relaxed text-white/40 md:text-sm">
+        15년 노하우 · 삼성전자·롯데·SK쉴더스 등 500+ 프로젝트 완료
+        <br className="hidden md:block" />
+        GEO·SEO·AIEO 통합 전략 무료 진단 제공합니다.
+      </p>
+
+      {/* CTA 버튼 */}
+      <a href="tel:02-739-5415"
+        className="
+          inline-flex w-full items-center justify-center gap-2.5
+          rounded-xl bg-[#C9A96E] px-8 py-4
+          text-[15px] font-bold tracking-tight text-[#0F0F10]
+          transition-all duration-[180ms] ease-out
+          hover:-translate-y-0.5 hover:bg-[#dfc07e]
+          hover:shadow-[0_8px_24px_rgba(201,169,110,0.35)]
+          active:scale-[0.97] active:translate-y-0 active:bg-[#b89660]
+          active:shadow-[0_2px_8px_rgba(201,169,110,0.18)]
+          md:w-auto
+        "
+      >
+        <svg
+          width="18" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"
+          aria-hidden="true"
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9a7a85" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-        </a>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        SEO·GEO 무료 상담 신청하기
+      </a>
+
+      {/* 신뢰 배지 */}
+      <div className="mt-6 flex flex-wrap items-center gap-3 md:gap-5">
+        {[
+          '무료 진단 제공',
+          '평일 09:00–18:00',
+          '즉시 응답 가능',
+          '광고비 0원 구조 설계',
+        ].map((item) => (
+          <span key={item} className="flex items-center gap-1.5 text-[11px] text-white/35">
+            <span className="text-[#C9A96E] text-xs">✓</span>
+            {item}
+          </span>
+        ))}
       </div>
     </div>
   );
