@@ -331,7 +331,7 @@ export default function ArticlePage({ params }: Props) {
               return (
                 <figure key={i} className="my-8 md:my-10">
                   <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
-                    <Image src={block.content} alt={block.caption || ''} fill className="object-cover" sizes="(max-width: 760px) 100vw, 760px" loading="lazy" />
+                    <Image src={block.content} alt={block.caption || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 760px" quality={75} loading="lazy" />
                   </div>
                   {block.caption && (
                     <figcaption className="text-center mt-3 px-5 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
@@ -420,7 +420,7 @@ export default function ArticlePage({ params }: Props) {
               ) : null;
               const imgBox = (img: { url: string; cap: string }, extraStyle: React.CSSProperties = {}) => (
                 <div style={{ position: 'relative', overflow: 'hidden', ...extraStyle }}>
-                  <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" style={{ objectFit: 'cover', display: 'block' }} />
+                  <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" quality={75} style={{ objectFit: 'cover', display: 'block' }} />
                   {capOverlay(img.cap)}
                 </div>
               );
@@ -433,7 +433,7 @@ export default function ArticlePage({ params }: Props) {
                     {imgBox(mImgs[0], { gridColumn: '1 / -1', aspectRatio: '21/8' })}
                     {mImgs.slice(1).map((img, mi) => (
                       <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3' }}>
-                        <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" style={{ objectFit: 'cover', display: 'block' }} />
+                        <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" quality={75} style={{ objectFit: 'cover', display: 'block' }} />
                         {capOverlay(img.cap)}
                       </div>
                     ))}
@@ -444,7 +444,7 @@ export default function ArticlePage({ params }: Props) {
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', margin: '32px 0' }}>
                   {mImgs.slice(0, 4).map((img, mi) => (
                     <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1/1' }}>
-                      <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" style={{ objectFit: 'cover', display: 'block' }} />
+                      <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" quality={75} style={{ objectFit: 'cover', display: 'block' }} />
                       {capOverlay(img.cap)}
                     </div>
                   ))}
@@ -668,7 +668,7 @@ export default function ArticlePage({ params }: Props) {
                 {related.map((rel) => (
                   <Link key={rel.id} href={`/article/${rel.slug}`} className="group">
                     <div className="relative overflow-hidden aspect-video mb-4">
-                    <Image src={rel.image} alt={rel.titleKo} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, 400px" loading="lazy" />
+                    <Image src={rel.image} alt={rel.titleKo} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={75} loading="lazy" />
                     </div>
                     <p className="uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
                       {rel.category}

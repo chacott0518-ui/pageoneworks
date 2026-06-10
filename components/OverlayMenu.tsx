@@ -31,7 +31,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
     >
       {hoveredCategory && (
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden" style={{ opacity: 0.08 }}>
-          <Image src={hoveredCategory.image} alt="" fill sizes="100vw" className="object-cover" aria-hidden />
+          <Image src={hoveredCategory.image} alt="" fill sizes="(max-width: 768px) 100vw, 1600px" quality={75} className="object-cover" aria-hidden />
         </div>
       )}
 

@@ -477,6 +477,7 @@ export default function PostDetail({
                           alt={`${post.title} 이미지 ${i + 1}`}
                           fill
                           sizes="(max-width: 768px) 100vw, 70vw"
+                          quality={75}
                           loading="lazy"
                           style={{ objectFit: 'contain', background: 'rgba(0,0,0,0.2)' }}
                         />

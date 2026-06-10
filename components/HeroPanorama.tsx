@@ -102,7 +102,8 @@ export function HeroPanorama() {
               alt=""
               aria-hidden
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 1600px"
+              quality={75}
               className="object-cover"
               style={{ transform: 'scale(1.05)' }}
               priority={i === 0}

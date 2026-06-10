@@ -21,7 +21,7 @@ export default function CategoryClient({ category, catArticles, params }: any) {
       <Header />
       <section className="relative overflow-hidden" style={{ minHeight: '55vh' }}>
         <div className="absolute inset-0 overflow-hidden">
-          <Image src={category.image} alt={category.titleKo} fill sizes="100vw" className="object-cover object-center" priority />
+          <Image src={category.image} alt={category.titleKo} fill sizes="(max-width: 768px) 100vw, 1600px" quality={75} className="object-cover object-center" priority />
           <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/55 to-black/30" />
         </div>
         <div className="relative z-10 flex flex-col justify-end min-h-[55vh] px-5 md:px-12 pb-10 md:pb-14 pt-28 md:pt-40">
@@ -57,7 +57,7 @@ export default function CategoryClient({ category, catArticles, params }: any) {
               {featuredArticle && (
                 <Link key={`featured-${featuredArticle.id}`} href={`/article/${featuredArticle.slug}`} className="group block mb-6 md:mb-10">
                   <div className="relative overflow-hidden bg-[#1a1a1a]" style={{ aspectRatio: '21/9' }}>
-                    <Image src={featuredArticle.image} alt={featuredArticle.titleKo} fill sizes="(max-width: 768px) 100vw, 1600px" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
+                    <Image src={featuredArticle.image} alt={featuredArticle.titleKo} fill sizes="(max-width: 768px) 100vw, 1600px" quality={75} className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" priority />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
                     <div className="absolute bottom-0 left-0 p-6 md:p-10">
                       <p className="text-cream/50 uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.2em' }}>{featuredArticle.category}</p>
@@ -72,7 +72,7 @@ export default function CategoryClient({ category, catArticles, params }: any) {
                 {visibleGrid.map((article: any) => (
                   <Link key={article.id} href={`/article/${article.slug}`} className="group block">
                     <div className="relative overflow-hidden mb-3 md:mb-4 bg-[#1a1a1a]" style={{ aspectRatio: '4/3' }}>
-                      <Image src={article.image} alt={article.titleKo} fill sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                      <Image src={article.image} alt={article.titleKo} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={75} className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
                     </div>
                     <p className="text-cream/40 mb-1.5 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '8px', letterSpacing: '0.12em' }}>{article.category}</p>
                     <h3 className="font-light text-cream group-hover:italic transition-all leading-snug line-clamp-2" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(0.95rem, 1.5vw, 1.2rem)', lineHeight: '1.35', wordBreak: 'keep-all' }}>{article.titleKo}</h3>

@@ -75,7 +75,7 @@ export function CommunityCTA() {
 
                 {/* 썸네일 */}
                 <div className="relative shrink-0 w-14 h-14 overflow-hidden">
-                  <Image src={plan.image} alt={plan.title} fill sizes="56px" className="object-cover" />
+                  <Image src={plan.image} alt={plan.title} fill sizes="56px" quality={75} className="object-cover" />
                 </div>
 
                 {/* 텍스트 */}

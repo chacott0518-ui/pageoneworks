@@ -226,7 +226,8 @@ export function SearchOverlay({ isOpen, onClose }: Props) {
                         src={article.image}
                         alt={article.titleKo}
                         fill
-                        sizes="25vw"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        quality={75}
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                       />
                     </div>
@@ -401,7 +402,8 @@ export function SearchOverlay({ isOpen, onClose }: Props) {
                       src={article.image}
                       alt={article.titleKo}
                       fill
-                      sizes="33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      quality={75}
                       className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                   </div>

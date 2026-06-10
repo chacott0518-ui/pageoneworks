@@ -15,7 +15,8 @@ export function HeroImage({ src, alt }: Props) {
       fill
       className="object-cover opacity-70"
       priority
-      sizes="100vw"
+      sizes="(max-width: 768px) 100vw, 1400px"
+      quality={75}
       placeholder="empty"
       style={{ opacity: 0, transition: 'opacity 0.3s ease' }}
       onLoad={(e) => {

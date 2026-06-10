@@ -45,7 +45,8 @@ export function CategoryShowcase() {
                 src={cat.image}
                 alt={`${cat.titleKo} | ${cat.descKo} — PAGEONEWORKS 프리미엄 매거진`}
                 fill
-                sizes="50vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                quality={75}
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-black/45 group-hover:bg-black/35 transition-colors duration-300" />
@@ -92,7 +93,8 @@ export function CategoryShowcase() {
                 src={archiveCat.image}
                 alt="PAGEONEWORKS 전체 아티클 아카이브 — 프리미엄 매거진 콘텐츠 모음"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 1600px"
+                quality={75}
                 className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/20 group-hover:from-black/55 transition-colors duration-300" />
@@ -149,7 +151,8 @@ export function CategoryShowcase() {
                 src={cat.image}
                 alt={`${cat.titleKo} | ${cat.descKo} — PAGEONEWORKS`}
                 fill
-                sizes="50vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                quality={75}
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors duration-300" />
@@ -190,7 +193,8 @@ export function CategoryShowcase() {
                 src={archiveCat.image}
                 alt="PAGEONEWORKS 전체 아티클 아카이브"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, 1600px"
+                quality={75}
                 className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/40 to-black/20" />

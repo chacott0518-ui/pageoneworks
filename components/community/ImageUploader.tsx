@@ -176,7 +176,7 @@ export default function ImageUploader({ value, onChange }: Props) {
                 border: CARD_BORDER,
               }}
             >
-              <Image src={url} alt={`업로드 ${i + 1}`} fill sizes="88px" loading="lazy" style={{ objectFit: 'cover' }} />
+              <Image src={url} alt={`업로드 ${i + 1}`} fill sizes="88px" quality={75} loading="lazy" style={{ objectFit: 'cover' }} />
               <button
                 type="button"
                 onClick={() => removeAt(i)}

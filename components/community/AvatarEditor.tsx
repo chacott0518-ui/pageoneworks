@@ -190,7 +190,7 @@ export default function AvatarEditor({
                 style={{ border: frameStyle, boxShadow: '0 0 24px rgba(201,169,110,0.18)' }}
               >
                 {avatarUrl ? (
-                  <Image src={avatarUrl} alt="avatar" fill className="object-cover" sizes="120px" loading="lazy" />
+                  <Image src={avatarUrl} alt="avatar" fill className="object-cover" sizes="120px" quality={75} loading="lazy" />
                 ) : (
                   <span>{selectedEmoji}</span>
                 )}
@@ -261,7 +261,7 @@ export default function AvatarEditor({
                 {avatarUrl && (
                   <div className="mt-4 flex items-center gap-3">
                     <div className="relative w-14 h-14 rounded-full overflow-hidden" style={{ border: `0.5px solid ${COMMUNITY_COLORS.border}` }}>
-                      <Image src={avatarUrl} alt="preview" fill className="object-cover" sizes="56px" loading="lazy" />
+                      <Image src={avatarUrl} alt="preview" fill className="object-cover" sizes="56px" quality={75} loading="lazy" />
                     </div>
                     <span className="text-[12px] font-normal" style={{ color: COMMUNITY_COLORS.sub }}>
                       업로드된 사진 미리보기

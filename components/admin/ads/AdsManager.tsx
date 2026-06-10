@@ -116,7 +116,7 @@ export function AdsManager() {
               <input type="url" value={slot.link_url} onChange={(e) => updateSlot(slot.slot_name, { link_url: e.target.value })} placeholder="https://..." style={{ width: '100%', height: 40, padding: '0 12px', borderRadius: 8, border: T.border, background: T.surface, color: T.text, fontSize: 13, marginBottom: 8 }} />
               {slot.image_url && (
                 <div style={{ position: 'relative', width: '100%', height: 120, borderRadius: 8, border: T.border, overflow: 'hidden', marginBottom: 16 }}>
-                  <Image src={slot.image_url} alt="" fill sizes="(max-width: 768px) 100vw, 400px" style={{ objectFit: 'contain' }} />
+                  <Image src={slot.image_url} alt="" fill sizes="(max-width: 768px) 100vw, 400px" quality={75} style={{ objectFit: 'contain' }} />
                 </div>
               )}
               <button type="button" onClick={() => saveSlot(slot)} disabled={saving === slot.slot_name} style={{ ...btnStyle, background: 'rgba(201,169,110,0.15)', color: T.gold, opacity: saving === slot.slot_name ? 0.6 : 1 }}>

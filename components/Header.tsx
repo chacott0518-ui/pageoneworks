@@ -122,7 +122,7 @@ export function Header() {
                 >
                   {avatarUrl ? (
                     <span className="relative shrink-0" style={{ width: '22px', height: '22px' }}>
-                      <Image src={avatarUrl} alt="프로필" fill sizes="22px" className="rounded-full object-cover" />
+                      <Image src={avatarUrl} alt="프로필" fill sizes="22px" quality={75} className="rounded-full object-cover" />
                     </span>
                   ) : (
                     <User style={{ width: '14px', height: '14px' }} />
@@ -287,7 +287,7 @@ export function Header() {
               >
                 {avatarUrl && (
                   <span className="relative shrink-0" style={{ width: '16px', height: '16px' }}>
-                    <Image src={avatarUrl} alt="" fill sizes="16px" className="rounded-full object-cover" />
+                    <Image src={avatarUrl} alt="" fill sizes="16px" quality={75} className="rounded-full object-cover" />
                   </span>
                 )}
                 {userName}

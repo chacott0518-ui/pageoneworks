@@ -111,6 +111,7 @@ export function MagazineGrid() {
                 alt={main.titleKo}
                 fill
                 sizes="(max-width: 768px) 100vw, 66vw"
+                quality={75}
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 priority
                 itemProp="image"
@@ -143,7 +144,8 @@ export function MagazineGrid() {
                       src={article.image}
                       alt={article.titleKo}
                       fill
-                      sizes="33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      quality={75}
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
@@ -182,7 +184,8 @@ export function MagazineGrid() {
                       src={article.image}
                       alt={article.titleKo}
                       fill
-                      sizes="33vw"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      quality={75}
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                     />
                     <div className="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors duration-500" />
@@ -226,7 +229,8 @@ export function MagazineGrid() {
               src={main.heroImage ?? main.image}
               alt={main.titleKo}
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 1600px"
+              quality={75}
               className="object-cover"
               priority
             />
@@ -257,7 +261,8 @@ export function MagazineGrid() {
                     src={article.image}
                     alt={article.titleKo}
                     fill
-                    sizes="50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    quality={75}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />

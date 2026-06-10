@@ -38,7 +38,7 @@ function CardLarge({ a }: { a: Article }) {
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
         <div style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 56, fontWeight: 300, lineHeight: 1, color: '#888', marginBottom: 10, userSelect: 'none' }}>01</div>
         <div style={{ position: 'relative', width: '100%', paddingBottom: '56%', overflow: 'hidden', borderRadius: 1, marginBottom: 14 }}>
-          <Image src={a.image} alt={a.titleKo} fill sizes="(max-width: 768px) 100vw, 50vw" priority style={{ objectFit: 'cover', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform .6s ease' }} />
+          <Image src={a.image} alt={a.titleKo} fill sizes="(max-width: 768px) 100vw, 50vw" quality={75} priority style={{ objectFit: 'cover', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform .6s ease' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 55%)' }} />
           <div style={{ position: 'absolute', top: 12, left: 12, padding: '3px 10px', background: '#c9b99a', fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.14em', textTransform: 'uppercase', color: '#111' }}>에디터 픽 1위</div>
         </div>
@@ -65,7 +65,7 @@ function CardMedium({ a, rank, delay }: { a: Article; rank: number; delay: numbe
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
         <div style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 26, fontWeight: 300, lineHeight: 1, color: '#777', marginBottom: 8, userSelect: 'none' }}>{String(rank).padStart(2, '0')}</div>
         <div style={{ position: 'relative', width: '100%', paddingBottom: '65%', overflow: 'hidden', borderRadius: 1, marginBottom: 10 }}>
-          <Image src={a.image} alt={a.titleKo} fill sizes="(max-width: 768px) 50vw, 25vw" style={{ objectFit: 'cover', transform: hov ? 'scale(1.05)' : 'scale(1)', transition: 'transform .5s ease' }} />
+          <Image src={a.image} alt={a.titleKo} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={75} style={{ objectFit: 'cover', transform: hov ? 'scale(1.05)' : 'scale(1)', transition: 'transform .5s ease' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.3) 0%, transparent 60%)' }} />
         </div>
         <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.14em', textTransform: 'uppercase', color: '#777', marginBottom: 5 }}>{a.category}</div>
@@ -85,7 +85,7 @@ function CardSmall({ a, rank, delay, isLast }: { a: Article; rank: number; delay
         onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
         <div style={{ fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 17, fontWeight: 300, color: hov ? '#c9b99a' : '#777', minWidth: 24, flexShrink: 0, transition: 'color .2s' }}>{String(rank).padStart(2, '0')}</div>
         <div style={{ flex: '0 0 140px', height: 88, position: 'relative', overflow: 'hidden', borderRadius: 1 }}>
-          <Image src={a.image} alt={a.titleKo} fill sizes="140px" style={{ objectFit: 'cover', transform: hov ? 'scale(1.05)' : 'scale(1)', transition: 'transform .4s ease' }} />
+          <Image src={a.image} alt={a.titleKo} fill sizes="140px" quality={75} style={{ objectFit: 'cover', transform: hov ? 'scale(1.05)' : 'scale(1)', transition: 'transform .4s ease' }} />
         </div>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.12em', textTransform: 'uppercase', color: '#666', marginBottom: 5 }}>{a.category}</div>
@@ -104,7 +104,7 @@ function MobileHero({ a }: { a: Article }) {
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
       <div style={{ position: 'relative', borderRadius: 3, overflow: 'hidden' }}>
         <div style={{ position: 'relative', paddingBottom: '55%', overflow: 'hidden' }}>
-          <Image src={a.image} alt={a.titleKo} fill sizes="100vw" priority style={{ objectFit: 'cover', transform: hov ? 'scale(1.03)' : 'scale(1)', transition: 'transform .5s ease' }} />
+          <Image src={a.image} alt={a.titleKo} fill sizes="(max-width: 768px) 100vw, 1600px" quality={75} priority style={{ objectFit: 'cover', transform: hov ? 'scale(1.03)' : 'scale(1)', transition: 'transform .5s ease' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 16px 18px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 7 }}>
@@ -126,7 +126,7 @@ function MobileCard({ a, rank }: { a: Article; rank: number }) {
     <Link href={`/article/${a.slug}`} style={{ display: 'block', textDecoration: 'none' }}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}>
       <div style={{ position: 'relative', paddingBottom: '68%', overflow: 'hidden', borderRadius: 2, marginBottom: 8 }}>
-        <Image src={a.image} alt={a.titleKo} fill sizes="50vw" style={{ objectFit: 'cover', transform: hov ? 'scale(1.05)' : 'scale(1)', transition: 'transform .4s ease' }} />
+        <Image src={a.image} alt={a.titleKo} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={75} style={{ objectFit: 'cover', transform: hov ? 'scale(1.05)' : 'scale(1)', transition: 'transform .4s ease' }} />
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.35) 0%, transparent 60%)' }} />
         <div style={{ position: 'absolute', top: 7, left: 8, fontFamily: 'Cormorant Garamond, Georgia, serif', fontSize: 14, fontWeight: 300, color: 'rgba(255,255,255,.9)', userSelect: 'none' }}>{String(rank).padStart(2, '0')}</div>
       </div>

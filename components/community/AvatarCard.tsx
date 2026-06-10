@@ -35,6 +35,7 @@ export function AvatarCard({ profile }: { profile: ProfileMini }) {
               fill
               className="object-cover"
               sizes="44px"
+              quality={75}
               loading="lazy"
             />
           ) : (

@@ -25,6 +25,8 @@ export function PcHeroAd({ ad }: { ad: HeroAdData | null }) {
         alt="광고"
         fill
         sizes="(min-width: 1200px) 100vw, 0px"
+        quality={75}
+        priority
         style={{ objectFit: 'contain' }}
       />
     </div>
@@ -68,7 +70,9 @@ export function MobileHeroAd({ ad }: { ad: HeroAdData | null }) {
         src={ad!.image_url!}
         alt="광고"
         fill
-        sizes="100vw"
+        sizes="(max-width: 768px) 100vw, 1600px"
+        quality={75}
+        priority
         style={{ objectFit: 'contain' }}
       />
     </div>
