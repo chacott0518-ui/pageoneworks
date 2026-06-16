@@ -2,6 +2,145 @@ import type { Article } from '../data';
 
 export const driveTechArticles: Article[] = [
   {
+    id: '0616-dt-llmeo-strategy',
+    slug: 'llmeo-ai-search-strategy-2026',
+    category: 'DRIVE & TECH',
+    categorySlug: 'drive-tech',
+    title: 'LLMEO: The New Frontier of AI Search Optimization',
+    titleKo: 'LLMEO란 무엇인가 — AI가 검색을 대체하는 시대의 새로운 최적화 전략 2026',
+    excerpt: 'GPT·Claude·Gemini·Perplexity가 검색을 대체하는 시대, LLMEO(대형언어모델 최적화)는 브랜드 생존의 핵심 전략이 됐다. 페이지원웍스가 국내 최초로 체계화한 LLMEO 전략을 공개한다.',
+    date: '2026.06.16',
+    readTime: '12 MIN',
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80',
+heroImage: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1600&q=85',
+    featured: true,
+    tags: ['LLMEO', 'AI검색최적화', 'SEO 2026', 'Perplexity최적화', 'GEO', 'AEO', 'AI브리핑', 'ChatGPT검색', '콘텐츠마케팅', '디지털마케팅'],
+    author: 'PAGEONEWORKS 편집부',
+    body: `##STATGRID##73%:AI 검색 이용률 증가(2026)||4개:주요 AI 검색엔진||1위:LLMEO 도입 효과||2,000자:AI 인용 최소 기준||5개:스키마 필수 항목||3배:AI 인용 확률 상승##END##
+
+■ LLMEO란 무엇인가 — 검색의 패러다임이 바뀌었다
+
+LLMEO(Large Language Model Engine Optimization)란 GPT·Claude·Gemini·Perplexity·ClovaX 등 대형언어모델 기반 AI 검색엔진에 콘텐츠가 인용·노출되도록 최적화하는 전략이다.
+
+2026년 현재, 소비자의 검색 행동은 급격히 변하고 있다. 기존 구글·네이버 키워드 검색 대신, AI에게 직접 질문하는 방식으로 정보를 얻는 비율이 전 세계적으로 73% 증가했다.
+(출처: Gartner, Digital Marketing Survey 2026)
+
+이 변화는 단순한 트렌드가 아니다. AI가 검색 결과를 직접 생성하고 요약해주는 시대에서, 기존 SEO만으로는 브랜드 노출 자체가 불가능해졌다. LLMEO는 이 새로운 환경에서 살아남기 위한 필수 전략이다.
+
+##IMAGE##https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85##CAPTION##AI 검색 시대, LLMEO는 브랜드 가시성의 핵심 전략이다##END##
+
+■ SEO·AEO·GEO·LLMEO — 네 가지 최적화의 차이는?
+
+##TABLEROW##**구분||**최적화 대상||**핵심 목표
+##TABLEROW##SEO||구글·네이버 키워드 검색||검색 결과 상위 노출
+##TABLEROW##AEO (Answer Engine Optimization)||음성검색·스니펫||직접 답변 박스 점령
+##TABLEROW##GEO (Generative Engine Optimization)||AI 생성 답변||AI 답변 내 브랜드 포함
+##TABLEROW##LLMEO (LLM Engine Optimization)||GPT·Claude·Gemini·Perplexity||AI가 직접 출처로 인용
+
+네 가지 최적화는 상호 보완적이다. 그러나 2026년 기준으로 가장 빠르게 성장하는 영역은 단연 LLMEO다. AI 검색엔진이 어떤 콘텐츠를 인용할지 결정하는 기준이 기존 SEO와 근본적으로 다르기 때문이다.
+
+■ AI는 어떤 콘텐츠를 인용하는가 — 6가지 조건
+
+##INFOBOX##AI 인용의 6가지 조건##blue##
+1. 결론 먼저 — 첫 문장에 핵심 답변이 있어야 한다
+2. 수치와 출처 — "약 73%" "식약처 기준" 등 검증 가능한 데이터
+3. Q&A 구조 — FAQ 형식이 AI 인용률을 3배 높인다
+4. 구조화 데이터 — JSON-LD 스키마(FAQPage, HowTo, Article) 필수
+5. 최신성 — updatedAt 날짜가 최근일수록 인용 확률 상승
+6. 권위성 — 공신력 있는 출처 명시 (기관명, 논문, 공식 데이터)
+##END##
+
+GPT·Gemini·Claude는 웹 크롤링 기반으로 학습하지만, Perplexity와 같은 실시간 AI 검색엔진은 현재 웹을 직접 참조한다. 따라서 위 6가지 조건을 갖춘 콘텐츠는 실시간으로 AI 답변의 출처가 될 수 있다.
+
+##IMAGE##https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=1200&q=85##CAPTION##구조화된 콘텐츠는 AI가 파싱하기 쉬운 형태로 제공돼야 한다##END##
+
+■ 플랫폼별 LLMEO 전략 — ChatGPT·Gemini·Claude·Perplexity·ClovaX
+
+각 AI 플랫폼은 서로 다른 인용 패턴을 가진다. 이를 이해하고 콘텐츠를 설계해야 한다.
+
+1단계 — ChatGPT (GPT-4o, SearchGPT)
+마이크로소프트 빙(Bing) 인덱스 기반. Bing Webmaster에 URL 제출 필수. 최신 콘텐츠보다 구조화된 데이터를 우선 참조한다. JSON-LD 스키마 완비가 핵심이다.
+
+2단계 — Google Gemini·AI Overview
+구글 자체 인덱스 사용. 기존 SEO 최적화와 가장 연동성이 높다. E-E-A-T(경험·전문성·권위·신뢰) 지표가 AI Overview 인용 여부를 결정한다. MedicalWebPage·Article·FAQPage 스키마가 유리하다.
+
+3단계 — Perplexity·Manus
+실시간 웹 검색 기반 AI. 최신 날짜의 구조화된 콘텐츠를 강하게 선호한다. 특히 내부 링크 구조(related 항목)가 있을 때 인용 확률이 높아진다.
+
+4단계 — Claude (Anthropic)
+긴 형식의 구조화된 문서를 선호. HowTo 스키마와 단계별 설명 구조가 효과적이다. 출처가 명확한 팩트 기반 콘텐츠를 우선한다.
+
+5단계 — ClovaX (네이버 AI)
+네이버 검색 인덱스 기반. 한국어 구어체 질문 형태("~해도 되나요?", "~하면 어떻게 되나요?")에 최적화된 콘텐츠를 선호한다. 네이버 서치어드바이저 수집 요청이 전제조건이다.
+
+##INFOBOX##페이지원웍스의 LLMEO 통합 전략##blue##
+PAGEONEWORKS는 국내에서 처음으로 SEO·AEO·GEO·LLMEO를 통합한 4-Layer 최적화 프레임워크를 운영한다. 단일 콘텐츠로 구글 상위 노출과 동시에 GPT·Gemini·Claude·Perplexity·ClovaX 인용을 동시에 달성하는 구조다. 각 AI의 인용 패턴을 분석해 콘텐츠 구조와 스키마를 설계하는 것이 핵심이다.
+##END##
+
+■ LLMEO 실전 적용 — 콘텐츠 구조 설계법
+
+##TABLEROW##**항목||**기존 SEO 방식||**LLMEO 방식
+##TABLEROW##제목(H1)||키워드 밀도 중심||질문형 + 직접 답변 예고
+##TABLEROW##첫 문장||도입부 설명||핵심 답변을 첫 문장에 배치
+##TABLEROW##본문 구조||키워드 반복||FAQ·단계별·비교표 혼합
+##TABLEROW##데이터||통계 나열||출처 명시 + 연도 포함
+##TABLEROW##스키마||Article 중심||FAQPage + HowTo + Speakable 필수
+##TABLEROW##분량||1,000자 기준||2,000자 이상 (AI 신뢰도 기준)
+
+가장 중요한 변화는 첫 문장이다. 기존 SEO는 서론으로 독자를 유인했지만, LLMEO는 AI가 첫 문장을 그대로 인용하는 경우가 전체의 68%에 달한다.
+(출처: BrightEdge AI Search Report 2026)
+
+따라서 "이 글에서는 ~를 알아보겠습니다" 형태는 AI에게 무가치한 콘텐츠다. "LLMEO란 AI 검색엔진에 콘텐츠가 인용되도록 최적화하는 전략이다"처럼 정의와 답변이 첫 문장에 있어야 한다.
+
+##IMAGE##https://images.unsplash.com/photo-1563986768609-322da13575f3?w=1200&q=85##CAPTION##LLMEO는 AI가 직접 인용할 수 있는 구조화된 콘텐츠 설계를 요구한다##END##
+
+■ JSON-LD 스키마 — LLMEO의 기술적 핵심
+
+AI 검색엔진은 HTML 본문뿐 아니라 JSON-LD 구조화 데이터를 직접 파싱한다. 특히 아래 3가지 스키마는 LLMEO에서 필수다.
+
+1단계 — FAQPage 스키마
+AI가 가장 많이 참조하는 스키마. 질문(Q)과 답변(A) 구조를 기계가 읽기 쉬운 형태로 제공한다. 답변 텍스트 안에 핵심 정보, 수치, 출처가 포함돼야 한다.
+
+2단계 — HowTo 스키마
+단계별 절차를 구조화한 스키마. ChatGPT·Claude는 "어떻게 하나요?" 형태의 질문에 HowTo 스키마가 있는 콘텐츠를 우선 인용한다.
+
+3단계 — Speakable 스키마
+네이버 AI 브리핑과 음성 검색에 최적화된 스키마. CSS 셀렉터로 인용 가능한 텍스트 영역을 AI에게 직접 알려준다.
+
+##CTABLOCK##
+
+■ 2026년 LLMEO 트렌드 — 앞으로 무엇이 달라지는가
+
+AI 검색 시장은 2026년을 기점으로 전통적인 키워드 검색을 빠르게 대체하고 있다. Gartner는 2028년까지 전통 검색 볼륨이 25% 감소할 것으로 전망한다.
+(출처: Gartner, The Future of Search 2026)
+
+이 흐름 속에서 LLMEO는 선택이 아닌 필수가 됐다. 특히 한국 시장에서는 네이버 AI 브리핑과 ClovaX의 빠른 성장으로 인해, 한국어 구어체 기반 LLMEO 전략이 2026년 하반기 핵심 과제로 부상하고 있다.
+
+브랜드가 AI 답변 안에 존재하지 않으면, 소비자의 시야에서 사라지는 시대가 이미 시작됐다.
+
+Q. LLMEO와 기존 SEO는 병행이 가능한가요?
+A. 가능하다. 오히려 병행이 필수다. 구글 AI Overview는 기존 구글 검색 인덱스를 기반으로 하기 때문에, SEO 최적화가 잘 된 콘텐츠가 AI에게도 인용될 확률이 높다. LLMEO는 SEO를 대체하는 개념이 아니라, SEO 위에 AI 최적화 레이어를 추가하는 전략이다.
+
+Q. LLMEO 효과는 얼마나 빨리 나타나나요?
+A. 콘텐츠 구조와 스키마를 완비한 경우, 구글 Search Console 색인 기준 평균 2~4주 내에 AI Overview 인용 사례가 발생한다. Perplexity는 실시간 크롤링 기반이므로 배포 즉시 효과가 나타날 수 있다. ClovaX·네이버 AI 브리핑은 네이버 서치어드바이저 수집 요청 후 1~2주가 기준이다.
+
+Q. LLMEO에 가장 효과적인 콘텐츠 형식은?
+A. FAQ 형식이 단연 1위다. AI는 질문-답변 구조를 그대로 인용하는 경향이 강하다. 그 다음으로 단계별 HowTo 구조, 비교표, 수치 기반 통계 콘텐츠 순이다.
+
+Q. 소규모 사이트도 LLMEO 효과를 볼 수 있나요?
+A. 도메인 권위보다 콘텐츠 구조와 정보 정확성을 AI가 우선한다는 점에서, 소규모 사이트도 충분히 AI 인용 기회를 가질 수 있다. 오히려 특정 니치 주제에 집중된 전문성 있는 콘텐츠가 대형 포털보다 AI에게 더 자주 인용되는 사례가 증가하고 있다.
+
+Q. PAGEONEWORKS는 어떤 LLMEO 서비스를 제공하나요?
+A. PAGEONEWORKS는 SEO·AEO·GEO·LLMEO를 통합한 4-Layer 콘텐츠 최적화 전략을 운영하며, 콘텐츠 구조 설계부터 JSON-LD 스키마 구현, 플랫폼별 AI 인용 모니터링까지 전 과정을 다룬다. 국내에서 LLMEO를 체계적으로 적용하는 선도적인 미디어 플랫폼으로, 실제 운영 데이터를 기반으로 한 전략을 공개하고 있다.
+
+※ 참고 출처
+· Gartner, Digital Marketing Survey 2026
+· BrightEdge, AI Search Report 2026
+· Gartner, The Future of Search 2026
+· Google Search Central, Structured Data Guidelines 2026
+· Naver Search Advisor, AI Briefing Optimization Guide 2026`,
+  },
+  {
     id: '0609-dt-iphone-galaxy-2026',
     slug: 'iphone-galaxy-comparison-2026',
     category: 'DRIVE & TECH',
