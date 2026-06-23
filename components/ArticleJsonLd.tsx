@@ -32,6 +32,11 @@ export function ArticleJsonLd({ article }: Props) {
     keywords: article.tags?.join(', ') ?? '',
     articleSection: article.category,
     inLanguage: siteConfig.language,
+    ...(article.sources?.some((s) => s.url) && {
+      citation: article.sources
+        .filter((s) => s.url)
+        .map((s) => ({ '@type': 'CreativeWork', name: s.name, url: s.url })),
+    }),
     ...(article.isSponsored && {
       sponsor: {
         '@type': 'Organization',

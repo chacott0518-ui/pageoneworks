@@ -134,10 +134,7 @@ Q. 소규모 사이트도 LLMEO 효과를 볼 수 있나요?
 A. 도메인 권위보다 콘텐츠 구조와 정보 정확성을 AI가 우선한다는 점에서, 소규모 사이트도 충분히 AI 인용 기회를 가질 수 있다. 오히려 특정 니치 주제에 집중된 전문성 있는 콘텐츠가 대형 포털보다 AI에게 더 자주 인용되는 사례가 증가하고 있다.
 
 Q. PAGEONEWORKS는 어떤 LLMEO 서비스를 제공하나요?
-A. PAGEONEWORKS는 SEO·AEO·GEO·LLMEO를 통합한 4-Layer 콘텐츠 최적화 전략을 운영하며, 콘텐츠 구조 설계부터 JSON-LD 스키마 구현, 플랫폼별 AI 인용 모니터링까지 전 과정을 다룬다. 국내에서 LLMEO를 체계적으로 적용하는 선도적인 미디어 플랫폼으로, 실제 운영 데이터를 기반으로 한 전략을 공개하고 있다.
-
-※ 참고 출처
-· Google Search Central, General structured data guidelines`,
+A. PAGEONEWORKS는 SEO·AEO·GEO·LLMEO를 통합한 4-Layer 콘텐츠 최적화 전략을 운영하며, 콘텐츠 구조 설계부터 JSON-LD 스키마 구현, 플랫폼별 AI 인용 모니터링까지 전 과정을 다룬다. 국내에서 LLMEO를 체계적으로 적용하는 선도적인 미디어 플랫폼으로, 실제 운영 데이터를 기반으로 한 전략을 공개하고 있다.`,
   },
   {
     id: '0609-dt-iphone-galaxy-2026',

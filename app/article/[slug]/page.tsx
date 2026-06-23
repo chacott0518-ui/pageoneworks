@@ -646,6 +646,44 @@ export default function ArticlePage({ params }: Props) {
             </div>
           )}
 
+{(article.sources?.length ?? 0) > 0 && (
+            <div className="mt-14 pt-10 border-t border-black/8">
+              <p
+                className="uppercase mb-6"
+                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}
+              >
+                참고 출처
+              </p>
+              <ul className="flex flex-col gap-3">
+                {article.sources!.map((src, i) => (
+                  <li key={i} className="flex flex-col gap-1 py-3 border-b border-black/6 last:border-0">
+                    {src.url ? (
+                      <a
+                        href={src.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5"
+                        style={{ fontFamily: 'var(--font-inter)', fontSize: '14px', fontWeight: 400, color: '#1a1aff', textDecoration: 'underline' }}
+                      >
+                        {src.name}
+                        <ExternalLink className="w-3 h-3 shrink-0" />
+                      </a>
+                    ) : (
+                      <span style={{ fontFamily: 'var(--font-inter)', fontSize: '14px', fontWeight: 400, color: '#1a1a1a' }}>
+                        {src.name}
+                      </span>
+                    )}
+                    {(src.publisher || src.publishedAt) && (
+                      <span style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.08em', color: 'rgba(26,26,26,0.4)' }}>
+                        {[src.publisher, src.publishedAt].filter(Boolean).join(' · ')}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
 <AIQnA category={article.categorySlug} />
 
           <ShareButtons />
