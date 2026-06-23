@@ -24,6 +24,19 @@ export const siteSchema = {
   foundingDate: siteConfig.foundingDate,
   inLanguage: siteConfig.language,
   countryOfOrigin: { '@type': 'Country', name: 'KR' },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: siteConfig.address.streetAddress,
+    addressLocality: siteConfig.address.addressLocality,
+    addressRegion: siteConfig.address.addressRegion,
+    addressCountry: siteConfig.address.addressCountry,
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: siteConfig.email,
+    contactType: 'customer support',
+    availableLanguage: 'Korean',
+  },
 }
 
 // ─── 웹사이트 스키마 (홈 전용) ───────────────────────────────

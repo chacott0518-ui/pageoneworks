@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: '공지사항 | PAGEONEWORKS',
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
     title: '공지사항 | PAGEONEWORKS',
     description: 'PAGEONEWORKS 공지사항.',
     url: 'https://www.pageoneworks.com/notice',
-    images: [{ url: 'https://www.pageoneworks.com/og-image.jpg', width: 1200, height: 630 }],
+    images: [{ url: siteConfig.ogImagePath, width: 1200, height: 630 }],
     locale: 'ko_KR',
     type: 'website',
   },

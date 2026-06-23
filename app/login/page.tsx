@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import LoginClient from './LoginClient';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: '로그인 | PAGEONEWORKS',
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: '로그인 | PAGEONEWORKS',
     description: 'PAGEONEWORKS 프리미엄 매거진 로그인.',
     url: 'https://www.pageoneworks.com/login',
-    images: [{ url: 'https://www.pageoneworks.com/og-image.jpg', width: 1200, height: 630 }],
+    images: [{ url: siteConfig.ogImagePath, width: 1200, height: 630 }],
     locale: 'ko_KR',
     type: 'website',
   },

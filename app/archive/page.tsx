@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getBreadcrumbSchema, siteSchema } from '@/lib/schemas'
+import { siteConfig } from '@/lib/site.config'
 import ArchiveClient from './ArchiveClient'
 
 export const metadata: Metadata = {
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
     description: '강남 부동산·의료·안티에이징·법률·세무·라이프스타일 전문 매거진 PAGEONEWORKS 전체 아티클 모음',
     url: 'https://www.pageoneworks.com/archive',
     siteName: 'PAGEONEWORKS',
-    images: [{ url: 'https://www.pageoneworks.com/og-image.jpg', width: 1200, height: 630 }],
+    images: [{ url: siteConfig.ogImagePath, width: 1200, height: 630 }],
     locale: 'ko_KR',
     type: 'website',
   },

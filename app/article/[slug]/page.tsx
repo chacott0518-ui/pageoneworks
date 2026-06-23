@@ -14,7 +14,7 @@ import { articles } from '@/lib/data';
 import { ShareButtons } from './ShareButtons';
 import { HeroImage } from './HeroImage';
 import { Header } from '@/components/Header';
-import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, getHowToSchema, extractFAQsFromBody, normalizeDate } from '@/lib/schemas'
+import { getFAQSchema, getBreadcrumbSchema, getHowToSchema, extractFAQsFromBody } from '@/lib/schemas'
 import AIQnA from '@/components/AIQnA'
 import CtaBlock from '@/components/CtaBlock'
 
@@ -158,25 +158,13 @@ export default function ArticlePage({ params }: Props) {
   // ── 스키마 생성 ──────────────────────────────────────────
   const BASE_URL = 'https://www.pageoneworks.com'
   const articleUrl = `${BASE_URL}/article/${article.slug}`
-  const dateISO = normalizeDate(article.date)
   const faqs = extractFAQsFromBody(article.body ?? '')
-  const articleSchema = getArticleSchema({
-    title: article.titleKo,
-    description: article.excerpt,
-    url: articleUrl,
-    imageUrl: article.heroImage ?? article.image,
-    datePublished: dateISO,
-    authorName: article.author ?? 'PAGEONEWORKS 편집부',
-    category: article.category,
-    tags: article.tags ?? [],
-  })
   const faqSchema = getFAQSchema(faqs)
   const breadcrumbSchema = getBreadcrumbSchema([
     { name: '홈', url: BASE_URL },
     { name: article.category, url: `${BASE_URL}/category/${article.categorySlug}` },
     { name: article.titleKo, url: articleUrl },
   ])
-  const speakableSchema = getSpeakableSchema(articleUrl, article.titleKo)
 
   const howToSteps = (article.body ?? '').split('\n')
     .map((line: string) => line.match(/^([0-9]+)단계\s*[—\-]\s*(.+)/))
@@ -188,9 +176,7 @@ export default function ArticlePage({ params }: Props) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
       <Header />

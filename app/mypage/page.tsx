@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import MypageClient from './MypageClient';
+import { siteConfig } from '@/lib/site.config';
 
 export const metadata: Metadata = {
   title: '마이페이지 | PAGEONEWORKS',
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: '마이페이지 | PAGEONEWORKS',
     description: 'PAGEONEWORKS 마이페이지.',
     url: 'https://www.pageoneworks.com/mypage',
-    images: [{ url: 'https://www.pageoneworks.com/og-image.jpg', width: 1200, height: 630 }],
+    images: [{ url: siteConfig.ogImagePath, width: 1200, height: 630 }],
     locale: 'ko_KR',
     type: 'website',
   },

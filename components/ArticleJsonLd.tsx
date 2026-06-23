@@ -1,39 +1,36 @@
 import type { Article } from '@/lib/data';
+import { siteConfig, absoluteUrl } from '@/lib/site.config';
 
 interface Props {
   article: Article;
 }
 
 export function ArticleJsonLd({ article }: Props) {
+  const url = absoluteUrl(`/article/${article.slug}`);
+  const date = article.date.replace(/\./g, '-');
+
+  // 작성자 실명/프로필 정보가 없고 편집부 콘텐츠이면 Organization(publisher) 참조,
+  // 개별 작성자명이 있으면 최소 Person 객체만 사용한다. (허위 URL·자격 생성 금지)
+  const isEditorial = !article.author || /편집부|PAGEONEWORKS/i.test(article.author);
+  const author = isEditorial
+    ? { '@id': siteConfig.publisherId }
+    : { '@type': 'Person', name: article.author };
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${url}#article`,
     headline: article.titleKo,
     description: article.excerpt,
-    image: article.image,
-    datePublished: article.date.replace(/\./g, '-'),
-    dateModified: article.date.replace(/\./g, '-'),
-    author: {
-      '@type': 'Organization',
-      name: article.author ?? 'PAGEONEWORKS',
-      url: 'https://pageoneworks.com',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'PAGEONEWORKS',
-      url: 'https://pageoneworks.com',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://pageoneworks.com/images/logo.png',
-      },
-    },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `https://pageoneworks.com/article/${article.slug}`,
-    },
+    image: absoluteUrl(article.image),
+    datePublished: date,
+    dateModified: date,
+    author,
+    publisher: { '@id': siteConfig.publisherId },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     keywords: article.tags?.join(', ') ?? '',
     articleSection: article.category,
-    inLanguage: 'ko-KR',
+    inLanguage: siteConfig.language,
     ...(article.isSponsored && {
       sponsor: {
         '@type': 'Organization',

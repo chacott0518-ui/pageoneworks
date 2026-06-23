@@ -15,6 +15,7 @@ import type {
   TrendingPost,
 } from '@/components/community/types'
 import { getKstTodayStartISO, parsePage, parseSort } from '@/components/community/utils'
+import { siteConfig } from '@/lib/site.config'
 
 const PAGE_URL = 'https://www.pageoneworks.com/community'
 const BASE_URL = 'https://www.pageoneworks.com'
@@ -44,77 +45,29 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
 }
 
-function buildSchemas() {
-  const discussionForumSchema = {
+function buildSchemas(posts: { id: string; title: string }[]) {
+  const collectionPageSchema = {
     '@context': 'https://schema.org',
-    '@type': 'DiscussionForumPosting',
-    name: 'PAGEONEWORKS 커뮤니티',
+    '@type': 'CollectionPage',
+    '@id': `${PAGE_URL}#webpage`,
     url: PAGE_URL,
-    description: '21개 카테고리 프리미엄 커뮤니티 포럼',
-    author: { '@type': 'Organization', name: 'PAGEONEWORKS', url: BASE_URL },
-    publisher: { '@type': 'Organization', name: 'PAGEONEWORKS', url: BASE_URL },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': PAGE_URL },
-  }
-
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: '커뮤니티 글은 로그인 없이 볼 수 있나요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '네. 글 읽기는 로그인 없이 가능합니다. 글쓰기·댓글·좋아요는 로그인 후 이용할 수 있습니다.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '인기순 정렬 기준은 무엇인가요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '인기순은 조회수(view_count)를 기준으로 정렬됩니다.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '카테고리는 몇 개인가요?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '전체를 포함해 21개 카테고리를 운영합니다. PC에서는 좌측 사이드바, 모바일에서는 상단 칩으로 선택할 수 있습니다.',
-        },
-      },
-    ],
-  }
-
-  const webPageSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
     name: '프리미엄 커뮤니티 포럼 | PAGEONEWORKS',
-    url: PAGE_URL,
     description: 'PAGEONEWORKS 프리미엄 커뮤니티 — 최신·인기·댓글많은 글',
-    publisher: { '@type': 'Organization', name: 'PAGEONEWORKS', url: BASE_URL },
-  }
-
-  const howToSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'PAGEONEWORKS 커뮤니티 이용 방법',
-    description: '카테고리 선택, 정렬, 글쓰기까지 커뮤니티 이용 가이드',
-    step: [
-      { '@type': 'HowToStep', position: 1, name: '카테고리 선택', text: '관심 카테고리를 선택합니다.' },
-      { '@type': 'HowToStep', position: 2, name: '정렬 선택', text: '최신순·인기순·댓글많은순 중 선택합니다.' },
-      { '@type': 'HowToStep', position: 3, name: '글 읽기', text: '목록에서 글을 클릭해 상세 내용을 확인합니다.' },
-      { '@type': 'HowToStep', position: 4, name: '글쓰기', text: '로그인 후 글쓰기 버튼으로 새 글을 작성합니다.' },
-    ],
-  }
-
-  const speakableSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'PAGEONEWORKS 커뮤니티',
-    url: PAGE_URL,
-    speakable: { '@type': 'SpeakableSpecification', cssSelector: ['h1', '.speakable-summary'] },
+    isPartOf: { '@id': siteConfig.websiteId },
+    publisher: { '@id': siteConfig.publisherId },
+    inLanguage: siteConfig.language,
+    ...(posts.length > 0 && {
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: posts.length,
+        itemListElement: posts.map((p, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${BASE_URL}/community/${p.id}`,
+          name: p.title,
+        })),
+      },
+    }),
   }
 
   const breadcrumbSchema = {
@@ -126,23 +79,9 @@ function buildSchemas() {
     ],
   }
 
-  const organizationSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'PAGEONEWORKS',
-    url: BASE_URL,
-    logo: { '@type': 'ImageObject', url: `${BASE_URL}/logo.png` },
-    sameAs: ['https://www.instagram.com/pageoneworks', 'https://www.youtube.com/@pageoneworks'],
-  }
-
   return {
-    discussionForumSchema,
-    faqSchema,
-    webPageSchema,
-    howToSchema,
-    speakableSchema,
+    collectionPageSchema,
     breadcrumbSchema,
-    organizationSchema,
   }
 }
 
@@ -329,17 +268,14 @@ export default async function CommunityPage({
   })) as CommunityPost[]
   const trending = (trendingRaw ?? []) as TrendingPost[]
   const totalPages = Math.max(1, Math.ceil((totalCount ?? 0) / PAGE_SIZE))
-  const schemas = buildSchemas()
+  const schemas = buildSchemas(
+    initialPosts.map((p) => ({ id: p.id, title: p.title }))
+  )
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.discussionForumSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.webPageSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.howToSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.speakableSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.collectionPageSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas.organizationSchema) }} />
 
       <Suspense fallback={<CommunityLoadingFallback />}>
         <CommunityClient
