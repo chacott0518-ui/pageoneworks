@@ -1,16 +1,16 @@
 import type { Metadata } from 'next'
 import {
-  siteSchema,
   webSiteSchema,
   getBreadcrumbSchema,
   getSpeakableSchema,
   getFAQSchema,
   getItemListSchema,
 } from '@/lib/schemas'
+import { siteConfig } from '@/lib/site.config'
 import { articles } from '@/lib/data'
 import HomeClient from './HomeClient'
 
-const SITE_URL = 'https://www.pageoneworks.com'
+const SITE_URL = siteConfig.baseUrl
 
 export const metadata: Metadata = {
   title: {
@@ -62,7 +62,7 @@ const speakableSchema = getSpeakableSchema(
 const homeFAQSchema = getFAQSchema([
   {
     q: 'PAGEONEWORKS는 어떤 매거진인가요?',
-    a: 'PAGEONEWORKS(페이지원웍스)는 의료·안티에이징·프리미엄 부동산·모빌리티·AI·법률·금융·라이프스타일·뷰티·미식·교육 분야를 아우르는 대한민국 No.1 프리미엄 웹 매거진입니다. 검증된 전문가 필진의 심층 콘텐츠와 하이엔드 라이프스타일 인사이트를 제공합니다.',
+    a: 'PAGEONEWORKS(페이지원웍스)는 의료·안티에이징·프리미엄 부동산·모빌리티·AI·법률·금융·라이프스타일·뷰티·미식·교육 분야를 아우르는 프리미엄 웹 매거진입니다. 검증된 전문가 필진의 심층 콘텐츠와 하이엔드 라이프스타일 인사이트를 제공합니다.',
   },
   {
     q: 'PAGEONEWORKS 광고·협찬 문의는 어떻게 하나요?',
@@ -94,7 +94,6 @@ const itemListSchema = getItemListSchema(
 export default function HomePage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />

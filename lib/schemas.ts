@@ -1,22 +1,28 @@
-const BASE_URL = 'https://www.pageoneworks.com'
+import { siteConfig, absoluteUrl } from './site.config'
+
+const BASE_URL = siteConfig.baseUrl
 
 // ─── 사이트 기본 스키마 ───────────────────────────────────────
 export const siteSchema = {
   '@context': 'https://schema.org',
   '@type': 'NewsMediaOrganization',
-  name: 'PAGEONEWORKS',
-  alternateName: '페이지원웍스',
+  '@id': siteConfig.publisherId,
+  name: siteConfig.name,
+  alternateName: siteConfig.alternateName,
   url: BASE_URL,
   logo: {
     '@type': 'ImageObject',
-    url: `${BASE_URL}/images/og-default.jpg`,
+    url: absoluteUrl(siteConfig.logoPath),
+  },
+  image: {
+    '@type': 'ImageObject',
+    url: absoluteUrl(siteConfig.ogImagePath),
     width: 1200,
     height: 630,
   },
-  description:
-    '의료·안티에이징·부동산·모빌리티·법률·금융·라이프스타일·뷰티·미식·교육을 아우르는 대한민국 No.1 프리미엄 웹 매거진',
-  foundingDate: '2024',
-  inLanguage: 'ko-KR',
+  description: siteConfig.description,
+  foundingDate: siteConfig.foundingDate,
+  inLanguage: siteConfig.language,
   countryOfOrigin: { '@type': 'Country', name: 'KR' },
 }
 
@@ -24,10 +30,12 @@ export const siteSchema = {
 export const webSiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'PAGEONEWORKS',
+  '@id': siteConfig.websiteId,
+  name: siteConfig.name,
   url: BASE_URL,
-  description: '대한민국 No.1 프리미엄 라이프스타일 웹 매거진',
-  inLanguage: 'ko-KR',
+  description: siteConfig.description,
+  inLanguage: siteConfig.language,
+  publisher: { '@id': siteConfig.publisherId },
   potentialAction: {
     '@type': 'SearchAction',
     target: {
@@ -80,17 +88,7 @@ export function getArticleSchema({
       name: authorName,
       url: BASE_URL,
     },
-    publisher: {
-      '@type': 'NewsMediaOrganization',
-      name: 'PAGEONEWORKS',
-      url: BASE_URL,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${BASE_URL}/images/og-default.jpg`,
-        width: 1200,
-        height: 630,
-      },
-    },
+    publisher: { '@id': siteConfig.publisherId },
     articleSection: category,
     keywords: tags.join(', '),
     inLanguage: 'ko-KR',
@@ -164,12 +162,8 @@ export function getWebPageSchema({
     name,
     url,
     description,
-    inLanguage: 'ko-KR',
-    publisher: {
-      '@type': 'NewsMediaOrganization',
-      name: 'PAGEONEWORKS',
-      url: BASE_URL,
-    },
+    inLanguage: siteConfig.language,
+    publisher: { '@id': siteConfig.publisherId },
   }
 }
 

@@ -14,7 +14,7 @@ import { articles } from '@/lib/data';
 import { ShareButtons } from './ShareButtons';
 import { HeroImage } from './HeroImage';
 import { Header } from '@/components/Header';
-import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, getHowToSchema, extractFAQsFromBody, normalizeDate, siteSchema } from '@/lib/schemas'
+import { getArticleSchema, getFAQSchema, getBreadcrumbSchema, getSpeakableSchema, getHowToSchema, extractFAQsFromBody, normalizeDate } from '@/lib/schemas'
 import AIQnA from '@/components/AIQnA'
 import CtaBlock from '@/components/CtaBlock'
 
@@ -193,7 +193,6 @@ export default function ArticlePage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
       {howToSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
       <Header />
       <ArticleJsonLd article={article} />
       <ReadingProgress />

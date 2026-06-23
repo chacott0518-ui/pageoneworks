@@ -1,54 +1,40 @@
 import type { Metadata } from 'next';
+import { siteConfig, absoluteUrl } from '@/lib/site.config';
+
+const ABOUT_URL = absoluteUrl('/about');
 
 export const metadata: Metadata = {
-  title: '소개 | PAGEONEWORKS',
-  description: 'PAGEONEWORKS는 대한민국 No.1 프리미엄 라이프스타일 매거진입니다. 부동산·의료·법률·미식·여행 분야의 깊이 있는 콘텐츠를 제공합니다.',
+  title: `소개 | ${siteConfig.name}`,
+  description: siteConfig.description,
   keywords: ['페이지원웍스소개', 'PAGEONEWORKS', '프리미엄매거진', '라이프스타일매거진'],
-  alternates: { canonical: 'https://www.pageoneworks.com/about' },
+  alternates: { canonical: ABOUT_URL },
   openGraph: {
-    title: '소개 | PAGEONEWORKS',
-    description: 'PAGEONEWORKS는 대한민국 No.1 프리미엄 라이프스타일 매거진입니다.',
-    url: 'https://www.pageoneworks.com/about',
-    images: [{ url: 'https://www.pageoneworks.com/og-image.jpg', width: 1200, height: 630 }],
-    locale: 'ko_KR',
+    title: `소개 | ${siteConfig.name}`,
+    description: siteConfig.description,
+    url: ABOUT_URL,
+    images: [{ url: absoluteUrl(siteConfig.ogImagePath), width: 1200, height: 630 }],
+    locale: siteConfig.locale,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '소개 | PAGEONEWORKS',
-    description: 'PAGEONEWORKS는 대한민국 No.1 프리미엄 라이프스타일 매거진입니다.',
+    title: `소개 | ${siteConfig.name}`,
+    description: siteConfig.description,
   },
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
-  name: '소개 | PAGEONEWORKS',
-  url: 'https://www.pageoneworks.com/about',
-  description: 'PAGEONEWORKS 소개 페이지',
-  publisher: {
-    '@type': 'Organization',
-    name: 'PAGEONEWORKS',
-    url: 'https://www.pageoneworks.com',
-    logo: { '@type': 'ImageObject', url: 'https://www.pageoneworks.com/logo.png' },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '장안동 463-2 이화빌딩 7F',
-      addressLocality: '동대문구',
-      addressRegion: '서울',
-      addressCountry: 'KR',
-    },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      email: 'chacott0518@gmail.com',
-      contactType: 'customer service',
-    },
-  },
+  name: `소개 | ${siteConfig.name}`,
+  url: ABOUT_URL,
+  description: `${siteConfig.name} 소개 페이지`,
+  publisher: { '@id': siteConfig.publisherId },
   breadcrumb: {
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.pageoneworks.com' },
-      { '@type': 'ListItem', position: 2, name: '소개', item: 'https://www.pageoneworks.com/about' },
+      { '@type': 'ListItem', position: 1, name: '홈', item: siteConfig.baseUrl },
+      { '@type': 'ListItem', position: 2, name: '소개', item: ABOUT_URL },
     ],
   },
 };
@@ -68,7 +54,7 @@ export default function AboutPage() {
 
           <div style={{ borderTop: '0.5px solid rgba(245,242,237,0.1)', paddingTop: '40px' }}>
             <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: 300, color: 'rgba(245,242,237,0.85)', lineHeight: 1.8, marginBottom: '32px' }}>
-              PAGEONEWORKS는 대한민국 No.1 프리미엄 라이프스타일 매거진입니다.
+              {siteConfig.name}는 프리미엄 라이프스타일 매거진입니다.
             </p>
             <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '13px', color: 'rgba(245,242,237,0.6)', lineHeight: 2, marginBottom: '48px' }}>
               부동산·의료·안티에이징·법률·세무·미식·여행·교육 분야에서<br />
@@ -78,11 +64,11 @@ export default function AboutPage() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1px', background: 'rgba(245,242,237,0.08)', marginBottom: '48px' }}>
               {[
-                { label: '설립', value: '2026' },
-                { label: '대표', value: '김세준' },
-                { label: '사업자번호', value: '206-31-95055' },
-                { label: '주소', value: '서울 동대문구 장안동 463-2 7F' },
-                { label: '이메일', value: 'chacott0518@gmail.com' },
+                { label: '설립', value: siteConfig.foundingDate },
+                { label: '대표', value: siteConfig.representative },
+                { label: '사업자번호', value: siteConfig.businessNumber },
+                { label: '주소', value: siteConfig.address.display },
+                { label: '이메일', value: siteConfig.email },
                 { label: '카테고리', value: '8개 프리미엄 분야' },
               ].map((item) => (
                 <div key={item.label} style={{ background: '#0a0a0a', padding: '24px' }}>

@@ -2,8 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import '../styles/globals.css';
 import FloatingButtons from '@/components/FloatingButtons'
 import { siteSchema } from '@/lib/schemas'
+import { siteConfig } from '@/lib/site.config'
 
-const SITE_URL = 'https://www.pageoneworks.com';
+const SITE_URL = siteConfig.baseUrl;
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -15,10 +16,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'PAGEONEWORKS — 프리미엄 라이프스타일 매거진',
-    template: '%s | PAGEONEWORKS',
+    default: siteConfig.title,
+    template: `%s | ${siteConfig.name}`,
   },
-  description: '의료·안티에이징·부동산·모빌리티·법률·금융·라이프스타일·뷰티·미식·교육을 아우르는 대한민국 No.1 프리미엄 웹 매거진. 검증된 전문가 콘텐츠와 하이엔드 라이프스타일 인사이트를 제공합니다.',
+  description: siteConfig.description,
   keywords: [
     // ─── 브랜드 ───
     'PAGEONEWORKS', '페이지원웍스', '프리미엄 매거진', '라이프스타일 매거진', '웹 매거진', '온라인 매거진',
@@ -304,26 +305,26 @@ export const metadata: Metadata = {
     '웨비나', '온라인 세미나', '기업 교육', 'B2B 교육', '기업 강의',
   ],
   openGraph: {
-    title: 'PAGEONEWORKS — 프리미엄 라이프스타일 매거진',
-    description: '의료·부동산·모빌리티·법률·금융·라이프스타일·뷰티·미식·교육을 아우르는 대한민국 프리미엄 웹 매거진',
+    title: siteConfig.title,
+    description: siteConfig.description,
     type: 'website',
     url: SITE_URL,
-    siteName: 'PAGEONEWORKS',
-    locale: 'ko_KR',
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
     images: [
       {
-        url: '/images/og-default.jpg',
+        url: siteConfig.ogImagePath,
         width: 1200,
         height: 630,
-        alt: 'PAGEONEWORKS — 프리미엄 라이프스타일 매거진',
+        alt: siteConfig.title,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PAGEONEWORKS — 프리미엄 라이프스타일 매거진',
-    description: '의료·부동산·모빌리티·법률·금융·라이프스타일·뷰티·미식·교육을 아우르는 대한민국 프리미엄 웹 매거진',
-    images: ['/images/og-default.jpg'],
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.ogImagePath],
   },
   robots: {
     index: true,
@@ -342,12 +343,12 @@ export const metadata: Metadata = {
       'naver-site-verification': 'e022afdd6733e34ed024626ec671c1401bcc3271',
     },
   },
-  authors: [{ name: 'PAGEONEWORKS 편집부', url: 'https://www.pageoneworks.com' }],
-  creator: 'PAGEONEWORKS',
-  publisher: 'PAGEONEWORKS',
+  authors: [{ name: `${siteConfig.name} 편집부`, url: siteConfig.baseUrl }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   other: {
-    'application-name': 'PAGEONEWORKS',
-    'article:publisher': 'https://www.pageoneworks.com',
+    'application-name': siteConfig.name,
+    'article:publisher': siteConfig.baseUrl,
   },
 };
 
