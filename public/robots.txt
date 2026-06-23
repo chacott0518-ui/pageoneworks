@@ -41,6 +41,5 @@ User-agent: Manus
 Allow: /
 
 Sitemap: https://www.pageoneworks.com/sitemap.xml
-Sitemap: https://www.pageoneworks.com/feed.xml
 
 Crawl-delay: 1

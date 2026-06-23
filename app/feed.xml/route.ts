@@ -1,6 +1,7 @@
 import { articles } from '@/lib/data';
+import { siteConfig } from '@/lib/site.config';
 
-const BASE_URL = 'https://www.pageoneworks.com';
+const BASE_URL = siteConfig.baseUrl;
 
 export async function GET() {
   const rssItems = articles
@@ -24,9 +25,9 @@ export async function GET() {
   const rssFeed = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-<title>PAGEONEWORKS — 프리미엄 라이프스타일 매거진</title>
+<title>${siteConfig.title}</title>
 <link>${BASE_URL}</link>
-<description>의료·안티에이징·부동산·모빌리티·법률·금융·라이프스타일·뷰티·미식·교육을 아우르는 대한민국 No.1 프리미엄 웹 매거진</description>
+<description>${siteConfig.description}</description>
 <language>ko</language>
 <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
 <atom:link href="${BASE_URL}/feed.xml" rel="self" type="application/rss+xml"/>

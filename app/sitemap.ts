@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next'
 import { articles, categories } from '@/lib/data'
 import { notifyIndexNow } from '@/lib/indexnow'
+import { siteConfig } from '@/lib/site.config'
 
-const BASE_URL = 'https://www.pageoneworks.com'
+const BASE_URL = siteConfig.baseUrl
 
 export default function sitemap(): MetadataRoute.Sitemap {
 
@@ -25,6 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/about`,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
     {
       url: `${BASE_URL}/community`,

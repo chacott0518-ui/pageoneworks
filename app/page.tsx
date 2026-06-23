@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import {
   webSiteSchema,
   getBreadcrumbSchema,
-  getSpeakableSchema,
   getItemListSchema,
 } from '@/lib/schemas'
 import { siteConfig } from '@/lib/site.config'
@@ -53,11 +52,6 @@ const breadcrumbSchema = getBreadcrumbSchema([
   { name: '홈', url: SITE_URL },
 ])
 
-const speakableSchema = getSpeakableSchema(
-  SITE_URL,
-  'PAGEONEWORKS — 프리미엄 라이프스타일 매거진'
-)
-
 const featuredArticles = articles.slice(0, 10)
 const itemListSchema = getItemListSchema(
   'PAGEONEWORKS 최신 추천 아티클',
@@ -72,7 +66,6 @@ export default function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <HomeClient />
     </>

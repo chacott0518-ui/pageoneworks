@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { siteConfig } from '@/lib/site.config'
 
 const ipCallMap = new Map<string, { count: number; date: string }>()
 
@@ -39,7 +40,7 @@ function buildSystemPrompt(category?: string): string {
     : '프리미엄 라이프스타일 전반'
 
   return `당신은 PAGEONEWORKS(페이지원웍스) 프리미엄 라이프스타일 매거진의 AI 전문 에디터입니다.
-PAGEONEWORKS는 ${categoryDesc}을 다루는 대한민국 No.1 프리미엄 웹 매거진입니다.
+${siteConfig.name}는 ${categoryDesc}을 다루는 프리미엄 웹 매거진입니다.
 
 반드시 아래 구조와 규칙을 따르세요.
 

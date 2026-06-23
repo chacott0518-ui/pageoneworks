@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getBreadcrumbSchema, siteSchema } from '@/lib/schemas'
+import { getBreadcrumbSchema } from '@/lib/schemas'
 import { siteConfig } from '@/lib/site.config'
 import ArchiveClient from './ArchiveClient'
 
@@ -37,7 +37,6 @@ export default function ArchivePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }} />
       <ArchiveClient />
     </>
   )
