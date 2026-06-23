@@ -112,9 +112,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     .from('community_posts')
     .select('title, content, category_slug, created_at')
     .eq('id', params.id)
-    .single()
+    .or(HIDDEN_FILTER)
+    .maybeSingle()
 
-  if (!post) return {}
+  if (!post) {
+    return {
+      robots: {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      },
+    }
+  }
 
   return {
     title: `${post.title} | PAGEONEWORKS 커뮤니티`,
@@ -152,7 +161,8 @@ export default async function PostPage({ params }: Props) {
     .from('community_posts')
     .select(`${POST_COLUMNS}, profiles(nickname, avatar_url, level)`)
     .eq('id', params.id)
-    .single()
+    .or(HIDDEN_FILTER)
+    .maybeSingle()
 
   if (!post) notFound()
 

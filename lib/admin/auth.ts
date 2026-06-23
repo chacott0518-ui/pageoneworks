@@ -52,9 +52,29 @@ export function forbiddenResponse(message = '권한이 없습니다') {
 }
 
 export async function requireAdmin(): Promise<AdminSession | NextResponse> {
-  const session = await checkAdminAuth()
-  if (!session) return unauthorizedResponse()
-  return session
+  const supabase = createServerSupabaseClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
+  // 비로그인 → 401
+  if (!user) return unauthorizedResponse()
+
+  // 서버에서 현재 로그인 사용자의 user id로 직접 is_admin 검증 (요청 body/query 신뢰 안 함)
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('id, nickname, is_admin')
+    .eq('id', user.id)
+    .maybeSingle()
+
+  // 로그인했으나 관리자가 아님 → 403 (상세 DB 정보 노출 없음)
+  if (!profile?.is_admin) return forbiddenResponse()
+
+  return {
+    user: { id: user.id, email: user.email },
+    profile: profile as AdminProfile,
+    isSuperAdmin: user.email === SUPER_ADMIN_EMAIL,
+  }
 }
 
 export async function requireSuperAdmin(): Promise<AdminSession | NextResponse> {

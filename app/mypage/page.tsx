@@ -5,7 +5,11 @@ export const metadata: Metadata = {
   title: '마이페이지 | PAGEONEWORKS',
   description: 'PAGEONEWORKS 마이페이지. 내 정보, 멤버십, 보안 설정을 관리하세요.',
   keywords: ['마이페이지', 'PAGEONEWORKS회원', '계정관리'],
-  alternates: { canonical: 'https://www.pageoneworks.com/mypage' },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false },
+  },
   openGraph: {
     title: '마이페이지 | PAGEONEWORKS',
     description: 'PAGEONEWORKS 마이페이지.',

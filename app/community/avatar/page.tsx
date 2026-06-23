@@ -9,7 +9,11 @@ import type { ProfileMini } from '@/components/community/types'
 export const metadata: Metadata = {
   title: '아바타 꾸미기 | PAGEONEWORKS 커뮤니티',
   description: '프로필 사진, 아바타, 테두리, 뱃지를 꾸며 나만의 커뮤니티 프로필을 완성하세요.',
-  robots: { index: false, follow: false },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false },
+  },
 }
 
 export default async function CommunityAvatarPage() {

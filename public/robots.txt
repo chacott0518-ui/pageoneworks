@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /auth/
-Disallow: /mypage/
+Disallow: /admin
 
 User-agent: GPTBot
 Allow: /
