@@ -73,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ─── 아티클 페이지들 ───────────────────────────────────────
   const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${BASE_URL}/article/${article.slug}`,
-    lastModified: new Date(article.date.replace(/\./g, '-')),
+    lastModified: new Date((article.updatedAt ?? article.date).replace(/\./g, '-')),
     changeFrequency: 'monthly' as const,
     priority: article.featured ? 0.85 : 0.75,
   }))

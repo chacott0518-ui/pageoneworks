@@ -18,6 +18,7 @@ export type Article = {
   titleKo: string;
   excerpt: string;
   date: string;
+  updatedAt?: string;
   readTime: string;
   image: string;
   heroImage?: string;

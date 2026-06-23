@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
+import { siteConfig } from '@/lib/site.config';
 
 const categoryLinks = [
   { label: 'VITALITY', href: '/category/vitality' },
@@ -170,7 +171,7 @@ export function Footer() {
     >
       USENAD Co., Ltd. &nbsp;|&nbsp; CEO : Kim Se-jun &nbsp;|&nbsp; 
       Business Reg. No. 206-31-95055 &nbsp;|&nbsp; 
-      TEL : +82 2-739-5415 &nbsp;|&nbsp; 
+      TEL : {siteConfig.phone.display} &nbsp;|&nbsp;
       chacott0518@gmail.com
     </p>
     <p

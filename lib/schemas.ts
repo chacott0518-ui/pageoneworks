@@ -33,6 +33,7 @@ export const siteSchema = {
   },
   contactPoint: {
     '@type': 'ContactPoint',
+    telephone: siteConfig.phone.international,
     email: siteConfig.email,
     contactType: 'customer support',
     availableLanguage: 'Korean',

@@ -16,6 +16,8 @@ import { HeroImage } from './HeroImage';
 import { Header } from '@/components/Header';
 import { getFAQSchema, getBreadcrumbSchema, getHowToSchema, extractFAQsFromBody, normalizeDate } from '@/lib/schemas'
 import { siteConfig, absoluteUrl } from '@/lib/site.config'
+
+const PHONE_HREF = siteConfig.phone.href
 import AIQnA from '@/components/AIQnA'
 import CtaBlock from '@/components/CtaBlock'
 
@@ -44,6 +46,7 @@ export async function generateMetadata({ params }: Props) {
       images: [{ url: article.image, width: 1200, height: 630 }],
       type: 'article',
       publishedTime: normalizeDate(article.date),
+      ...(article.updatedAt && { modifiedTime: normalizeDate(article.updatedAt) }),
     },
     twitter: {
       card: 'summary_large_image',
@@ -288,7 +291,7 @@ export default function ArticlePage({ params }: Props) {
                   </p>
                 </div>
                 <a
-                  href="tel:027395415"
+                  href={PHONE_HREF}
                   className="inline-flex items-center justify-center gap-2.5 bg-[#1a1a1a] text-white w-full hover:bg-black/80 transition-colors"
                   style={{ fontFamily: 'var(--font-space-mono)', fontSize: '13px', letterSpacing: '0.1em', padding: '16px 24px' }}
                 >
@@ -524,7 +527,7 @@ export default function ArticlePage({ params }: Props) {
                 경기도 광주 · 강남·판교 무상 픽업 · 24시간 접수
               </p>
               <a
-                href="tel:027395415"
+                href={PHONE_HREF}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -587,7 +590,7 @@ export default function ArticlePage({ params }: Props) {
                   </p>
                 </div>
                 <a
-                  href="tel:027395415"
+                  href={PHONE_HREF}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -635,7 +638,7 @@ export default function ArticlePage({ params }: Props) {
                   <ExternalLink className="w-4 h-4" />
                   카카오맵으로 길찾기
                 </a>
-                <a href="tel:027395415" className="flex items-center justify-center gap-2.5 flex-1 bg-[#1a1a1a] text-white hover:bg-black/80 transition-colors" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.08em', padding: '16px' }}>
+                <a href={PHONE_HREF} className="flex items-center justify-center gap-2.5 flex-1 bg-[#1a1a1a] text-white hover:bg-black/80 transition-colors" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '12px', letterSpacing: '0.08em', padding: '16px' }}>
                   <Phone className="w-4 h-4" />
                   지금 바로 상담하기
                 </a>

@@ -32,6 +32,13 @@ export const siteConfig = {
   businessNumber: '206-31-95055',
   operatorDisplayName: 'USENAD Co., Ltd.',
 
+  // 전화번호 (Footer 공개 기준)
+  phone: {
+    display: '+82 2-739-5415',       // 화면 표시용
+    href: 'tel:+82-2-739-5415',      // tel: 링크용
+    international: '+82-2-739-5415', // Schema telephone 국제 형식
+  },
+
   // 주소 (About 페이지 기준)
   address: {
     streetAddress: '장안동 463-2 이화빌딩 7F',

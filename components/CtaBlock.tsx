@@ -1,5 +1,7 @@
 'use client';
 
+import { siteConfig } from '@/lib/site.config';
+
 export default function CtaBlock() {
   return (
     <div className="relative my-12 overflow-hidden rounded-[20px] border border-[#2a2a2c] bg-[#0F0F10] px-6 py-10 md:px-12 md:py-[52px]">
@@ -27,7 +29,7 @@ export default function CtaBlock() {
       </p>
 
       {/* CTA 버튼 */}
-      <a href="tel:02-739-5415"
+      <a href={siteConfig.phone.href}
         className="
           inline-flex w-full items-center justify-center gap-2.5
           rounded-xl bg-[#C9A96E] px-8 py-4

@@ -1,5 +1,6 @@
 import type { Article } from '@/lib/data';
 import { siteConfig, absoluteUrl } from '@/lib/site.config';
+import { normalizeDate } from '@/lib/schemas';
 
 interface Props {
   article: Article;
@@ -7,7 +8,7 @@ interface Props {
 
 export function ArticleJsonLd({ article }: Props) {
   const url = absoluteUrl(`/article/${article.slug}`);
-  const date = article.date.replace(/\./g, '-');
+  const date = normalizeDate(article.date);
 
   // 작성자 실명/프로필 정보가 없고 편집부 콘텐츠이면 Organization(publisher) 참조,
   // 개별 작성자명이 있으면 최소 Person 객체만 사용한다. (허위 URL·자격 생성 금지)
@@ -24,7 +25,7 @@ export function ArticleJsonLd({ article }: Props) {
     description: article.excerpt,
     image: absoluteUrl(article.image),
     datePublished: date,
-    dateModified: date,
+    ...(article.updatedAt ? { dateModified: normalizeDate(article.updatedAt) } : {}),
     author,
     publisher: { '@id': siteConfig.publisherId },
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
