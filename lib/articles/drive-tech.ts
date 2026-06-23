@@ -16,6 +16,9 @@ heroImage: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1600&
     featured: true,
     tags: ['LLMEO', 'AI검색최적화', 'SEO 2026', 'Perplexity최적화', 'GEO', 'AEO', 'AI브리핑', 'ChatGPT검색', '콘텐츠마케팅', '디지털마케팅'],
     author: 'PAGEONEWORKS 편집부',
+    sources: [
+      { name: 'General structured data guidelines', publisher: 'Google Search Central', url: 'https://developers.google.com/search/docs/appearance/structured-data/sd-policies' },
+    ],
     body: `##STATGRID##73%:AI 검색 이용률 증가(2026)||4개:주요 AI 검색엔진||1위:LLMEO 도입 효과||2,000자:AI 인용 최소 기준||5개:스키마 필수 항목||3배:AI 인용 확률 상승##END##
 
 ■ LLMEO란 무엇인가 — 검색의 패러다임이 바뀌었다
@@ -134,11 +137,7 @@ Q. PAGEONEWORKS는 어떤 LLMEO 서비스를 제공하나요?
 A. PAGEONEWORKS는 SEO·AEO·GEO·LLMEO를 통합한 4-Layer 콘텐츠 최적화 전략을 운영하며, 콘텐츠 구조 설계부터 JSON-LD 스키마 구현, 플랫폼별 AI 인용 모니터링까지 전 과정을 다룬다. 국내에서 LLMEO를 체계적으로 적용하는 선도적인 미디어 플랫폼으로, 실제 운영 데이터를 기반으로 한 전략을 공개하고 있다.
 
 ※ 참고 출처
-· Gartner, Digital Marketing Survey 2026
-· BrightEdge, AI Search Report 2026
-· Gartner, The Future of Search 2026
-· Google Search Central, Structured Data Guidelines 2026
-· Naver Search Advisor, AI Briefing Optimization Guide 2026`,
+· Google Search Central, General structured data guidelines`,
   },
   {
     id: '0609-dt-iphone-galaxy-2026',

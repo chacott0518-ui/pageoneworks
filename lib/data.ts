@@ -9,6 +9,13 @@ export type Category = {
   image: string;
 };
 
+export type ArticleSource = {
+  name: string;
+  url?: string;
+  publisher?: string;
+  publishedAt?: string;
+};
+
 export type Article = {
   id: number | string;
   slug: string;
@@ -25,6 +32,7 @@ export type Article = {
   featured?: boolean;
   tags?: string[];
   author?: string;
+  sources?: ArticleSource[];
   body?: string;
   isSponsored?: boolean;
   sponsorName?: string;

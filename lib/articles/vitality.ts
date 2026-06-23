@@ -16,6 +16,11 @@ export const vitalityArticles: Article[] = [
     featured: true,
     tags: ['임신중절수술비용', '낙태비용', '임신중절합법', '낙태수술방법', '임신중절조건', '낙태부작용', '임신중절주수', '낙태합법화2021', '임신중절2026', '낙태가능기간'],
     author: 'PAGEONEWORKS 편집부',
+    sources: [
+      { name: '2017헌바127 형법 제269조 제1항 등 위헌소원', publisher: '헌법재판소', publishedAt: '2019', url: 'https://www.law.go.kr/detcInfoP.do?detcSeq=150780&mode=1' },
+      { name: 'Abortion care guideline', publisher: 'World Health Organization', publishedAt: '2022', url: 'https://www.who.int/publications/i/item/9789240039483' },
+      { name: '모자보건법', publisher: '법제처', publishedAt: '2024' },
+    ],
     body: `##STATGRID##2021년 1월:임신중절 비범죄화||8주 미만:가장 낮은 비용 구간||4~6주:회복 기간||약물+수술:두 가지 시술 방법||10주 이내:안전 시술 권장 기간||당일:수술 후 귀가 가능##END##
 
 임신중절수술 비용은 임신 8주 미만 기준 45만원 내외부터 시작하며, 주수가 늘어날수록 비용과 시술 복잡도가 높아집니다.
@@ -136,11 +141,9 @@ A. 의료적으로는 주수 기준 내에서 가능합니다. 대부분의 의�
 ##CTABLOCK##
 
 ※ 참고 출처
-· 대한산부인과학회, 인공임신중절 시술 지침, 2023
-· 법제처, 형법 제269조·제270조 헌법불합치 결정, 2021
-· 건강보험심사평가원, 비급여 진료비 현황, 2024
-· WHO, Safe Abortion: Technical and Policy Guidance, 2023
-· 모자보건법, 법제처, 2024`,
+· 헌법재판소, 2017헌바127 형법 제269조 제1항 등 위헌소원, 2019
+· WHO, Abortion care guideline, 2022
+· 법제처, 모자보건법, 2024`,
   },
   {
     id: '0527-vt-hair-loss-signs',
