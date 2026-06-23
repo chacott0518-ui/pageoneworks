@@ -4,6 +4,7 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import CategoryClient from './CategoryClient'
 import type { Metadata } from 'next'
+import { siteConfig, absoluteUrl } from '@/lib/site.config'
 
 interface Props {
   params: { slug: string }
@@ -13,27 +14,26 @@ export async function generateStaticParams() {
   return categories.map((cat) => ({ slug: cat.slug }))
 }
 
-const BASE_URL = 'https://www.pageoneworks.com'
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cat = categories.find((c) => c.slug === params.slug)
   if (!cat) return {}
+  const categoryUrl = absoluteUrl(`/category/${params.slug}`)
   return {
-    title: `${cat.title} — PAGEONEWORKS`,
+    title: `${cat.title} — ${siteConfig.name}`,
     description: cat.descKo,
-    alternates: { canonical: `${BASE_URL}/category/${params.slug}` },
+    alternates: { canonical: categoryUrl },
     openGraph: {
-      title: `${cat.title} — PAGEONEWORKS`,
+      title: `${cat.title} — ${siteConfig.name}`,
       description: cat.descKo,
       type: 'website',
-      url: `${BASE_URL}/category/${params.slug}`,
+      url: categoryUrl,
       images: [{ url: cat.image, width: 1200, height: 630, alt: cat.titleKo }],
-      siteName: 'PAGEONEWORKS',
+      siteName: siteConfig.name,
       locale: 'ko_KR',
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${cat.title} — PAGEONEWORKS`,
+      title: `${cat.title} — ${siteConfig.name}`,
       description: cat.descKo,
       images: [cat.image],
     },

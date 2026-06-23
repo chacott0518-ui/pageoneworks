@@ -15,10 +15,10 @@ import type {
   TrendingPost,
 } from '@/components/community/types'
 import { getKstTodayStartISO, parsePage, parseSort } from '@/components/community/utils'
-import { siteConfig } from '@/lib/site.config'
+import { siteConfig, absoluteUrl } from '@/lib/site.config'
 
-const PAGE_URL = 'https://www.pageoneworks.com/community'
-const BASE_URL = 'https://www.pageoneworks.com'
+const PAGE_URL = absoluteUrl('/community')
+const BASE_URL = siteConfig.baseUrl
 
 const POST_LIST_COLUMNS =
   'id,title,category_slug,like_count,comment_count,view_count,created_at,is_pinned,user_id,is_anonymous,profiles(nickname,avatar_url,level)'
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
     title: '프리미엄 커뮤니티 포럼 | PAGEONEWORKS',
     description: '검증된 인사이트를 공유하는 PAGEONEWORKS 프리미엄 커뮤니티',
     siteName: 'PAGEONEWORKS',
-    images: [{ url: `${BASE_URL}/og-community.jpg`, width: 1200, height: 630 }],
+    images: [{ url: absoluteUrl(siteConfig.ogImagePath), width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '프리미엄 커뮤니티 포럼 | PAGEONEWORKS',
     description: '검증된 인사이트를 공유하는 PAGEONEWORKS 프리미엄 커뮤니티',
-    images: [`${BASE_URL}/og-community.jpg`],
+    images: [absoluteUrl(siteConfig.ogImagePath)],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
 }

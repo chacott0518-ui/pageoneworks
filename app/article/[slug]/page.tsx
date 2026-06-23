@@ -14,7 +14,8 @@ import { articles } from '@/lib/data';
 import { ShareButtons } from './ShareButtons';
 import { HeroImage } from './HeroImage';
 import { Header } from '@/components/Header';
-import { getFAQSchema, getBreadcrumbSchema, getHowToSchema, extractFAQsFromBody } from '@/lib/schemas'
+import { getFAQSchema, getBreadcrumbSchema, getHowToSchema, extractFAQsFromBody, normalizeDate } from '@/lib/schemas'
+import { siteConfig, absoluteUrl } from '@/lib/site.config'
 import AIQnA from '@/components/AIQnA'
 import CtaBlock from '@/components/CtaBlock'
 
@@ -29,16 +30,20 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) return {};
+  const articleUrl = absoluteUrl(`/article/${article.slug}`);
   return {
-    title: `${article.titleKo} — PAGEONEWORKS`,
+    title: `${article.titleKo} — ${siteConfig.name}`,
     description: article.excerpt,
-    alternates: { canonical: `https://www.pageoneworks.com/article/${article.slug}` },
+    alternates: { canonical: articleUrl },
     keywords: article.tags ?? [],
+    authors: [{ name: article.author ?? siteConfig.name }],
     openGraph: {
       title: article.titleKo,
       description: article.excerpt,
+      url: articleUrl,
       images: [{ url: article.image, width: 1200, height: 630 }],
       type: 'article',
+      publishedTime: normalizeDate(article.date),
     },
     twitter: {
       card: 'summary_large_image',
