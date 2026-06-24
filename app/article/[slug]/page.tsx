@@ -19,7 +19,7 @@ import { siteConfig, absoluteUrl } from '@/lib/site.config'
 
 const PHONE_HREF = siteConfig.phone.href
 import AIQnA from '@/components/AIQnA'
-import CtaBlock from '@/components/CtaBlock'
+import ConsultCTA from '@/components/ConsultCTA'
 
 interface Props {
   params: { slug: string };
@@ -115,15 +115,21 @@ function parseBody(body: string) {
       i++;
 
       if (!closesInline) {
-        while (i < lines.length && lines[i].trim() !== '##END##') {
-          const cleanedLine = lines[i].replace(/##END##/g, '').trimEnd();
+        // Advance until we find a line that contains ##END## (standalone or embedded).
+        // This handles both "##END##" alone and "content##END##" patterns.
+        while (i < lines.length && !hasEndToken(lines[i])) {
+          const cleanedLine = lines[i].trimEnd();
           if (cleanedLine) {
             contentLines.push(cleanedLine);
           }
           i++;
         }
-
-        if (i < lines.length && lines[i].trim() === '##END##') {
+        // Consume the terminating line: strip ##END## and keep any preceding content.
+        if (i < lines.length && hasEndToken(lines[i])) {
+          const cleanedLine = lines[i].replace(/##END##/g, '').trimEnd();
+          if (cleanedLine) {
+            contentLines.push(cleanedLine);
+          }
           i++;
         }
       }
@@ -145,9 +151,13 @@ function parseBody(body: string) {
       i++; continue;
     }
     if (line.startsWith('##TABLEROW##')) {
-      const cells = line.replace(/^##TABLEROW##/, '').split('||');
-      blocks.push({ type: 'tablerow', content: line, caption: cells[0] || '', extra: cells[1] || '' });
-      i++; continue;
+      const rows: string[] = [];
+      while (i < lines.length && lines[i].startsWith('##TABLEROW##')) {
+        rows.push(lines[i]);
+        i++;
+      }
+      blocks.push({ type: 'table', content: rows.join('\n') });
+      continue;
     }
     if (line.startsWith('##YEONSEI##')) {
       blocks.push({ type: 'yeonsi', content: '' });
@@ -162,6 +172,52 @@ function parseBody(body: string) {
     i++;
   }
   return blocks;
+}
+
+/** Returns true when a line contains the ##END## terminator token. */
+const hasEndToken = (s: string) => s.includes('##END##');
+
+// Invisible block types (render null) or structural types that block CTA insertion
+const UNSAFE_CURR = new Set(['heading', 'subheading', 'image', 'table', 'statgrid', 'step', 'ctablock']);
+const UNSAFE_NEXT = new Set(['image', 'table', 'statgrid', 'step']);
+
+function computeCtaInsertIndex(
+  contentBlocks: { type: string; content: string; caption?: string; extra?: string }[]
+): number {
+  // Only count visible blocks (exclude ctablock which renders null) for position calculation
+  const visible = contentBlocks
+    .map((b, idx) => ({ block: b, idx }))
+    .filter(({ block }) => block.type !== 'ctablock');
+
+  const total = visible.length;
+  if (total === 0) return -1;
+
+  const rangeStart = Math.floor(total * 0.4);
+  const rangeEnd = Math.ceil(total * 0.6);
+
+  const isSafe = (vi: number): boolean => {
+    if (vi < 1) return false;
+    const curr = visible[vi].block;
+    const next = vi + 1 < total ? visible[vi + 1].block : null;
+    if (UNSAFE_CURR.has(curr.type)) return false;
+    if (next && UNSAFE_NEXT.has(next.type)) return false;
+    return true;
+  };
+
+  // Try ideal range (40–60% of visible blocks)
+  for (let vi = rangeStart; vi <= rangeEnd && vi < total; vi++) {
+    if (isSafe(vi)) return visible[vi].idx;
+  }
+  // Fallback: search forward from 50%
+  const mid = Math.floor(total * 0.5);
+  for (let vi = mid; vi < total; vi++) {
+    if (isSafe(vi)) return visible[vi].idx;
+  }
+  // Last resort: search backward from 50%
+  for (let vi = mid - 1; vi >= 1; vi--) {
+    if (isSafe(vi)) return visible[vi].idx;
+  }
+  return -1;
 }
 
 function FaqAnswer({ text }: { text: string }) {
@@ -198,6 +254,7 @@ export default function ArticlePage({ params }: Props) {
   const blocks = article.body ? parseBody(article.body) : [];
   const faqBlocks = blocks.filter((b) => b.type === 'faq');
   const contentBlocks = blocks.filter((b) => b.type !== 'faq');
+  const ctaInsertIndex = contentBlocks.length > 0 ? computeCtaInsertIndex(contentBlocks) : -1;
   const isCarnguy = article.slug === 'carnguy-import-car-repair-guide';
   // ── 스키마 생성 ──────────────────────────────────────────
   const BASE_URL = 'https://www.pageoneworks.com'
@@ -356,6 +413,7 @@ export default function ArticlePage({ params }: Props) {
           )}
 
           {contentBlocks.map((block, i) => {
+            const blockEl = (() => {
             if (block.type === 'image') {
               return (
                 <figure key={i} className="my-8 md:my-10">
@@ -494,7 +552,7 @@ export default function ArticlePage({ params }: Props) {
               );
             }
             if (block.type === 'ctablock') {
-              return <CtaBlock key={i} />;
+              return null;
             }
             if (block.type === 'cta') {
               return (
@@ -528,16 +586,29 @@ export default function ArticlePage({ params }: Props) {
               if (block.content === 'vat-calculator') return <VatCalculator key={i} />;
               return null;
             }
-            if (block.type === 'tablerow') {
-              const cells = block.content.replace(/^##TABLEROW##/, '').split('||');
-              const isHeader = cells[0]?.startsWith('**');
+            if (block.type === 'table') {
+              const rows = block.content.split('\n').filter(Boolean);
+              const maxCols = Math.max(...rows.map(r => r.replace(/^##TABLEROW##/, '').split('||').length));
+              const needsScroll = maxCols >= 3;
               return (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: `repeat(${cells.length}, 1fr)`, gap: '1px', background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)', borderRadius: i === 0 ? '4px 4px 0 0' : '0', marginTop: isHeader ? '28px' : '0', marginBottom: '1px' }}>
-                  {cells.map((cell: string, ci: number) => (
-                    <div key={ci} style={{ padding: '12px 16px', fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)', fontSize: isHeader ? '10px' : 'clamp(0.85rem, 1.3vw, 0.95rem)', fontWeight: isHeader ? 600 : 300, color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)', letterSpacing: isHeader ? '0.08em' : '0', textTransform: isHeader ? 'uppercase' : 'none', wordBreak: 'keep-all' }}>
-                      {cell.trim().replace(/\*\*/g, '')}
-                    </div>
-                  ))}
+                <div key={i} style={{ overflowX: needsScroll ? 'auto' : 'visible', margin: '28px 0 8px' }}>
+                  <div style={{ minWidth: needsScroll ? `${maxCols * 130}px` : '100%' }}>
+                    {rows.map((row, ri) => {
+                      const cells = row.replace(/^##TABLEROW##/, '').split('||');
+                      const isHeader = cells[0]?.startsWith('**');
+                      const isFirst = ri === 0;
+                      const isLast = ri === rows.length - 1;
+                      return (
+                        <div key={ri} style={{ display: 'grid', gridTemplateColumns: `repeat(${cells.length}, 1fr)`, gap: '1px', background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)', borderRadius: isFirst ? '4px 4px 0 0' : isLast ? '0 0 4px 4px' : '0', marginBottom: ri < rows.length - 1 ? '1px' : '0' }}>
+                          {cells.map((cell: string, ci: number) => (
+                            <div key={ci} style={{ padding: '12px 16px', fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)', fontSize: isHeader ? '10px' : 'clamp(0.85rem, 1.3vw, 0.95rem)', fontWeight: isHeader ? 600 : 300, color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)', letterSpacing: isHeader ? '0.08em' : '0', textTransform: isHeader ? 'uppercase' : 'none', wordBreak: 'keep-all', minWidth: '80px' }}>
+                              {cell.trim().replace(/\*\*/g, '')}
+                            </div>
+                          ))}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               );
             }
@@ -546,6 +617,21 @@ export default function ArticlePage({ params }: Props) {
                 {block.content}
               </p>
             );
+            })();
+
+            if (i === ctaInsertIndex) {
+              return (
+                <React.Fragment key={`cta-wrap-${i}`}>
+                  {blockEl}
+                  <ConsultCTA
+                    categorySlug={article.categorySlug}
+                    articleTitle={article.titleKo}
+                    category={article.category}
+                  />
+                </React.Fragment>
+              );
+            }
+            return blockEl;
           })}
 
           {isCarnguy && (
@@ -595,12 +681,32 @@ export default function ArticlePage({ params }: Props) {
               </h2>
               <div className="flex flex-col gap-4">
                 {faqBlocks.map((faq, i) => (
-                  <div key={i} className="p-6 md:p-8 bg-white border border-black/8">
-                    <p className="mb-4 pb-3 border-b border-black/8" style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(1rem, 1.8vw, 1.1rem)', fontWeight: 500, color: '#1a1a1a' }}>
-                      {faq.content}
-                    </p>
-                    <FaqAnswer text={faq.caption || ''} />
-                  </div>
+                  <details key={i} className="group bg-white border border-black/8">
+                    <summary
+                      className="flex items-center justify-between gap-4 cursor-pointer list-none p-6 md:p-8 outline-none focus-visible:ring-2 focus-visible:ring-[#1a1aff]/40 [&::-webkit-details-marker]:hidden"
+                      style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(1rem, 1.8vw, 1.1rem)', fontWeight: 500, color: '#1a1a1a', minHeight: '56px' }}
+                    >
+                      <span>{faq.content}</span>
+                      <svg
+                        className="w-4 h-4 shrink-0 transition-transform duration-300 group-open:rotate-180 motion-reduce:transition-none"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                        style={{ color: 'rgba(26,26,26,0.4)' }}
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </summary>
+                    <div className="px-6 md:px-8 pb-6 md:pb-8 border-t border-black/8">
+                      <div className="pt-4">
+                        <FaqAnswer text={faq.caption || ''} />
+                      </div>
+                    </div>
+                  </details>
                 ))}
               </div>
             </div>
@@ -685,13 +791,25 @@ export default function ArticlePage({ params }: Props) {
           )}
 
 {(article.sources?.length ?? 0) > 0 && (
-            <div className="mt-14 pt-10 border-t border-black/8">
-              <p
-                className="uppercase mb-6"
-                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}
+            <details className="group mt-14 pt-10 border-t border-black/8">
+              <summary
+                className="uppercase mb-6 flex items-center gap-2 cursor-pointer list-none outline-none focus-visible:ring-2 focus-visible:ring-[#1a1aff]/40 [&::-webkit-details-marker]:hidden"
+                style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)', minHeight: '32px' }}
               >
-                참고 출처
-              </p>
+                <span>참고 출처 ({article.sources!.length})</span>
+                <svg
+                  className="w-3.5 h-3.5 transition-transform duration-300 group-open:rotate-180 motion-reduce:transition-none"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </summary>
               <ul className="flex flex-col gap-3">
                 {article.sources!.map((src, i) => (
                   <li key={i} className="flex flex-col gap-1 py-3 border-b border-black/6 last:border-0">
@@ -719,7 +837,7 @@ export default function ArticlePage({ params }: Props) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </details>
           )}
 
 <AIQnA category={article.categorySlug} />
