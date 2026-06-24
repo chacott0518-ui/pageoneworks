@@ -97,8 +97,40 @@ function parseBody(body: string) {
     }
     if (line.startsWith('##INFOBOX##')) {
       const parts = line.split('##');
-      blocks.push({ type: 'infobox', content: parts[4] || '', caption: parts[2] || '', extra: parts[3] || '' });
-      i++; continue;
+      const caption = parts[2] || '';
+      const extra = parts[3] || '';
+      const contentLines: string[] = [];
+
+      const inlineContent = parts
+        .slice(4)
+        .join('##')
+        .replace(/##END##$/, '');
+
+      if (inlineContent) {
+        contentLines.push(inlineContent);
+      }
+
+      const closesInline = line.endsWith('##END##');
+      i++;
+
+      if (!closesInline) {
+        while (i < lines.length && lines[i].trim() !== '##END##') {
+          contentLines.push(lines[i]);
+          i++;
+        }
+
+        if (i < lines.length && lines[i].trim() === '##END##') {
+          i++;
+        }
+      }
+
+      blocks.push({
+        type: 'infobox',
+        content: contentLines.join('\n').trim(),
+        caption,
+        extra,
+      });
+      continue;
     }
     if (line.startsWith('##STATGRID##')) {
       blocks.push({ type: 'statgrid', content: line.replace(/^##STATGRID##/, '').replace(/##END##$/, '') });
@@ -379,7 +411,7 @@ export default function ArticlePage({ params }: Props) {
                       {block.caption}
                     </p>
                   )}
-                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', color: c.text, lineHeight: '1.7', margin: 0, wordBreak: 'keep-all' }}>
+                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', color: c.text, lineHeight: '1.7', margin: 0, wordBreak: 'keep-all', whiteSpace: 'pre-line' }}>
                     {block.content}
                   </p>
                 </div>
@@ -390,7 +422,9 @@ export default function ArticlePage({ params }: Props) {
               return (
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px', margin: '28px 0' }}>
                   {stats.map((stat: string, si: number) => {
-                    const [val, label] = stat.split(':');
+                    const separatorIndex = stat.lastIndexOf(':');
+                    const val = separatorIndex >= 0 ? stat.slice(0, separatorIndex) : stat;
+                    const label = separatorIndex >= 0 ? stat.slice(separatorIndex + 1) : '';
                     return (
                       <div key={si} style={{ background: '#1a1a1a', borderRadius: '4px', padding: '20px 16px', textAlign: 'center' }}>
                         <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 400, color: '#f5f2ed', margin: '0 0 4px' }}>{val?.trim()}</p>
