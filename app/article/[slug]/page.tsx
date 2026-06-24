@@ -231,9 +231,11 @@ function FaqAnswer({ text }: { text: string }) {
           style={{
             fontFamily: 'var(--font-inter)',
             fontWeight: 300,
-            fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)',
-            lineHeight: '1.65',
+            fontSize: 'clamp(0.9rem, 1.6vw, 1.05rem)',
+            lineHeight: '1.7',
             color: 'rgba(26,26,26,0.65)',
+            wordBreak: 'keep-all',
+            overflowWrap: 'break-word',
           }}
         >
           {sentence.trim()}
@@ -310,7 +312,7 @@ export default function ArticlePage({ params }: Props) {
               className="leading-tight"
               style={{
                 fontFamily: 'var(--font-cormorant)',
-                fontSize: 'clamp(1.4rem, 3.5vw, 3.2rem)',
+                fontSize: 'clamp(1.75rem, 3.5vw, 3.2rem)',
                 fontWeight: 700,
                 color: '#ffffff',
                 wordBreak: 'keep-all',
@@ -352,10 +354,10 @@ export default function ArticlePage({ params }: Props) {
       </section>
 
       <article className="bg-[#f8f7f4] min-h-screen">
-        <div className="max-w-[760px] mx-auto px-5 md:px-8 py-12 md:py-16">
+        <div className="max-w-[760px] mx-auto px-4 md:px-8 pt-8 pb-12 md:py-16">
 
           {article.tags && article.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-10 pb-8 border-b border-black/8">
+            <div className="flex flex-wrap gap-2 mb-5 pb-5 md:mb-10 md:pb-8 border-b border-black/8">
               {article.tags.map((tag) => (
                 <span
                   key={tag}
@@ -430,14 +432,14 @@ export default function ArticlePage({ params }: Props) {
             }
             if (block.type === 'heading') {
               return (
-                <h2 key={i} className="mt-12 mb-5 pb-4 border-b border-black/10" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
+                <h2 key={i} className="mt-7 mb-3 pb-3 md:mt-12 md:mb-5 md:pb-4 border-b border-black/10" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.35rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
                   {block.content}
                 </h2>
               );
             }
             if (block.type === 'subheading') {
               return (
-                <h3 key={i} className="mt-8 mb-4" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.2rem, 2.5vw, 1.5rem)', fontWeight: 500, color: '#1a1a1a' }}>
+                <h3 key={i} className="mt-5 mb-3 md:mt-8 md:mb-4" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.15rem, 2.5vw, 1.5rem)', fontWeight: 500, color: '#1a1a1a' }}>
                   {block.content}
                 </h3>
               );
@@ -451,7 +453,7 @@ export default function ArticlePage({ params }: Props) {
                   <span className="shrink-0 uppercase font-medium mt-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: '#1a1aff' }}>
                     {stepLabel}
                   </span>
-                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.7)', lineHeight: '1.8' }}>
+                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(1rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.7)', lineHeight: '1.75' }}>
                     {stepText}
                   </p>
                 </div>
@@ -542,7 +544,7 @@ export default function ArticlePage({ params }: Props) {
             }
             if (block.type === 'yeonsei') {
               return (
-                <div key={i} style={{ margin: '8px 0 24px', fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)', fontWeight: 300, color: 'rgba(26,26,26,0.75)', lineHeight: '1.75' }}>
+                <div key={i} style={{ margin: '8px 0 24px', fontFamily: 'var(--font-inter)', fontSize: 'clamp(1rem, 1.5vw, 1.05rem)', fontWeight: 300, color: 'rgba(26,26,26,0.75)', lineHeight: '1.72' }}>
                   전문의 자문 및 비밀 상담: 연세365산부인과
                   <br />
                   <a href="https://www.yeonsei365.com" target="_blank" rel="noopener noreferrer" style={{ color: '#1a1aff', textDecoration: 'underline' }}>
@@ -601,7 +603,7 @@ export default function ArticlePage({ params }: Props) {
                       return (
                         <div key={ri} style={{ display: 'grid', gridTemplateColumns: `repeat(${cells.length}, 1fr)`, gap: '1px', background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)', borderRadius: isFirst ? '4px 4px 0 0' : isLast ? '0 0 4px 4px' : '0', marginBottom: ri < rows.length - 1 ? '1px' : '0' }}>
                           {cells.map((cell: string, ci: number) => (
-                            <div key={ci} style={{ padding: '12px 16px', fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)', fontSize: isHeader ? '10px' : 'clamp(0.85rem, 1.3vw, 0.95rem)', fontWeight: isHeader ? 600 : 300, color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)', letterSpacing: isHeader ? '0.08em' : '0', textTransform: isHeader ? 'uppercase' : 'none', wordBreak: 'keep-all', minWidth: '80px' }}>
+                            <div key={ci} style={{ padding: '10px 14px', fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)', fontSize: isHeader ? '10px' : 'clamp(0.875rem, 1.3vw, 0.95rem)', fontWeight: isHeader ? 600 : 300, color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)', letterSpacing: isHeader ? '0.08em' : '0', textTransform: isHeader ? 'uppercase' : 'none', wordBreak: 'keep-all', minWidth: '80px' }}>
                               {cell.trim().replace(/\*\*/g, '')}
                             </div>
                           ))}
@@ -613,7 +615,7 @@ export default function ArticlePage({ params }: Props) {
               );
             }
             return (
-              <p key={i} style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(0.95rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.75)', lineHeight: '1.75', marginTop: '12px', marginBottom: '12px', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+              <p key={i} style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(1rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.75)', lineHeight: '1.72', marginTop: '12px', marginBottom: '12px', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
                 {block.content}
               </p>
             );
@@ -675,16 +677,16 @@ export default function ArticlePage({ params }: Props) {
           )}
 
           {faqBlocks.length > 0 && (
-            <div className="mt-14 pt-10 border-t border-black/8">
-              <h2 className="mb-8" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
+            <div className="mt-10 pt-8 md:mt-14 md:pt-10 border-t border-black/8">
+              <h2 className="mb-5 md:mb-8" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.35rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
                 FAQ — 자주 묻는 질문
               </h2>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-3 md:gap-4">
                 {faqBlocks.map((faq, i) => (
                   <details key={i} className="group bg-white border border-black/8">
                     <summary
-                      className="flex items-center justify-between gap-4 cursor-pointer list-none p-6 md:p-8 outline-none focus-visible:ring-2 focus-visible:ring-[#1a1aff]/40 [&::-webkit-details-marker]:hidden"
-                      style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(1rem, 1.8vw, 1.1rem)', fontWeight: 500, color: '#1a1a1a', minHeight: '56px' }}
+                      className="flex items-center justify-between gap-3 cursor-pointer list-none p-4 md:p-8 outline-none focus-visible:ring-2 focus-visible:ring-[#1a1aff]/40 [&::-webkit-details-marker]:hidden"
+                      style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)', fontWeight: 500, color: '#1a1a1a', minHeight: '44px', wordBreak: 'keep-all' }}
                     >
                       <span>{faq.content}</span>
                       <svg
@@ -701,7 +703,7 @@ export default function ArticlePage({ params }: Props) {
                         <path d="m6 9 6 6 6-6" />
                       </svg>
                     </summary>
-                    <div className="px-6 md:px-8 pb-6 md:pb-8 border-t border-black/8">
+                    <div className="px-4 md:px-8 pb-4 md:pb-8 border-t border-black/8">
                       <div className="pt-4">
                         <FaqAnswer text={faq.caption || ''} />
                       </div>
