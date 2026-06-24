@@ -104,7 +104,8 @@ function parseBody(body: string) {
       const inlineContent = parts
         .slice(4)
         .join('##')
-        .replace(/##END##$/, '');
+        .replace(/##END##/g, '')
+        .trim();
 
       if (inlineContent) {
         contentLines.push(inlineContent);
@@ -115,7 +116,10 @@ function parseBody(body: string) {
 
       if (!closesInline) {
         while (i < lines.length && lines[i].trim() !== '##END##') {
-          contentLines.push(lines[i]);
+          const cleanedLine = lines[i].replace(/##END##/g, '').trimEnd();
+          if (cleanedLine) {
+            contentLines.push(cleanedLine);
+          }
           i++;
         }
 
@@ -126,7 +130,7 @@ function parseBody(body: string) {
 
       blocks.push({
         type: 'infobox',
-        content: contentLines.join('\n').trim(),
+        content: contentLines.join('\n').replace(/##END##/g, '').trim(),
         caption,
         extra,
       });
