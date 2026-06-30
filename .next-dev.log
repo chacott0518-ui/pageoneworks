@@ -1,0 +1,182 @@
+
+> pageoneworks@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3001
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.9s
+ ✓ Compiled /api/consult in 393ms (53 modules)
+ POST /api/consult 400 in 513ms
+ POST /api/consult 415 in 9ms
+ POST /api/consult 400 in 21ms
+ POST /api/consult 400 in 16ms
+ POST /api/consult 200 in 17ms
+[consult] Apps Script 응답 JSON 파싱 실패, status: 200
+ POST /api/consult 502 in 2064ms
+ ○ Compiling / ...
+ ✓ Compiled / in 5.5s (771 modules)
+ GET / 200 in 5823ms
+ GET / 200 in 117ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1595ms (773 modules)
+ GET / 200 in 284ms
+ ○ Compiling /article/[slug] ...
+ ✓ Compiled /article/[slug] in 810ms (839 modules)
+ ○ Compiling /api/views/[slug] ...
+ ✓ Compiled /api/views/[slug] in 661ms (552 modules)
+ POST /api/views/ai-search-brand-visibility-checklist-2026 200 in 2640ms
+ POST /api/views/ai-search-brand-visibility-checklist-2026 200 in 2656ms
+ ✓ Compiled /api/consult in 146ms (552 modules)
+[consult] Apps Script 응답 JSON 파싱 실패, status: 200
+ POST /api/consult 502 in 10210ms
+ POST /api/consult 200 in 2330ms
+ POST /api/views/ai-search-brand-visibility-checklist-2026 200 in 1284ms
+ POST /api/views/ai-search-brand-visibility-checklist-2026 200 in 1302ms
+ ✓ Compiled in 831ms (851 modules)
+ ✓ Compiled in 3.5s (851 modules)
+   Reload env: .env.local
+ ✓ Compiled in 2.4s (837 modules)
+ GET / 200 in 1364ms
+ GET / 200 in 192ms
+ GET / 200 in 109ms
+ GET / 200 in 141ms
+ GET / 200 in 1414ms
+ ✓ Compiled /_not-found in 375ms (464 modules)
+Error: Failed to find Server Action "x". This request might be from an older or newer deployment. Original error: Cannot read properties of undefined (reading 'workers')
+    at rw (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:1713)
+    at D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:303
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async rS (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:38:7978)
+    at async r2 (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:41:1251)
+    at async doRender (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1438:30)
+    at async cacheEntry.responseCache.get.routeKind (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderErrorToResponseImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:2182:24)
+    at async pipe.req.req (D:\pageoneworks\node_modules\next\dist\server\base-server.js:2056:30)
+    at async DevServer.pipeImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:920:25)
+    at async D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (D:\pageoneworks\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /api/route 404 in 627ms
+ GET / 200 in 1457ms
+ GET / 200 in 98ms
+ GET /apple-touch-icon.png 404 in 39ms
+ GET / 200 in 110ms
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from D:\pageoneworks\.next\cache\webpack\server-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 849ms (513 modules)
+ GET /sitemap.xml 200 in 1569ms
+[IndexNow] 제출 완료 — 86개, 상태: 403
+ GET /8cizyxjvqb1hc8rb 404 in 86ms
+ GET / 200 in 650ms
+ GET / 200 in 88ms
+ GET / 200 in 254ms
+ POST /mcp 404 in 85ms
+ GET /sse 404 in 69ms
+ GET / 200 in 1801ms
+ GET / 200 in 189ms
+ GET /sitemap.xml 200 in 145ms
+[IndexNow] 제출 완료 — 86개, 상태: 403
+ GET /s4rxsfs1d9g8kag 404 in 78ms
+ GET / 200 in 100ms
+ GET / 200 in 75ms
+ GET /414rc_rhw58tkx 404 in 36ms
+ GET / 200 in 172ms
+ GET / 200 in 117ms
+ GET / 200 in 139ms
+ GET / 200 in 1193ms
+ GET / 200 in 331ms
+ GET / 200 in 327ms
+ GET / 200 in 110ms
+ GET / 200 in 99ms
+ GET / 200 in 71ms
+ GET / 200 in 97ms
+ GET / 200 in 113ms
+ GET / 200 in 107ms
+ GET /8mhwd67dmjxs15 404 in 80ms
+ GET /sitemap.xml 200 in 65ms
+[IndexNow] 제출 완료 — 86개, 상태: 403
+ GET /62j55_bmjq9d 404 in 54ms
+ GET / 200 in 136ms
+ GET /apple-touch-icon.png 404 in 69ms
+ GET / 200 in 104ms
+ GET /.well-known/security.txt 404 in 63ms
+ GET / 200 in 617ms
+ GET / 200 in 109ms
+ GET /apple-touch-icon.png 404 in 64ms
+ GET / 200 in 114ms
+ GET /pwt4cbkxf 404 in 59ms
+ GET / 200 in 137ms
+ GET / 200 in 172ms
+ POST / 200 in 318114ms
+ GET / 200 in 909ms
+Error: Failed to find Server Action "x". This request might be from an older or newer deployment. Original error: Cannot read properties of undefined (reading 'workers')
+    at rw (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:1713)
+    at D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:303
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async rS (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:38:7978)
+    at async r2 (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:41:1251)
+    at async doRender (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1438:30)
+    at async cacheEntry.responseCache.get.routeKind (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderErrorToResponseImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:2182:24)
+    at async pipe.req.req (D:\pageoneworks\node_modules\next\dist\server\base-server.js:2056:30)
+    at async DevServer.pipeImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:920:25)
+    at async D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (D:\pageoneworks\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST /app 404 in 101ms
+ POST / 200 in 322934ms
+ GET /sitemap.xml 200 in 67ms
+[IndexNow] 제출 완료 — 86개, 상태: 403
+ GET /3vklkany8wh 404 in 66ms
+ GET / 200 in 405ms
+ GET / 200 in 129ms
+ GET /apple-touch-icon.png 404 in 81ms
+ GET / 200 in 124ms
+ GET /security.txt 404 in 45ms
+ GET / 200 in 165ms
+ GET / 200 in 107ms
+ GET /apple-touch-icon.png 404 in 59ms
+ GET / 200 in 113ms
+ GET /.well-known/security.txt 404 in 54ms
+ GET /a8emnmb5b 404 in 59ms
+ GET / 200 in 92ms
+ GET /apple-touch-icon.png 404 in 48ms
+ GET / 200 in 138ms
+ GET /sitemap.xml 200 in 46ms
+[IndexNow] 제출 완료 — 86개, 상태: 403
+ GET /35w_acniili042ma5p 404 in 53ms
+ GET / 200 in 101ms
+ GET / 200 in 86ms
+ POST / 200 in 311391ms
+ GET / 200 in 889ms
+ GET / 200 in 392ms
+ GET /sitemap.xml 200 in 264ms
+[IndexNow] 제출 완료 — 86개, 상태: 403
+ GET /v5a_bnktwb4f 404 in 123ms
+ GET / 200 in 96ms
+ GET /apple-touch-icon.png 404 in 83ms
+ GET /sbl48dmw6h8djie3g 404 in 37ms
+ GET / 200 in 62ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 935ms (846 modules)
+ GET /login 200 in 1478ms
+ GET /apple-touch-icon.png 404 in 105ms
+ GET /v_az9nta3whf9nsu7d 404 in 79ms
+ GET / 200 in 991ms
+ GET /api/session/properties 404 in 126ms
+ GET / 200 in 226ms
+ ✓ Compiled in 1333ms (839 modules)
