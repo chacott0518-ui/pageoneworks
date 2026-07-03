@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>검색·AI 노출 무료 진단 신청 | PAGEONEWORKS.</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #060d1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 14px;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+    
+  /* PAGEONEWORKS 상담 모달 — 기존 입력 항목/드롭다운 유지, 색상만 메일 톤에 맞춤 */
+  .p1-modal-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: none;
+    overflow-y: auto;
+    padding: 28px 14px;
+    background: rgba(5, 10, 20, .82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .p1-modal-layer:target { display: block; }
+  .p1-modal-layer[aria-hidden="true"]:not(.is-open) { display: none; }
+  .p1-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    display: block;
+    cursor: default;
+  }
+  .p1-modal {
+    position: relative;
+    z-index: 2;
+    width: min(100%, 630px);
+    margin: 0 auto;
+    overflow: hidden;
+    color: #f8fafc;
+    background: #0b1220;
+    border: 1px solid rgba(210, 173, 98, .45);
+    border-radius: 18px;
+    box-shadow: 0 26px 90px rgba(0, 0, 0, .48);
+    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, "Noto Sans KR", "Malgun Gothic", sans-serif;
+  }
+  .p1-modal * { box-sizing: border-box; }
+  .p1-modal-head {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    padding: 22px 22px 20px;
+    background: rgba(11, 18, 32, .97);
+    border-bottom: 1px solid rgba(148, 163, 184, .25);
+  }
+  .p1-modal-eyebrow {
+    margin-bottom: 8px;
+    color: #d2ad62;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .22em;
+  }
+  .p1-modal-title {
+    margin: 0 48px 0 0;
+    color: #fff;
+    font-size: 23px;
+    font-weight: 850;
+    line-height: 1.35;
+    letter-spacing: -.035em;
+  }
+  .p1-modal-close {
+    position: absolute;
+    top: 21px;
+    right: 21px;
+    width: 38px;
+    height: 38px;
+    color: #9aa4b2;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 34px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+  }
+  .p1-modal-close:hover { color: #fff; background: rgba(255, 255, 255, .07); }
+  .p1-modal-intro {
+    margin: 0;
+    padding: 21px 22px 0;
+    color: #9aa4b2;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .p1-form { padding: 22px; }
+  .p1-group { margin-bottom: 18px; }
+  .p1-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e5e7eb;
+    font-size: 13px;
+    font-weight: 800;
+  }
+  .p1-required { color: #d2ad62; }
+  .p1-input,
+  .p1-select,
+  .p1-textarea {
+    display: block;
+    width: 100%;
+    color: #f8fafc;
+    background: #171f2c;
+    border: 1px solid #d6dde7;
+    border-radius: 9px;
+    outline: none;
+    font: inherit;
+    transition: border-color .16s ease, box-shadow .16s ease;
+  }
+  .p1-input,
+  .p1-select {
+    height: 52px;
+    padding: 0 15px;
+  }
+  .p1-textarea {
+    min-height: 118px;
+    padding: 14px 15px;
+    line-height: 1.65;
+    resize: vertical;
+  }
+  .p1-input::placeholder,
+  .p1-textarea::placeholder { color: #697586; }
+  .p1-input:focus,
+  .p1-select:focus,
+  .p1-textarea:focus {
+    border-color: #d2ad62;
+    box-shadow: 0 0 0 3px rgba(210, 173, 98, .15);
+  }
+  .p1-select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 44px;
+    background-image:
+      linear-gradient(45deg, transparent 50%, #8d99a8 50%),
+      linear-gradient(135deg, #8d99a8 50%, transparent 50%);
+    background-position:
+      calc(100% - 20px) 22px,
+      calc(100% - 14px) 22px;
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+  }
+  .p1-select option { color: #111111 !important; background: #ffffff !important; }
+  .p1-divider {
+    height: 1px;
+    margin: 20px 0;
+    background: rgba(226, 232, 240, .35);
+  }
+  .p1-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 14px 0;
+    color: #d7dde6;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .p1-consent input {
+    flex: 0 0 auto;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
+    accent-color: #d2ad62;
+  }
+  .p1-consent small {
+    display: block;
+    margin-top: 4px;
+    color: #7e8999;
+    font-size: 11px;
+    line-height: 1.65;
+  }
+  .p1-modal-foot {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    padding: 15px 22px 20px;
+    background: rgba(11, 18, 32, .98);
+    border-top: 1px solid rgba(226, 232, 240, .28);
+  }
+  .p1-foot-note {
+    margin: 0 0 12px;
+    color: #6f9cc5;
+    font-size: 11px;
+    line-height: 1.55;
+    text-align: center;
+  }
+  .p1-submit,
+  .p1-cancel {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    font-family: inherit;
+    font-weight: 850;
+  }
+  .p1-submit {
+    height: 52px;
+    color: #08101c;
+    background: #d8b66d;
+    border: 0;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .p1-cancel {
+    height: 46px;
+    margin-top: 10px;
+    color: #cbd5e1;
+    background: transparent;
+    border: 1px solid rgba(226, 232, 240, .24);
+    font-size: 13px;
+    line-height: 44px;
+    text-decoration: none;
+  }
+  .p1-submit:hover { filter: brightness(1.04); }
+  .p1-email-cta {
+    display: inline-block;
+    width: 188px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 800;
+    box-sizing: border-box;
+    mso-line-height-rule: exactly;
+  }
+  @media (max-width: 680px) {
+    .p1-modal-layer { padding: 0; background: #0b1220; }
+    .p1-modal {
+      width: 100%;
+      min-height: 100vh;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .p1-modal-title { font-size: 21px; }
+    .p1-email-cta { width: 178px; }
+  }
+
+  .p1-modal-layer.is-open { display: block; }
+  body.p1-modal-open { overflow: hidden; }
+  .p1-form-view[hidden],
+  .p1-success-view[hidden] { display: none !important; }
+  .p1-success-view {
+    padding: 50px 28px 34px;
+    text-align: center;
+  }
+  .p1-success-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: rgba(210, 173, 98, .14);
+    border: 1px solid rgba(210, 173, 98, .55);
+    color: #e5c77d;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 62px;
+  }
+  .p1-success-title {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: 850;
+    line-height: 1.4;
+    letter-spacing: -.035em;
+  }
+  .p1-success-copy {
+    margin: 0 auto 24px;
+    max-width: 440px;
+    color: #aab4c2;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .p1-success-note {
+    margin: 0 0 22px;
+    padding: 14px 16px;
+    color: #dbeafe;
+    background: rgba(20, 40, 160, .22);
+    border: 1px solid rgba(125, 211, 252, .2);
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .p1-success-actions {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .p1-success-confirm,
+  .p1-success-kakao {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 850;
+  }
+  .p1-success-confirm {
+    color: #08101c;
+    background: #d8b66d;
+    border: 0;
+    line-height: 50px;
+    cursor: pointer;
+  }
+  .p1-success-kakao {
+    margin-top: 10px;
+    color: #f8fafc;
+    background: transparent;
+    border: 1px solid rgba(226, 232, 240, .25);
+    line-height: 48px;
+  }
+  .p1-submit:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+  }
+
+
+    /* 랜딩페이지에서는 모달을 항상 표시 */
+    .p1-modal-layer {
+      position: static !important;
+      display: block !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      padding: 0 !important;
+    }
+    .p1-modal-backdrop { display: none !important; }
+    .p1-modal-close { display: none !important; }
+    .p1-cancel { display: none !important; }
+    body.p1-modal-open { overflow: auto !important; }
+  </style>
+</head>
+<body>
+
+<!-- PAGEONEWORKS CONSULT MODAL -->
+<section id="p1-consult-modal"
+         class="p1-modal-layer"
+         aria-hidden="true"
+         aria-labelledby="p1-consult-title">
+  <button type="button"
+          class="p1-modal-backdrop"
+          data-p1-close
+          aria-label="상담 신청 창 닫기"
+          style="border:0;background:transparent;padding:0;"></button>
+
+  <div class="p1-modal" role="dialog" aria-modal="true">
+    <header class="p1-modal-head">
+      <div class="p1-modal-eyebrow">PAGEONEWORKS · 상담예약</div>
+      <h2 id="p1-consult-title" class="p1-modal-title">검색·AI 노출 무료 진단 신청</h2>
+      <button type="button"
+              class="p1-modal-close"
+              data-p1-close
+              aria-label="닫기"
+              style="border:0;background:transparent;padding:0;cursor:pointer;">×</button>
+    </header>
+
+    <div id="p1-form-view" class="p1-form-view">
+      <p class="p1-modal-intro">
+        간단한 정보만 남겨 주시면 검색·AI 노출 현황을 살펴보고 연락드립니다.
+        <span class="p1-required">*</span>는 필수 항목입니다.
+      </p>
+
+      <form id="pageoneExistingConsultForm"
+          class="p1-form"
+          method="post"
+          action="https://script.google.com/macros/s/AKfycbzwIPaWVqQ0V-V2uflYmddMU0vHLXU1v3AL16FjL3EoqvxtycPckb0MXRSPofAmxaXM/exec">
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-name">이름 <span class="p1-required">*</span></label>
+        <input class="p1-input" id="p1-name" name="name" type="text" autocomplete="name" placeholder="홍길동" required>
+      </div>
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-company">회사명 또는 기관명 <span class="p1-required">*</span></label>
+        <input class="p1-input" id="p1-company" name="company" type="text" autocomplete="organization"
+               placeholder="예: OO병원 / OO법률사무소 / OO브랜드" required>
+      </div>
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-phone">연락처 <span class="p1-required">*</span></label>
+        <input class="p1-input" id="p1-phone" name="phone" type="tel" autocomplete="tel"
+               inputmode="tel" placeholder="010-0000-0000" required>
+      </div>
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-industry">업종 <span class="p1-required">*</span></label>
+        <select class="p1-select" id="p1-industry" name="industry" required>
+          <option value="" selected disabled>선택해 주세요</option>
+          <option value="병원·의료">병원·의료</option>
+          <option value="법률·세무·회계·노무">법률·세무·회계·노무</option>
+          <option value="기업·B2B·제조">기업·B2B·제조</option>
+          <option value="브랜드·스타트업">브랜드·스타트업</option>
+          <option value="교육">교육</option>
+          <option value="프랜차이즈·로컬 비즈니스">프랜차이즈·로컬 비즈니스</option>
+          <option value="쇼핑몰·커머스">쇼핑몰·커머스</option>
+          <option value="미디어·매거진">미디어·매거진</option>
+          <option value="기타">기타</option>
+        </select>
+      </div>
+
+      <div class="p1-divider"></div>
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-help">어떤 도움이 필요하세요?</label>
+        <select class="p1-select" id="p1-help" name="help">
+          <option value="" selected>선택 안 함</option>
+          <option value="구글·네이버 검색에 잘 나오고 싶어요">구글·네이버 검색에 잘 나오고 싶어요</option>
+          <option value="ChatGPT·AI 답변에 회사가 나오게 하고 싶어요">ChatGPT·AI 답변에 회사가 나오게 하고 싶어요</option>
+          <option value="사이트와 콘텐츠 전체를 점검받고 싶어요">사이트와 콘텐츠 전체를 점검받고 싶어요</option>
+          <option value="지역 검색과 지도 노출을 개선하고 싶어요">지역 검색과 지도 노출을 개선하고 싶어요</option>
+          <option value="새 홈페이지와 검색 최적화를 함께 하고 싶어요">새 홈페이지와 검색 최적화를 함께 하고 싶어요</option>
+          <option value="무엇이 필요한지 잘 모르겠어요">무엇이 필요한지 잘 모르겠어요</option>
+        </select>
+      </div>
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-time">연락받기 좋은 시간</label>
+        <input class="p1-input" id="p1-time" name="contactTime" type="text"
+               placeholder="예: 평일 오후 2~5시">
+      </div>
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-website">웹사이트 주소</label>
+        <input class="p1-input" id="p1-website" name="website" type="url"
+               inputmode="url" placeholder="https://">
+      </div>
+
+      <div class="p1-group">
+        <label class="p1-label" for="p1-message">문의 내용</label>
+        <textarea class="p1-textarea" id="p1-message" name="message"
+                  placeholder="현재 고민이나 목표를 자유롭게 적어 주세요."></textarea>
+      </div>
+
+      <div class="p1-divider"></div>
+
+      <label class="p1-consent">
+        <input type="checkbox" name="privacyConsent" value="동의" required>
+        <span>
+          <strong>[필수] 개인정보 수집·이용에 동의합니다.</strong>
+          <small>
+            수집 항목: 이름, 회사명·기관명, 연락처, 업종 및 선택 입력 정보 ·
+            이용 목적: 상담 신청 확인 및 일정 안내 ·
+            보유 기간: 상담 목적 달성 후 파기. 동의 거부 시 상담예약 이용이 제한될 수 있습니다.
+          </small>
+        </span>
+      </label>
+
+      <label class="p1-consent">
+        <input type="checkbox" name="marketingConsent" value="동의">
+        <span>
+          <strong>[선택] 광고성 정보 수신에 동의합니다.</strong>
+          <small>
+            PAGEONEWORKS의 서비스·콘텐츠·세미나·프로모션 정보는 전화 또는 문자로 받을 수 있습니다.
+            동의하지 않아도 상담예약 이용이 가능합니다. 언제든 철회할 수 있습니다.
+          </small>
+        </span>
+      </label>
+    </form>
+
+      <footer class="p1-modal-foot">
+        <p id="p1-submit-error" class="p1-foot-note" style="display:none;color:#fecaca;"></p>
+        <p class="p1-foot-note">입력하신 내용은 상담 응대를 위해 기존 PAGEONEWORKS 접수 시스템으로 전달됩니다.</p>
+        <button id="p1-submit-button"
+                class="p1-submit"
+                type="submit"
+                form="pageoneExistingConsultForm">상담 신청하기</button>
+        <button type="button"
+                class="p1-cancel"
+                data-p1-close
+                style="cursor:pointer;">취소</button>
+      </footer>
+    </div>
+
+    <div id="p1-success-view" class="p1-success-view" hidden>
+      <div class="p1-success-icon" aria-hidden="true">✓</div>
+      <h3 class="p1-success-title">무료 진단 신청이 접수되었습니다</h3>
+      <p class="p1-success-copy">
+        입력해 주신 내용을 확인한 뒤 담당자가 연락드리겠습니다.<br>
+        홈페이지 주소를 남겨 주신 경우 검색·AI 노출 상태를 먼저 확인한 후 상담을 진행합니다.
+      </p>
+      <div class="p1-success-note">
+        접수 내용은 PAGEONEWORKS 통합 신청 DB와 담당자 이메일로 전달되었습니다.
+      </div>
+      <div class="p1-success-actions">
+        <button type="button" class="p1-success-confirm" data-p1-close>확인</button>
+        <a class="p1-success-kakao"
+           href="http://pf.kakao.com/_DSgxfb/chat"
+           target="_blank"
+           rel="noopener noreferrer">카카오톡으로 추가 문의</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// 랜딩페이지용 — 모달 닫기 없이 폼 제출만 처리
+(function () {
+  var endpoint = "https://script.google.com/macros/s/AKfycbzwIPaWVqQ0V-V2uflYmddMU0vHLXU1v3AL16FjL3EoqvxtycPckb0MXRSPofAmxaXM/exec";
+  var form = document.getElementById("pageoneExistingConsultForm");
+  var formView = document.getElementById("p1-form-view");
+  var successView = document.getElementById("p1-success-view");
+  var submitButton = document.getElementById("p1-submit-button");
+  var errorBox = document.getElementById("p1-submit-error");
+
+  if (!form || !formView || !successView || !submitButton) return;
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = "전송 중...";
+    if (errorBox) { errorBox.style.display = "none"; errorBox.textContent = ""; }
+
+    var data = new FormData(form);
+    var payload = {
+      name: data.get("name") || "",
+      company: data.get("company") || "",
+      phone: data.get("phone") || "",
+      industry: data.get("industry") || "",
+      help: data.get("help") || "",
+      contactTime: data.get("contactTime") || "",
+      website: data.get("website") || "",
+      message: data.get("message") || "",
+      source: "법률 AI 메일 랜딩",
+      privacyConsent: data.get("privacyConsent") || "",
+      marketingConsent: data.get("marketingConsent") || ""
+    };
+
+    fetch(endpoint, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    })
+    .then(function () {
+      formView.hidden = true;
+      successView.hidden = false;
+    })
+    .catch(function () {
+      if (errorBox) {
+        errorBox.textContent = "전송 중 문제가 발생했습니다. 잠시 후 다시 시도하거나 카카오톡으로 문의해 주세요.";
+        errorBox.style.display = "block";
+      }
+      submitButton.disabled = false;
+      submitButton.textContent = "상담 신청하기";
+    });
+  });
+
+  // 성공 후 확인 버튼 → 페이지 새로고침
+  document.querySelectorAll("[data-p1-close]").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      window.location.reload();
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
