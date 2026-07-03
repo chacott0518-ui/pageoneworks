@@ -5,3 +5,5 @@
 # 로컬 환경변수 - 비밀키 포함, Git 추적 금지
 .env*.local
 .env.local
+
+.vercel

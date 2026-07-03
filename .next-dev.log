@@ -180,3 +180,698 @@ Error: Failed to find Server Action "x". This request might be from an older or 
  GET /api/session/properties 404 in 126ms
  GET / 200 in 226ms
  ✓ Compiled in 1333ms (839 modules)
+ ✓ Compiled in 951ms (391 modules)
+ ✓ Compiled in 288ms (391 modules)
+ GET / 200 in 1338ms
+ GET / 200 in 127ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 555ms (464 modules)
+ ⨯ Error: Cannot find module './8948.js'
+Require stack:
+- D:\pageoneworks\.next\server\webpack-runtime.js
+- D:\pageoneworks\.next\server\app\_not-found\page.js
+- D:\pageoneworks\node_modules\next\dist\server\require.js
+- D:\pageoneworks\node_modules\next\dist\server\load-components.js
+- D:\pageoneworks\node_modules\next\dist\build\utils.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-middleware.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at D:\pageoneworks\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (D:\pageoneworks\.next\server\webpack-runtime.js:198:28)
+    at D:\pageoneworks\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\pageoneworks\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\pageoneworks\.next\server\webpack-runtime.js:162:22)
+    at D:\pageoneworks\.next\server\app\_not-found\page.js:1:4674
+    at Object.<anonymous> (D:\pageoneworks\.next\server\app\_not-found\page.js:1:4726)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\pageoneworks\node_modules\next\dist\server\require.js:109:84)
+    at D:\pageoneworks\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderErrorToResponseImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:2090:30)
+    at async pipe.req.req (D:\pageoneworks\node_modules\next\dist\server\base-server.js:2056:30)
+    at async DevServer.pipeImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:920:25)
+    at async D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (D:\pageoneworks\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:368:24)
+    at async requestHandlerImpl (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\pageoneworks\\.next\\server\\webpack-runtime.js',
+    'D:\\pageoneworks\\.next\\server\\app\\_not-found\\page.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\DumpStack.log.tmp'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\System Volume Information'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ○ Compiling /_error ...
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\DumpStack.log.tmp'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\System Volume Information'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled /_error in 1030ms (1064 modules)
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\System Volume Information'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\DumpStack.log.tmp'
+Watchpack Error (initial scan): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ GET /apple-touch-icon.png 500 in 3417ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\dev\static-paths-worker.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\compiled\jest-worker\index.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\lib\squoosh\main.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\image-optimizer.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\image-optimizer.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-metadata-image-loader.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\compiled\loader-runner\LoaderRunner.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\compiled\webpack\bundle5.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\compiled\webpack\webpack.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\plugins\define-env-plugin.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack-config.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack-config.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\handle-externals.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\handle-externals.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-swc-loader.js
+ GET / 200 in 494ms
+ ✓ Compiled /login in 99ms (509 modules)
+ GET /login 200 in 291ms
+ GET /apple-touch-icon.png 404 in 84ms
+ GET /8es1s9g2gog6 404 in 60ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/lucide-react' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js', but to 'Error: Can't resolve './vendor-chunks/lucide-react' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/lucide-react (expected D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/fuse.js' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\fuse.js.js', but to 'Error: Can't resolve './vendor-chunks/fuse.js' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/fuse.js (expected D:\pageoneworks\.next\server\vendor-chunks\fuse.js.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/cookie' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\cookie.js', but to 'Error: Can't resolve './vendor-chunks/cookie' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/cookie (expected D:\pageoneworks\.next\server\vendor-chunks\cookie.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ GET / 200 in 2514ms
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 2.1s (550 modules)
+ GET /sitemap.xml 200 in 2423ms
+[IndexNow] 제출 완료 — 87개, 상태: 403
+ ✓ Compiled /_not-found in 98ms (552 modules)
+ GET /y5q0msyk3e1r33_ 404 in 262ms
+ GET /_4ja6uzn0_li 404 in 35ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\vendor-chunks\cookie.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/cookie' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\cookie.js', but to 'Error: Can't resolve './vendor-chunks/cookie' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/cookie (expected D:\pageoneworks\.next\server\vendor-chunks\cookie.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/iceberg-js' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\iceberg-js.js', but to 'Error: Can't resolve './vendor-chunks/iceberg-js' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/iceberg-js (expected D:\pageoneworks\.next\server\vendor-chunks\iceberg-js.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/tslib' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\tslib.js', but to 'Error: Can't resolve './vendor-chunks/tslib' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/tslib (expected D:\pageoneworks\.next\server\vendor-chunks\tslib.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/@supabase' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\@supabase.js', but to 'Error: Can't resolve './vendor-chunks/@supabase' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/@supabase (expected D:\pageoneworks\.next\server\vendor-chunks\@supabase.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ GET / 200 in 221ms
+ GET / 200 in 94ms
+ GET / 200 in 95ms
+ GET / 200 in 64ms
+ GET / 200 in 90ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ GET / 200 in 296ms
+ GET / 200 in 250ms
+ GET /apple-touch-icon.png 404 in 74ms
+ GET / 200 in 101ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 884ms (508 modules)
+ GET /login 200 in 1190ms
+ GET /apple-touch-icon.png 404 in 55ms
+ GET /login 200 in 77ms
+ GET /apple-touch-icon.png 404 in 66ms
+ GET /loo00q63wggp3rxcj 404 in 51ms
+ GET /1ze2cokwvxygh0gp 404 in 43ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/lucide-react' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js', but to 'Error: Can't resolve './vendor-chunks/lucide-react' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/lucide-react (expected D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ GET / 200 in 304ms
+ GET / 200 in 112ms
+ GET /apple-touch-icon.png 404 in 51ms
+ GET / 200 in 80ms
+ ✓ Compiled /sitemap.xml in 393ms (552 modules)
+ GET /sitemap.xml 200 in 572ms
+[IndexNow] 제출 완료 — 87개, 상태: 403
+ GET /x33cbttvlvcsnj66yc 404 in 89ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\vendor-chunks\cookie.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/cookie' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\cookie.js', but to 'Error: Can't resolve './vendor-chunks/cookie' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/cookie (expected D:\pageoneworks\.next\server\vendor-chunks\cookie.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/iceberg-js' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\iceberg-js.js', but to 'Error: Can't resolve './vendor-chunks/iceberg-js' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/iceberg-js (expected D:\pageoneworks\.next\server\vendor-chunks\iceberg-js.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ GET / 200 in 1244ms
+ GET / 200 in 114ms
+ GET /_2vqrzpl3s4vcrgj 404 in 77ms
+ GET / 200 in 911ms
+ GET / 200 in 124ms
+ GET / 200 in 138ms
+ GET / 200 in 93ms
+ GET / 200 in 260ms
+ GET / 200 in 128ms
+ GET /apple-touch-icon.png 404 in 50ms
+ GET / 200 in 106ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1269ms (508 modules)
+ GET /login 200 in 1529ms
+ GET /apple-touch-icon.png 404 in 87ms
+ GET /jiamfvrl2_c7j 404 in 97ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/lucide-react' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js', but to 'Error: Can't resolve './vendor-chunks/lucide-react' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/lucide-react (expected D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/fuse.js' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\fuse.js.js', but to 'Error: Can't resolve './vendor-chunks/fuse.js' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/fuse.js (expected D:\pageoneworks\.next\server\vendor-chunks\fuse.js.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file D:\pageoneworks\.next\server\app\_not-found\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled /sitemap.xml in 197ms (550 modules)
+ GET /sitemap.xml 200 in 289ms
+[IndexNow] 제출 완료 — 87개, 상태: 403
+ ✓ Compiled /_not-found in 81ms (552 modules)
+ GET /1pr0b47p4tbh_ 404 in 153ms
+ GET / 200 in 134ms
+ GET /apple-touch-icon.png 404 in 50ms
+ GET / 200 in 89ms
+ GET /sitemap.xml 200 in 28ms
+[IndexNow] 제출 완료 — 87개, 상태: 403
+ GET /7r1l7chyqr5tp92ddu 404 in 49ms
+ ✓ Compiled /login in 80ms (557 modules)
+ GET /login 200 in 177ms
+ GET /apple-touch-icon.png 404 in 62ms
+ GET /1kjb0zjch2cjn2u1w 404 in 61ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/lucide-react' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js', but to 'Error: Can't resolve './vendor-chunks/lucide-react' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/lucide-react (expected D:\pageoneworks\.next\server\vendor-chunks\lucide-react.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/fuse.js' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\fuse.js.js', but to 'Error: Can't resolve './vendor-chunks/fuse.js' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/fuse.js (expected D:\pageoneworks\.next\server\vendor-chunks\fuse.js.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/cookie' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\cookie.js', but to 'Error: Can't resolve './vendor-chunks/cookie' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/cookie (expected D:\pageoneworks\.next\server\vendor-chunks\cookie.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving './vendor-chunks/iceberg-js' in D:\pageoneworks\.next\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\vendor-chunks\iceberg-js.js', but to 'Error: Can't resolve './vendor-chunks/iceberg-js' in 'D:\pageoneworks\.next\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ./vendor-chunks/iceberg-js (expected D:\pageoneworks\.next\server\vendor-chunks\iceberg-js.js)
+<w>  at file dependencies D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file D:\pageoneworks\.next\server\webpack-runtime.js
+<w>  at file dependencies D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file D:\pageoneworks\.next\server\app\login\page.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ GET /api/config 404 in 42ms
+ GET /api/config 404 in 54ms
+ GET / 200 in 450ms
+ GET / 200 in 367ms
+ GET / 200 in 340ms
+ GET /api/v1/auto_login 404 in 67ms
+ GET /api/v0/run_sql?id=probe&sql=SELECT+1 404 in 76ms
+ GET /v1/pipelines 404 in 58ms
+ GET /api/v2/app/version 404 in 56ms
+ GET /api/ping 404 in 32ms
+ GET /api/v1/options/models 404 in 67ms
+ GET /v1/models 404 in 40ms
+ GET /list_models 404 in 28ms
+ GET /token 404 in 79ms
+ GET / 200 in 384ms
+ GET / 200 in 412ms
+ GET /login 200 in 51ms
+ GET / 200 in 405ms
+ GET /api/v1/chatflows 404 in 47ms
+ GET /healthz 404 in 63ms
+ GET / 200 in 453ms
+ GET /login 200 in 50ms
+ GET / 200 in 423ms
+ GET / 200 in 414ms
+ GET / 200 in 339ms
+ GET /api/ping 404 in 43ms
+ GET /api/public/health 404 in 74ms
+ GET / 200 in 372ms
+ GET / 200 in 363ms
+ GET /health 404 in 45ms
+ GET /v1/health 404 in 36ms
+ GET /arize_phoenix_version 404 in 56ms
+ GET /api/v1/private/traces?page=1&size=1 404 in 49ms
+ GET / 200 in 352ms
+ GET /health 404 in 42ms
+ GET /api/statuses 404 in 62ms
+ GET /api/v1/flows?page=1&size=1 404 in 50ms
+ GET / 200 in 345ms
+ GET /openapi.json 404 in 22ms
+ GET / 200 in 79ms
+ GET / 200 in 82ms
+ GET /evg0_xnizl0nm 404 in 79ms
+ GET / 200 in 1517ms
+ GET / 200 in 1014ms
+ GET / 200 in 82ms
+ GET /apple-touch-icon.png 404 in 54ms
+ GET /apple-touch-icon.png 404 in 57ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ GET / 200 in 269ms
+ ✓ Compiled in 1778ms (1060 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\_not-found'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/views/[slug]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\views\[slug]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/views/[slug]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/views/[slug]/route (expected D:\pageoneworks\.next\server\app\api\views\[slug]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 497ms (1060 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\_not-found'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 434ms (1060 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\_not-found'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 706ms (1060 modules)
+ ✓ Compiled in 750ms (1074 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\_not-found\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 645ms (1074 modules)
+ ✓ Compiled in 389ms (1074 modules)
+ ✓ Compiled in 507ms (1060 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\_not-found\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\client-development\6.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\client-development\6.pack.gz'
+ ✓ Compiled in 352ms (1060 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\_not-found'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 560ms (1060 modules)
+ ✓ Compiled in 365ms (1074 modules)

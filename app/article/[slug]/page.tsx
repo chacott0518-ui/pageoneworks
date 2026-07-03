@@ -68,6 +68,35 @@ function parseBody(body: string) {
       blocks.push({ type: 'image', content: parts[2] || '', caption: parts[4] || '' });
       i++; continue;
     }
+    if (line.startsWith('※ 참고 출처')) {
+      const sourceLines: string[] = [];
+      i++;
+
+      while (i < lines.length) {
+        const sourceLine = lines[i];
+
+        if (
+          sourceLine.startsWith('Q.') ||
+          sourceLine.startsWith('■') ||
+          sourceLine.startsWith('##')
+        ) {
+          break;
+        }
+
+        if (sourceLine.trim() !== '') {
+          sourceLines.push(sourceLine);
+        }
+
+        i++;
+      }
+
+      blocks.push({
+        type: 'sources',
+        content: sourceLines.join('\n'),
+      });
+
+      continue;
+    }
     if (line.startsWith('Q.')) {
       blocks.push({ type: 'faq', content: line, caption: lines[i + 1] || '' });
       i += 2; continue;
@@ -580,6 +609,63 @@ export default function ArticlePage({ params }: Props) {
                     {block.content}
                   </a>
                 </div>
+              );
+            }
+            if (block.type === 'sources') {
+              const sourceLines = block.content
+                .split('\n')
+                .map((line) => line.trim())
+                .filter(Boolean);
+
+              return (
+                <details
+                  key={i}
+                  style={{
+                    margin: '48px 0 24px',
+                    padding: '0',
+                    borderTop: '1px solid rgba(26,26,26,0.12)',
+                    borderBottom: '1px solid rgba(26,26,26,0.12)',
+                  }}
+                >
+                  <summary
+                    style={{
+                      cursor: 'pointer',
+                      padding: '20px 0',
+                      fontFamily: 'var(--font-inter)',
+                      fontSize: '15px',
+                      fontWeight: 500,
+                      color: '#1a1a1a',
+                    }}
+                  >
+                    참고 출처 보기
+                  </summary>
+
+                  <div
+                    style={{
+                      padding: '0 0 22px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '10px',
+                    }}
+                  >
+                    {sourceLines.map((line, sourceIndex) => (
+                      <p
+                        key={sourceIndex}
+                        style={{
+                          margin: 0,
+                          fontFamily: 'var(--font-inter)',
+                          fontSize: '14px',
+                          lineHeight: '1.75',
+                          color: 'rgba(26,26,26,0.62)',
+                          wordBreak: 'keep-all',
+                          overflowWrap: 'anywhere',
+                        }}
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                </details>
               );
             }
             if (block.type === 'tool') {
