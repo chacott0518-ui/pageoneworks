@@ -10,6 +10,8 @@ import { sportsHealthArticles } from './sports-health';
 import { cultureArtArticles } from './culture-art';
 import { petFamilyArticles } from './pet-family';
 import { globalTrendArticles } from './global-trend';
+import { topicArticles } from './topics';
+import { mergeArticleSources } from '../article-selectors';
 
 function interleave<T>(...arrays: T[][]): T[] {
   const result: T[] = [];
@@ -22,7 +24,8 @@ function interleave<T>(...arrays: T[][]): T[] {
   return result;
 }
 
-export const articles = interleave(
+/** 기존 flat 카테고리 파일 — legacy, interleave 순서 유지 */
+export const legacyArticles = interleave(
   driveTechArticles      ?? [],
   vitalityArticles       ?? [],
   propertiesArticles     ?? [],
@@ -36,3 +39,54 @@ export const articles = interleave(
   petFamilyArticles      ?? [],
   globalTrendArticles    ?? [],
 );
+
+export {
+  parseArticleDate,
+  normalizeArticleDate,
+  sortArticlesByDateDesc,
+  mergeArticleSources,
+  getLatestArticles,
+  getArticlesByCategorySlug,
+  getArticlesByCategoryTitle,
+  getArticlesByTopic,
+  getCategoryFeaturedArticle,
+  getCategoryGridArticles,
+  getSpotlightArticles,
+  getSitemapArticles,
+  getFeedArticles,
+  getIndexNowCandidateUrls,
+  findArticlesWithInvalidDates,
+  findDuplicateArticleSlugs,
+  findDuplicateArticleIds,
+  findDuplicateTitleKos,
+  findDuplicateImageUrls,
+  findArticlesWithBodyTokenLeaks,
+} from '../article-selectors';
+
+export {
+  categoryTopics,
+  getTopicsForCategory,
+  getTopicLabel,
+  resolveArticleTopicLabel,
+  isValidCategorySlug,
+  isValidTopicSlug,
+  findArticlesWithUnknownTopic,
+  findArticlesWithInvalidCategory,
+  findArticlesMissingRecommendedTopic,
+  ALL_TOPIC_VALUE,
+} from '../article-taxonomy';
+export type { CategoryTopic } from '../article-taxonomy';
+
+export {
+  articlePatterns,
+  getArticlePattern,
+  VALID_CONTENT_PATTERNS,
+  isValidContentPattern,
+  findArticlesWithInvalidContentPattern,
+} from '../article-patterns';
+export type { ArticlePattern } from '../article-patterns';
+
+export { topicArticles };
+
+/** legacy flat + 미래 topic 파일 통합 — 기존 import 경로 유지 */
+export const articles = mergeArticleSources(legacyArticles, topicArticles);

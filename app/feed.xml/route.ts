@@ -1,15 +1,14 @@
 import { articles } from '@/lib/data';
-import { siteConfig } from '@/lib/site.config';
+import { siteConfig, absoluteUrl } from '@/lib/site.config';
+import { getFeedArticles, normalizeArticleDate } from '@/lib/article-selectors';
 
 const BASE_URL = siteConfig.baseUrl;
 
 export async function GET() {
-  const rssItems = articles
-    .slice()
-    .sort((a, b) => new Date(b.date.replace(/\./g, '-')).getTime() - new Date(a.date.replace(/\./g, '-')).getTime())
+  const rssItems = getFeedArticles(articles)
     .map((article) => {
-      const pubDate = new Date(article.date.replace(/\./g, '-')).toUTCString();
-      const link = `${BASE_URL}/article/${article.slug}`;
+      const pubDate = new Date(normalizeArticleDate(article)).toUTCString();
+      const link = absoluteUrl(`/article/${article.slug}`);
       const excerpt = (article.excerpt ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
       return `<item>
 <title><![CDATA[${article.titleKo}]]></title>

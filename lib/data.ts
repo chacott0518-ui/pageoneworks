@@ -16,6 +16,9 @@ export type ArticleSource = {
   publishedAt?: string;
 };
 
+/** 신규 글 작성 시 내부 구조 가이드용 — URL·라우트·sitemap과 무관 */
+export type ArticleContentPattern = 'A' | 'B' | 'C' | 'D' | 'E';
+
 export type Article = {
   id: number | string;
   slug: string;
@@ -37,7 +40,13 @@ export type Article = {
   isSponsored?: boolean;
   sponsorName?: string;
   sponsorUrl?: string;
-  viewCount?: number; 
+  viewCount?: number;
+  /** 넓은 하위 주제 slug — UI 필터·분류용, indexable URL 생성 없음. 표시명은 taxonomy에서 조회 */
+  topicSlug?: string;
+  /** @deprecated topicSlug + taxonomy 우선. 하위 호환용 선택 필드 */
+  topicLabel?: string;
+  /** 내부 작성 가이드 패턴 (A~E). SEO 메타에 노출하지 않음 */
+  contentPattern?: ArticleContentPattern;
 };
 
 export const categories: Category[] = [

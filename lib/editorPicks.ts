@@ -1,10 +1,10 @@
 // ================================================================
-// ✏️  에디터픽 교체 방법
-//     이 배열 순서만 바꾸면 홈 섹션이 바로 반영됩니다
-//     슬러그 = 각 아티클 파일의 slug: '...' 값 그대로
+// ✏️  수동 추천 (지금 주목할 아티클 가중치)
+//     slug 목록 — getSpotlightArticles()의 manualSlugs로 전달됨
+//     자동 선정(최신성·다양성)과 함께 반영되며, 고정 7개 목록이 아님
 // ================================================================
 
-export const EDITOR_PICKS: string[] = [
+export const MANUAL_SPOTLIGHT_SLUGS: string[] = [
     // 01 — 왼쪽 상단 LARGE
     'pregnancy-week-calculator',
   
@@ -26,3 +26,6 @@ export const EDITOR_PICKS: string[] = [
     // 07 — 오른쪽 SMALL 4번
     'art-basel-hong-kong-2026',
   ];
+
+/** @deprecated MANUAL_SPOTLIGHT_SLUGS 사용 — 하위 호환 */
+export const EDITOR_PICKS = MANUAL_SPOTLIGHT_SLUGS;

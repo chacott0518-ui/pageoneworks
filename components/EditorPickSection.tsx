@@ -5,12 +5,15 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { articles } from '@/lib/data';
 import type { Article } from '@/lib/data';
-import { EDITOR_PICKS } from '@/lib/editorPicks';
+import { getSpotlightArticles } from '@/lib/article-selectors';
+import { MANUAL_SPOTLIGHT_SLUGS } from '@/lib/editorPicks';
 
 function getPicks(): Article[] {
-  return EDITOR_PICKS
-    .map(slug => articles.find(a => a.slug === slug))
-    .filter((a): a is Article => !!a);
+  return getSpotlightArticles(articles, {
+    count: 7,
+    manualSlugs: MANUAL_SPOTLIGHT_SLUGS,
+    // viewCounts: 클라이언트 일괄 조회 API 없음 → 1차 미반영, 함수 시그니처로 확장 가능
+  });
 }
 
 function useReveal(delay = 0) {
@@ -40,7 +43,7 @@ function CardLarge({ a }: { a: Article }) {
         <div style={{ position: 'relative', width: '100%', paddingBottom: '56%', overflow: 'hidden', borderRadius: 1, marginBottom: 14 }}>
           <Image src={a.image} alt={a.titleKo} fill sizes="(max-width: 768px) 100vw, 50vw" quality={75} priority style={{ objectFit: 'cover', transform: hov ? 'scale(1.04)' : 'scale(1)', transition: 'transform .6s ease' }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 55%)' }} />
-          <div style={{ position: 'absolute', top: 12, left: 12, padding: '3px 10px', background: '#c9b99a', fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.14em', textTransform: 'uppercase', color: '#111' }}>에디터 픽 1위</div>
+          <div style={{ position: 'absolute', top: 12, left: 12, padding: '3px 10px', background: '#c9b99a', fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.14em', textTransform: 'uppercase', color: '#111' }}>주목 1위</div>
         </div>
         <div style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 9, letterSpacing: '.16em', textTransform: 'uppercase', color: '#c9b99a', marginBottom: 8 }}>{a.category}</div>
         <h3 style={{ fontFamily: 'Cormorant Garamond, Noto Serif KR, Georgia, serif', fontSize: 'clamp(17px, 1.8vw, 22px)', fontWeight: 300, lineHeight: 1.4, wordBreak: 'keep-all', color: hov ? '#ede8e0' : '#c8c0b4', transition: 'color .2s' }}>{a.titleKo}</h3>
@@ -108,7 +111,7 @@ function MobileHero({ a }: { a: Article }) {
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.15) 50%, transparent 100%)' }} />
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 16px 18px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 7 }}>
-              <span style={{ padding: '2px 8px', background: '#c9b99a', fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.12em', textTransform: 'uppercase', color: '#111' }}>에디터 픽 1위</span>
+              <span style={{ padding: '2px 8px', background: '#c9b99a', fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.12em', textTransform: 'uppercase', color: '#111' }}>주목 1위</span>
               <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 8, letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(201,185,154,.8)' }}>{a.category}</span>
             </div>
             <h3 style={{ fontFamily: 'Cormorant Garamond, Noto Serif KR, Georgia, serif', fontSize: 18, fontWeight: 300, color: '#ede8e0', lineHeight: 1.4, wordBreak: 'keep-all' }}>{a.titleKo}</h3>
@@ -174,17 +177,16 @@ export function EditorPickSection() {
         }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 10, letterSpacing: '.2em', textTransform: 'uppercase', color: '#666' }}>에디터 픽</span>
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 10, letterSpacing: '.2em', textTransform: 'uppercase', color: '#666' }}>주목</span>
               <div style={{ width: 28, height: 0.5, background: '#2e2e2e' }} />
             </div>
             <h2 style={{ fontFamily: 'Cormorant Garamond, Noto Serif KR, Georgia, serif', fontSize: 'clamp(22px,3vw,34px)', fontWeight: 300, lineHeight: 1.2, color: '#ede8e0', wordBreak: 'keep-all' }}>
-              이번 주 꼭 읽어야 할{' '}
-              <em style={{ fontStyle: 'italic', color: '#c9b99a' }}>추천 아티클</em>
+              <em style={{ fontStyle: 'italic', color: '#c9b99a' }}>지금 주목할 아티클</em>
             </h2>
           </div>
           <div style={{ textAlign: 'right' as const }}>
             <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 11, fontWeight: 300, color: '#555', lineHeight: 1.75 }}>
-              PAGEONEWORKS 에디터가 직접 선정<br />매주 업데이트됩니다
+              최신성·다양성·수동 추천을 반영해 선정<br />매일 업데이트됩니다
             </p>
             <Link href="/archive" className="ep-more-btn">전체 아티클 보기 →</Link>
           </div>

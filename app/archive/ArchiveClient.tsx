@@ -5,14 +5,15 @@ import Link from 'next/link';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { articles, categories } from '@/lib/data';
+import { getLatestArticles } from '@/lib/article-selectors';
 
 export default function ArchiveClient() {
   const [activeFilter, setActiveFilter] = useState<string | null>(null);
   const [shown, setShown] = useState(12);
 
   const filtered = activeFilter
-    ? articles.filter((a) => a.categorySlug === activeFilter)
-    : articles;
+    ? getLatestArticles(articles.filter((a) => a.categorySlug === activeFilter))
+    : getLatestArticles(articles);
 
   const displayList = filtered.slice(0, shown);
   const hasMore = shown < filtered.length;

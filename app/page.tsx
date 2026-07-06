@@ -6,6 +6,7 @@ import {
 } from '@/lib/schemas'
 import { siteConfig } from '@/lib/site.config'
 import { articles } from '@/lib/data'
+import { getLatestArticles } from '@/lib/article-selectors'
 import HomeClient from './HomeClient'
 
 const SITE_URL = siteConfig.baseUrl
@@ -52,9 +53,9 @@ const breadcrumbSchema = getBreadcrumbSchema([
   { name: '홈', url: SITE_URL },
 ])
 
-const featuredArticles = articles.slice(0, 10)
+const featuredArticles = getLatestArticles(articles, 10)
 const itemListSchema = getItemListSchema(
-  'PAGEONEWORKS 최신 추천 아티클',
+  'PAGEONEWORKS 최신 아티클',
   featuredArticles.map((a) => ({
     title: a.titleKo,
     url: `${SITE_URL}/article/${a.slug}`,

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { articles, categories } from '@/lib/data'
-import { notifyIndexNow } from '@/lib/indexnow'
 import { siteConfig } from '@/lib/site.config'
+import { getSitemapArticles, normalizeArticleDate } from '@/lib/article-selectors'
 
 const BASE_URL = siteConfig.baseUrl
 
@@ -71,18 +71,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
 
   // ─── 아티클 페이지들 ───────────────────────────────────────
-  const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
+  const sitemapArticles = getSitemapArticles(articles)
+  const articlePages: MetadataRoute.Sitemap = sitemapArticles.map((article) => ({
     url: `${BASE_URL}/article/${article.slug}`,
-    lastModified: new Date((article.updatedAt ?? article.date).replace(/\./g, '-')),
+    lastModified: new Date(normalizeArticleDate(article)),
     changeFrequency: 'monthly' as const,
     priority: article.featured ? 0.85 : 0.75,
   }))
 
-  const allPages = [...staticPages, ...categoryPages, ...articlePages]
-  const allUrls = allPages.map((p) => p.url)
-
-  // ─── 빙에 자동 알림 (배포할 때마다 실행됨) ────────────────
-  notifyIndexNow(allUrls).catch(() => {})
-
-  return allPages
+  return [...staticPages, ...categoryPages, ...articlePages]
 }

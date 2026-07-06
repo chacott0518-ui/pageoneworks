@@ -1,20 +1,51 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import type { Article, Category } from '@/lib/data'
+import type { CategoryTopic } from '@/lib/article-taxonomy'
+import { ALL_TOPIC_VALUE } from '@/lib/article-taxonomy'
+import {
+  getArticlesByTopic,
+  getCategoryFeaturedArticle,
+  getCategoryGridArticles,
+} from '@/lib/article-selectors'
 
 const INITIAL_COUNT = 8
 
-export default function CategoryClient({ category, catArticles, params }: any) {
+interface Props {
+  category: Category
+  catArticles: Article[]
+  topics: CategoryTopic[]
+  params: { slug: string }
+}
+
+export default function CategoryClient({ category, catArticles, topics, params }: Props) {
+  const [activeTopic, setActiveTopic] = useState<string>(ALL_TOPIC_VALUE)
   const [visibleCount, setVisibleCount] = useState(INITIAL_COUNT)
-  const featuredArticle = catArticles.find((a: any) => a.featured)
-  const gridArticles = catArticles.filter((a: any, idx: number) => !a.featured || idx !== catArticles.findIndex((x: any) => x.featured))
+
+  const filteredArticles = useMemo(
+    () =>
+      activeTopic === ALL_TOPIC_VALUE
+        ? catArticles
+        : getArticlesByTopic(catArticles, params.slug, activeTopic),
+    [activeTopic, catArticles, params.slug],
+  )
+
+  const featuredArticle = getCategoryFeaturedArticle(filteredArticles)
+  const gridArticles = getCategoryGridArticles(filteredArticles, featuredArticle)
   const visibleGrid = gridArticles.slice(0, visibleCount)
   const hasMore = visibleCount < gridArticles.length
+  const showTopicTabs = topics.length > 0
+
+  const handleTopicChange = (topicSlug: string) => {
+    setActiveTopic(topicSlug)
+    setVisibleCount(INITIAL_COUNT)
+  }
 
   return (
     <>
@@ -47,10 +78,57 @@ export default function CategoryClient({ category, catArticles, params }: any) {
 
       <section className="py-12 md:py-24 px-5 md:px-12 bg-[#0a0a0a] text-cream min-h-[40vh]">
         <div className="max-w-[1600px] mx-auto">
-          {catArticles.length === 0 ? (
+          {showTopicTabs && (
+            <div className="mb-8 md:mb-10">
+              <div
+                role="tablist"
+                aria-label="하위 주제 필터"
+                className="flex gap-2 overflow-x-auto pb-1"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTopic === ALL_TOPIC_VALUE}
+                  onClick={() => handleTopicChange(ALL_TOPIC_VALUE)}
+                  className={`shrink-0 uppercase px-3 py-2 border transition-all duration-200 ${
+                    activeTopic === ALL_TOPIC_VALUE
+                      ? 'border-cream text-cream bg-cream/5'
+                      : 'border-white/15 text-cream/40 hover:border-white/35 hover:text-cream/65'
+                  }`}
+                  style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.1em' }}
+                >
+                  전체
+                </button>
+                {topics.map((topic) => (
+                  <button
+                    key={topic.slug}
+                    type="button"
+                    role="tab"
+                    aria-selected={activeTopic === topic.slug}
+                    onClick={() => handleTopicChange(topic.slug)}
+                    className={`shrink-0 uppercase px-3 py-2 border transition-all duration-200 ${
+                      activeTopic === topic.slug
+                        ? 'border-cream text-cream bg-cream/5'
+                        : 'border-white/15 text-cream/40 hover:border-white/35 hover:text-cream/65'
+                    }`}
+                    style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.1em', wordBreak: 'keep-all' }}
+                  >
+                    {topic.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {filteredArticles.length === 0 ? (
             <div className="text-center py-20 border border-white/5">
-              <p className="uppercase opacity-40" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em' }}>Coming soon — 준비 중입니다</p>
-              <p className="text-cream/20 mt-3 italic" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.1rem' }}>곧 새로운 아티클이 업로드됩니다</p>
+              <p className="uppercase opacity-40" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em' }}>
+                {activeTopic === ALL_TOPIC_VALUE ? 'Coming soon — 준비 중입니다' : '이 주제의 아티클 준비 중입니다'}
+              </p>
+              <p className="text-cream/20 mt-3 italic" style={{ fontFamily: 'var(--font-cormorant)', fontSize: '1.1rem' }}>
+                곧 새로운 아티클이 업로드됩니다
+              </p>
             </div>
           ) : (
             <>
@@ -69,7 +147,7 @@ export default function CategoryClient({ category, catArticles, params }: any) {
               )}
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                {visibleGrid.map((article: any) => (
+                {visibleGrid.map((article) => (
                   <Link key={article.id} href={`/article/${article.slug}`} className="group block">
                     <div className="relative overflow-hidden mb-3 md:mb-4 bg-[#1a1a1a]" style={{ aspectRatio: '4/3' }}>
                       <Image src={article.image} alt={article.titleKo} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={75} className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
@@ -85,7 +163,7 @@ export default function CategoryClient({ category, catArticles, params }: any) {
               {hasMore && (
                 <div className="flex justify-center mt-12 md:mt-16">
                   <button
-                    onClick={() => setVisibleCount(v => v + 8)}
+                    onClick={() => setVisibleCount((v) => v + 8)}
                     className="uppercase border border-white/20 text-cream/60 hover:text-cream hover:border-white/50 transition-all px-10 py-3"
                     style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.2em' }}
                   >

@@ -5,6 +5,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { articles, categories } from '@/lib/data';
+import {
+  getLatestArticles,
+  getArticlesByCategoryTitle,
+} from '@/lib/article-selectors';
 
 // data.ts의 categories에서 archive 제외하고 자동으로 탭 생성 → 카테고리 추가해도 자동 반영
 const tabs = [
@@ -19,11 +23,11 @@ export function MagazineGrid() {
 
   const filtered =
     activeTab === '전체'
-      ? articles
-      : articles.filter((a) => a.category === activeTab);
+      ? getLatestArticles(articles)
+      : getArticlesByCategoryTitle(articles, activeTab);
 
-  const displayList = filtered.length > 0 ? filtered : articles;
-  const main = displayList.find((a) => a.featured) ?? displayList[0];
+  const displayList = filtered.length > 0 ? filtered : getLatestArticles(articles);
+  const main = displayList[0];
   const side = displayList.slice(1, 3);
 const bottom = activeTab === '전체' ? displayList.slice(3, 6) : displayList.slice(3);
 const mobileSwipe = displayList.slice(1, 3);

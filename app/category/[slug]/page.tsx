@@ -1,4 +1,6 @@
 import { categories, articles } from '@/lib/data'
+import { getArticlesByCategorySlug } from '@/lib/article-selectors'
+import { getTopicsForCategory } from '@/lib/article-taxonomy'
 import { notFound } from 'next/navigation'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
@@ -44,7 +46,15 @@ export default function CategoryPage({ params }: Props) {
   const category = categories.find((c) => c.slug === params.slug)
   if (!category) notFound()
 
-  const catArticles = articles.filter((a) => a.categorySlug === params.slug)
+  const catArticles = getArticlesByCategorySlug(articles, params.slug)
+  const topics = getTopicsForCategory(params.slug)
 
-  return <CategoryClient category={category} catArticles={catArticles} params={params} />
+  return (
+    <CategoryClient
+      category={category}
+      catArticles={catArticles}
+      topics={topics}
+      params={params}
+    />
+  )
 }
