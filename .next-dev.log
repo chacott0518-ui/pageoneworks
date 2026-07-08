@@ -875,3 +875,1352 @@ Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys
 Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
  ✓ Compiled in 560ms (1060 modules)
  ✓ Compiled in 365ms (1074 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ GET / 200 in 1590ms
+ GET / 200 in 163ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 765ms (503 modules)
+ GET /apple-touch-icon.png 404 in 920ms
+ GET / 200 in 235ms
+ GET /security.txt 404 in 53ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ GET / 200 in 144ms
+ GET /apple-touch-icon.png 404 in 73ms
+ ✓ Compiled /login in 376ms (508 modules)
+ GET /login 200 in 513ms
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 531ms (557 modules)
+ GET /sitemap.xml 200 in 659ms
+[IndexNow] 제출 완료 — 88개, 상태: 403
+ GET /apple-touch-icon.png 404 in 130ms
+ GET /jc_pyivmfn3saw 404 in 86ms
+ GET /mkbtgnz7tlv_5 404 in 70ms
+ GET / 200 in 200ms
+ GET /mdnk4zr1u 404 in 63ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\api\consult'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ GET / 200 in 111ms
+ GET / 200 in 159ms
+ GET / 200 in 124ms
+ GET / 200 in 216ms
+ GET / 200 in 58ms
+ GET / 200 in 51ms
+Error: Failed to find Server Action "x". This request might be from an older or newer deployment. Original error: Cannot read properties of undefined (reading 'workers')
+    at rw (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:1713)
+    at D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:303
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async rS (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:38:7978)
+    at async r2 (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:41:1251)
+    at async doRender (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1438:30)
+    at async cacheEntry.responseCache.get.routeKind (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1599:28)
+    at async DevServer.renderToResponseWithComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1507:28)
+    at async DevServer.renderPageComponent (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\pageoneworks\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:816:17)
+    at async D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (D:\pageoneworks\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js:141:13)
+ POST / 200 in 127ms
+ GET / 200 in 980ms
+ GET / 200 in 146ms
+ GET / 200 in 72ms
+ GET / 200 in 101ms
+ GET / 200 in 136ms
+ GET /sitemap.xml 200 in 73ms
+[IndexNow] 제출 완료 — 88개, 상태: 403
+ GET /udyl5zjgpv2m 404 in 85ms
+ GET /x4i8nfjdzn 404 in 67ms
+ GET / 200 in 103ms
+ GET /apple-touch-icon.png 404 in 63ms
+ GET / 200 in 109ms
+ GET /login 200 in 147ms
+ GET /apple-touch-icon.png 404 in 51ms
+ GET /j3fnaaxj7b 404 in 58ms
+ GET /6kw4nwhsls 404 in 57ms
+ GET / 200 in 49ms
+ GET / 200 in 132ms
+ GET / 200 in 138ms
+ GET / 200 in 109ms
+ GET / 200 in 983ms
+ GET / 200 in 110ms
+ GET / 200 in 107ms
+ GET / 200 in 95ms
+ GET / 200 in 55ms
+ GET / 200 in 141ms
+ GET / 200 in 124ms
+ GET /apple-touch-icon.png 404 in 60ms
+ GET /apple-touch-icon.png 404 in 61ms
+ GET / 200 in 51ms
+ GET / 200 in 124ms
+ GET / 200 in 108ms
+ GET / 200 in 101ms
+ GET / 200 in 680ms
+ GET / 200 in 104ms
+ GET /apple-touch-icon.png 404 in 50ms
+ GET / 200 in 138ms
+ GET /login 200 in 96ms
+ GET /apple-touch-icon.png 404 in 77ms
+ GET /qpvwj681chg_ko 404 in 50ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 1959ms (1074 modules)
+ ✓ Compiled in 564ms (1066 modules)
+ ⚠ ./components/EditorPickSection.tsx
+Attempted import error: 'EDITOR_PICKS' is not exported from '@/lib/editorPicks' (imported as 'EDITOR_PICKS').
+
+Import trace for requested module:
+./components/EditorPickSection.tsx
+./app/HomeClient.tsx
+
+./components/EditorPickSection.tsx
+Attempted import error: 'EDITOR_PICKS' is not exported from '@/lib/editorPicks' (imported as 'EDITOR_PICKS').
+
+Import trace for requested module:
+./components/EditorPickSection.tsx
+./app/HomeClient.tsx
+ ✓ Compiled in 184ms (1066 modules)
+ ✓ Compiled in 543ms (1080 modules)
+ ✓ Compiled in 293ms (1080 modules)
+ ✓ Compiled in 168ms (575 modules)
+ ✓ Compiled in 151ms (575 modules)
+ ✓ Compiled in 389ms (575 modules)
+ ✓ Compiled in 541ms (1080 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\api\consult'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 436ms (1080 modules)
+ ✓ Compiled in 368ms (1080 modules)
+ ✓ Compiled in 376ms (1080 modules)
+ ✓ Compiled in 548ms (1080 modules)
+ ✓ Compiled in 416ms (1080 modules)
+ ✓ Compiled in 175ms (575 modules)
+ ✓ Compiled in 137ms (575 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 771ms (1066 modules)
+ ✓ Compiled in 493ms (1066 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/views/[slug]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\views\[slug]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/views/[slug]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/views/[slug]/route (expected D:\pageoneworks\.next\server\app\api\views\[slug]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 238ms (575 modules)
+ ✓ Compiled in 425ms (575 modules)
+ ✓ Compiled in 213ms (575 modules)
+ ✓ Compiled in 201ms (575 modules)
+ ✓ Compiled in 707ms (1066 modules)
+ ✓ Compiled in 483ms (1080 modules)
+ ✓ Compiled in 385ms (1080 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 628ms (1066 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 707ms (1066 modules)
+ ✓ Compiled in 282ms (1066 modules)
+ ✓ Compiled in 282ms (575 modules)
+ ✓ Compiled in 194ms (575 modules)
+ ✓ Compiled in 968ms (1080 modules)
+ ✓ Compiled in 611ms (1066 modules)
+ ✓ Compiled in 243ms (1066 modules)
+ ✓ Compiled in 249ms (1066 modules)
+ ✓ Compiled in 405ms (1069 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 614ms (1069 modules)
+ ✓ Compiled in 261ms (1069 modules)
+ ✓ Compiled in 263ms (1069 modules)
+ ✓ Compiled in 238ms (1069 modules)
+ ✓ Compiled in 577ms (1069 modules)
+ ✓ Compiled in 1525ms (1288 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 647ms (1288 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 857ms (1288 modules)
+ ✓ Compiled in 523ms (1288 modules)
+ ✓ Compiled in 270ms (1288 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/sitemap.xml/[[...__metadata_id__]]/route (expected D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 1368ms (1288 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\server-development\14.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\server-development\14.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Restoring failed for Compilation/modules|D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!D:\pageoneworks\styles\globals.css from pack: Error: incorrect header check
+ ✓ Compiled in 801ms (1302 modules)
+ ✓ Compiled in 577ms (1302 modules)
+ ✓ Compiled in 441ms (1302 modules)
+ ✓ Compiled in 494ms (1302 modules)
+ ✓ Compiled in 415ms (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz'
+ ⨯ ./styles/globals.css:711:1
+Syntax error: D:\pageoneworks\styles\globals.css Unexpected }
+
+  709 |   -ms-overflow-style: none !important;
+  710 |   flex-wrap: nowrap !important;
+> 711 | }
+      | ^
+  712 | .tab-scroll-bar::-webkit-scrollbar { display: none !important; }
+ ⨯ ./styles/globals.css:95:1
+Syntax error: D:\pageoneworks\styles\globals.css Unclosed block
+
+  93 | .hero-offset { padding-top: 97px; }
+  94 | 
+> 95 | .tab-scroll-bar {
+     | ^
+  96 | .home-hero {
+  97 |   background: #0a0a0a;
+ ✓ Compiled in 1095ms (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 1274ms (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 3.3s (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 1771ms (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 528ms (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 2.8s (1302 modules)
+ ✓ Compiled in 505ms (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 2.1s (1302 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ⨯ TypeError: e[o] is not a function
+    at t (D:\pageoneworks\.next\server\webpack-runtime.js:1:127)
+    at 1560 (D:\pageoneworks\.next\server\app\page.js:15:125)
+    at Object.t [as require] (D:\pageoneworks\.next\server\webpack-runtime.js:1:127)
+digest: "4082374666"
+ GET / 500 in 211ms
+ ✓ Compiled /_not-found in 183ms (655 modules)
+ ✓ Compiled /_error in 298ms (1292 modules)
+ ⨯ Error: Cannot find module './1682.js'
+Require stack:
+- D:\pageoneworks\.next\server\webpack-runtime.js
+- D:\pageoneworks\.next\server\pages\_document.js
+- D:\pageoneworks\node_modules\next\dist\server\require.js
+- D:\pageoneworks\node_modules\next\dist\server\load-components.js
+- D:\pageoneworks\node_modules\next\dist\build\utils.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-middleware.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at D:\pageoneworks\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (D:\pageoneworks\.next\server\webpack-runtime.js:198:28)
+    at D:\pageoneworks\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\pageoneworks\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\pageoneworks\.next\server\webpack-runtime.js:162:22)
+    at D:\pageoneworks\.next\server\pages\_document.js:1:335
+    at Object.<anonymous> (D:\pageoneworks\.next\server\pages\_document.js:1:377)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\pageoneworks\node_modules\next\dist\server\require.js:109:84)
+    at D:\pageoneworks\node_modules\next\dist\server\load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\next-server.js:710:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\pageoneworks\\.next\\server\\webpack-runtime.js',
+    'D:\\pageoneworks\\.next\\server\\pages\\_document.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+ POST /mcp 500 in 563ms
+ ⨯ Error: Cannot find module './1682.js'
+Require stack:
+- D:\pageoneworks\.next\server\webpack-runtime.js
+- D:\pageoneworks\.next\server\pages\_document.js
+- D:\pageoneworks\node_modules\next\dist\server\require.js
+- D:\pageoneworks\node_modules\next\dist\server\load-components.js
+- D:\pageoneworks\node_modules\next\dist\build\utils.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-middleware.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at D:\pageoneworks\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (D:\pageoneworks\.next\server\webpack-runtime.js:198:28)
+    at D:\pageoneworks\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\pageoneworks\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\pageoneworks\.next\server\webpack-runtime.js:162:22)
+    at D:\pageoneworks\.next\server\pages\_document.js:1:335
+    at Object.<anonymous> (D:\pageoneworks\.next\server\pages\_document.js:1:377)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\pageoneworks\node_modules\next\dist\server\require.js:109:84)
+    at D:\pageoneworks\node_modules\next\dist\server\load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\next-server.js:710:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\pageoneworks\\.next\\server\\webpack-runtime.js',
+    'D:\\pageoneworks\\.next\\server\\pages\\_document.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+ GET /sse 500 in 19ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ ✓ Compiled in 764ms (649 modules)
+ ✓ Compiled in 983ms (1318 modules)
+ ✓ Compiled in 526ms (1318 modules)
+ ✓ Compiled in 495ms (1305 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\server-development\0.pack.gz'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ GET / 200 in 1187ms
+ ○ Compiling /login ...
+ ✓ Compiled /login in 1227ms (659 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'clientModules')
+    at D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:39:24871
+    at D:\pageoneworks\node_modules\next\dist\server\lib\trace\tracer.js:191:62
+    at D:\pageoneworks\node_modules\next\dist\server\lib\trace\tracer.js:140:36
+    at NoopContextManager.with (D:\pageoneworks\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (D:\pageoneworks\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NoopTracer.startActiveSpan (D:\pageoneworks\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18093)
+    at ProxyTracer.startActiveSpan (D:\pageoneworks\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:18854)
+    at D:\pageoneworks\node_modules\next\dist\server\lib\trace\tracer.js:122:103
+    at NoopContextManager.with (D:\pageoneworks\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:7062)
+    at ContextAPI.with (D:\pageoneworks\node_modules\next\dist\compiled\@opentelemetry\api\index.js:1:518)
+    at NextTracerImpl.trace (D:\pageoneworks\node_modules\next\dist\server\lib\trace\tracer.js:122:28)
+    at D:\pageoneworks\node_modules\next\dist\server\lib\trace\tracer.js:191:31
+    at r2 (D:\pageoneworks\node_modules\next\dist\compiled\next-server\app-page.runtime.dev.js:41:1673)
+    at async doRender (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1438:30)
+    at async cacheEntry.responseCache.get.routeKind (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1599:28) {
+  page: '/login'
+}
+ ✓ Compiled /_error in 327ms (1298 modules)
+ GET /login 500 in 1861ms
+ ✓ Compiled /_not-found in 126ms (662 modules)
+ GET /apple-touch-icon.png 404 in 265ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ GET / 200 in 206ms
+ GET /login 200 in 132ms
+ GET /.well-known/security.txt 404 in 59ms
+ GET /apple-touch-icon.png 404 in 48ms
+ GET /subzwnn6e87 404 in 78ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+ GET /xpfue29pd 404 in 46ms
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 555ms (778 modules)
+ GET /sitemap.xml 200 in 746ms
+ ✓ Compiled /_not-found in 112ms (780 modules)
+ GET /pu0ll6dft7ut4 404 in 263ms
+ GET / 200 in 233ms
+ GET / 200 in 103ms
+ GET / 200 in 1004ms
+ GET / 200 in 1113ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 2.8s (1291 modules)
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 653ms (1291 modules)
+ ✓ Compiled in 273ms (1291 modules)
+ ✓ Compiled in 311ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 439ms (1291 modules)
+ ✓ Compiled in 207ms (1291 modules)
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: incorrect header check
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 641ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\client-development\10.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\client-development\10.pack.gz'
+ ✓ Compiled in 515ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz'
+ GET / 200 in 438ms
+ ✓ Compiled in 346ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 435ms (1291 modules)
+ ✓ Compiled in 206ms (1291 modules)
+ ✓ Compiled in 181ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 2.2s (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+ ✓ Compiled in 1629ms (1291 modules)
+ ✓ Compiled in 692ms (1305 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\login\page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/login/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\login\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/login/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/login/page (expected D:\pageoneworks\.next\server\app\login\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz'
+ ✓ Compiled in 798ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz_' -> 'D:\pageoneworks\.next\cache\webpack\client-development\0.pack.gz'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ⨯ TypeError: e[o] is not a function
+    at t (D:\pageoneworks\.next\server\webpack-runtime.js:1:127)
+    at 1560 (D:\pageoneworks\.next\server\app\page.js:15:125)
+    at Object.t [as require] (D:\pageoneworks\.next\server\webpack-runtime.js:1:127)
+digest: "4082374666"
+ GET / 500 in 239ms
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 1074ms (778 modules)
+ GET /sitemap.xml 200 in 1527ms
+ ⨯ Error: Cannot find module './8948.js'
+Require stack:
+- D:\pageoneworks\.next\server\webpack-runtime.js
+- D:\pageoneworks\.next\server\app\sitemap.xml\[[...__metadata_id__]]\route.js
+- D:\pageoneworks\node_modules\next\dist\server\require.js
+- D:\pageoneworks\node_modules\next\dist\server\load-components.js
+- D:\pageoneworks\node_modules\next\dist\build\utils.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-middleware.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at D:\pageoneworks\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (D:\pageoneworks\.next\server\webpack-runtime.js:203:28)
+    at D:\pageoneworks\.next\server\webpack-runtime.js:116:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\pageoneworks\.next\server\webpack-runtime.js:115:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\pageoneworks\.next\server\webpack-runtime.js:167:22)
+    at D:\pageoneworks\.next\server\app\page.js:20:8044
+    at Object.<anonymous> (D:\pageoneworks\.next\server\app\page.js:20:8115)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\pageoneworks\node_modules\next\dist\server\require.js:109:84)
+    at D:\pageoneworks\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\pageoneworks\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:816:17)
+    at async D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (D:\pageoneworks\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\pageoneworks\\.next\\server\\webpack-runtime.js',
+    'D:\\pageoneworks\\.next\\server\\app\\sitemap.xml\\[[...__metadata_id__]]\\route.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/'
+}
+ ✓ Compiled /_error in 435ms (1293 modules)
+ ⨯ Error: Cannot find module './1682.js'
+Require stack:
+- D:\pageoneworks\.next\server\webpack-runtime.js
+- D:\pageoneworks\.next\server\pages\_document.js
+- D:\pageoneworks\node_modules\next\dist\server\require.js
+- D:\pageoneworks\node_modules\next\dist\server\load-components.js
+- D:\pageoneworks\node_modules\next\dist\build\utils.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-middleware.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at D:\pageoneworks\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (D:\pageoneworks\.next\server\webpack-runtime.js:198:28)
+    at D:\pageoneworks\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\pageoneworks\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\pageoneworks\.next\server\webpack-runtime.js:162:22)
+    at D:\pageoneworks\.next\server\pages\_document.js:1:335
+    at Object.<anonymous> (D:\pageoneworks\.next\server\pages\_document.js:1:377)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\pageoneworks\node_modules\next\dist\server\require.js:109:84)
+    at D:\pageoneworks\node_modules\next\dist\server\load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\next-server.js:710:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\pageoneworks\\.next\\server\\webpack-runtime.js',
+    'D:\\pageoneworks\\.next\\server\\pages\\_document.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+ GET / 500 in 533ms
+ ✓ Compiled /login in 450ms (659 modules)
+ GET /login 200 in 1208ms
+ ⨯ Error: Cannot find module './8948.js'
+Require stack:
+- D:\pageoneworks\.next\server\webpack-runtime.js
+- D:\pageoneworks\.next\server\app\login\page.js
+- D:\pageoneworks\node_modules\next\dist\server\require.js
+- D:\pageoneworks\node_modules\next\dist\server\load-components.js
+- D:\pageoneworks\node_modules\next\dist\build\utils.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-middleware.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at D:\pageoneworks\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (D:\pageoneworks\.next\server\webpack-runtime.js:198:28)
+    at D:\pageoneworks\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\pageoneworks\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\pageoneworks\.next\server\webpack-runtime.js:162:22)
+    at D:\pageoneworks\.next\server\app\page.js:20:8044
+    at Object.<anonymous> (D:\pageoneworks\.next\server\app\page.js:20:8115)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\pageoneworks\node_modules\next\dist\server\require.js:109:84)
+    at D:\pageoneworks\node_modules\next\dist\server\load-components.js:98:84
+    at async loadComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\load-components.js:98:26)
+    at async DevServer.findPageComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\next-server.js:710:36)
+    at async DevServer.findPageComponents (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:920:25)
+    at async NextNodeServer.handleCatchallRenderRequest (D:\pageoneworks\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (D:\pageoneworks\node_modules\next\dist\server\base-server.js:816:17)
+    at async D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (D:\pageoneworks\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (D:\pageoneworks\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:174:21)
+    at async handleRequest (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:353:24)
+    at async requestHandlerImpl (D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js:377:13)
+    at async Server.requestListener (D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\pageoneworks\\.next\\server\\webpack-runtime.js',
+    'D:\\pageoneworks\\.next\\server\\app\\login\\page.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/'
+}
+ ✓ Compiled /_error in 364ms (1298 modules)
+ ⨯ Error: Cannot find module './1682.js'
+Require stack:
+- D:\pageoneworks\.next\server\webpack-runtime.js
+- D:\pageoneworks\.next\server\pages\_document.js
+- D:\pageoneworks\node_modules\next\dist\server\require.js
+- D:\pageoneworks\node_modules\next\dist\server\load-components.js
+- D:\pageoneworks\node_modules\next\dist\build\utils.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-middleware.js
+- D:\pageoneworks\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\router-server.js
+- D:\pageoneworks\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1421:15)
+    at D:\pageoneworks\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at __webpack_require__.f.require (D:\pageoneworks\.next\server\webpack-runtime.js:198:28)
+    at D:\pageoneworks\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (D:\pageoneworks\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (D:\pageoneworks\.next\server\webpack-runtime.js:162:22)
+    at D:\pageoneworks\.next\server\pages\_document.js:1:335
+    at Object.<anonymous> (D:\pageoneworks\.next\server\pages\_document.js:1:377)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1504:12)
+    at mod.require (D:\pageoneworks\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:152:16)
+    at requirePage (D:\pageoneworks\node_modules\next\dist\server\require.js:109:84)
+    at D:\pageoneworks\node_modules\next\dist\server\load-components.js:72:65
+    at async Promise.all (index 0)
+    at async loadComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\load-components.js:71:33)
+    at async DevServer.findPageComponentsImpl (D:\pageoneworks\node_modules\next\dist\server\next-server.js:710:36) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'D:\\pageoneworks\\.next\\server\\webpack-runtime.js',
+    'D:\\pageoneworks\\.next\\server\\pages\\_document.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\require.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\load-components.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\build\\utils.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'D:\\pageoneworks\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ]
+}
+ GET / 500 in 421ms
+ ✓ Compiled /_not-found in 262ms (662 modules)
+ GET /apple-touch-icon.png 404 in 480ms
+ GET /8ey07sv23xhoe8bfx 404 in 70ms
+ GET /wiki 404 in 37ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ○ Compiling /sitemap.xml ...
+ ✓ Compiled /sitemap.xml in 814ms (778 modules)
+ GET /sitemap.xml 200 in 1119ms
+ ✓ Compiled /_not-found in 191ms (780 modules)
+ GET /z61ernyy0 404 in 482ms
+ GET /nvlkm21_e 404 in 38ms
+ GET / 200 in 1095ms
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 416ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\api\consult'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+Watchpack Error (stats): Error: EINVAL: invalid argument, lstat 'D:\pagefile.sys'
+ ✓ Compiled in 802ms (1291 modules)
+ ✓ Compiled in 330ms (1291 modules)
+ ✓ Compiled in 327ms (1291 modules)
+ ✓ Compiled in 348ms (1291 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat 'D:\pageoneworks\.next\server\app\_not-found'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/_not-found/page' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\_not-found\page.js', but to 'Error: Can't resolve '../../../../.next/server/app/_not-found/page' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/_not-found/page (expected D:\pageoneworks\.next\server\app\_not-found\page.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/consult/route' in D:\pageoneworks\node_modules\next\dist\server for build dependencies doesn't lead to expected result 'D:\pageoneworks\.next\server\app\api\consult\route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/consult/route' in 'D:\pageoneworks\node_modules\next\dist\server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/consult/route (expected D:\pageoneworks\.next\server\app\api\consult\route.js)
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\require.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\server\load-components.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\utils.js
+<w>  at file dependencies D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at file D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
+<w>  at resolve commonjs D:\pageoneworks\node_modules\next\dist\build\webpack\loaders\next-route-loader\index.js
