@@ -62,7 +62,8 @@ function parseBody(body: string) {
   const blocks: { type: string; content: string; caption?: string; extra?: string }[] = [];
   let i = 0;
   while (i < lines.length) {
-    const line = lines[i];
+    const rawLine = lines[i];
+    const line = rawLine.trimStart();
     if (line.startsWith('##IMAGE##')) {
       const parts = line.split('##');
       blocks.push({ type: 'image', content: parts[2] || '', caption: parts[4] || '' });
@@ -73,7 +74,8 @@ function parseBody(body: string) {
       i++;
 
       while (i < lines.length) {
-        const sourceLine = lines[i];
+        const rawSourceLine = lines[i];
+        const sourceLine = rawSourceLine.trimStart();
 
         if (
           sourceLine.startsWith('Q.') ||
@@ -84,7 +86,8 @@ function parseBody(body: string) {
         }
 
         if (sourceLine.trim() !== '') {
-          sourceLines.push(sourceLine);
+          // Keep original characters (URL punctuation etc.), but normalize leading whitespace.
+          sourceLines.push(rawSourceLine.trim());
         }
 
         i++;
@@ -98,7 +101,8 @@ function parseBody(body: string) {
       continue;
     }
     if (line.startsWith('Q.')) {
-      blocks.push({ type: 'faq', content: line, caption: lines[i + 1] || '' });
+      const next = lines[i + 1] ?? '';
+      blocks.push({ type: 'faq', content: line, caption: next.trimStart() });
       i += 2; continue;
     }
     if (line.startsWith('\u25a0')) {
@@ -146,16 +150,16 @@ function parseBody(body: string) {
       if (!closesInline) {
         // Advance until we find a line that contains ##END## (standalone or embedded).
         // This handles both "##END##" alone and "content##END##" patterns.
-        while (i < lines.length && !hasEndToken(lines[i])) {
-          const cleanedLine = lines[i].trimEnd();
+        while (i < lines.length && !hasEndToken(lines[i].trimStart())) {
+          const cleanedLine = lines[i].trim();
           if (cleanedLine) {
             contentLines.push(cleanedLine);
           }
           i++;
         }
         // Consume the terminating line: strip ##END## and keep any preceding content.
-        if (i < lines.length && hasEndToken(lines[i])) {
-          const cleanedLine = lines[i].replace(/##END##/g, '').trimEnd();
+        if (i < lines.length && hasEndToken(lines[i].trimStart())) {
+          const cleanedLine = lines[i].trimStart().replace(/##END##/g, '').trim();
           if (cleanedLine) {
             contentLines.push(cleanedLine);
           }
@@ -181,8 +185,8 @@ function parseBody(body: string) {
     }
     if (line.startsWith('##TABLEROW##')) {
       const rows: string[] = [];
-      while (i < lines.length && lines[i].startsWith('##TABLEROW##')) {
-        rows.push(lines[i]);
+      while (i < lines.length && lines[i].trimStart().startsWith('##TABLEROW##')) {
+        rows.push(lines[i].trimStart());
         i++;
       }
       blocks.push({ type: 'table', content: rows.join('\n') });
@@ -196,8 +200,8 @@ function parseBody(body: string) {
       blocks.push({ type: 'ctablock', content: '' });
       i++; continue;
     }
-    if (line.trim() === '') { i++; continue; }
-    blocks.push({ type: 'paragraph', content: line });
+    if (rawLine.trim() === '') { i++; continue; }
+    blocks.push({ type: 'paragraph', content: rawLine.trim() });
     i++;
   }
   return blocks;
@@ -632,7 +636,7 @@ export default function ArticlePage({ params }: Props) {
                       cursor: 'pointer',
                       padding: '20px 0',
                       fontFamily: 'var(--font-inter)',
-                      fontSize: '15px',
+                      fontSize: 'clamp(11px, 2.8vw, 14px)',
                       fontWeight: 500,
                       color: '#1a1a1a',
                     }}
