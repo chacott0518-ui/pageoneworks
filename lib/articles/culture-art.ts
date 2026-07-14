@@ -2,6 +2,153 @@ import type { Article } from '../data';
 
 export const cultureArtArticles: Article[] = [
   {
+    id: '0714-ca-premium-cinema-formats',
+    slug: 'imax-vs-dolby-cinema-4dx-screenx-guide-2026',
+    category: 'CULTURE & ART',
+    categorySlug: 'culture-art',
+    title: 'IMAX vs Dolby Cinema vs 4DX vs ScreenX 2026 — Which Premium Theater Is Worth It?',
+    titleKo: '아이맥스 vs 돌비시네마 vs 4DX vs ScreenX 2026 — 영화별 특별관 선택 가이드',
+    excerpt: '특별관은 화면 크기만으로 고르면 실패하기 쉽습니다. IMAX의 확장 화면비, Dolby Cinema의 영상·음향, 4DX의 체감 효과, ScreenX의 270도 파노라마를 영화 장르·좌석·멀미 민감도별로 비교했습니다.',
+    date: '2026.07.14',
+    readTime: '11 MIN',
+    image: 'https://images.unsplash.com/photo-1595769816263-9b910be24d5f?auto=format&fit=crop&q=80&w=800',
+    heroImage: 'https://images.unsplash.com/photo-1595769816263-9b910be24d5f?auto=format&fit=crop&q=85&w=1600',
+    featured: true,
+    tags: [
+      '아이맥스',
+      '돌비시네마',
+      '4DX',
+      'ScreenX',
+      '특별관추천',
+      '영화관비교',
+      'IMAX좌석',
+      '돌비애트모스',
+      '영화관명당',
+      'premium cinema',
+    ],
+    author: 'PAGEONEWORKS 편집부',
+    body: `##STATGRID##4개 포맷:핵심 특별관 비교||최대 26%:IMAX 확장 화면 사례||Dual 4K:Dolby Vision 영사||270도:ScreenX 파노라마||모션·환경효과:4DX 핵심||1순위:영화 제작 포맷 확인##END##
+
+IMAX, Dolby Cinema, 4DX, ScreenX 중 무조건 가장 좋은 특별관은 없습니다. 넓은 화면과 확장 화면비가 중요한 영화는 IMAX, 명암과 공간 음향을 중시하면 Dolby Cinema, 놀이기구 같은 체험을 원하면 4DX, 화면이 좌우 벽까지 확장되는 파노라마 몰입을 원하면 ScreenX가 적합합니다.
+
+가장 중요한 기준은 극장 이름보다 영화가 어떤 포맷으로 제작·마스터링됐는지입니다. IMAX 상영작이라고 모든 장면이 확장 화면비를 쓰는 것은 아니며, ScreenX도 일반적으로 선택된 장면에서 좌우 영상이 확장됩니다. 특별관 예매 전 공식 포맷 표기와 상영관 사양을 함께 확인해야 합니다.
+
+##IMAGE##https://images.unsplash.com/photo-1561722798-9a732d141027?auto=format&fit=crop&q=85&w=1200##CAPTION##특별관의 체감 차이는 스크린 크기뿐 아니라 화면비, 영사 방식, 음향, 좌석 효과와 영화의 마스터링 방식에서 발생한다. 사진 출처: Unsplash / Augusto Oazi##END##
+
+■ IMAX·Dolby Cinema·4DX·ScreenX의 차이는 무엇인가?
+
+##TABLEROW##**포맷||**가장 큰 특징||**잘 맞는 영화||**주의할 점
+##TABLEROW##IMAX||대형 화면·확장 화면비·전용 영사와 사운드||대규모 액션·우주·자연 다큐·IMAX 촬영작||영화와 상영관별 화면비·설비 차이
+##TABLEROW##Dolby Cinema||Dolby Vision 영상과 Dolby Atmos 공간 음향||어두운 장면·음악·뮤지컬·공포·드라마||국내 상영관 명칭과 실제 지원 사양 확인
+##TABLEROW##4DX||움직이는 좌석과 바람·물·진동 등 환경 효과||레이싱·비행·재난·액션·콘서트||멀미·허리·목 불편, 소지품 관리
+##TABLEROW##ScreenX||전면과 좌우 벽으로 확장되는 270도 파노라마||공간감이 큰 액션·공연·풍경 중심 영화||좌우 영상이 모든 장면에 적용되지는 않음
+
+■ IMAX는 화면이 큰 영화관이라는 뜻일까?
+
+IMAX의 장점은 단순한 스크린 크기만이 아닙니다. 일부 작품은 IMAX 전용 확장 화면비로 제작돼 일반 상영보다 위아래로 더 많은 화면 정보를 보여줍니다. IMAX는 1.90:1 확장 화면비에서 일반 극장 대비 최대 26% 더 많은 화면을 제공한다고 공식적으로 설명합니다. 일부 1.43:1 상영은 더 큰 세로 정보를 보여주지만 이를 지원하려면 영화와 상영관 양쪽 조건이 맞아야 합니다.
+
+따라서 IMAX를 선택할 때는 영화가 Filmed for IMAX 또는 IMAX 확장 화면비를 지원하는지, 해당 상영관이 레이저 영사와 어떤 화면비를 지원하는지 확인하는 것이 좋습니다. 단순 변환 상영이라면 초대형 화면의 장점은 있어도 확장 화면비 체감은 제한될 수 있습니다.
+
+##INFOBOX##IMAX를 우선 선택할 영화##blue##· 감독이 IMAX 카메라 또는 인증 카메라로 촬영한 작품
+· 우주·항공·전쟁·자연처럼 화면 규모가 서사의 일부인 작품
+· 공식 안내에 1.90:1 또는 1.43:1 확장 화면비가 명시된 작품
+· 대형 화면 중앙에서 압도적인 구도를 보고 싶은 경우
+
+예매 전 영화 공식 페이지와 극장 안내에서 실제 상영 사양을 확인하세요.##END##
+
+■ Dolby Cinema는 영상보다 음향이 더 중요한가?
+
+Dolby Cinema는 Dolby Vision과 Dolby Atmos를 결합한 포맷입니다. Dolby는 Dolby Cinema에 Dual 4K 레이저 영사 시스템이 사용되며, Dolby Atmos는 소리를 채널에만 고정하지 않고 오디오 객체와 천장 스피커를 활용해 위를 포함한 공간에 배치한다고 설명합니다.
+
+검은색 표현, 밝고 어두운 장면의 세부, 색 대비가 중요한 영화에서는 Dolby Vision의 장점이 두드러질 수 있습니다. 총성의 방향, 빗소리, 공간의 잔향, 음악의 층처럼 소리의 위치와 이동이 중요한 작품에서는 Dolby Atmos가 강합니다. 화면이 무조건 가장 큰 관을 찾기보다 영상의 명암과 사운드 디자인을 세밀하게 느끼고 싶을 때 선택할 포맷입니다.
+
+■ 4DX는 어떤 영화에서 돈값을 할까?
+
+4DX는 좌석이 장면에 맞춰 움직이고 바람·물·진동·버블 같은 환경 효과가 결합되는 다감각 포맷입니다. 자동차 추격, 비행, 롤러코스터, 폭풍, 전투처럼 신체 움직임과 화면의 움직임이 일치하는 영화에서 체감이 큽니다.
+
+반대로 대사가 중심인 드라마나 정적인 영화에서는 효과가 이야기의 집중을 방해할 수 있습니다. 멀미에 민감하거나 목·허리 불편이 있는 사람, 움직이는 좌석을 불편하게 느끼는 사람은 일반관이나 다른 특별관이 더 적합할 수 있습니다. 음료 뚜껑과 소지품도 움직임에 대비해야 합니다.
+
+##INFOBOX##4DX 관람 전 체크##amber##· 식사 직후이거나 멀미에 민감하면 강한 좌석 효과가 부담될 수 있음
+· 물 효과가 싫다면 좌석의 Water On·Off 기능 제공 여부 확인
+· 가방·휴대전화·음료가 떨어지지 않도록 보관
+· 목·허리 통증, 임신, 특정 건강 상태가 있다면 극장 이용 안내 우선 확인
+· 자막 영화는 좌석 움직임이 자막 읽기를 방해할 수 있음##END##
+
+■ ScreenX는 왜 가운데 좌석이 중요한가?
+
+ScreenX는 전면 스크린의 이미지를 극장 좌우 벽까지 확장해 270도 파노라마 시야를 만드는 다중 영사 포맷입니다. 좌우 영상은 주변 시야를 채워 관객이 장면 안에 들어온 듯한 공간감을 만드는 역할을 합니다.
+
+너무 앞줄에서는 좌우 벽을 보기 위해 고개를 크게 돌려야 하고, 가장자리 좌석에서는 반대편 화면의 균형이 무너질 수 있습니다. 중앙 블록의 중간 또는 중간보다 약간 뒤가 전체 화면을 한 시야에 담기 쉽습니다. ScreenX 역시 모든 장면이 270도로 확장되는 것은 아니므로 확장 분량과 연출 방식에 따라 만족도가 달라집니다.
+
+■ 영화 장르별로 어떤 특별관을 선택해야 할까?
+
+##TABLEROW##**영화 유형||**1순위 추천||**대안||**선택 이유
+##TABLEROW##IMAX 촬영 블록버스터||IMAX||Dolby Cinema||확장 화면비와 대형 구도
+##TABLEROW##뮤지컬·콘서트 영화||Dolby Cinema||ScreenX||음악의 공간감과 무대 확장
+##TABLEROW##레이싱·비행·재난 액션||4DX||IMAX||몸으로 느끼는 이동과 속도
+##TABLEROW##어두운 공포·스릴러||Dolby Cinema||IMAX||암부 표현과 방향성 음향
+##TABLEROW##풍경·도시·공연 파노라마||ScreenX||IMAX||좌우 시야까지 확장되는 공간감
+##TABLEROW##대사 중심 드라마||Dolby Cinema 또는 일반관||IMAX||과한 효과보다 영상·음향의 정교함
+
+특별관 선택은 장르만으로 끝나지 않습니다. 같은 액션 영화라도 IMAX 확장 화면비로 촬영됐다면 IMAX가 우선이고, 4DX 효과 설계가 호평을 받는 작품이라면 4DX 체험 가치가 높아집니다. 예고편보다 공식 포맷 안내와 실제 관람 후기를 함께 확인하는 것이 좋습니다.
+
+■ 특별관 명당 좌석은 어디일까?
+
+IMAX는 화면 전체가 한눈에 들어오면서도 시야를 충분히 채우는 중앙 블록 중간 지점이 무난합니다. 스크린이 매우 큰 관에서는 일반관보다 한두 줄 뒤가 편할 수 있습니다.
+
+Dolby Cinema는 중앙 좌석이 영상과 좌우 음향의 균형을 잡기 좋습니다. Dolby Atmos는 공간 전체를 고려해 설계되지만 지나치게 벽이나 후방에 치우친 좌석보다 중앙이 안정적입니다.
+
+4DX는 효과 강도가 좌석 위치보다 프로그램에 의해 결정되지만 화면과 자막을 편하게 보기 위해 중앙 구역을 선택하는 편이 좋습니다. ScreenX는 좌우 벽을 동시에 보기 위해 중앙 블록이 특히 중요합니다.
+
+■ 특별관 추가 요금을 지불할 가치가 있는지 판단하는 법
+
+1단계 — 영화의 공식 포맷 확인
+IMAX 확장 화면비, Dolby Vision·Atmos, 4DX, ScreenX 제작 여부를 영화 또는 극장 공식 안내에서 확인합니다.
+
+2단계 — 가장 중요한 감상 요소 선택
+화면 규모, 명암, 음향, 움직임, 파노라마 중 이번 영화에서 가장 기대하는 요소 하나를 고릅니다.
+
+3단계 — 상영관 실제 사양 확인
+같은 브랜드 특별관도 스크린 크기, 영사기, 좌석, 화면비가 다를 수 있습니다. 지점별 안내를 확인합니다.
+
+4단계 — 건강·집중 조건 확인
+멀미, 자막 읽기, 목과 허리 부담, 동반 관객의 선호를 고려합니다.
+
+5단계 — 포맷 효과가 적으면 일반관 선택
+특별 포맷으로 제작되지 않았거나 대사 중심 영화라면 좌석이 편하고 화면·음향 상태가 좋은 일반관이 더 만족스러울 수 있습니다.
+
+Q. IMAX와 Dolby Cinema 중 화질은 어디가 더 좋은가요?
+A. 기준이 다릅니다. IMAX는 큰 화면과 확장 화면비에서 강하고, Dolby Cinema는 Dolby Vision의 명암·색·세부 표현에서 강점을 갖습니다. IMAX 확장 화면비로 촬영된 영화라면 IMAX의 정보량이 중요하고, 어두운 장면과 색 대비가 중요한 영화라면 Dolby Cinema가 더 인상적일 수 있습니다.
+
+Q. IMAX 상영이면 모든 장면이 화면을 꽉 채우나요?
+A. 아닙니다. 작품에 따라 전체 또는 일부 장면만 확장 화면비를 사용합니다. 일반 화면비 장면과 확장 장면이 오가기도 합니다. 예매 전에 공식 IMAX 안내에서 확장 화면비와 적용 분량을 확인해야 합니다.
+
+Q. 4DX는 멀미가 심한 사람도 볼 수 있나요?
+A. 개인차가 큽니다. 좌석 움직임과 화면 움직임이 함께 발생해 일반관보다 멀미를 유발할 가능성이 있습니다. 평소 차량이나 놀이기구 멀미가 심하다면 강한 액션 영화의 4DX는 피하거나 극장의 이용 안내를 먼저 확인하는 편이 안전합니다.
+
+Q. ScreenX는 앞자리와 뒷자리 중 어디가 좋은가요?
+A. 일반적으로 중앙 블록의 중간에서 약간 뒤쪽이 전면과 좌우 화면을 함께 보기 편합니다. 너무 앞에서는 고개 움직임이 커지고, 너무 뒤에서는 파노라마의 압도감이 줄 수 있습니다. 상영관 구조가 다르므로 좌석 배치도도 함께 확인하세요.
+
+Q. 안경을 쓰면 특별관 선택이 달라지나요?
+A. 일반 안경은 큰 차이가 없지만 3D 상영에서는 3D 안경을 겹쳐 써야 해 불편할 수 있습니다. 시야가 좁거나 고개를 자주 움직이는 것이 불편하다면 4DX와 ScreenX보다 중앙 좌석의 IMAX 또는 Dolby Cinema가 편할 수 있습니다.
+
+※ 참고 출처
+· IMAX, Expanded Aspect Ratio and Filmed for IMAX information
+https://www.imax.com/pr/imax-launches-new-filmed-imax-program-worlds-leading-digital
+
+· Dolby, Dolby Cinema — Dolby Vision and Dolby Atmos
+https://www.dolby.com/movies-tv/cinema/
+
+· Dolby Professional, Dolby Atmos for cinema playback
+https://professional.dolby.com/cinema/dolby-atmos/
+
+· CJ Newsroom, Immersive Cinema by CJ 4DPLEX
+https://newsroom.cj.net/immersive-cinema-by-cj-4dplex/
+
+· CJ Newsroom, 270-Degree Panoramic SCREENX Auditorium
+https://newsroom.cj.net/cj-4dplex-and-sm-cinema-to-bring-first-270-degree-panoramic-screenx-auditorium-to-the-philippines/`,
+  },
+  {
     id: '0605-ca-books-that-last',
     slug: 'books-that-change-your-life-nonfiction-2026',
     category: 'CULTURE & ART',
