@@ -214,16 +214,15 @@ export default function ConsultModal({ onClose, topic }: Props) {
     window.setTimeout(() => firstFieldRef.current?.focus(), 80);
   };
 
-  /* ── 공통 스타일 ── */
-  const labelCls = 'block font-medium text-white/85 mb-1.5 text-[14px]';
+  /* ── 공통 스타일 (초밀도 compact) ── */
+  const labelCls = 'consult-label block font-medium text-white/85';
   const inputBase =
-    'w-full rounded-lg bg-white/[0.06] border border-white/12 px-4 text-white ' +
+    'consult-field w-full rounded-md bg-white/[0.06] border border-white/12 text-white ' +
     'placeholder-white/30 outline-none transition-colors ' +
-    'focus-visible:border-[#C9A96E] focus-visible:ring-2 focus-visible:ring-[#C9A96E]/30 ' +
-    'text-[16px]';
-  const inputCls  = inputBase + ' min-h-[50px]';
-  const selectCls = inputBase + ' consult-select min-h-[50px] pr-12 appearance-none cursor-pointer';
-  const errCls    = 'mt-1.5 text-[13px] text-[#F2B8B5]';
+    'focus-visible:border-[#C9A96E] focus-visible:ring-1 focus-visible:ring-[#C9A96E]/30';
+  const inputCls  = inputBase + ' consult-input';
+  const selectCls = inputBase + ' consult-input consult-select pr-9 appearance-none cursor-pointer';
+  const errCls    = 'mt-0.5 text-[10px] leading-tight text-[#F2B8B5]';
   const reqMark   = <span aria-hidden="true" style={{ color: GOLD }}> *</span>;
 
   const fieldError = (key: keyof FormState) =>
@@ -238,15 +237,15 @@ export default function ConsultModal({ onClose, topic }: Props) {
 
   /* ── Primary / Secondary 버튼 공통 클래스 ── */
   const btnPrimary =
-    'flex min-h-[50px] w-full items-center justify-center rounded-xl ' +
-    'px-6 text-[16px] font-semibold text-[#0B1018] outline-none ' +
+    'consult-btn-primary flex w-full items-center justify-center rounded-lg ' +
+    'font-semibold text-[#0B1018] outline-none ' +
     'transition-all hover:brightness-110 active:scale-[0.98] ' +
-    'focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B1018] focus-visible:ring-[#C9A96E] ' +
+    'focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-[#0B1018] focus-visible:ring-[#C9A96E] ' +
     'disabled:cursor-not-allowed disabled:opacity-60 ' +
     'motion-reduce:transition-none motion-reduce:hover:brightness-100 motion-reduce:active:scale-100';
   const btnSecondary =
-    'flex min-h-[48px] w-full items-center justify-center rounded-xl ' +
-    'border border-white/20 px-6 text-[15px] font-medium text-white/70 outline-none ' +
+    'consult-btn-secondary flex w-full items-center justify-center rounded-lg ' +
+    'border border-white/20 font-medium text-white/70 outline-none ' +
     'transition-colors hover:border-white/40 hover:bg-white/[0.04] hover:text-white/90 ' +
     'active:bg-white/[0.06] ' +
     'focus-visible:ring-2 focus-visible:ring-[#C9A96E]/50 ' +
@@ -403,18 +402,18 @@ export default function ConsultModal({ onClose, topic }: Props) {
   /* ── 입력 폼 (idle / submitting) ── */
   const formPanel = (
     <form onSubmit={handleSubmit} noValidate className="flex min-h-0 flex-1 flex-col">
-      {/* 스크롤 영역 */}
+      {/* 스크롤 영역 — 일반 높이에서는 한 화면에 맞춤, 극소형만 스크롤 */}
       <div
-        className="min-h-0 flex-1 overflow-y-auto px-4 py-5 md:px-7"
+        className="consult-form-scroll min-h-0 flex-1 overflow-y-auto"
         style={{ WebkitOverflowScrolling: 'touch' }}
       >
-        <p id={descId} className="mb-5 text-[14px] leading-relaxed text-white/55"
+        <p id={descId} className="consult-desc mb-2 text-white/55"
           style={{ wordBreak: 'keep-all' }}>
           간단한 정보만 남겨 주시면 검색·AI 노출 현황을 살펴보고 연락드립니다.{' '}
           <span style={{ color: GOLD }}>*</span> 는 필수 항목입니다.
         </p>
 
-        <div className="flex flex-col gap-4">
+        <div className="consult-fields flex flex-col">
           {/* 이름 */}
           <div>
             <label htmlFor="consult-name" className={labelCls}>이름{reqMark}</label>
@@ -468,12 +467,12 @@ export default function ConsultModal({ onClose, topic }: Props) {
           </div>
 
           {/* 선택 입력 */}
-          <div className="mt-1 border-t border-white/8 pt-4">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-white/35"
+          <div className="consult-section border-t border-white/8">
+            <p className="consult-section-label uppercase tracking-[0.16em] text-white/35"
               style={{ fontFamily: 'var(--font-space-mono)' }}>
               선택 입력
             </p>
-            <div className="flex flex-col gap-4">
+            <div className="consult-fields flex flex-col">
               <div>
                 <label htmlFor="consult-help" className={labelCls}>어떤 도움이 필요하세요?</label>
                 <select id="consult-help" className={selectCls} value={form.help}
@@ -502,8 +501,8 @@ export default function ConsultModal({ onClose, topic }: Props) {
 
               <div>
                 <label htmlFor="consult-message" className={labelCls}>문의 내용</label>
-                <textarea id="consult-message" rows={3}
-                  className={`${inputBase} min-h-[96px] resize-y py-3.5 leading-relaxed`}
+                <textarea id="consult-message" rows={2}
+                  className={`${inputBase} consult-textarea resize-none leading-snug`}
                   value={form.message}
                   onChange={(e) => update('message', e.target.value)}
                   placeholder="현재 고민이나 목표를 자유롭게 적어 주세요."
@@ -513,16 +512,16 @@ export default function ConsultModal({ onClose, topic }: Props) {
           </div>
 
           {/* 동의 영역 */}
-          <div className="mt-1 flex flex-col gap-3 border-t border-white/8 pt-4">
+          <div className="consult-consent flex flex-col border-t border-white/8">
             <div>
               <label htmlFor="consult-privacyAgreed"
-                className="flex cursor-pointer items-start gap-3">
+                className="flex cursor-pointer items-start gap-2">
                 <input id="consult-privacyAgreed" type="checkbox"
-                  className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#C9A96E]"
+                  className="consult-check mt-0.5 shrink-0 accent-[#C9A96E]"
                   checked={form.privacyAgreed}
                   onChange={(e) => update('privacyAgreed', e.target.checked)}
                   disabled={isSubmitting} {...ariaProps('privacyAgreed')} />
-                <span className="text-[14px] leading-relaxed text-white/75"
+                <span className="consult-consent-title text-white/75"
                   style={{ wordBreak: 'keep-all' }}>
                   <span className="font-medium text-white/90">[필수]</span>{' '}
                   개인정보 수집·이용에 동의합니다.{' '}
@@ -534,7 +533,7 @@ export default function ConsultModal({ onClose, topic }: Props) {
                   </a>
                 </span>
               </label>
-              <p className="mt-1.5 pl-[30px] text-[12px] leading-relaxed text-white/45"
+              <p className="consult-consent-detail text-white/45"
                 style={{ wordBreak: 'keep-all' }}>
                 수집 항목: 이름, 회사명·기관명, 연락처, 업종 및 선택 입력 정보 · 이용 목적: 상담
                 신청 확인 및 일정 안내 · 보유 기간: 상담 목적 달성 후 파기. 동의 거부 시 상담예약
@@ -545,36 +544,31 @@ export default function ConsultModal({ onClose, topic }: Props) {
 
             <div>
               <label htmlFor="consult-marketingAgreed"
-                className="flex cursor-pointer items-start gap-3">
+                className="flex cursor-pointer items-start gap-2">
                 <input id="consult-marketingAgreed" type="checkbox"
-                  className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#C9A96E]"
+                  className="consult-check mt-0.5 shrink-0 accent-[#C9A96E]"
                   checked={form.marketingAgreed}
                   onChange={(e) => update('marketingAgreed', e.target.checked)}
                   disabled={isSubmitting} />
-                <span className="text-[14px] leading-relaxed text-white/75"
+                <span className="consult-consent-title text-white/75"
                   style={{ wordBreak: 'keep-all' }}>
                   <span className="font-medium text-white/55">[선택]</span>{' '}
                   광고성 정보 수신에 동의합니다.
                 </span>
               </label>
-              <p className="mt-1.5 pl-[30px] text-[12px] leading-relaxed text-white/45"
+              <p className="consult-consent-detail text-white/45"
                 style={{ wordBreak: 'keep-all' }}>
                 PAGEONEWORKS의 서비스·콘텐츠·세미나·프로모션 정보를 전화 또는 문자로 받습니다.
                 동의하지 않아도 상담예약 이용 가능하며, 언제든 철회할 수 있습니다.
               </p>
             </div>
           </div>
-
-          <div className="h-8" aria-hidden="true" />
         </div>
       </div>
 
       {/* 고정 하단 액션 */}
-      <div
-        className="shrink-0 border-t border-white/8 bg-[#0B1018] px-4 pt-4 md:px-7"
-        style={{ paddingBottom: `calc(1rem + env(safe-area-inset-bottom))` }}
-      >
-        <p className="mb-2.5 text-center text-[12px] leading-relaxed text-white/40"
+      <div className="consult-footer shrink-0 border-t border-white/8 bg-[#0B1018]">
+        <p className="consult-footer-note text-center text-white/40"
           style={{ wordBreak: 'keep-all' }}>
           입력하신 내용은 상담 응대를 위해 전달됩니다.
         </p>
@@ -587,7 +581,7 @@ export default function ConsultModal({ onClose, topic }: Props) {
         </button>
         <button
           type="button" onClick={requestClose} disabled={isSubmitting}
-          className={`${btnSecondary} mt-3`}
+          className={`${btnSecondary} consult-btn-cancel`}
         >
           취소
         </button>
@@ -597,13 +591,9 @@ export default function ConsultModal({ onClose, topic }: Props) {
 
   return (
     <>
-      {/* 루트 래퍼 — 폼은 하단 정렬(모바일 바텀시트), 성공·오류는 중앙 정렬 */}
+      {/* 루트 래퍼 — PC·모바일 모두 중앙 ultra-compact 모달 */}
       <div
-        className={
-          isFormState
-            ? 'fixed inset-0 z-[100000] flex items-end justify-center md:items-center'
-            : 'fixed inset-0 z-[100000] flex items-center justify-center px-3'
-        }
+        className="fixed inset-0 z-[100000] flex items-center justify-center px-2.5 sm:px-3"
         onKeyDown={handleKeyDown}
       >
         {/* 오버레이: 클릭 이벤트 없음, 배경 클릭으로 닫히지 않는다 */}
@@ -625,32 +615,32 @@ export default function ConsultModal({ onClose, topic }: Props) {
           onClick={(e) => e.stopPropagation()}
           className={
             isFormState
-              /* 폼: 모바일 바텀시트, 데스크톱 센터 모달 */
+              /* 폼: 모바일·데스크톱 모두 중앙 ultra-compact */
               ? 'consult-form-dialog relative z-10 flex flex-col overflow-hidden ' +
-                'border border-white/10 ' +
-                'w-full max-w-[100vw] max-h-[100dvh] rounded-t-2xl ' +
-                'md:max-h-[88dvh] md:w-[min(640px,92vw)] md:rounded-2xl'
+                'border border-white/10 rounded-[15px] ' +
+                'w-[calc(100%-20px)] max-w-[400px] max-h-[96dvh] ' +
+                'md:w-[min(470px,92vw)] md:max-w-[470px] md:max-h-[94dvh]'
               /* success / error: compact 센터 다이얼로그 */
               : 'consult-compact-dialog relative z-10 overflow-hidden ' +
                 'border border-white/10 ' +
-                'w-full max-w-[440px] rounded-2xl'
+                'w-[calc(100%-20px)] max-w-[400px] rounded-[15px]'
           }
           style={{ background: BG, boxSizing: 'border-box' }}
         >
           {/* 폼 상태에만 헤더 표시 */}
           {isFormState && (
-            <div className="flex shrink-0 items-start justify-between gap-4
-              border-b border-white/8 px-4 py-4 md:px-7 md:py-5">
+            <div className="consult-header flex shrink-0 items-start justify-between gap-2
+              border-b border-white/8">
               <div className="min-w-0">
                 <p
-                  className="text-[10px] uppercase tracking-[0.22em]"
+                  className="consult-kicker uppercase tracking-[0.2em]"
                   style={{ fontFamily: 'var(--font-space-mono)', color: GOLD }}
                 >
                   PAGEONEWORKS · 상담예약
                 </p>
                 <h2
                   id={titleId}
-                  className="mt-1.5 text-[20px] font-semibold leading-snug text-white md:text-[22px]"
+                  className="consult-title font-semibold leading-snug text-white"
                   style={{ wordBreak: 'keep-all', overflowWrap: 'anywhere' }}
                 >
                   검색·AI 노출 무료 진단 신청
@@ -661,13 +651,13 @@ export default function ConsultModal({ onClose, topic }: Props) {
                 onClick={requestClose}
                 disabled={isSubmitting}
                 aria-label="상담예약 창 닫기"
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full
+                className="consult-close flex shrink-0 items-center justify-center rounded-full
                   text-white/50 outline-none transition-colors
                   hover:bg-white/10 hover:text-white
                   focus-visible:ring-2 focus-visible:ring-[#C9A96E]/50
                   disabled:cursor-not-allowed disabled:opacity-40"
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
                   <path d="M18 6 6 18M6 6l12 12" />
                 </svg>
@@ -744,25 +734,126 @@ export default function ConsultModal({ onClose, topic }: Props) {
       )}
 
       <style>{`
-        .consult-overlay      { animation: consultFadeIn   .22s ease both; }
-        .consult-form-dialog  { animation: consultSlideUp  .28s cubic-bezier(0.33,1,0.68,1) both; }
-        .consult-compact-dialog { animation: consultPopIn  .2s  cubic-bezier(0.33,1,0.68,1) both; }
-        @media (min-width: 768px) {
-          .consult-form-dialog { animation: consultPopIn .22s cubic-bezier(0.33,1,0.68,1) both; }
-        }
-        @keyframes consultFadeIn  { from { opacity:0 }                                    to { opacity:1 } }
-        @keyframes consultSlideUp { from { transform:translateY(100%) }                   to { transform:translateY(0) } }
-        @keyframes consultPopIn   { from { opacity:0; transform:translateY(6px) scale(.97) } to { opacity:1; transform:none } }
+        .consult-overlay { animation: consultFadeIn .22s ease both; }
+        .consult-form-dialog { animation: consultPopIn .22s cubic-bezier(0.33,1,0.68,1) both; }
+        .consult-compact-dialog { animation: consultPopIn .2s cubic-bezier(0.33,1,0.68,1) both; }
+        @keyframes consultFadeIn { from { opacity:0 } to { opacity:1 } }
+        @keyframes consultPopIn { from { opacity:0; transform:translateY(6px) scale(.97) } to { opacity:1; transform:none } }
         @media (prefers-reduced-motion: reduce) {
           .consult-overlay, .consult-form-dialog, .consult-compact-dialog { animation: none !important; }
         }
+
+        /* ── Ultra-compact layout (mobile first) ── */
+        .consult-header { padding: 10px 12px; }
+        .consult-kicker { font-size: 9px; line-height: 1.2; margin: 0; }
+        .consult-title { font-size: 16px; margin-top: 4px; }
+        .consult-close { width: 36px; height: 36px; margin: -4px -4px 0 0; }
+        .consult-form-scroll { padding: 10px 12px 8px; }
+        .consult-desc { font-size: 10px; line-height: 1.4; }
+        .consult-fields { gap: 6px; }
+        .consult-label { font-size: 11px; margin-bottom: 3px; line-height: 1.25; }
+        .consult-input {
+          height: 36px;
+          min-height: 36px;
+          padding: 0 10px;
+          font-size: 16px; /* iOS Safari 자동 확대 방지 */
+          line-height: 1.2;
+        }
+        .consult-input::placeholder { font-size: 13px; }
+        .consult-textarea {
+          height: 58px;
+          min-height: 58px;
+          max-height: 64px;
+          padding: 8px 10px;
+          font-size: 16px;
+        }
+        .consult-textarea::placeholder { font-size: 13px; }
+        .consult-section { margin-top: 2px; padding-top: 8px; }
+        .consult-section-label { font-size: 9px; margin: 0 0 6px; line-height: 1.2; }
+        .consult-consent { gap: 6px; margin-top: 2px; padding-top: 8px; }
+        .consult-check { width: 14px; height: 14px; }
+        .consult-consent-title { font-size: 10px; line-height: 1.4; }
+        .consult-consent-detail {
+          margin: 3px 0 0;
+          padding-left: 22px;
+          font-size: 9px;
+          line-height: 1.4;
+        }
+        .consult-footer {
+          padding: 10px 12px;
+          padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+        }
+        .consult-footer-note { font-size: 9px; line-height: 1.35; margin: 0 0 6px; }
+        .consult-btn-primary { height: 40px; min-height: 40px; font-size: 13px; padding: 0 12px; }
+        .consult-btn-secondary { height: 38px; min-height: 38px; font-size: 13px; padding: 0 12px; }
+        .consult-btn-cancel { margin-top: 8px; }
+
         select.consult-select {
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(245%2C242%2C237%2C0.4)' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='rgba(245%2C242%2C237%2C0.4)' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
-          background-position: right 18px center;
+          background-position: right 10px center;
+        }
+
+        /* ── PC ── */
+        @media (min-width: 768px) {
+          .consult-header { padding: 11px 16px; }
+          .consult-kicker { font-size: 10px; }
+          .consult-title { font-size: 17px; margin-top: 5px; }
+          .consult-form-scroll { padding: 10px 16px 8px; }
+          .consult-desc { font-size: 11px; line-height: 1.4; }
+          .consult-fields { gap: 7px; }
+          .consult-label { font-size: 12px; margin-bottom: 3px; }
+          .consult-input {
+            height: 37px;
+            min-height: 37px;
+            padding: 0 11px;
+            font-size: 13px;
+          }
+          .consult-input::placeholder { font-size: 13px; }
+          .consult-textarea {
+            height: 64px;
+            min-height: 64px;
+            max-height: 68px;
+            padding: 8px 11px;
+            font-size: 13px;
+          }
+          .consult-textarea::placeholder { font-size: 13px; }
+          .consult-section { padding-top: 9px; }
+          .consult-section-label { font-size: 9px; margin-bottom: 6px; }
+          .consult-consent { gap: 7px; padding-top: 9px; }
+          .consult-consent-title { font-size: 11px; }
+          .consult-consent-detail { font-size: 10px; padding-left: 22px; }
+          .consult-footer {
+            padding: 11px 16px;
+            padding-bottom: calc(11px + env(safe-area-inset-bottom, 0px));
+          }
+          .consult-footer-note { font-size: 10px; margin-bottom: 7px; }
+          .consult-btn-primary { height: 40px; min-height: 40px; font-size: 14px; }
+          .consult-btn-secondary { height: 38px; min-height: 38px; font-size: 13px; }
+        }
+
+        /* 일반 모바일 세로 높이 — 한 화면 우선 */
+        @media (max-height: 900px) {
+          .consult-header { padding: 8px 12px; }
+          .consult-title { font-size: 15px; margin-top: 3px; }
+          .consult-form-scroll { padding: 8px 12px 6px; }
+          .consult-desc { margin-bottom: 6px !important; }
+          .consult-fields { gap: 5px; }
+          .consult-label { margin-bottom: 2px; }
+          .consult-input { height: 34px; min-height: 34px; }
+          .consult-textarea { height: 52px; min-height: 52px; max-height: 56px; padding-top: 6px; padding-bottom: 6px; }
+          .consult-section { padding-top: 6px; }
+          .consult-section-label { margin-bottom: 4px; }
+          .consult-consent { gap: 5px; padding-top: 6px; }
+          .consult-consent-detail { margin-top: 2px; }
+          .consult-footer { padding-top: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
+          .consult-footer-note { margin-bottom: 5px; }
+          .consult-btn-primary { height: 38px; min-height: 38px; }
+          .consult-btn-secondary { height: 36px; min-height: 36px; }
+          .consult-btn-cancel { margin-top: 6px; }
         }
       `}</style>
     </>
