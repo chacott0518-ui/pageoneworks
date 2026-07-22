@@ -50,8 +50,10 @@ export async function POST(request: NextRequest) {
 
   // 환경변수 확인
   const gasUrl = process.env.GOOGLE_APPS_SCRIPT_CONSULT_URL;
-  if (!gasUrl) {
-    console.error('[consult] GOOGLE_APPS_SCRIPT_CONSULT_URL 환경변수 없음');
+  if (!gasUrl || !gasUrl.trim()) {
+    console.error(
+      '[consult] 서버 설정 오류: GOOGLE_APPS_SCRIPT_CONSULT_URL 환경변수가 비어 있거나 없습니다. Vercel/로컬 .env에 Apps Script Web App URL을 설정하세요.'
+    );
     return NextResponse.json(
       { error: '서버 설정 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.' },
       { status: 500 }
