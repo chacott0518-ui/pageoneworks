@@ -451,8 +451,10 @@ export default function ConsultModal({ onClose, topic }: Props) {
             <select id="consult-industry" className={selectCls} value={form.industry}
               onChange={(e) => update('industry', e.target.value)}
               disabled={isSubmitting} {...ariaProps('industry')}>
-              <option value="">선택해 주세요</option>
-              {INDUSTRY_OPTIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+              <option value="" style={{ backgroundColor: '#111827', color: '#F5F2ED' }}>선택해 주세요</option>
+              {INDUSTRY_OPTIONS.map((opt) => (
+                <option key={opt} value={opt} style={{ backgroundColor: '#111827', color: '#F5F2ED' }}>{opt}</option>
+              ))}
             </select>
             {fieldError('industry')}
           </div>
@@ -477,8 +479,10 @@ export default function ConsultModal({ onClose, topic }: Props) {
                 <label htmlFor="consult-help" className={labelCls}>어떤 도움이 필요하세요?</label>
                 <select id="consult-help" className={selectCls} value={form.help}
                   onChange={(e) => update('help', e.target.value)} disabled={isSubmitting}>
-                  <option value="">선택 안 함</option>
-                  {HELP_OPTIONS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+                  <option value="" style={{ backgroundColor: '#111827', color: '#F5F2ED' }}>선택 안 함</option>
+                  {HELP_OPTIONS.map((opt) => (
+                    <option key={opt} value={opt} style={{ backgroundColor: '#111827', color: '#F5F2ED' }}>{opt}</option>
+                  ))}
                 </select>
               </div>
 
@@ -593,7 +597,7 @@ export default function ConsultModal({ onClose, topic }: Props) {
     <>
       {/* 루트 래퍼 — PC·모바일 모두 중앙 ultra-compact 모달 */}
       <div
-        className="fixed inset-0 z-[100000] flex items-center justify-center px-2.5 sm:px-3"
+        className="fixed inset-0 z-[100000] flex items-center justify-center px-0"
         onKeyDown={handleKeyDown}
       >
         {/* 오버레이: 클릭 이벤트 없음, 배경 클릭으로 닫히지 않는다 */}
@@ -617,13 +621,14 @@ export default function ConsultModal({ onClose, topic }: Props) {
             isFormState
               /* 폼: 모바일·데스크톱 모두 중앙 ultra-compact */
               ? 'consult-form-dialog relative z-10 flex flex-col overflow-hidden ' +
-                'border border-white/10 rounded-[15px] ' +
-                'w-[calc(100%-20px)] max-w-[400px] max-h-[96dvh] ' +
-                'md:w-[min(470px,92vw)] md:max-w-[470px] md:max-h-[94dvh]'
+                'border border-white/10 rounded-[14px] ' +
+                'w-[calc(100%_-_32px)] max-w-[360px] max-h-[90dvh] ' +
+                'md:w-[min(440px,88vw)] md:max-w-[440px] md:max-h-[88dvh]'
               /* success / error: compact 센터 다이얼로그 */
               : 'consult-compact-dialog relative z-10 overflow-hidden ' +
                 'border border-white/10 ' +
-                'w-[calc(100%-20px)] max-w-[400px] rounded-[15px]'
+                'w-[calc(100%_-_32px)] max-w-[360px] rounded-[14px] ' +
+                'md:w-[min(440px,88vw)] md:max-w-[440px]'
           }
           style={{ background: BG, boxSizing: 'border-box' }}
         >
@@ -744,116 +749,138 @@ export default function ConsultModal({ onClose, topic }: Props) {
         }
 
         /* ── Ultra-compact layout (mobile first) ── */
-        .consult-header { padding: 10px 12px; }
-        .consult-kicker { font-size: 9px; line-height: 1.2; margin: 0; }
-        .consult-title { font-size: 16px; margin-top: 4px; }
-        .consult-close { width: 36px; height: 36px; margin: -4px -4px 0 0; }
-        .consult-form-scroll { padding: 10px 12px 8px; }
-        .consult-desc { font-size: 10px; line-height: 1.4; }
-        .consult-fields { gap: 6px; }
-        .consult-label { font-size: 11px; margin-bottom: 3px; line-height: 1.25; }
+        .consult-header { padding: 7px 10px; }
+        .consult-kicker { font-size: 8px; line-height: 1.2; margin: 0; }
+        .consult-title { font-size: 14px; margin-top: 3px; }
+        .consult-close { width: 30px; height: 30px; margin: -2px -2px 0 0; }
+        .consult-form-scroll { padding: 7px 10px 6px; }
+        .consult-desc { font-size: 9px; line-height: 1.35; }
+        .consult-fields { gap: 4px; }
+        .consult-label { font-size: 10px; margin-bottom: 2px; line-height: 1.25; }
         .consult-input {
-          height: 36px;
-          min-height: 36px;
-          padding: 0 10px;
-          font-size: 16px; /* iOS Safari 자동 확대 방지 */
+          height: 32px;
+          min-height: 32px;
+          padding: 0 9px;
+          font-size: 13px;
           line-height: 1.2;
         }
-        .consult-input::placeholder { font-size: 13px; }
+        .consult-input::placeholder { font-size: 12px; }
         .consult-textarea {
-          height: 58px;
-          min-height: 58px;
-          max-height: 64px;
-          padding: 8px 10px;
-          font-size: 16px;
+          height: 48px;
+          min-height: 46px;
+          max-height: 50px;
+          padding: 7px 9px;
+          font-size: 13px;
         }
-        .consult-textarea::placeholder { font-size: 13px; }
-        .consult-section { margin-top: 2px; padding-top: 8px; }
-        .consult-section-label { font-size: 9px; margin: 0 0 6px; line-height: 1.2; }
-        .consult-consent { gap: 6px; margin-top: 2px; padding-top: 8px; }
-        .consult-check { width: 14px; height: 14px; }
-        .consult-consent-title { font-size: 10px; line-height: 1.4; }
+        .consult-textarea::placeholder { font-size: 12px; }
+        .consult-section { margin-top: 0; padding-top: 5px; }
+        .consult-section-label { font-size: 8px; margin: 0 0 4px; line-height: 1.2; }
+        .consult-consent { gap: 4px; margin-top: 0; padding-top: 5px; }
+        .consult-check { width: 13px; height: 13px; }
+        .consult-consent-title { font-size: 9px; line-height: 1.35; }
         .consult-consent-detail {
-          margin: 3px 0 0;
-          padding-left: 22px;
-          font-size: 9px;
-          line-height: 1.4;
+          margin: 2px 0 0;
+          padding-left: 21px;
+          font-size: 8px;
+          line-height: 1.3;
         }
         .consult-footer {
-          padding: 10px 12px;
-          padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+          padding: 7px 10px;
+          padding-bottom: calc(7px + env(safe-area-inset-bottom, 0px));
         }
-        .consult-footer-note { font-size: 9px; line-height: 1.35; margin: 0 0 6px; }
-        .consult-btn-primary { height: 40px; min-height: 40px; font-size: 13px; padding: 0 12px; }
-        .consult-btn-secondary { height: 38px; min-height: 38px; font-size: 13px; padding: 0 12px; }
-        .consult-btn-cancel { margin-top: 8px; }
+        .consult-footer-note { font-size: 8px; line-height: 1.3; margin: 0 0 5px; }
+        .consult-btn-primary { height: 34px; min-height: 34px; font-size: 12px; padding: 0 10px; }
+        .consult-btn-secondary { height: 32px; min-height: 32px; font-size: 11.5px; padding: 0 10px; }
+        .consult-btn-cancel { margin-top: 5px; }
+
+        /* iPhone Safari 자동 확대 방지 — PC Chrome에는 적용되지 않음 */
+        @supports (-webkit-touch-callout: none) {
+          .consult-input,
+          .consult-textarea {
+            font-size: 16px;
+          }
+        }
 
         select.consult-select {
           -webkit-appearance: none;
           -moz-appearance: none;
           appearance: none;
+          color-scheme: dark;
+          background-color: rgba(255,255,255,0.06);
+          color: #F5F2ED;
           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='rgba(245%2C242%2C237%2C0.4)' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
-          background-position: right 10px center;
+          background-position: right 9px center;
+        }
+        select.consult-select option {
+          background-color: #111827;
+          color: #F5F2ED;
+        }
+        select.consult-select option:checked {
+          background-color: #374151;
+          color: #FFFFFF;
+        }
+        select.consult-select option:disabled {
+          background-color: #111827;
+          color: #9CA3AF;
+        }
+        @media (forced-colors: active) {
+          select.consult-select,
+          select.consult-select option {
+            forced-color-adjust: auto;
+          }
         }
 
         /* ── PC ── */
         @media (min-width: 768px) {
-          .consult-header { padding: 11px 16px; }
-          .consult-kicker { font-size: 10px; }
-          .consult-title { font-size: 17px; margin-top: 5px; }
-          .consult-form-scroll { padding: 10px 16px 8px; }
-          .consult-desc { font-size: 11px; line-height: 1.4; }
-          .consult-fields { gap: 7px; }
-          .consult-label { font-size: 12px; margin-bottom: 3px; }
+          .consult-header { padding: 9px 14px; }
+          .consult-kicker { font-size: 9px; }
+          .consult-title { font-size: 15px; margin-top: 4px; }
+          .consult-close { width: 32px; height: 32px; }
+          .consult-form-scroll { padding: 8px 14px 7px; }
+          .consult-desc { font-size: 10px; line-height: 1.4; }
+          .consult-fields { gap: 5px; }
+          .consult-label { font-size: 10.5px; margin-bottom: 2px; }
           .consult-input {
-            height: 37px;
-            min-height: 37px;
-            padding: 0 11px;
-            font-size: 13px;
+            height: 34px;
+            min-height: 34px;
+            padding: 0 10px;
+            font-size: 12.5px;
           }
-          .consult-input::placeholder { font-size: 13px; }
+          .consult-input::placeholder { font-size: 12px; }
           .consult-textarea {
-            height: 64px;
-            min-height: 64px;
-            max-height: 68px;
-            padding: 8px 11px;
-            font-size: 13px;
+            height: 52px;
+            min-height: 52px;
+            max-height: 56px;
+            padding: 7px 10px;
+            font-size: 12.5px;
           }
-          .consult-textarea::placeholder { font-size: 13px; }
-          .consult-section { padding-top: 9px; }
-          .consult-section-label { font-size: 9px; margin-bottom: 6px; }
-          .consult-consent { gap: 7px; padding-top: 9px; }
-          .consult-consent-title { font-size: 11px; }
-          .consult-consent-detail { font-size: 10px; padding-left: 22px; }
+          .consult-textarea::placeholder { font-size: 12px; }
+          .consult-section { padding-top: 6px; }
+          .consult-section-label { font-size: 8px; margin-bottom: 4px; }
+          .consult-consent { gap: 5px; padding-top: 6px; }
+          .consult-consent-title { font-size: 9.5px; }
+          .consult-consent-detail { font-size: 8.5px; line-height: 1.35; padding-left: 21px; }
           .consult-footer {
-            padding: 11px 16px;
-            padding-bottom: calc(11px + env(safe-area-inset-bottom, 0px));
+            padding: 8px 14px;
+            padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
           }
-          .consult-footer-note { font-size: 10px; margin-bottom: 7px; }
-          .consult-btn-primary { height: 40px; min-height: 40px; font-size: 14px; }
-          .consult-btn-secondary { height: 38px; min-height: 38px; font-size: 13px; }
+          .consult-footer-note { font-size: 8.5px; margin-bottom: 5px; }
+          .consult-btn-primary { height: 36px; min-height: 36px; font-size: 13px; }
+          .consult-btn-secondary { height: 34px; min-height: 34px; font-size: 12px; }
+          .consult-btn-cancel { margin-top: 5px; }
         }
 
-        /* 일반 모바일 세로 높이 — 한 화면 우선 */
-        @media (max-height: 900px) {
-          .consult-header { padding: 8px 12px; }
-          .consult-title { font-size: 15px; margin-top: 3px; }
-          .consult-form-scroll { padding: 8px 12px 6px; }
-          .consult-desc { margin-bottom: 6px !important; }
-          .consult-fields { gap: 5px; }
-          .consult-label { margin-bottom: 2px; }
-          .consult-input { height: 34px; min-height: 34px; }
-          .consult-textarea { height: 52px; min-height: 52px; max-height: 56px; padding-top: 6px; padding-bottom: 6px; }
-          .consult-section { padding-top: 6px; }
-          .consult-section-label { margin-bottom: 4px; }
-          .consult-consent { gap: 5px; padding-top: 6px; }
+        /* 모바일 + 낮은 높이 — 본문 스크롤 안전장치 (PC 미적용) */
+        @media (max-width: 767px) and (max-height: 900px) {
+          .consult-form-scroll { overflow-y: auto; }
+          .consult-desc { margin-bottom: 5px !important; }
+          .consult-fields { gap: 4px; }
+          .consult-section { padding-top: 5px; }
+          .consult-consent { gap: 4px; padding-top: 5px; }
           .consult-consent-detail { margin-top: 2px; }
-          .consult-footer { padding-top: 8px; padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
-          .consult-footer-note { margin-bottom: 5px; }
-          .consult-btn-primary { height: 38px; min-height: 38px; }
-          .consult-btn-secondary { height: 36px; min-height: 36px; }
-          .consult-btn-cancel { margin-top: 6px; }
+          .consult-footer-note { margin-bottom: 4px; }
+          .consult-btn-cancel { margin-top: 5px; }
         }
       `}</style>
     </>
