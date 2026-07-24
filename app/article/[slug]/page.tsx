@@ -10,7 +10,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
 import ArticleViewCount from '@/components/ArticleViewCount';
-import { articles } from '@/lib/data';
+import { articles, type Article } from '@/lib/data';
+import { parseArticleDate } from '@/lib/article-selectors';
 import { ShareButtons } from './ShareButtons';
 import { HeroImage } from './HeroImage';
 import { Header } from '@/components/Header';
@@ -20,6 +21,97 @@ import { siteConfig, absoluteUrl } from '@/lib/site.config'
 const PHONE_HREF = siteConfig.phone.href
 import AIQnA from '@/components/AIQnA'
 import ConsultCTA from '@/components/ConsultCTA'
+
+const RELATED_LIMIT = 3;
+const RELATED_TAG_WEIGHT = 50;
+const RELATED_TITLE_WEIGHT = 10;
+
+/** 관련 글 제목 비교용 — 짧은 토큰·연도·흔한 안내어 제외 */
+const RELATED_STOPWORDS = new Set([
+  'the', 'and', 'for', 'with', 'from', 'that', 'this', 'your', 'are', 'was', 'how', 'why',
+  'what', 'when', 'guide', 'tips', 'best', 'vs', 'or', 'to', 'of', 'in', 'on', 'a', 'an',
+  '가이드', '총정리', '추천', '비교', '정리', '방법', '이유', '이란', '무엇', '언제', '어떻게',
+  '완벽', '실전', '체크리스트', '전망', '현황', '기준', '조건', '주의', '확인',
+]);
+
+function normalizeRelatedTag(tag: string): string {
+  return tag.trim().toLowerCase();
+}
+
+function extractRelatedKeywords(...texts: (string | undefined)[]): Set<string> {
+  const out = new Set<string>();
+  for (const text of texts) {
+    if (!text) continue;
+    const tokens = text.toLowerCase().match(/[a-z0-9가-힣]{2,}/g) ?? [];
+    for (const token of tokens) {
+      if (RELATED_STOPWORDS.has(token)) continue;
+      if (/^\d{4}$/.test(token)) continue;
+      out.add(token);
+    }
+  }
+  return out;
+}
+
+function scoreRelatedArticle(current: Article, candidate: Article): number {
+  let score = 0;
+
+  const currentTags = new Set(
+    (current.tags ?? []).map(normalizeRelatedTag).filter(Boolean),
+  );
+  for (const tag of candidate.tags ?? []) {
+    const normalized = normalizeRelatedTag(tag);
+    if (normalized && currentTags.has(normalized)) score += RELATED_TAG_WEIGHT;
+  }
+
+  const currentWords = extractRelatedKeywords(current.title, current.titleKo);
+  const candidateWords = extractRelatedKeywords(candidate.title, candidate.titleKo);
+  Array.from(candidateWords).forEach((word) => {
+    if (currentWords.has(word)) score += RELATED_TITLE_WEIGHT;
+  });
+
+  return score;
+}
+
+/** 동일 카테고리 관련 글 — tags·제목 유사도 우선, 부족 시 최신순 보충 */
+function getRelatedArticles(current: Article, all: Article[], limit = RELATED_LIMIT): Article[] {
+  const candidates = all.filter(
+    (a) => a.categorySlug === current.categorySlug && a.slug !== current.slug && a.id !== current.id,
+  );
+  if (candidates.length === 0) return [];
+
+  const ranked = candidates
+    .map((article) => ({
+      article,
+      score: scoreRelatedArticle(current, article),
+      dateMs: parseArticleDate(article),
+    }))
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      return b.dateMs - a.dateMs;
+    });
+
+  const picked: Article[] = [];
+  const seen = new Set<string>();
+
+  for (const row of ranked) {
+    if (picked.length >= limit) break;
+    if (row.score <= 0) continue;
+    picked.push(row.article);
+    seen.add(row.article.slug);
+  }
+
+  if (picked.length < limit) {
+    const byDate = [...candidates].sort((a, b) => parseArticleDate(b) - parseArticleDate(a));
+    for (const article of byDate) {
+      if (picked.length >= limit) break;
+      if (seen.has(article.slug)) continue;
+      picked.push(article);
+      seen.add(article.slug);
+    }
+  }
+
+  return picked;
+}
 
 interface Props {
   params: { slug: string };
@@ -282,9 +374,7 @@ export default function ArticlePage({ params }: Props) {
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) notFound();
 
-  const related = articles
-    .filter((a) => a.categorySlug === article.categorySlug && a.id !== article.id)
-    .slice(0, 3);
+  const related = getRelatedArticles(article, articles);
 
   const blocks = article.body ? parseBody(article.body) : [];
   const faqBlocks = blocks.filter((b) => b.type === 'faq');

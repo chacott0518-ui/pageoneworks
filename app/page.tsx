@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    '의료·안티에이징·부동산·모빌리티·법률·금융·라이프스타일·뷰티·미식·교육 분야 최고 전문가들의 프리미엄 콘텐츠. 네이버 AI 브리핑·구글 AI Overview에 인용되는 검증된 인사이트.',
+    '검색·비즈니스·기술·라이프스타일을 깊이 있게 분석하고, 네이버·구글·생성형 AI가 이해하기 쉬운 구조로 제공하는 PAGEONEWORKS 매거진입니다.',
   alternates: {
     canonical: SITE_URL,
     types: { 'application/rss+xml': `${SITE_URL}/feed.xml` },
