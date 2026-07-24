@@ -22,7 +22,7 @@ const PHONE_HREF = siteConfig.phone.href
 import AIQnA from '@/components/AIQnA'
 import ConsultCTA from '@/components/ConsultCTA'
 
-const RELATED_LIMIT = 3;
+const RELATED_LIMIT = 4;
 const RELATED_TAG_WEIGHT = 50;
 const RELATED_TITLE_WEIGHT = 10;
 
@@ -72,42 +72,60 @@ function scoreRelatedArticle(current: Article, candidate: Article): number {
   return score;
 }
 
-/** 동일 카테고리 관련 글 — tags·제목 유사도 우선, 부족 시 최신순 보충 */
+/** 관련 글 — 동카테고리 점수 > 타카테고리 점수 > 동카테고리 최신 > 전체 최신, 최대 4개 */
 function getRelatedArticles(current: Article, all: Article[], limit = RELATED_LIMIT): Article[] {
-  const candidates = all.filter(
-    (a) => a.categorySlug === current.categorySlug && a.slug !== current.slug && a.id !== current.id,
+  const others = all.filter(
+    (a) => a.slug !== current.slug && a.id !== current.id,
   );
-  if (candidates.length === 0) return [];
+  if (others.length === 0) return [];
 
-  const ranked = candidates
-    .map((article) => ({
-      article,
-      score: scoreRelatedArticle(current, article),
-      dateMs: parseArticleDate(article),
-    }))
-    .sort((a, b) => {
-      if (b.score !== a.score) return b.score - a.score;
-      return b.dateMs - a.dateMs;
-    });
+  const scored = others.map((article) => ({
+    article,
+    score: scoreRelatedArticle(current, article),
+    dateMs: parseArticleDate(article),
+    sameCategory: article.categorySlug === current.categorySlug,
+  }));
+
+  const byScoreThenDate = (
+    a: { score: number; dateMs: number },
+    b: { score: number; dateMs: number },
+  ) => (b.score !== a.score ? b.score - a.score : b.dateMs - a.dateMs);
 
   const picked: Article[] = [];
-  const seen = new Set<string>();
+  const seenSlug = new Set<string>();
+  const seenId = new Set<string | number>();
 
-  for (const row of ranked) {
-    if (picked.length >= limit) break;
-    if (row.score <= 0) continue;
-    picked.push(row.article);
-    seen.add(row.article.slug);
+  const tryAdd = (article: Article) => {
+    if (picked.length >= limit) return;
+    if (seenSlug.has(article.slug) || seenId.has(article.id)) return;
+    picked.push(article);
+    seenSlug.add(article.slug);
+    seenId.add(article.id);
+  };
+
+  scored
+    .filter((row) => row.sameCategory && row.score > 0)
+    .sort(byScoreThenDate)
+    .forEach((row) => tryAdd(row.article));
+
+  if (picked.length < limit) {
+    scored
+      .filter((row) => !row.sameCategory && row.score > 0)
+      .sort(byScoreThenDate)
+      .forEach((row) => tryAdd(row.article));
   }
 
   if (picked.length < limit) {
-    const byDate = [...candidates].sort((a, b) => parseArticleDate(b) - parseArticleDate(a));
-    for (const article of byDate) {
-      if (picked.length >= limit) break;
-      if (seen.has(article.slug)) continue;
-      picked.push(article);
-      seen.add(article.slug);
-    }
+    [...others]
+      .filter((a) => a.categorySlug === current.categorySlug)
+      .sort((a, b) => parseArticleDate(b) - parseArticleDate(a))
+      .forEach(tryAdd);
+  }
+
+  if (picked.length < limit) {
+    [...others]
+      .sort((a, b) => parseArticleDate(b) - parseArticleDate(a))
+      .forEach(tryAdd);
   }
 
   return picked;
@@ -1022,35 +1040,74 @@ export default function ArticlePage({ params }: Props) {
             </details>
           )}
 
-<AIQnA category={article.categorySlug} />
+          {related.length > 0 && (
+            <section
+              className="mt-14 pt-10 border-t border-[#E6E0D6]"
+              aria-label="관련 아티클"
+            >
+              <h2
+                className="mb-5 md:mb-6"
+                style={{
+                  fontFamily: 'var(--font-cormorant)',
+                  fontSize: 'clamp(1.25rem, 2.5vw, 1.6rem)',
+                  fontWeight: 500,
+                  color: '#1a1a1a',
+                  wordBreak: 'keep-all',
+                }}
+              >
+                관련 아티클
+              </h2>
+              <div
+                className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:pb-0"
+                style={{ WebkitOverflowScrolling: 'touch' }}
+              >
+                {related.map((rel) => {
+                  const cardTitle = (rel.titleKo || rel.title || '').trim() || '아티클';
+                  return (
+                    <Link
+                      key={rel.slug}
+                      href={`/article/${rel.slug}`}
+                      className="group flex min-h-[160px] w-[240px] shrink-0 snap-start flex-col rounded-[15px] border border-[#E6E0D6] bg-[#FAF8F5] p-4 outline-none transition-all duration-200 hover:-translate-y-0.5 hover:border-[#D4CBBC] hover:bg-[#FCFBF9] hover:shadow-[0_8px_20px_rgba(26,26,26,0.06)] focus-visible:ring-2 focus-visible:ring-[#C9A96E]/50 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:w-auto lg:min-w-0"
+                    >
+                      <p
+                        className="uppercase"
+                        style={{
+                          fontFamily: 'var(--font-space-mono)',
+                          fontSize: '10px',
+                          letterSpacing: '0.14em',
+                          color: 'rgba(26,26,26,0.42)',
+                        }}
+                      >
+                        {rel.category}
+                      </p>
+                      <div className="my-3 h-px w-full bg-[#E6E0D6]" aria-hidden="true" />
+                      <h3
+                        className="flex-1 text-[15px] font-medium leading-snug text-[#1a1a1a] line-clamp-3"
+                        style={{
+                          fontFamily: 'var(--font-inter)',
+                          wordBreak: 'keep-all',
+                          overflowWrap: 'break-word',
+                        }}
+                      >
+                        {cardTitle}
+                      </h3>
+                      <span
+                        className="mt-4 flex h-9 w-9 items-center justify-center self-end rounded-full border border-[#E6E0D6] text-[15px] text-[#1a1a1a]/55 transition-colors duration-200 group-hover:border-[#D4CBBC] group-hover:text-[#1a1a1a]"
+                        aria-hidden="true"
+                      >
+                        →
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          <AIQnA category={article.categorySlug} />
 
           <ShareButtons />
         </div>
-
-        {related.length > 0 && (
-          <section className="border-t border-black/8 py-14 px-5 md:px-10 bg-[#f0ede8]">
-            <div className="max-w-[1200px] mx-auto">
-              <p className="uppercase mb-8" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}>
-                Related Articles
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {related.map((rel) => (
-                  <Link key={rel.id} href={`/article/${rel.slug}`} className="group">
-                    <div className="relative overflow-hidden aspect-video mb-4">
-                    <Image src={rel.image} alt={rel.titleKo} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" quality={75} loading="lazy" />
-                    </div>
-                    <p className="uppercase mb-2" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
-                      {rel.category}
-                    </p>
-                    <h4 className="font-light leading-snug group-hover:italic transition-all" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.1rem, 2vw, 1.3rem)', color: '#1a1a1a' }}>
-                      {rel.titleKo}
-                    </h4>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
       </article>
     </>
   );
