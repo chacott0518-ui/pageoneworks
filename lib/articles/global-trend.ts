@@ -174,7 +174,7 @@ export const globalTrendArticles: Article[] = [
     A. 모든 직무에서 생산성이 높아진다고 확정할 수는 없습니다. 다만 1,612명을 대상으로 한 무작위 대조실험에서는 주 2일 재택근무가 성과평가에 악영향을 주지 않으면서 퇴사율을 약 3분의 1 낮췄습니다. 실제 효과는 업무 특성과 관리 체계에 따라 달라집니다.
     
     ※ 참고 출처
-    · FIFA, World Cup 2026 Match Schedule, Fixtures and Results
+    · FIFA, World Cup 2026 Match Schedule, Fixtures and Resultsnpm
     https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/match-schedule-fixtures-results-teams-stadiums
     
     · U.S. Bureau of Labor Statistics, American Time Use Survey 2025
