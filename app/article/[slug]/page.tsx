@@ -72,7 +72,7 @@ function scoreRelatedArticle(current: Article, candidate: Article): number {
   return score;
 }
 
-/** 관련 글 — 동카테고리 점수 > 타카테고리 점수 > 동카테고리 최신 > 전체 최신, 최대 4개 */
+/** 관련 글 — 동카테고리 전체(점수·최신순) 우선, 부족 시에만 강한 타카테고리(score≥20), 최대 4개 */
 function getRelatedArticles(current: Article, all: Article[], limit = RELATED_LIMIT): Article[] {
   const others = all.filter(
     (a) => a.slug !== current.slug && a.id !== current.id,
@@ -103,32 +103,21 @@ function getRelatedArticles(current: Article, all: Article[], limit = RELATED_LI
     seenId.add(article.id);
   };
 
-  scored
-    .filter((row) => row.sameCategory && row.score > 0)
-    .sort(byScoreThenDate)
-    .forEach((row) => tryAdd(row.article));
+  const sameCategoryRanked = scored
+    .filter((row) => row.sameCategory)
+    .sort(byScoreThenDate);
+
+  sameCategoryRanked.forEach((row) => tryAdd(row.article));
 
   if (picked.length < limit) {
-    scored
-      .filter((row) => !row.sameCategory && row.score > 0)
-      .sort(byScoreThenDate)
-      .forEach((row) => tryAdd(row.article));
+    const strongCrossCategoryRanked = scored
+      .filter((row) => !row.sameCategory && row.score >= 20)
+      .sort(byScoreThenDate);
+
+    strongCrossCategoryRanked.forEach((row) => tryAdd(row.article));
   }
 
-  if (picked.length < limit) {
-    [...others]
-      .filter((a) => a.categorySlug === current.categorySlug)
-      .sort((a, b) => parseArticleDate(b) - parseArticleDate(a))
-      .forEach(tryAdd);
-  }
-
-  if (picked.length < limit) {
-    [...others]
-      .sort((a, b) => parseArticleDate(b) - parseArticleDate(a))
-      .forEach(tryAdd);
-  }
-
-  return picked;
+  return picked.slice(0, limit);
 }
 
 interface Props {
