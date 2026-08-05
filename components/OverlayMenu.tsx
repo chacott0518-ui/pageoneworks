@@ -15,7 +15,7 @@ export function OverlayMenu({ onClose }: OverlayMenuProps) {
   const [isVisible, setIsVisible] = useState(true);
 
   const navCategories = categories.filter((c) => c.slug !== 'archive');
-  const latestArticles = articles.slice(0, 3);
+  const latestArticles = articles.filter((a) => a.indexable !== false).slice(0, 3);
   const hoveredCategory = categories.find((c) => c.slug === hoveredCat);
 
   const handleClose = () => {

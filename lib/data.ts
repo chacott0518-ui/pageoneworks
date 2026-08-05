@@ -34,6 +34,8 @@ export type Article = {
   heroImage?: string;
   featured?: boolean;
   tags?: string[];
+  /** 관련 엔티티 — 브랜드·서비스·플랫폼 등 고유명사. 기사 하단 "관련 엔티티" 섹션에서 사용 (# 없이 표시) */
+  entities?: string[];
   author?: string;
   sources?: ArticleSource[];
   body?: string;
@@ -47,6 +49,11 @@ export type Article = {
   topicLabel?: string;
   /** 내부 작성 가이드 패턴 (A~E). SEO 메타에 노출하지 않음 */
   contentPattern?: ArticleContentPattern;
+  /**
+   * false면 sitemap·공개 목록·검색·관련글에서 제외.
+   * 상세 URL·SSG·self-canonical은 유지. 생략 시 true.
+   */
+  indexable?: boolean;
 };
 
 export const categories: Category[] = [

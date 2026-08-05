@@ -122,18 +122,31 @@ export function findArticlesWithBodyTokenLeaks(
   return leaks;
 }
 
+/** sitemap·홈·카테고리·검색·관련글 공개 대상. indexable === false만 제외 */
+export function isPublicArticle(article: Article): boolean {
+  return article.indexable !== false;
+}
+
+export function getPublicArticles(list: Article[]): Article[] {
+  return list.filter(isPublicArticle);
+}
+
 export function getLatestArticles(list: Article[], limit?: number): Article[] {
-  const sorted = sortArticlesByDateDesc(list);
+  const sorted = sortArticlesByDateDesc(getPublicArticles(list));
   return limit != null ? sorted.slice(0, limit) : sorted;
 }
 
 export function getArticlesByCategorySlug(list: Article[], categorySlug: string): Article[] {
-  return sortArticlesByDateDesc(list.filter((a) => a.categorySlug === categorySlug));
+  return sortArticlesByDateDesc(
+    getPublicArticles(list).filter((a) => a.categorySlug === categorySlug),
+  );
 }
 
 /** MagazineGrid 탭 — category 표시명(title) 기준 */
 export function getArticlesByCategoryTitle(list: Article[], categoryTitle: string): Article[] {
-  return sortArticlesByDateDesc(list.filter((a) => a.category === categoryTitle));
+  return sortArticlesByDateDesc(
+    getPublicArticles(list).filter((a) => a.category === categoryTitle),
+  );
 }
 
 /**
@@ -146,7 +159,7 @@ export function getArticlesByTopic(
   categorySlug: string,
   topicSlug: string | null,
 ): Article[] {
-  const inCategory = list.filter((a) => a.categorySlug === categorySlug);
+  const inCategory = getPublicArticles(list).filter((a) => a.categorySlug === categorySlug);
   if (!topicSlug || topicSlug === 'all') {
     return sortArticlesByDateDesc(inCategory);
   }
@@ -161,23 +174,23 @@ export function getCategoryFeaturedArticle(
   list: Article[],
   categorySlug?: string,
 ): Article | undefined {
-  const scoped = categorySlug
-    ? list.filter((a) => a.categorySlug === categorySlug)
-    : list;
+  const scoped = getPublicArticles(
+    categorySlug ? list.filter((a) => a.categorySlug === categorySlug) : list,
+  );
   const sorted = sortArticlesByDateDesc(scoped);
   return sorted.find((a) => a.featured) ?? sorted[0];
 }
 
 /** 카테고리 그리드 — 히어로에 쓴 featured 1건 제외 후 최신순 */
 export function getCategoryGridArticles(list: Article[], featured?: Article): Article[] {
-  const sorted = sortArticlesByDateDesc(list);
+  const sorted = sortArticlesByDateDesc(getPublicArticles(list));
   if (!featured) return sorted;
   return sorted.filter((a) => a.slug !== featured.slug);
 }
 
 /** sitemap article 엔트리용 — 전체 글 날짜 최신순 */
 export function getSitemapArticles(list: Article[]): Article[] {
-  return sortArticlesByDateDesc(list);
+  return sortArticlesByDateDesc(getPublicArticles(list));
 }
 
 /** RSS feed 항목 — 날짜 최신순, limit 선택 */
@@ -197,9 +210,9 @@ export function getIndexNowCandidateUrls(
   slugs?: string[],
 ): string[] {
   const base = baseUrl.replace(/\/$/, '');
-  const scoped = slugs?.length
-    ? list.filter((a) => slugs.includes(a.slug))
-    : list;
+  const scoped = getPublicArticles(
+    slugs?.length ? list.filter((a) => slugs.includes(a.slug)) : list,
+  );
 
   return scoped
     .map((a) => `${base}/article/${a.slug}`)
@@ -277,7 +290,7 @@ export function getSpotlightArticles(
   const now = Date.now();
   const cutoff = now - recentDays * 24 * 60 * 60 * 1000;
 
-  const ranked = [...list].sort((a, b) => {
+  const ranked = [...getPublicArticles(list)].sort((a, b) => {
     const diff =
       scoreSpotlightArticle(b, cutoff, now, manualSlugs, viewCounts) -
       scoreSpotlightArticle(a, cutoff, now, manualSlugs, viewCounts);

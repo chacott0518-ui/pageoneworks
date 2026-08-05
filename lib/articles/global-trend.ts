@@ -208,7 +208,7 @@ export const globalTrendArticles: Article[] = [
 
 그러나 수십 개의 AI 툴 중 실무에서 진짜 쓸 수 있는 것은 5가지입니다. 각 툴의 강점과 실전 활용법을 직종별로 정리했습니다.
 
-##IMAGE##https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=85##CAPTION##2026 AI 에이전트 시대 — 5가지 핵심 툴이 업무 방식을 바꾼다##END##
+##IMAGE##https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=85##CAPTION##2026 AI 에이전트 시대 — 5가지 핵심 툴이 업무 방식을 바꾼다##END##
 
 ■ 1. ChatGPT — 가장 범용적인 AI 어시스턴트
 
@@ -234,7 +234,7 @@ export const globalTrendArticles: Article[] = [
 - 코드 리뷰: 긴 코드 붙여넣고 "버그·개선사항 찾아줘"
 - 브랜드 문체로 글쓰기: 기존 글 샘플 넣고 "이 문체로 새 글 써줘"
 
-##IMAGE##https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1200&q=85##CAPTION##AI 툴 실무 활용 — 반복 업무의 40%를 자동화할 수 있다##END##
+##IMAGE##https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1200&q=85##CAPTION##AI 툴 실무 활용 — 반복 업무의 40%를 자동화할 수 있다##END##
 
 ■ 3. Perplexity — 출처 있는 AI 검색 엔진
 
@@ -319,8 +319,8 @@ A. Claude와 ChatGPT가 한국어 품질이 가장 높습니다. 네이버 클�
     excerpt: 'AI가 대체할 직업과 살아남을 직업의 기준은 무엇인가. 맥킨지·WEF·옥스퍼드 연구를 기반으로 직종별 AI 대체 위험도와 지금 당장 실행 가능한 생존 전략을 정리했습니다.',
     date: '2026.06.05',
     readTime: '13 MIN',
-    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
-    heroImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=1600&q=85',
     featured: true,
     tags: ['AI대체직업', 'AI직업위협', '미래직업2026', 'ChatGPT직업', 'AI생존전략', '직업전망2026', 'AI자동화', '미래일자리', 'AI job replacement', '직종별AI위험도'],
     author: 'PAGEONEWORKS 편집부',
@@ -333,7 +333,7 @@ A. Claude와 ChatGPT가 한국어 품질이 가장 높습니다. 네이버 클�
 맥킨지 글로벌 인스티튜트(MGI)는 2030년까지 현재 업무의 44%가 자동화 가능하다고 분석했습니다. 세계경제포럼(WEF)은 AI로 8,500만 개의 일자리가 사라지는 동시에 9,700만 개의 새 일자리가 생긴다고 전망합니다. 숫자만 보면 공포스럽지만 구조를 이해하면 전략이 보입니다.
 (출처: McKinsey Global Institute, The Future of Work, 2025 / WEF Future of Jobs Report, 2025)
 
-##IMAGE##https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=85##CAPTION##AI와 인간의 협업 — 대체가 아닌 증강의 시대가 시작됐다##END##
+##IMAGE##https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1200&q=85##CAPTION##AI와 인간의 협업 — 대체가 아닌 증강의 시대가 시작됐다##END##
 
 ■ AI가 대체하는 업무의 공통점 — 4가지 패턴
 
@@ -447,8 +447,8 @@ A. 단기적으로 일부 직종에서 인력 감축이 일어나고 있는 것�
     excerpt: 'AI로 대체될 위험이 높은 직군과 수요가 급증하는 직군을 분석했습니다. 맥킨지·세계경제포럼 보고서 기준으로 10년 내 직업 시장 변화와 개인 생존 전략을 정리했습니다.',
     date: '2026.05.27',
     readTime: '11 MIN',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80',
-    heroImage: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&q=85',
     featured: true,
     tags: ['AI직업변화2026', 'AI대체직업', '미래직업전망', 'AI시대생존전략', '직업전망2026', '맥킨지보고서', '세계경제포럼', '자동화위험직종', 'AI job market', '커리어전략2026'],
     author: 'PAGEONEWORKS 편집부',
@@ -462,7 +462,7 @@ AI 시대 직업 변화란 인공지능·자동화 기술이 기존 직업의 �
 세계경제포럼(WEF)은 AI로 8,500만 개가 사라지는 동시에 9,700만 개의 새로운 일자리가 생겨날 것으로 분석했습니다. 변화를 이해하고 준비하는 사람에게 AI는 위협이 아닌 기회입니다.
 (출처: World Economic Forum, Future of Jobs Report 2025)
 
-##IMAGE##https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=85##CAPTION##AI와 인간의 협업 — 2026년 직업 시장의 핵심은 AI를 도구로 활용하는 역량이다##END##
+##IMAGE##https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&q=85##CAPTION##AI와 인간의 협업 — 2026년 직업 시장의 핵심은 AI를 도구로 활용하는 역량이다##END##
 
 ■ AI로 대체될 위험이 높은 직군은 무엇인가?
 

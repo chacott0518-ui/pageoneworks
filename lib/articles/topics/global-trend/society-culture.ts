@@ -25,7 +25,7 @@ export const societyCultureArticles: Article[] = [
 
 리센느의 사례가 특별한 이유는 대형 기획사의 대규모 프로모션이 아니라, 멤버의 자연스러운 캐릭터와 콘텐츠 감각이 먼저 대중에게 도달했다는 점이다. 음악은 갑자기 좋아진 것이 아니라 이미 준비되어 있었고, 대중이 뒤늦게 발견한 것에 가깝다. 그래서 ‘중소돌의 기적’이라는 표현은 과장이 아니라 지금 K-POP 시장에서 매우 상징적인 카피가 될 수 있다.
 
-##IMAGE##/images/rescene-geoje-ambassador-geojetimeline.jpg##CAPTION##리센느 거제시 홍보대사 위촉 이미지 — 사진 출처: 거제타임라인##END##
+##IMAGE##/images/rescene-love-attack-thefact.jpg##CAPTION##리센느 LOVE ATTACK 관련 이미지 — 사진 출처: 더팩트##END##
 
 ■ 리센느는 어떤 그룹인가
 

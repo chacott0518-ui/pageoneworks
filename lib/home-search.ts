@@ -113,6 +113,7 @@ export function searchHomeArticles(rawQuery: string, list: Article[]): HomeSearc
 
   const scored: { article: Article; score: number }[] = [];
   for (const article of list) {
+    if (article.indexable === false) continue;
     if (seenSlugs.has(article.slug)) continue;
     const score = scoreArticle(article, query, terms);
     if (score <= 0) continue;

@@ -283,7 +283,7 @@ export const digitalToolsArticles: Article[] = [
     7. 이미 링크를 눌렀거나 돈을 보냈다면 어떻게 해야 할까?
     8. 회사에서는 대표·거래처 사칭을 어떻게 막아야 할까?
     
-    ##IMAGE##https://images.unsplash.com/photo-1774393925096-353cbf489ba4?auto=format&fit=crop&q=85&w=1200##CAPTION##온라인에 공개된 음성과 영상은 AI 음성 복제에 악용될 수 있으므로 목소리만으로 상대방의 신원을 확정해서는 안 된다. 사진 출처: Unsplash / Tony Chen##END##
+    ##IMAGE##https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=85&w=1200##CAPTION##온라인에 공개된 음성과 영상은 AI 음성 복제에 악용될 수 있으므로 목소리만으로 상대방의 신원을 확정해서는 안 된다. 사진 출처: Unsplash##END##
     
     ■ 1. AI 딥페이크 보이스피싱은 무엇이 다를까?
     

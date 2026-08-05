@@ -46,7 +46,9 @@ export default function CategoryPage({ params }: Props) {
   const category = categories.find((c) => c.slug === params.slug)
   if (!category) notFound()
 
-  const catArticles = getArticlesByCategorySlug(articles, params.slug)
+  const catArticles = getArticlesByCategorySlug(articles, params.slug).map(
+    ({ body: _body, ...rest }) => rest,
+  )
   const topics = getTopicsForCategory(params.slug)
 
   return (

@@ -75,7 +75,7 @@ function scoreRelatedArticle(current: Article, candidate: Article): number {
 /** 관련 글 — 동카테고리 전체(점수·최신순) 우선, 부족 시에만 강한 타카테고리(score≥20), 최대 4개 */
 function getRelatedArticles(current: Article, all: Article[], limit = RELATED_LIMIT): Article[] {
   const others = all.filter(
-    (a) => a.slug !== current.slug && a.id !== current.id,
+    (a) => a.slug !== current.slug && a.id !== current.id && a.indexable !== false,
   );
   if (others.length === 0) return [];
 
@@ -138,6 +138,7 @@ export async function generateMetadata({ params }: Props) {
     alternates: { canonical: articleUrl },
     keywords: article.tags ?? [],
     authors: [{ name: article.author ?? siteConfig.name }],
+    ...(article.indexable === false ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title: article.titleKo,
       description: article.excerpt,
@@ -158,11 +159,15 @@ export async function generateMetadata({ params }: Props) {
 
 function parseBody(body: string) {
   const lines = body.split('\n');
-  const blocks: { type: string; content: string; caption?: string; extra?: string }[] = [];
+  const blocks: { type: string; content: string; caption?: string; extra?: string; variant?: string }[] = [];
   let i = 0;
+  let inToc = false;
   while (i < lines.length) {
     const rawLine = lines[i];
     const line = rawLine.trimStart();
+    if (inToc && line.trim() !== '' && !/^[1-9]\d*\./.test(line)) {
+      inToc = false;
+    }
     if (line.startsWith('##IMAGE##')) {
       const parts = line.split('##');
       blocks.push({ type: 'image', content: parts[2] || '', caption: parts[4] || '' });
@@ -205,7 +210,9 @@ function parseBody(body: string) {
       i += 2; continue;
     }
     if (line.startsWith('\u25a0')) {
-      blocks.push({ type: 'heading', content: line.replace('\u25a0 ', '').replace('\u25a0', '') });
+      const headingContent = line.replace('\u25a0 ', '').replace('\u25a0', '');
+      inToc = headingContent.trim() === '\uBAA9\uCC28';
+      blocks.push({ type: 'heading', content: headingContent, variant: inToc ? 'toc' : undefined });
       i++; continue;
     }
     if (line.startsWith('\u3010')) {
@@ -300,6 +307,10 @@ function parseBody(body: string) {
       i++; continue;
     }
     if (rawLine.trim() === '') { i++; continue; }
+    if (inToc && /^[1-9]\d*\./.test(line)) {
+      blocks.push({ type: 'paragraph', content: rawLine.trim(), variant: 'toc-item' });
+      i++; continue;
+    }
     blocks.push({ type: 'paragraph', content: rawLine.trim() });
     i++;
   }
@@ -309,46 +320,68 @@ function parseBody(body: string) {
 /** Returns true when a line contains the ##END## terminator token. */
 const hasEndToken = (s: string) => s.includes('##END##');
 
-// Invisible block types (render null) or structural types that block CTA insertion
-const UNSAFE_CURR = new Set(['heading', 'subheading', 'image', 'table', 'statgrid', 'step', 'ctablock']);
-const UNSAFE_NEXT = new Set(['image', 'table', 'statgrid', 'step']);
+// Invisible block types (render null) or structural types that must never be the block
+// immediately preceding / following the CTA insertion point.
+const UNSAFE_CURR = new Set(['heading', 'subheading', 'image', 'table', 'statgrid', 'step', 'ctablock', 'infobox']);
+const UNSAFE_NEXT = new Set(['image', 'table', 'statgrid', 'step', 'infobox']);
 
-function computeCtaInsertIndex(
-  contentBlocks: { type: string; content: string; caption?: string; extra?: string }[]
-): number {
-  // Only count visible blocks (exclude ctablock which renders null) for position calculation
-  const visible = contentBlocks
-    .map((b, idx) => ({ block: b, idx }))
-    .filter(({ block }) => block.type !== 'ctablock');
+type ContentBlock = { type: string; content: string; caption?: string; extra?: string; variant?: string };
 
-  const total = visible.length;
+/**
+ * CTA(상담예약)는 번호가 붙은 H2 섹션이 "완전히" 끝난 직후에만 삽입한다.
+ * 1) 번호형 heading(예: "1. ...")의 인덱스를 모두 찾는다 (목차 heading은 제외).
+ * 2) 각 섹션의 끝 = 다음 번호형 heading 바로 앞 블록. 그 블록이 안전하지 않으면
+ *    (표/이미지/STATGRID/INFOBOX/단계 등으로 끝나는 경우) 섹션 안에서 뒤로 이동하며
+ *    안전한 문단을 찾는다.
+ * 3) 전체 섹션 수 중 중앙에 가장 가까운 섹션 종료 지점을 우선 선택한다.
+ */
+function computeCtaInsertIndex(contentBlocks: ContentBlock[]): number {
+  const total = contentBlocks.length;
   if (total === 0) return -1;
 
-  const rangeStart = Math.floor(total * 0.4);
-  const rangeEnd = Math.ceil(total * 0.6);
+  const headingIndexes: number[] = [];
+  contentBlocks.forEach((b, idx) => {
+    if (b.type === 'heading' && b.variant !== 'toc' && /^\d+\./.test(b.content.trim())) {
+      headingIndexes.push(idx);
+    }
+  });
 
-  const isSafe = (vi: number): boolean => {
-    if (vi < 1) return false;
-    const curr = visible[vi].block;
-    const next = vi + 1 < total ? visible[vi + 1].block : null;
-    if (UNSAFE_CURR.has(curr.type)) return false;
+  if (headingIndexes.length === 0) return -1;
+
+  const sectionEnds: number[] = headingIndexes.map((start, sectionIdx) => {
+    const nextStart = sectionIdx + 1 < headingIndexes.length ? headingIndexes[sectionIdx + 1] : total;
+    let end = nextStart - 1;
+    while (end > start && UNSAFE_CURR.has(contentBlocks[end].type)) {
+      end--;
+    }
+    return end > start ? end : -1;
+  });
+
+  const isCandidateSafe = (end: number): boolean => {
+    if (end < 1) return false;
+    if (UNSAFE_CURR.has(contentBlocks[end].type)) return false;
+    const next = end + 1 < total ? contentBlocks[end + 1] : null;
     if (next && UNSAFE_NEXT.has(next.type)) return false;
     return true;
   };
 
-  // Try ideal range (40–60% of visible blocks)
-  for (let vi = rangeStart; vi <= rangeEnd && vi < total; vi++) {
-    if (isSafe(vi)) return visible[vi].idx;
+  const sectionCount = sectionEnds.length;
+  const middle = sectionCount / 2; // 8개 섹션 → 4.0 (0-index 기준 4번째 섹션 = 5번째 항목이 아니라 정확히 4번 섹션 종료)
+
+  const order = sectionEnds
+    .map((end, sectionIdx) => ({ end, sectionIdx }))
+    .filter((row) => row.end !== -1)
+    .sort((a, b) => {
+      const da = Math.abs((a.sectionIdx + 1) - middle);
+      const db = Math.abs((b.sectionIdx + 1) - middle);
+      if (da !== db) return da - db;
+      return a.sectionIdx - b.sectionIdx;
+    });
+
+  for (const { end } of order) {
+    if (isCandidateSafe(end)) return end;
   }
-  // Fallback: search forward from 50%
-  const mid = Math.floor(total * 0.5);
-  for (let vi = mid; vi < total; vi++) {
-    if (isSafe(vi)) return visible[vi].idx;
-  }
-  // Last resort: search backward from 50%
-  for (let vi = mid - 1; vi >= 1; vi--) {
-    if (isSafe(vi)) return visible[vi].idx;
-  }
+
   return -1;
 }
 
@@ -360,6 +393,7 @@ function FaqAnswer({ text }: { text: string }) {
       {sentences.map((sentence, i) => (
         <p
           key={i}
+          className="article-faq-answer"
           style={{
             fontFamily: 'var(--font-inter)',
             fontWeight: 300,
@@ -377,6 +411,39 @@ function FaqAnswer({ text }: { text: string }) {
   );
 }
 
+/**
+ * 표 컬럼 개수에 따른 grid-template-columns 값과 스크롤 wrapper 최소 폭.
+ * 2열은 기존처럼 균등폭 유지(강제 스크롤 없음), 3열 이상만 열 비율/최소폭을 지정한다.
+ */
+function getTableColumnTemplate(maxCols: number): string {
+  if (maxCols === 3) {
+    return 'minmax(170px, 0.9fr) minmax(215px, 1.05fr) minmax(235px, 1.15fr)';
+  }
+  if (maxCols >= 4) {
+    return `repeat(${maxCols}, minmax(150px, 1fr))`;
+  }
+  return `repeat(${maxCols}, 1fr)`;
+}
+
+function getTableMinWidth(maxCols: number): number {
+  if (maxCols === 3) return 680;
+  if (maxCols >= 4) return Math.max(maxCols * 170, 800);
+  return 0;
+}
+
+/**
+ * 참고 출처 / 관련 키워드 / 관련 엔티티 — 전체 아티클 공통 접기 영역.
+ * 동일한 summary 스타일·구분선·padding·기본 닫힘 상태를 재사용한다.
+ */
+function BottomFold({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <details className="article-bottom-details">
+      <summary className="article-bottom-summary">{title}</summary>
+      <div className="article-bottom-panel">{children}</div>
+    </details>
+  );
+}
+
 export default function ArticlePage({ params }: Props) {
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) notFound();
@@ -385,7 +452,8 @@ export default function ArticlePage({ params }: Props) {
 
   const blocks = article.body ? parseBody(article.body) : [];
   const faqBlocks = blocks.filter((b) => b.type === 'faq');
-  const contentBlocks = blocks.filter((b) => b.type !== 'faq');
+  const sourceBlocks = blocks.filter((b) => b.type === 'sources');
+  const contentBlocks = blocks.filter((b) => b.type !== 'faq' && b.type !== 'sources');
   const ctaInsertIndex = contentBlocks.length > 0 ? computeCtaInsertIndex(contentBlocks) : -1;
   const isCarnguy = article.slug === 'carnguy-import-car-repair-guide';
   // ── 스키마 생성 ──────────────────────────────────────────
@@ -462,45 +530,15 @@ export default function ArticlePage({ params }: Props) {
               {article.excerpt}
             </p>
             <div className="flex items-center gap-3 mt-4 flex-wrap">
-              <span className="text-cream/70 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
-                {article.date}
-              </span>
-              <span className="text-cream/20">·</span>
-              <span className="text-cream/70 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
-                {article.readTime} READ
-              </span>
-              {article.author && (
-                <>
-                  <span className="text-cream/20">·</span>
-                  <span className="text-cream/70 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em' }}>
-                    {article.author}
-                  </span>
-                </>
-              )}
               <ArticleViewCount slug={article.slug} />
             </div>
           </div>
         </div>
       </section>
 
-      <article className="bg-[#f8f7f4] min-h-screen">
-        <div className="max-w-[760px] mx-auto px-4 md:px-8 pt-8 pb-12 md:py-16">
+      <article className="bg-[#f8f7f4] min-h-screen overflow-x-hidden">
+        <div className="max-w-[760px] mx-auto px-4 md:px-8 pt-8 pb-12 md:py-16 article-body">
 
-          {article.tags && article.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-5 pb-5 md:mb-10 md:pb-8 border-b border-black/8">
-              {article.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-black/15 uppercase px-3 py-1.5"
-                  style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: 'rgba(26,26,26,0.5)' }}
-                >
-                  # {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
-          <ArticleCredit article={article} />
           {isCarnguy && (
             <div className="mb-12 p-6 md:p-8 bg-white border border-black/10 shadow-sm">
               <div className="flex flex-col gap-5">
@@ -553,7 +591,7 @@ export default function ArticlePage({ params }: Props) {
                     <Image src={block.content} alt={block.caption || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 760px" quality={75} loading="lazy" />
                   </div>
                   {block.caption && (
-                    <figcaption className="text-center mt-3 px-5 uppercase" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
+                    <figcaption className="text-center mt-3 px-5 uppercase article-image-caption" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
                       {block.caption}
                     </figcaption>
                   )}
@@ -561,15 +599,20 @@ export default function ArticlePage({ params }: Props) {
               );
             }
             if (block.type === 'heading') {
+              const isTocHeading = block.variant === 'toc';
               return (
-                <h2 key={i} className="mt-7 mb-3 pb-3 md:mt-12 md:mb-5 md:pb-4 border-b border-black/10" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.35rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}>
+                <h2
+                  key={i}
+                  className={`mt-7 mb-3 pb-3 md:mt-12 md:mb-5 md:pb-4 border-b border-black/10 article-h2${isTocHeading ? ' article-toc-heading' : ''}`}
+                  style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.35rem, 3vw, 2rem)', fontWeight: 500, color: '#1a1a1a', borderLeft: '3px solid #1a1aff', paddingLeft: '14px' }}
+                >
                   {block.content}
                 </h2>
               );
             }
             if (block.type === 'subheading') {
               return (
-                <h3 key={i} className="mt-5 mb-3 md:mt-8 md:mb-4" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.15rem, 2.5vw, 1.5rem)', fontWeight: 500, color: '#1a1a1a' }}>
+                <h3 key={i} className="mt-5 mb-3 md:mt-8 md:mb-4 article-h3" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.15rem, 2.5vw, 1.5rem)', fontWeight: 500, color: '#1a1a1a' }}>
                   {block.content}
                 </h3>
               );
@@ -579,11 +622,11 @@ export default function ArticlePage({ params }: Props) {
               const stepLabel = dashIdx > -1 ? block.content.slice(0, dashIdx) : block.content;
               const stepText = dashIdx > -1 ? block.content.slice(dashIdx + 3) : '';
               return (
-                <div key={i} className="flex gap-5 my-5 p-5 md:p-6 bg-white border border-black/8">
-                  <span className="shrink-0 uppercase font-medium mt-0.5" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: '#1a1aff' }}>
+                <div key={i} className="flex gap-5 my-5 p-5 md:p-6 bg-white border border-black/8 article-step">
+                  <span className="shrink-0 uppercase font-medium mt-0.5 article-step-label" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: '#1a1aff' }}>
                     {stepLabel}
                   </span>
-                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(1rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.7)', lineHeight: '1.75' }}>
+                  <p className="article-step-text" style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(1rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.7)', lineHeight: '1.75' }}>
                     {stepText}
                   </p>
                 </div>
@@ -599,13 +642,13 @@ export default function ArticlePage({ params }: Props) {
               };
               const c = colorMap[block.extra || 'blue'] || colorMap.blue;
               return (
-                <div key={i} style={{ background: c.bg, borderLeft: `4px solid ${c.border}`, borderRadius: '0 8px 8px 0', padding: '20px 24px', margin: '24px 0' }}>
+                <div key={i} className="article-infobox" style={{ background: c.bg, borderLeft: `4px solid ${c.border}`, borderRadius: '0 8px 8px 0', padding: '20px 24px', margin: '24px 0' }}>
                   {block.caption && (
-                    <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: c.border, marginBottom: '8px', fontWeight: 600 }}>
+                    <p className="article-infobox-title" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: c.border, marginBottom: '8px', fontWeight: 600 }}>
                       {block.caption}
                     </p>
                   )}
-                  <p style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', color: c.text, lineHeight: '1.7', margin: 0, wordBreak: 'keep-all', whiteSpace: 'pre-line' }}>
+                  <p className="article-infobox-body" style={{ fontFamily: 'var(--font-inter)', fontWeight: 400, fontSize: 'clamp(0.9rem, 1.4vw, 1rem)', color: c.text, lineHeight: '1.7', margin: 0, wordBreak: 'keep-all', whiteSpace: 'pre-line' }}>
                     {block.content}
                   </p>
                 </div>
@@ -614,15 +657,15 @@ export default function ArticlePage({ params }: Props) {
             if (block.type === 'statgrid') {
               const stats = block.content.split('||').map((s: string) => s.trim()).filter(Boolean);
               return (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px', margin: '28px 0' }}>
+                <div key={i} className="article-statgrid">
                   {stats.map((stat: string, si: number) => {
                     const separatorIndex = stat.lastIndexOf(':');
                     const val = separatorIndex >= 0 ? stat.slice(0, separatorIndex) : stat;
                     const label = separatorIndex >= 0 ? stat.slice(separatorIndex + 1) : '';
                     return (
-                      <div key={si} style={{ background: '#1a1a1a', borderRadius: '4px', padding: '20px 16px', textAlign: 'center' }}>
-                        <p style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 400, color: '#f5f2ed', margin: '0 0 4px' }}>{val?.trim()}</p>
-                        <p style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.5)', margin: 0 }}>{label?.trim()}</p>
+                      <div key={si} className="article-statgrid-card">
+                        <p className="article-statgrid-value" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 400, color: '#f5f2ed', margin: '0 0 4px' }}>{val?.trim()}</p>
+                        <p className="article-statgrid-label" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(245,242,237,0.5)', margin: 0 }}>{label?.trim()}</p>
                       </div>
                     );
                   })}
@@ -712,63 +755,6 @@ export default function ArticlePage({ params }: Props) {
                 </div>
               );
             }
-            if (block.type === 'sources') {
-              const sourceLines = block.content
-                .split('\n')
-                .map((line) => line.trim())
-                .filter(Boolean);
-
-              return (
-                <details
-                  key={i}
-                  style={{
-                    margin: '48px 0 24px',
-                    padding: '0',
-                    borderTop: '1px solid rgba(26,26,26,0.12)',
-                    borderBottom: '1px solid rgba(26,26,26,0.12)',
-                  }}
-                >
-                  <summary
-                    style={{
-                      cursor: 'pointer',
-                      padding: '20px 0',
-                      fontFamily: 'var(--font-inter)',
-                      fontSize: 'clamp(11px, 2.8vw, 14px)',
-                      fontWeight: 500,
-                      color: '#1a1a1a',
-                    }}
-                  >
-                    참고 출처 보기
-                  </summary>
-
-                  <div
-                    style={{
-                      padding: '0 0 22px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '10px',
-                    }}
-                  >
-                    {sourceLines.map((line, sourceIndex) => (
-                      <p
-                        key={sourceIndex}
-                        style={{
-                          margin: 0,
-                          fontFamily: 'var(--font-inter)',
-                          fontSize: '14px',
-                          lineHeight: '1.75',
-                          color: 'rgba(26,26,26,0.62)',
-                          wordBreak: 'keep-all',
-                          overflowWrap: 'anywhere',
-                        }}
-                      >
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-                </details>
-              );
-            }
             if (block.type === 'tool') {
               if (block.content === 'pregnancy-calculator') return <PregnancyCalculator key={i} />;
               if (block.content === 'tax-calculator') return <TaxCalculator key={i} />;
@@ -779,30 +765,46 @@ export default function ArticlePage({ params }: Props) {
               const rows = block.content.split('\n').filter(Boolean);
               const maxCols = Math.max(...rows.map(r => r.replace(/^##TABLEROW##/, '').split('||').length));
               const needsScroll = maxCols >= 3;
+              const columnTemplate = getTableColumnTemplate(maxCols);
+              const minTableWidth = getTableMinWidth(maxCols);
               return (
-                <div key={i} style={{ overflowX: needsScroll ? 'auto' : 'visible', margin: '28px 0 8px' }}>
-                  <div style={{ minWidth: needsScroll ? `${maxCols * 130}px` : '100%' }}>
-                    {rows.map((row, ri) => {
-                      const cells = row.replace(/^##TABLEROW##/, '').split('||');
-                      const isHeader = cells[0]?.startsWith('**');
-                      const isFirst = ri === 0;
-                      const isLast = ri === rows.length - 1;
-                      return (
-                        <div key={ri} style={{ display: 'grid', gridTemplateColumns: `repeat(${cells.length}, 1fr)`, gap: '1px', background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)', borderRadius: isFirst ? '4px 4px 0 0' : isLast ? '0 0 4px 4px' : '0', marginBottom: ri < rows.length - 1 ? '1px' : '0' }}>
-                          {cells.map((cell: string, ci: number) => (
-                            <div key={ci} style={{ padding: '10px 14px', fontFamily: isHeader ? 'var(--font-space-mono)' : 'var(--font-inter)', fontSize: isHeader ? '10px' : 'clamp(0.875rem, 1.3vw, 0.95rem)', fontWeight: isHeader ? 600 : 300, color: isHeader ? 'rgba(245,242,237,0.85)' : 'rgba(26,26,26,0.75)', letterSpacing: isHeader ? '0.08em' : '0', textTransform: isHeader ? 'uppercase' : 'none', wordBreak: 'keep-all', minWidth: '80px' }}>
-                              {cell.trim().replace(/\*\*/g, '')}
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })}
+                <div key={i} className={`article-table-shell article-table--cols-${maxCols}`}>
+                  <div
+                    className="article-table-scroll"
+                    role="region"
+                    aria-label="좌우로 스크롤하여 표 전체 내용 보기"
+                    tabIndex={needsScroll ? 0 : undefined}
+                  >
+                    <div style={{ minWidth: needsScroll ? `${minTableWidth}px` : '100%' }}>
+                      {rows.map((row, ri) => {
+                        const cells = row.replace(/^##TABLEROW##/, '').split('||');
+                        const isHeader = cells[0]?.startsWith('**');
+                        const isFirst = ri === 0;
+                        const isLast = ri === rows.length - 1;
+                        return (
+                          <div key={ri} style={{ display: 'grid', gridTemplateColumns: columnTemplate, gap: '1px', background: isHeader ? '#1a1a1a' : 'rgba(26,26,26,0.06)', borderRadius: isFirst ? '4px 4px 0 0' : isLast ? '0 0 4px 4px' : '0', marginBottom: ri < rows.length - 1 ? '1px' : '0' }}>
+                            {cells.map((cell: string, ci: number) => (
+                              <div
+                                key={ci}
+                                className={isHeader ? 'article-table-th' : 'article-table-td'}
+                              >
+                                {cell.trim().replace(/\*\*/g, '')}
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               );
             }
             return (
-              <p key={i} style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(1rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.75)', lineHeight: '1.72', marginTop: '12px', marginBottom: '12px', wordBreak: 'keep-all', overflowWrap: 'break-word' }}>
+              <p
+                key={i}
+                className={`article-body-p${block.variant === 'toc-item' ? ' article-toc-item' : ''}`}
+                style={{ fontFamily: 'var(--font-inter)', fontWeight: 300, fontSize: 'clamp(1rem, 1.5vw, 1.05rem)', color: 'rgba(26,26,26,0.75)', lineHeight: '1.72', marginTop: '12px', marginBottom: '12px', wordBreak: 'keep-all', overflowWrap: 'break-word' }}
+              >
                 {block.content}
               </p>
             );
@@ -875,7 +877,7 @@ export default function ArticlePage({ params }: Props) {
                       className="flex items-center justify-between gap-3 cursor-pointer list-none p-4 md:p-8 outline-none focus-visible:ring-2 focus-visible:ring-[#1a1aff]/40 [&::-webkit-details-marker]:hidden"
                       style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.95rem, 1.8vw, 1.1rem)', fontWeight: 500, color: '#1a1a1a', minHeight: '44px', wordBreak: 'keep-all' }}
                     >
-                      <span>{faq.content}</span>
+                      <span className="article-faq-question">{faq.content}</span>
                       <svg
                         className="w-4 h-4 shrink-0 transition-transform duration-300 group-open:rotate-180 motion-reduce:transition-none"
                         viewBox="0 0 24 24"
@@ -979,7 +981,51 @@ export default function ArticlePage({ params }: Props) {
             </div>
           )}
 
-{(article.sources?.length ?? 0) > 0 && (
+          {sourceBlocks.map((block, si) => {
+            const sourceLines = block.content
+              .split('\n')
+              .map((line) => line.trim())
+              .filter(Boolean);
+
+            return (
+              <BottomFold key={`source-${si}`} title="참고 출처 보기">
+                <div className="flex flex-col gap-[10px]">
+                  {sourceLines.map((line, sourceIndex) => {
+                    const isUrl = /^https?:\/\//.test(line);
+                    return (
+                      <p
+                        key={sourceIndex}
+                        style={{
+                          margin: 0,
+                          fontFamily: 'var(--font-inter)',
+                          fontSize: '14px',
+                          lineHeight: '1.75',
+                          color: 'rgba(26,26,26,0.62)',
+                          wordBreak: 'keep-all',
+                          overflowWrap: 'anywhere',
+                        }}
+                      >
+                        {isUrl ? (
+                          <a
+                            href={line}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: '#1a1aff', textDecoration: 'underline', overflowWrap: 'anywhere' }}
+                          >
+                            {line}
+                          </a>
+                        ) : (
+                          line
+                        )}
+                      </p>
+                    );
+                  })}
+                </div>
+              </BottomFold>
+            );
+          })}
+
+          {(article.sources?.length ?? 0) > 0 && (
             <details className="group mt-14 pt-10 border-t border-black/8">
               <summary
                 className="uppercase mb-6 flex items-center gap-2 cursor-pointer list-none outline-none focus-visible:ring-2 focus-visible:ring-[#1a1aff]/40 [&::-webkit-details-marker]:hidden"
@@ -1029,9 +1075,53 @@ export default function ArticlePage({ params }: Props) {
             </details>
           )}
 
+          {article.tags && article.tags.length > 0 && (
+            <BottomFold title="관련 키워드">
+              <div className="flex flex-wrap gap-2 article-keyword-list">
+                {article.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-black/15 uppercase px-3 py-1.5 article-keyword-chip"
+                    style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.1em', color: 'rgba(26,26,26,0.5)' }}
+                  >
+                    # {tag}
+                  </span>
+                ))}
+              </div>
+            </BottomFold>
+          )}
+
+          {article.entities && article.entities.length > 0 && (
+            <BottomFold title="관련 엔티티">
+              <div className="flex flex-wrap gap-2 article-entity-list">
+                {article.entities.map((entity) => (
+                  <span
+                    key={entity}
+                    className="px-3 py-1.5 article-entity-chip"
+                    style={{
+                      fontFamily: 'var(--font-inter)',
+                      fontSize: '12px',
+                      letterSpacing: '0.02em',
+                      color: 'rgba(26,26,26,0.6)',
+                      background: 'rgba(26,26,26,0.045)',
+                      border: '1px solid rgba(26,26,26,0.08)',
+                      borderRadius: '4px',
+                    }}
+                  >
+                    {entity}
+                  </span>
+                ))}
+              </div>
+            </BottomFold>
+          )}
+
+          <div className="mt-5">
+            <ArticleCredit article={article} />
+          </div>
+
           {related.length > 0 && (
             <section
-              className="mt-14 pt-10 border-t border-[#E6E0D6]"
+              className="mt-7 md:mt-10 pt-10 border-t border-[#E6E0D6]"
               aria-label="관련 아티클"
             >
               <h2
@@ -1047,45 +1137,67 @@ export default function ArticlePage({ params }: Props) {
                 관련 아티클
               </h2>
               <div
-                className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:pb-0"
+                className="article-related-list flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:grid lg:grid-cols-4 lg:gap-4 lg:overflow-visible lg:pb-0"
                 style={{ WebkitOverflowScrolling: 'touch' }}
               >
                 {related.map((rel) => {
                   const cardTitle = (rel.titleKo || rel.title || '').trim() || '아티클';
+                  const thumbSrc = rel.image || rel.heroImage;
                   return (
                     <Link
                       key={rel.slug}
                       href={`/article/${rel.slug}`}
-                      className="group flex min-h-[160px] w-[240px] shrink-0 snap-start flex-col rounded-[15px] border border-[#E6E0D6] bg-[#FAF8F5] p-4 outline-none transition-all duration-200 hover:-translate-y-0.5 hover:border-[#D4CBBC] hover:bg-[#FCFBF9] hover:shadow-[0_8px_20px_rgba(26,26,26,0.06)] focus-visible:ring-2 focus-visible:ring-[#C9A96E]/50 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:w-auto lg:min-w-0"
+                      className="article-related-card group flex w-[136px] shrink-0 snap-start flex-col overflow-hidden rounded-[15px] border border-[#E6E0D6] bg-[#FAF8F5] outline-none transition-all duration-200 hover:-translate-y-0.5 hover:border-[#D4CBBC] hover:bg-[#FCFBF9] hover:shadow-[0_8px_20px_rgba(26,26,26,0.06)] focus-visible:ring-2 focus-visible:ring-[#C9A96E]/50 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:w-auto lg:min-w-0"
                     >
-                      <p
-                        className="uppercase"
-                        style={{
-                          fontFamily: 'var(--font-space-mono)',
-                          fontSize: '10px',
-                          letterSpacing: '0.14em',
-                          color: 'rgba(26,26,26,0.42)',
-                        }}
-                      >
-                        {rel.category}
-                      </p>
-                      <div className="my-3 h-px w-full bg-[#E6E0D6]" aria-hidden="true" />
-                      <h3
-                        className="flex-1 text-[15px] font-medium leading-snug text-[#1a1a1a] line-clamp-3"
-                        style={{
-                          fontFamily: 'var(--font-inter)',
-                          wordBreak: 'keep-all',
-                          overflowWrap: 'break-word',
-                        }}
-                      >
-                        {cardTitle}
-                      </h3>
-                      <span
-                        className="mt-4 flex h-9 w-9 items-center justify-center self-end rounded-full border border-[#E6E0D6] text-[15px] text-[#1a1a1a]/55 transition-colors duration-200 group-hover:border-[#D4CBBC] group-hover:text-[#1a1a1a]"
-                        aria-hidden="true"
-                      >
-                        →
-                      </span>
+                      <div className="relative w-full overflow-hidden bg-black/5" style={{ aspectRatio: '4/3' }}>
+                        {thumbSrc ? (
+                          <Image
+                            src={thumbSrc}
+                            alt={cardTitle}
+                            fill
+                            sizes="(max-width: 768px) 140px, 260px"
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center bg-[#EFEAE1]">
+                            <span
+                              className="uppercase"
+                              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.14em', color: 'rgba(26,26,26,0.3)' }}
+                            >
+                              PAGEONEWORKS
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex flex-1 flex-col p-3 lg:p-4">
+                        <p
+                          className="uppercase article-related-meta"
+                          style={{
+                            fontFamily: 'var(--font-space-mono)',
+                            fontSize: '9px',
+                            letterSpacing: '0.12em',
+                            color: 'rgba(26,26,26,0.42)',
+                          }}
+                        >
+                          {rel.category}
+                        </p>
+                        <h3
+                          className="mt-1.5 flex-1 text-[13px] font-medium leading-snug text-[#1a1a1a] line-clamp-3 article-related-title lg:mt-2 lg:text-[15px]"
+                          style={{
+                            fontFamily: 'var(--font-inter)',
+                            wordBreak: 'keep-all',
+                            overflowWrap: 'break-word',
+                          }}
+                        >
+                          {cardTitle}
+                        </h3>
+                        <span
+                          className="mt-2 article-related-meta"
+                          style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.08em', color: 'rgba(26,26,26,0.32)' }}
+                        >
+                          {rel.date}
+                        </span>
+                      </div>
                     </Link>
                   );
                 })}

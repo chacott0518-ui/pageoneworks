@@ -23,7 +23,7 @@ featured: true,
 
 수시 전형 중 서울대 일반전형(학생부종합)은 수능 최저학력기준이 없습니다. 즉 수능 준비 없이도 서류와 면접만으로 평가받습니다. 단, 수능 최저가 없는 만큼 서류·면접 경쟁이 정시보다 훨씬 치열하며, 3년에 걸친 체계적인 학교생활 관리가 사실상 전제 조건입니다.
 
-##IMAGE##https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=85##CAPTION##서울대 관악 캠퍼스 — 수시 합격생이 전체의 77.6%를 차지한다##END##
+##IMAGE##https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=1200&q=85##CAPTION##서울대 관악 캠퍼스 — 수시 합격생이 전체의 77.6%를 차지한다##END##
 
 ■ 서울대 수시 전형 종류와 수능 최저 기준은?
 
@@ -65,7 +65,7 @@ featured: true,
 편입학은 학과당 모집 인원이 1~3명으로 극소수이며, 경쟁률은 수십 대 일에 달합니다. 재학 중인 대학 학점이 4.0 이상(4.5 만점 기준)이어야 경쟁력이 있습니다. 전공 필기 시험은 해당 학과 전공 수준의 내용이 출제되므로 최소 1~2년 이상의 전공 공부가 선행돼야 합니다.
 (출처: 서울대학교 입학처, 편입학 전형 안내, 2025)
 
-##IMAGE##https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=85##CAPTION##대입 면접 준비 — 서울대 면접은 학생부 기반 서류 확인형으로 진행된다##END##
+##IMAGE##https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=1200&q=85##CAPTION##대입 면접 준비 — 서울대 면접은 학생부 기반 서류 확인형으로 진행된다##END##
 
 ■ 지역균형전형 수능 최저는 어떻게 충족하는가?
 
@@ -277,7 +277,7 @@ featured: false,
 
 ■ 아이비리그 입시 2026 — 무엇이 달라졌나
 
-##IMAGE##https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=85##CAPTION##아이비리그 캠퍼스 — 2026년 입시 환경은 그 어느 때보다 복잡해졌다##END##
+##IMAGE##https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?w=1200&q=85##CAPTION##아이비리그 캠퍼스 — 2026년 입시 환경은 그 어느 때보다 복잡해졌다##END##
 
 2026년 아이비리그 입시 환경을 정의하는 핵심 변화는 세 가지다.
 
@@ -399,7 +399,7 @@ heroImage: 'https://images.unsplash.com/photo-1562774053-701939374585?w=1600&q=8
 
 ■ 주요 커리큘럼 비교
 
-##IMAGE##https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=85##CAPTION##IB 커리큘럼 — 비판적 사고와 국제적 관점이 핵심##END##
+##IMAGE##https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=85##CAPTION##IB 커리큘럼 — 비판적 사고와 국제적 관점이 핵심##END##
 
 국제학교의 커리큘럼 선택은 자녀의 진학 목표와 학습 스타일에 따라 달라진다.
 
@@ -468,8 +468,8 @@ A. 국제학교 졸업자의 국내 대학 진학은 가능하지만 일반 수�
     excerpt: 'Wharton, INSEAD, LBS — 2026 글로벌 MBA 최신 랭킹과 선택 전략',
     date: '2026.02.25',
     readTime: '16 MIN',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1200&q=85',
+    heroImage: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1600&q=85',
     featured: false,
     tags: ['글로벌MBA랭킹', 'GMAT전략', 'MBA입시'],
     author: 'PAGEONEWORKS 편집부',
@@ -536,7 +536,7 @@ MBA 에세이에서 가장 중요한 것은 '왜 MBA인가'와 '왜 이 학교�
 
 ■ 한국인 지원자의 현실과 전략
 
-##IMAGE##https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=85##CAPTION##글로벌 MBA 네트워크 — 졸업 후 동문 네트워크가 커리어의 핵심 자산##END##
+##IMAGE##https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=85##CAPTION##글로벌 MBA 네트워크 — 졸업 후 동문 네트워크가 커리어의 핵심 자산##END##
 
 한국인 지원자 풀은 탑MBA에서 경쟁이 치열하다. 삼성·LG·현대·SK 등 대기업 출신 지원자가 많고, 컨설팅·금융 배경도 일반적이다. 차별화 포인트를 만들기 어려운 환경이다.
 

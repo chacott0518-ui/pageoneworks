@@ -23,7 +23,7 @@ export const petCareArticles: Article[] = [
     
     그래서 보호자가 먼저 해야 할 일은 “어떤 사료가 눈물자국에 좋다”를 찾는 것이 아니라, 눈물자국이 단순 착색인지, 눈 질환이나 피부 염증의 신호인지 구분하는 것입니다. 특히 한쪽 눈만 심하거나, 충혈·눈곱·냄새·가려움·눈 비비기·찡그림이 함께 보이면 사료 교체보다 동물병원 확인이 먼저입니다.
     
-    ##IMAGE##https://images.unsplash.com/photo-1641933012480-c2d5a40f87fd?auto=format&fit=crop&q=80&w=1600##CAPTION##강아지 눈 주변 클로즈업 이미지 — 눈물자국은 눈물량, 배출, 털 자극, 피부 상태를 함께 확인해야 한다. 사진 출처: Unsplash / Gidon Wessner##END##
+    ##IMAGE##https://images.unsplash.com/photo-1535930891776-0c2dfb7fda1a?auto=format&fit=crop&q=80&w=1600##CAPTION##강아지 눈 주변 클로즈업 이미지 — 눈물자국은 눈물량, 배출, 털 자극, 피부 상태를 함께 확인해야 한다. 사진 출처: Unsplash##END##
     
     ■ 강아지 눈물자국은 왜 생길까
     

@@ -18,6 +18,7 @@ export async function POST(request: Request) {
 
   // 최신 15개 아티클 + 주요 페이지
   const articleUrls = articles
+    .filter((a) => a.indexable !== false)
     .slice(0, 15)
     .map((a) => `${BASE}/article/${a.slug}`);
 

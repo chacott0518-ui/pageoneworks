@@ -23,7 +23,7 @@ heroImage: '/images/jindo-dog-forest.jpg',
 
 이 차이는 어느 견종이 더 좋다는 뜻이 아닙니다. 두 견종은 모두 매력적이지만, 보호자의 생활환경·훈련 경험·산책 시간·가족 구성·다른 반려동물 유무에 따라 적합성이 달라집니다. 입양 전에는 “인기 있는 견종인가”보다 “내 생활에 맞는 견종인가”를 먼저 봐야 합니다.
 
-##IMAGE##/images/jindo-dog-forest.jpg##CAPTION##진돗개 이미지 — 진돗개와 시바견은 비슷해 보여도 성격과 생활 적합성이 다르게 평가된다##END##
+##IMAGE##https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&q=80&w=1600##CAPTION##진돗개 이미지 — 진돗개와 시바견은 비슷해 보여도 성격과 생활 적합성이 다르게 평가된다##END##
 
 ■ 진돗개와 시바견을 비교할 때 먼저 봐야 할 기준
 

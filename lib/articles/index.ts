@@ -45,6 +45,8 @@ export {
   normalizeArticleDate,
   sortArticlesByDateDesc,
   mergeArticleSources,
+  isPublicArticle,
+  getPublicArticles,
   getLatestArticles,
   getArticlesByCategorySlug,
   getArticlesByCategoryTitle,

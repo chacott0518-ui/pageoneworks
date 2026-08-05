@@ -280,8 +280,8 @@ A. 검색 순위는 경쟁 환경과 검색엔진의 평가에 따라 달라지�
     date: '2026.06.24',
     updatedAt: '2026.06.24',
     readTime: '12 MIN',
-    image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80',
-    heroImage: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1600&q=85',
     featured: true,
     tags: ['AI 검색', 'ChatGPT 검색', '제미나이', '네이버 AI', 'SEO', 'AEO', 'GEO', 'LLMEO', 'Entity SEO', '브랜드 검색'],
     author: 'PAGEONEWORKS 편집부',
@@ -350,7 +350,7 @@ LLMEO(대형언어모델 엔진 최적화)는 ChatGPT·Claude·Gemini·Perplexit
 
 ##INFOBOX##10분 자가진단 체크리스트##green##✅ 정확한 브랜드명 검색 — ChatGPT·제미나이·네이버·구글에 업체명을 입력해 결과를 비교합니다\n✅ 브랜드명 + 대표 서비스 조합 검색 — "업체명 + 주요 서비스명"으로 검색합니다\n✅ 서비스 + 지역 조합 검색 — "서비스명 + 지역명"으로 검색합니다\n✅ 사이트 색인 여부 확인 — 구글 검색창에 site:공식사이트주소를 입력합니다\n✅ 제목·설명·회사 정보 일치 확인 — 검색 결과에 표시되는 내용이 사이트 내용과 일치하는지 확인합니다\n✅ 외부 프로필과 공식 사이트 연결 확인 — 네이버 플레이스, 카카오맵, SNS 프로필에 공식 사이트 URL이 연결되어 있는지 확인합니다\n✅ 최신 콘텐츠의 작성일·수정일·출처 확인 — 최근 글에 날짜와 출처가 명시되어 있는지 확인합니다##END##
 
-##IMAGE##https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&q=85##CAPTION##체계적으로 분류된 정보 — 검색엔진과 AI는 잘 구조화된 데이터를 더 쉽게 인식한다##END##
+##IMAGE##https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=85##CAPTION##체계적으로 분류된 정보 — 검색엔진과 AI는 잘 구조화된 데이터를 더 쉽게 인식한다##END##
 
 ■ 검색엔진이 사이트를 발견하는 기술 기반
 
@@ -440,7 +440,7 @@ LLMEO(Large Language Model Engine Optimization)란 GPT·Claude·Gemini·Perplexi
 
 이 변화는 단순한 트렌드가 아니다. AI가 검색 결과를 직접 생성하고 요약해주는 시대에서, 기존 SEO만으로는 브랜드 노출 자체가 불가능해졌다. LLMEO는 이 새로운 환경에서 살아남기 위한 필수 전략이다.
 
-##IMAGE##https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85##CAPTION##AI 검색 시대, LLMEO는 브랜드 가시성의 핵심 전략이다##END##
+##IMAGE##https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1200&q=85##CAPTION##AI 검색 시대, LLMEO는 브랜드 가시성의 핵심 전략이다##END##
 
 ■ SEO·AEO·GEO·LLMEO — 네 가지 최적화의 차이는?
 
@@ -465,7 +465,7 @@ LLMEO(Large Language Model Engine Optimization)란 GPT·Claude·Gemini·Perplexi
 
 GPT·Gemini·Claude는 웹 크롤링 기반으로 학습하지만, Perplexity와 같은 실시간 AI 검색엔진은 현재 웹을 직접 참조한다. 따라서 위 6가지 조건을 갖춘 콘텐츠는 실시간으로 AI 답변의 출처가 될 수 있다.
 
-##IMAGE##https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=1200&q=85##CAPTION##구조화된 콘텐츠는 AI가 파싱하기 쉬운 형태로 제공돼야 한다##END##
+##IMAGE##https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&q=85##CAPTION##구조화된 콘텐츠는 AI가 파싱하기 쉬운 형태로 제공돼야 한다##END##
 
 ■ 플랫폼별 LLMEO 전략 — ChatGPT·Gemini·Claude·Perplexity·ClovaX
 
@@ -566,7 +566,7 @@ A. PAGEONEWORKS는 SEO·AEO·GEO·LLMEO를 통합한 4-Layer 콘텐츠 최적화
 
 결론부터 말하면 두 제품 모두 플래그십 수준입니다. 선택 기준은 사용 생태계와 목적에 따라 달라집니다. 애플 생태계(맥·아이패드·애플워치)를 이미 사용 중이라면 아이폰 17, 멀티 기기 연동과 AI 기능을 중시한다면 갤럭시 S26이 우선순위가 됩니다.
 
-##IMAGE##https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1200&q=85##CAPTION##2026 플래그십 스마트폰 — 아이폰 17 vs 갤럭시 S26 실사용 비교##END##
+##IMAGE##https://images.unsplash.com/photo-1484417894907-623942c8ee29?w=1200&q=85##CAPTION##2026 플래그십 스마트폰 — 아이폰 17 vs 갤럭시 S26 실사용 비교##END##
 
 ■ 디자인·빌드 퀄리티
 
@@ -696,7 +696,7 @@ SEO가 "링크 목록 상단에 내 사이트를 올리는 것"이라면, GEO는
 
 지금 GEO를 시작하는 기업이 1~2년 후 압도적인 선점 우위를 갖게 됩니다.
 
-##IMAGE##https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=85##CAPTION##GEO 시대 — 구글 AI 오버뷰와 네이버 AI 브리핑이 바꾸는 검색의 새로운 규칙##END##
+##IMAGE##https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1200&q=85##CAPTION##GEO 시대 — 구글 AI 오버뷰와 네이버 AI 브리핑이 바꾸는 검색의 새로운 규칙##END##
 
 ■ GEO·SEO·AEO·AIEO — 헷갈리는 용어 완전 정리
 
@@ -920,7 +920,7 @@ Core Web Vitals(LCP·FID·CLS) 점수가 낮은 페이지는 아무리 좋은 �
 
 ##INFOBOX##스키마 적용 시 절대 주의사항##amber##⚠ FAQ 스키마는 반드시 실제 HTML에 렌더링되어야 함 (CSS display:none 처리된 내용도 크롤러는 읽음 — JS 동적 생성은 절대 금지) ⚠ 한 페이지에 FAQPage 스키마 2개 이상 사용 금지 ⚠ datePublished는 과거·현재만 가능, 미래 날짜 절대 금지 ⚠ Organization 스키마는 모든 페이지에 동일하게 적용 ⚠ HowTo 스키마의 각 Step에는 반드시 name과 text 둘 다 포함##END##
 
-##IMAGE##https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=85##CAPTION##스키마 7종 적용 — 구글과 네이버 AI가 콘텐츠를 정확히 이해하는 구조적 언어##END##
+##IMAGE##https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=1200&q=85##CAPTION##스키마 7종 적용 — 구글과 네이버 AI가 콘텐츠를 정확히 이해하는 구조적 언어##END##
 
 ■ 업종별 GEO 전략 — 어떤 업종이 가장 빠르게 효과를 봐야 하나
 
@@ -1018,7 +1018,7 @@ A. 오히려 소규모 기업일수록 GEO 효과가 더 극적입니다. 대기
 보조금 제도는 매년 기준이 개편되고 예산이 소진되면 지급이 중단됩니다. 2025년 기준 전국 주요 도시의 전기차 보조금은 3~5월 사이에 대부분 소진됐습니다. 2026년에도 상반기 조기 신청이 필수적입니다.
 (출처: 환경부, 2026년 전기자동차 보급사업 보조금 업무처리지침)
 
-##IMAGE##https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=85##CAPTION##전기차 급속 충전 — 보조금 신청 후 출고까지 충전 인프라도 함께 확인해야 한다##END##
+##IMAGE##https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=85##CAPTION##전기차 급속 충전 — 보조금 신청 후 출고까지 충전 인프라도 함께 확인해야 한다##END##
 
 ■ 2026년 전기차 국고 보조금 기준은 어떻게 되는가?
 
@@ -1141,7 +1141,7 @@ heroImage: 'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1600&
 2026년 기준 아이오닉9는 전기 SUV 시장에서 가장 주목받는 신차 중 하나입니다. 팰리세이드를 대체하는 7인승 대형 패밀리카 포지션을 전기차로 구현했고, 1회 충전 최대 620km(롱레인지 2WD 기준)라는 수치는 국산 전기차 중 최장거리 수준입니다.
 (출처: 현대자동차, 아이오닉9 공식 제원표, 2025)
 
-##IMAGE##https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=85##CAPTION##현대 아이오닉9 — 국산 최초 3열 전기 SUV의 실내 공간이 핵심 경쟁력이다##END##
+##IMAGE##https://images.unsplash.com/photo-1542362567-b07e54358753?w=1200&q=85##CAPTION##현대 아이오닉9 — 국산 최초 3열 전기 SUV의 실내 공간이 핵심 경쟁력이다##END##
 
 ■ 아이오닉9 트림별 가격과 차이는 무엇인가?
 
@@ -1306,7 +1306,7 @@ RWD(후륜구동) 트림이 **4,999만원**으로 책정됐습니다.
 
 **퍼포먼스** — 주행 성능과 스포티함이 최우선이고 예산 여유가 충분한 경우에만 고려하세요.
 
-##IMAGE##https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=1200&q=85##CAPTION##테슬라 충전 — 슈퍼차저와 가정용 충전기 모두 알아두면 편합니다##END##
+##IMAGE##https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=1200&q=85##CAPTION##테슬라 충전 — 슈퍼차저와 가정용 충전기 모두 알아두면 편합니다##END##
 
 ■ 충전 방법 완전 정리 — 처음이라 막막한 분을 위해
 
@@ -1427,7 +1427,7 @@ ChatGPT, Gemini, Claude, Perplexity, Manus — 이 5종의 AI를 직장인, 크�
 
 이 가이드는 2026년 5월 최신 기준으로 5대 AI의 기능·가격·장단점을 완전 분석하고, 상황별로 어떤 AI가 최선인지 명확한 기준을 제시합니다.
 
-##IMAGE##https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=85##CAPTION##2026년 5대 AI 어시스턴트 완전 비교 — ChatGPT·Gemini·Claude·Manus·Perplexity##END##
+##IMAGE##https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&q=85##CAPTION##2026년 5대 AI 어시스턴트 완전 비교 — ChatGPT·Gemini·Claude·Manus·Perplexity##END##
 
 ■ 5대 AI 기본 스펙 비교 — 핵심 수치 총정리
 
@@ -1497,7 +1497,7 @@ Gemini Advanced의 Deep Research 기능은 주제를 심층 분석한 멀티 페
 
 ##INFOBOX##Gemini 추천 사용 케이스##green##✅ Gmail·Docs·Sheets·Drive 연동 업무 ✅ 초장문 문서·영상 분석 ✅ 유튜브 영상 요약 ✅ 구글 캘린더 일정 관리 ✅ 실시간 검색 기반 심층 리서치##END##
 
-##IMAGE##https://images.unsplash.com/photo-1655720828018-edd2daec9349?w=1200&q=85##CAPTION##AI 서비스 비교 — 강점과 약점을 알면 업무 효율이 2배 달라집니다##END##
+##IMAGE##https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&q=85##CAPTION##AI 서비스 비교 — 강점과 약점을 알면 업무 효율이 2배 달라집니다##END##
 
 ■ Claude — 글쓰기 품질과 문서 처리의 기준
 
@@ -1551,7 +1551,7 @@ Perplexity Pro(유료)는 GPT-4o, Claude, Gemini 모델을 사용자가 직접 �
 
 ##INFOBOX##Perplexity 추천 사용 케이스##amber##✅ 최신 뉴스·시사 정보 빠른 검색 ✅ 학술 논문·연구 자료 조사 ✅ 팩트체킹·정보 출처 확인 ✅ 주가·환율 등 실시간 데이터 조회 ✅ 경쟁사 분석·시장 동향 조사##END##
 
-##IMAGE##https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85##CAPTION##AI 에이전트의 진화 — 2026년 자율 작업 시대가 열렸습니다##END##
+##IMAGE##https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=85##CAPTION##AI 에이전트의 진화 — 2026년 자율 작업 시대가 열렸습니다##END##
 
 ■ Manus — 자율 에이전트 AI의 새로운 기준
 
@@ -1633,7 +1633,7 @@ heroImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1600&
   author: 'PAGEONEWORKS 편집부',
   body: `##STATGRID##6억명:ChatGPT 월간 사용자||400%:Perplexity 연간 성장률||91.5%:검색 1페이지 클릭 집중도||200+:SEO 평가 요소 수||70%:광고보다 SEO 신뢰 비율||0원:SEO 구축 후 트래픽 비용##END##
 
-##IMAGE##https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=1200&q=85##CAPTION##ChatGPT·Gemini·Claude·Perplexity — AI 시대, 검색의 판도가 바뀌고 있다##END##
+##IMAGE##https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&q=85##CAPTION##ChatGPT·Gemini·Claude·Perplexity — AI 시대, 검색의 판도가 바뀌고 있다##END##
 
 ■ 검색 한 번이 매출을 결정하는 시대
 
@@ -1661,7 +1661,7 @@ SEO가 제대로 작동하면 무슨 일이 생길까요?
 
 업계에서는 이를 '자산형 마케팅'이라고 부릅니다.
 
-##IMAGE##https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1200&q=85##CAPTION##SEO vs AIEO — 검색엔진과 AI 엔진을 동시에 공략하는 통합 전략##END##
+##IMAGE##https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=85##CAPTION##SEO vs AIEO — 검색엔진과 AI 엔진을 동시에 공략하는 통합 전략##END##
 
 ■ AIEO란 무엇인가 — AI 6대 플랫폼이 당신을 선택하게 만드는 전략
 
@@ -1852,7 +1852,7 @@ A. 의료법과 변호사법 내에서 합법적으로 운영되는 SEO·AIEO �
 
 ■ 웨이모 — 레벨4 로보택시의 현재
 
-##IMAGE##https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=1200&q=85##CAPTION##레벨4 자율주행 — 운전자 없이 도심을 운행하는 로보택시##END##
+##IMAGE##https://images.unsplash.com/photo-1493238792000-8113da705763?w=1200&q=85##CAPTION##레벨4 자율주행 — 운전자 없이 도심을 운행하는 로보택시##END##
 
 구글 알파벳 산하 웨이모(Waymo)는 2026년 현재 레벨4 자율주행 로보택시를 가장 앞서 상용화한 기업이다. 샌프란시스코·피닉스·로스앤젤레스에서 운전자 없이 일반 승객을 태우는 유료 서비스를 운영 중이다. 라이다·레이더·카메라를 복합 사용하는 방식으로 악천후 대응력이 카메라 단독 방식보다 높다는 평가를 받는다.
 
@@ -1910,8 +1910,8 @@ A. 본 기사는 투자 권유를 하지 않습니다. 다만 자율주행 산�
     excerpt: '벤츠·BMW·포르쉐 사고, 어디서 고쳐야 할까. 경기도 광주 1급 자동차공업사 카앤가이의 서비스와 수리 노하우를 정리했습니다.',
     date: '2026.03.17',
     readTime: '12 MIN',
-    image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=85',
+    image: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1200&q=85',
+    heroImage: 'https://images.unsplash.com/photo-1489824904134-891ab64532f1?w=1200&q=85',
     featured: true,
     tags: ['수입차수리', '경기도광주', '판금도색', 'BMW수리', '벤츠수리', '사고수리', '보험처리'],
     author: 'PAGEONEWORKS',
@@ -1936,7 +1936,7 @@ A. 본 기사는 투자 권유를 하지 않습니다. 다만 자율주행 산�
 
 수입차와 국산차의 수리는 구조적으로 다릅니다. 차체 소재, 도장 방식, 사용하는 도료까지 모두 다릅니다. 벤츠의 경우 차체 일부에 고강도 스틸과 알루미늄을 혼합 사용합니다. 일반 방식으로 용접하면 차체 강성이 저하됩니다. 수입차는 5~7겹의 베이스코트와 클리어코트가 정밀하게 적용됩니다.
 
-##IMAGE##https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=85##CAPTION##독일제 조색기로 이색현상 없는 색상 매칭##END##
+##IMAGE##https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=1200&q=85##CAPTION##독일제 조색기로 이색현상 없는 색상 매칭##END##
 
 ■ 핵심 서비스
 
@@ -2028,7 +2028,7 @@ A. 음주운전 면책금 상담도 진행합니다. 음주운전 사고의 경�
 
 삼성전자, 롯데, SK쉴더스, 한양대학교병원, 연세대학교 의과대학. 이 기업들의 공통점은 모두 페이지원웍스와 함께 온라인 컨퍼런스를 진행했다는 것입니다. 15년의 운영 노하우와 자체 플랫폼 라이브팩을 바탕으로, 기획부터 중계·브랜드 디자인까지 원스톱으로 제공하는 국내 유일의 온라인 행사 종합 솔루션입니다.
 
-##IMAGE##https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=1200&q=85##CAPTION##전문 중계팀이 구성하는 방송급 온라인 컨퍼런스 현장##END##
+##IMAGE##https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1200&q=85##CAPTION##전문 중계팀이 구성하는 방송급 온라인 컨퍼런스 현장##END##
 
 ■ 웨비나란 무엇인가
 
@@ -2072,7 +2072,7 @@ A. 음주운전 면책금 상담도 진행합니다. 음주운전 사고의 경�
 
 온·오프라인 광고 집행과 바이럴 마케팅으로 행사 참석률을 극대화합니다. 정확한 고객 분석과 영향력 있는 광고 채널 전략을 수립합니다.
 
-##IMAGE##https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1200&q=85##CAPTION##삼성전자·롯데·SK쉴더스·한양대병원 등 500+ 프로젝트 완료##END##
+##IMAGE##https://images.unsplash.com/photo-1605379399642-870262d3d051?w=1200&q=85##CAPTION##삼성전자·롯데·SK쉴더스·한양대병원 등 500+ 프로젝트 완료##END##
 
 ■ 페이지원웍스를 선택해야 하는 이유
 

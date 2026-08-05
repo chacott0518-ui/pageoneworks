@@ -14,6 +14,7 @@ export default function AIQnA(_props: AIQnAProps) {
   return (
     <>
       <section
+        className="article-ai-qna"
         style={{
           margin: '48px 0',
           background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #111 100%)',
@@ -25,9 +26,9 @@ export default function AIQnA(_props: AIQnAProps) {
       >
         <div style={{ height: '3px', background: 'linear-gradient(90deg, #C4A882, #9E8A7A, #C4A882)' }} />
 
-        <div style={{ padding: 'clamp(24px, 4vw, 48px)' }}>
-          <div style={{ marginBottom: '24px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+        <div className="article-ai-qna-body">
+          <div className="article-ai-qna-head">
+            <div className="article-ai-qna-label-row" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <span
                 style={{
                   fontFamily: 'var(--font-space-mono)',
@@ -46,22 +47,21 @@ export default function AIQnA(_props: AIQnAProps) {
               <div style={{ flex: 1, height: '1px', background: 'rgba(196,168,130,0.2)' }} />
             </div>
             <h2
+              className="article-ai-qna-title"
               style={{
                 fontFamily: 'var(--font-cormorant)',
-                fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
                 fontWeight: 400,
                 color: '#f5f2ed',
-                margin: '0 0 6px',
-                lineHeight: 1.2,
                 wordBreak: 'keep-all',
+                minWidth: 0,
               }}
             >
               AI 에디터 업데이트 준비 중
             </h2>
             <p
+              className="article-ai-qna-desc"
               style={{
                 fontFamily: 'var(--font-inter)',
-                fontSize: '13px',
                 fontWeight: 300,
                 color: 'rgba(245,242,237,0.45)',
                 margin: 0,
@@ -78,6 +78,7 @@ export default function AIQnA(_props: AIQnAProps) {
             type="button"
             onClick={() => setOpen(true)}
             aria-label="AI 에디터 업데이트 안내 보기"
+            className="article-ai-qna-btn"
             style={{
               display: 'inline-flex',
               alignItems: 'center',

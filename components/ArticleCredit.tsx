@@ -6,66 +6,31 @@ interface Props {
 
 export function ArticleCredit({ article }: Props) {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-5 border-y border-black/8 mb-10">
+    <div className="article-credit flex flex-col gap-3 py-5">
+      <p
+        className="article-credit-line"
+        style={{
+          fontFamily: 'var(--font-inter)',
+          fontSize: '13px',
+          color: 'rgba(26,26,26,0.55)',
+          letterSpacing: '0.01em',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          margin: 0,
+        }}
+      >
+        <span style={{ color: '#1a1a1a', fontWeight: 500 }}>글 {article.author ?? 'PAGEONEWORKS'}</span>
+        <span style={{ margin: '0 8px', color: 'rgba(26,26,26,0.25)' }}>·</span>
+        <span>발행일 {article.date}</span>
+        <span style={{ margin: '0 8px', color: 'rgba(26,26,26,0.25)' }}>·</span>
+        <span>읽기시간 {article.readTime}</span>
+      </p>
 
-      {/* 왼쪽: 작성자 + 날짜 */}
-      <div className="flex items-center gap-4 flex-wrap">
-        <div>
-          <p
-            className="uppercase"
-            style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}
-          >
-            글
-          </p>
-          <p
-            className="mt-0.5"
-            style={{ fontFamily: 'var(--font-inter)', fontSize: '14px', fontWeight: 400, color: '#1a1a1a' }}
-          >
-            {article.author ?? 'PAGEONEWORKS'}
-          </p>
-        </div>
-
-        <div className="w-px h-8 bg-black/10" />
-
-        <div>
-          <p
-            className="uppercase"
-            style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}
-          >
-            발행일
-          </p>
-          <p
-            className="mt-0.5"
-            style={{ fontFamily: 'var(--font-inter)', fontSize: '14px', fontWeight: 400, color: '#1a1a1a' }}
-          >
-            {article.date}
-          </p>
-        </div>
-
-        <div className="w-px h-8 bg-black/10" />
-
-        <div>
-          <p
-            className="uppercase"
-            style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.2em', color: 'rgba(26,26,26,0.35)' }}
-          >
-            읽기 시간
-          </p>
-          <p
-            className="mt-0.5"
-            style={{ fontFamily: 'var(--font-inter)', fontSize: '14px', fontWeight: 400, color: '#1a1a1a' }}
-          >
-            {article.readTime}
-          </p>
-        </div>
-      </div>
-
-      {/* 오른쪽: 스폰서 배지 */}
       {article.isSponsored && article.sponsorName && (
-        
         <a
-        href={article.sponsorUrl ?? '#'}
-          className="inline-flex items-center gap-2 px-4 py-2 border border-black/15 hover:border-black/30 transition-colors self-start sm:self-center"
+          href={article.sponsorUrl ?? '#'}
+          className="inline-flex items-center gap-2 px-4 py-2 border border-black/15 hover:border-black/30 transition-colors self-start"
           style={{ textDecoration: 'none' }}
         >
           <span
@@ -74,9 +39,7 @@ export function ArticleCredit({ article }: Props) {
           >
             Sponsored
           </span>
-          <span
-            className="w-px h-3 bg-black/15"
-          />
+          <span className="w-px h-3 bg-black/15" />
           <span
             style={{ fontFamily: 'var(--font-inter)', fontSize: '13px', fontWeight: 500, color: '#1a1a1a' }}
           >

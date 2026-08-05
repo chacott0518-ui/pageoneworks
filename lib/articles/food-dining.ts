@@ -24,7 +24,7 @@ export const foodDiningArticles: Article[] = [
 
 강남 오마카세가 특히 주목받는 이유는 재료의 질 때문입니다. 청담·신사 권역 상위 레스토랑들은 매일 아침 노량진 수산시장과 일본 직수입 항공 배송 재료를 함께 사용합니다. 참치(혼마구로), 성게(우니), 전복, 제철 도미 등 고가 식재료를 코스 안에서 순서대로 경험할 수 있다는 것이 오마카세만의 가치입니다.
 
-##IMAGE##https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=1200&q=85##CAPTION##강남 오마카세 스시 코스 — 제철 재료와 셰프의 기술이 한 접시에 담긴다##END##
+##IMAGE##https://images.unsplash.com/photo-1564489563601-c53cfc451e93?w=1200&q=85##CAPTION##강남 오마카세 스시 코스 — 제철 재료와 셰프의 기술이 한 접시에 담긴다##END##
 
 ■ 강남 오마카세 가격대별 차이는 무엇인가?
 
@@ -175,7 +175,7 @@ A. 청담동은 역사 있는 장인 셰프 레스토랑이 많고, 강남역·�
 
 ##INFOBOX##청담 파인다이닝 예약 핵심##blue##✅ 미쉐린 3스타 레스토랑은 최소 2~3개월 전 예약 시작 ✅ 캐치테이블(catchtable.co.kr) 알림 설정 필수 ✅ 취소표는 방문 3~7일 전 주로 발생 ✅ 예약 시 특별 요청(알레르기·채식·기념일)은 반드시 사전 고지 ✅ 예약금 결제 정책과 취소 환불 조건 반드시 확인##END##
 
-##IMAGE##https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85##CAPTION##서울 파인다이닝 코스 — 계절 식재료와 셰프의 철학이 한 접시에##END##
+##IMAGE##https://images.unsplash.com/photo-1535320903710-d993d3d77d29?w=1200&q=85##CAPTION##서울 파인다이닝 코스 — 계절 식재료와 셰프의 철학이 한 접시에##END##
 
 ■ 한남 — 글로벌 감성의 파인다이닝
 
@@ -279,9 +279,10 @@ A. 완전히 괜찮습니다. 서울 파인다이닝 문화에서 1인 식사는
     excerpt: '올해 새롭게 별을 받은 레스토랑과 놓치면 안 될 비스트로 완전 분석',
     date: '2026.03.11',
     readTime: '8 MIN',
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85',
-    heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1200&q=85',
+    heroImage: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?w=1600&q=85',
     featured: false,
+    indexable: false,
     tags: ['미쉐린', '파인다이닝', '서울맛집'],
     author: 'PAGEONEWORKS 편집부',
   },
@@ -306,7 +307,7 @@ A. 완전히 괜찮습니다. 서울 파인다이닝 문화에서 1인 식사는
 
 ■ 내추럴 와인이란 무엇인가 — 정의와 오해
 
-##IMAGE##https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=1200&q=85##CAPTION##내추럴 와인 — 최소 개입, 최대 테루아의 결과물##END##
+##IMAGE##https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=85##CAPTION##내추럴 와인 — 최소 개입, 최대 테루아의 결과물##END##
 
 내추럴 와인에는 국제적으로 통일된 법적 정의가 없다. 다만 내추럴 와인 생산자들이 공통적으로 따르는 원칙들이 있다. 포도 재배 단계에서는 화학 농약과 제초제를 사용하지 않고, 유기농(Organic) 또는 바이오다이나믹(Biodynamic) 방식을 따른다. 양조 단계에서는 상업 효모 대신 자연 효모(야생 효모)로 발효하고, 여과·청징 처리를 최소화하거나 생략한다. SO2(이산화황) 첨가량을 극도로 낮추거나 무첨가로 만든다.
 

@@ -290,7 +290,7 @@ https://www.gsma.com/solutions-and-impact/technologies/esim/about/`,
 2026년 기준 제주 버스 시스템은 대폭 개편되어 공항에서 성산일출봉, 서귀포, 협재해수욕장까지 환승 1~2회로 이동이 가능해졌습니다. 다만 일부 오름, 중산간 마을은 대중교통 접근이 제한적이어서 사전 루트 계획이 중요합니다.
 (출처: 제주특별자치도 대중교통과, 버스노선 개편 안내, 2026)
 
-##IMAGE##https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8?w=1200&q=85##CAPTION##제주 해안도로 — 버스와 전기자전거로도 충분히 아름답다##END##
+##IMAGE##https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=85##CAPTION##제주 해안도로 — 버스와 전기자전거로도 충분히 아름답다##END##
 
 ■ 제주 공항에서 주요 관광지 버스 이동 방법은?
 
@@ -400,7 +400,7 @@ heroImage: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1600&
 
 인천에서 말레(Malé)까지 직항 또는 경유 후 수상비행기(씨플레인)나 스피드보트로 리조트에 도착하는 여정 자체가 이미 여행의 일부입니다.
 
-##IMAGE##https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1200&q=85##CAPTION##몰디브 수상방갈로 — 인도양 위에 떠 있는 꿈의 숙소##END##
+##IMAGE##https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1200&q=85##CAPTION##몰디브 수상방갈로 — 인도양 위에 떠 있는 꿈의 숙소##END##
 
 ■ 몰디브 리조트 등급별 완전 비교
 
@@ -545,7 +545,7 @@ A. 몰디브는 이슬람 국가입니다. 리조트 섬 안에서는 자유롭�
     author: 'PAGEONEWORKS 편집부',
     body: `##STATGRID##1시간:인천→후쿠오카 비행시간||3~5만엔:규슈 골프장 평균 그린피||20만원↑:국내 주중 라운딩 총비용||주7회:인천-가고시마 직항 운항||3박4일:추천 원정 일정||2026년:탈한국 골프 러시 가속화##END##
 
-##IMAGE##https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200&q=85##CAPTION##규슈 골프 원정 2026 — 1시간 비행으로 만나는 일본 명문 골프장##END##
+##IMAGE##https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=85##CAPTION##규슈 골프 원정 2026 — 1시간 비행으로 만나는 일본 명문 골프장##END##
 
 ■ 왜 한국 골퍼들이 규슈로 향하는가
 
@@ -653,8 +653,8 @@ A. 가장 큰 차이는 운영 방식입니다. 국내 골프장은 캐디 동�
     excerpt: '2026년 3월 홍콩 컨벤션센터를 수놓을 아트 바젤. 글로벌 갤러리 243개, 주목할 작가와 섹션, 처음 컬렉팅을 시작하는 이들을 위한 실전 가이드까지.',
     date: '2026.03.05',
     readTime: '16 MIN',
-    image: 'https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=800&q=80',
-    heroImage: 'https://images.unsplash.com/photo-1541367777708-7905fe3296c0?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=1600&q=85',
     featured: true,
     tags: ['아트바젤홍콩', '아트컬렉팅', '현대미술'],
     author: 'PAGEONEWORKS',
@@ -704,7 +704,7 @@ A. 가장 큰 차이는 운영 방식입니다. 국내 골프장은 캐디 동�
 
 ■ 2026년 주목할 작가 흐름
 
-##IMAGE##https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=1200&q=85##CAPTION##현대미술 페어의 현장 — 작품과 컬렉터, 갤러리스트가 만나는 공간##END##
+##IMAGE##https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=1200&q=85##CAPTION##현대미술 페어의 현장 — 작품과 컬렉터, 갤러리스트가 만나는 공간##END##
 
 아트 바젤 홍콩 2026에서 주목해야 할 흐름은 크게 세 가지다.
 
@@ -785,8 +785,8 @@ A. 홍콩은 미술품 수출입에 관세가 없습니다. 한국으로 반입 
     excerpt: '2026 미쉐린 가이드 서울 최신판 완전 분석. 새롭게 등재된 레스토랑, 별을 유지한 곳, 그리고 서울 파인다이닝 씬의 현재를 팩트 기반으로 정리했다.',
     date: '2026.03.12',
     readTime: '15 MIN',
-    image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
-    heroImage: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=1600&q=85',
     featured: true,
     tags: ['미쉐린서울', '파인다이닝', '서울레스토랑'],
     author: 'PAGEONEWORKS',
@@ -794,7 +794,7 @@ A. 홍콩은 미술품 수출입에 관세가 없습니다. 한국으로 반입 
 
 이 글은 2026 미쉐린 가이드 서울의 주요 변화를 팩트 중심으로 정리하고, 처음 파인다이닝에 입문하는 이들을 위한 실용적 안내를 함께 담는다. 미쉐린의 평가 기준과 한계에 대한 균형 잡힌 시각도 놓치지 않는다.
 
-##IMAGE##https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=85##CAPTION##서울 파인다이닝 — 로컬 식재료와 현대적 기법이 교차하는 공간##END##
+##IMAGE##https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=1200&q=85##CAPTION##서울 파인다이닝 — 로컬 식재료와 현대적 기법이 교차하는 공간##END##
 
 ##STATGRID##7개:3스타 레스토랑||12개:2스타 레스토랑||67개:1스타 레스토랑||68개:빕 구르망||10년:서울판 발행 역사||역대 최다:2026년 등재 수##END##
 
