@@ -1,76 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown } from 'lucide-react';
 import { siteConfig } from '@/lib/site.config';
-
-const categoryLinks = [
-  { label: 'VITALITY', href: '/category/vitality' },
-  { label: 'PROPERTIES', href: '/category/properties' },
-  { label: 'DRIVE & TECH', href: '/category/drive-tech' },
-  { label: 'LEGAL & FINANCE', href: '/category/legal-finance' },
-  { label: 'LIFESTYLE & TRAVEL', href: '/category/lifestyle-travel' },
-  { label: 'BEAUTY & WELLNESS', href: '/category/beauty-wellness' },
-  { label: 'FOOD & DINING', href: '/category/food-dining' },
-  { label: 'EDUCATION', href: '/category/education' },
-  { label: 'ARCHIVE', href: '/archive' },
-];
-
-const siteLinks = [
-  { label: '커뮤니티', href: '/community' },
-  { label: '멤버십 신청', href: '/community#membership' },
-  { label: '광고·제휴 문의', href: '/advertise' },
-  { label: 'Instagram', href: '#' },
-  { label: 'YouTube', href: '#' },
-];
-
-function AccordionSection({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="border-b border-white/8">
-      <button
-        onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full py-4 md:hidden"
-      >
-        <span
-          className="text-cream/40 text-[8px] uppercase tracking-[0.25em]"
-          style={{ fontFamily: 'var(--font-space-mono)' }}
-        >
-          {title}
-        </span>
-        <ChevronDown
-          className={`w-3.5 h-3.5 text-cream/30 transition-transform duration-300 ${
-            open ? 'rotate-180' : ''
-          }`}
-        />
-      </button>
-
-      {/* 모바일: 아코디언 */}
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ${open ? 'max-h-96 pb-4' : 'max-h-0'}`}>
-        {children}
-      </div>
-
-      {/* PC: 항상 보임 */}
-      <div className="hidden md:block">
-        <p
-          className="text-cream/30 text-[8px] uppercase tracking-[0.25em] mb-5"
-          style={{ fontFamily: 'var(--font-space-mono)' }}
-        >
-          {title}
-        </p>
-        {children}
-      </div>
-    </div>
-  );
-}
 
 export function Footer() {
   return (
@@ -99,67 +30,6 @@ export function Footer() {
           >
             의료·부동산·기술·금융·라이프스타일을 아우르는 프리미엄 웹매거진.
           </p>
-        </div>
-
-        {/* 링크 그리드 */}
-        <div className="md:grid md:grid-cols-3 md:gap-12 mb-10">
-
-          {/* 카테고리 */}
-          <AccordionSection title="Categories">
-            <ul className="flex flex-col gap-2.5">
-              {categoryLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-cream/40 hover:text-cream text-[9px] uppercase tracking-[0.15em] transition-colors"
-                    style={{ fontFamily: 'var(--font-space-mono)' }}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </AccordionSection>
-
-          {/* 링크 */}
-          <AccordionSection title="Links">
-            <ul className="flex flex-col gap-2.5">
-              {siteLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-cream/40 hover:text-cream text-[9px] uppercase tracking-[0.15em] transition-colors"
-                    style={{ fontFamily: 'var(--font-space-mono)' }}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </AccordionSection>
-
-          {/* 뉴스레터 */}
-          <div className="mt-4 md:mt-0">
-            <p
-              className="hidden md:block text-cream/30 text-[8px] uppercase tracking-[0.25em] mb-5"
-              style={{ fontFamily: 'var(--font-space-mono)' }}
-            >
-              Newsletter
-            </p>
-            <p
-              className="text-cream/40 text-xs leading-relaxed mb-4"
-              style={{ fontFamily: 'var(--font-inter)', fontWeight: 300 }}
-            >
-              프리미엄 인사이트를 가장 먼저 받아보세요.
-            </p>
-            <Link
-              href="/community"
-              className="inline-flex items-center border border-cream/20 text-cream/50 hover:border-cream/50 hover:text-cream text-[8px] uppercase tracking-[0.18em] px-4 py-2.5 transition-all"
-              style={{ fontFamily: 'var(--font-space-mono)' }}
-            >
-              구독 신청 →
-            </Link>
-          </div>
         </div>
 
         {/* 사업자 정보 — PC: 한 줄 / 모바일: 두 줄 */}

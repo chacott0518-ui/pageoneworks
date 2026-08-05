@@ -34,7 +34,7 @@ const mobileSwipe = displayList.slice(1, 3);
 
   return (
     <section
-      className="py-12 md:py-24 px-5 md:px-8 bg-[#111]"
+      className="py-14 md:py-24 px-5 md:px-8 bg-[#111]"
       aria-label="최신 아티클"
       itemScope
       itemType="https://schema.org/Blog"
@@ -293,11 +293,11 @@ const mobileSwipe = displayList.slice(1, 3);
 
           <Link
             href="/archive"
-            className="flex items-center justify-center gap-2 border border-cream/15 text-cream/45 hover:border-cream/40 hover:text-cream/75 transition-colors py-4 uppercase"
+            className="group flex items-center justify-center gap-2 border border-cream/15 text-cream/45 uppercase transition-all duration-200 hover:border-cream/40 hover:text-cream/75 active:border-cream/50 active:bg-white/[0.07] active:text-cream active:translate-y-[1px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold py-4"
             style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em' }}
             aria-label="전체 아티클 보기"
           >
-            전체 아티클 보기 <ArrowRight className="w-3 h-3" />
+            전체 아티클 보기 <ArrowRight className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
         </div>
 

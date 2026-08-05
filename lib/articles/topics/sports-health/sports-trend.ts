@@ -6,6 +6,7 @@ export const sportsTrendArticles: Article[] = [
         slug: 'fifa-world-cup-2026-winner-awards-korea-ranking',
         category: 'SPORTS & HEALTH',
         categorySlug: 'sports-health',
+        topicSlug: 'sports-trend',
         title:
           'FIFA World Cup 2026 Results — Winner, Golden Boot, Golden Ball and Korea Ranking',
         titleKo:

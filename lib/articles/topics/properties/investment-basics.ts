@@ -6,6 +6,7 @@ export const investmentBasicsArticles: Article[] = [
         slug: 'jeonse-deposit-return-guarantee-requirements-2026',
         category: 'PROPERTIES',
         categorySlug: 'properties',
+        topicSlug: 'investment-basics',
         title:
           'Jeonse Deposit Return Guarantee 2026 — Eligibility, Mortgage and Contract Checklist',
         titleKo:

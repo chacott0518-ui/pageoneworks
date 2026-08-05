@@ -49,18 +49,29 @@
   flex-shrink: 0;
   border: 0.5px solid #383838;
   border-radius: 2px;
+  background-color: transparent;
   font-family: 'DM Sans', sans-serif;
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #888;
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.22s ease, color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
 }
 
 .epick-more-btn:hover {
   border-color: #c9b99a;
   color: #c9b99a;
+  background-color: rgba(201, 185, 154, 0.06);
+}
+
+.epick-more-btn:active {
+  transform: translateY(1px);
+}
+
+.epick-more-btn:focus-visible {
+  outline: 2px solid #c9b99a;
+  outline-offset: 2px;
 }
 
 .epick-desk {
@@ -338,7 +349,9 @@
 
 /* Mobile */
 .epick-mob-body {
-  padding-bottom: 88px;
+  /* "더 많은 아티클 보기" 버튼 하단 ~ CommunityCTA 배경 시작 사이 간격의 단일 기준값.
+     CommunityCTA 자체 padding(.epick-inner 모바일 override 포함)은 건드리지 않음 — 중복 방지 */
+  padding-bottom: 76px;
   overflow-x: hidden;
 }
 
@@ -416,18 +429,32 @@
   box-sizing: border-box;
   border: 0.5px solid #2a2a2a;
   border-radius: 2px;
+  background-color: transparent;
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #777;
   text-decoration: none;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.22s ease, color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
 }
 
 .epick-more-mob:hover {
   border-color: #c9b99a;
   color: #c9b99a;
+  background-color: rgba(201, 185, 154, 0.06);
+}
+
+.epick-more-mob:active {
+  border-color: #c9b99a;
+  color: #f5f2ed;
+  background-color: rgba(201, 185, 154, 0.08);
+  transform: translateY(1px);
+}
+
+.epick-more-mob:focus-visible {
+  outline: 2px solid #c9b99a;
+  outline-offset: 2px;
 }
 
 .epick-mob-list-text .epick-cat-sm {
@@ -444,5 +471,11 @@
     margin-bottom: 24px;
     padding-bottom: 16px;
     gap: 12px;
+  }
+
+  /* 다음 섹션(CommunityCTA)의 상단 padding과 중복되지 않도록
+     모바일에서만 섹션 하단 여백을 최소화 — 간격 기준은 CommunityCTA의 py-16(64px) */
+  .epick-inner {
+    padding-bottom: 0;
   }
 }

@@ -5,8 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { X, Search, User } from 'lucide-react';
-import { SearchOverlay } from '@/components/SearchOverlay';
 import { createClient } from '@/lib/supabase';
+
+/** HomeSearchSection.tsx의 검색 섹션 id와 반드시 동일해야 함 */
+const HOME_SEARCH_SECTION_ID = 'home-insight-search';
+const HOME_SEARCH_INPUT_ID = 'home-insight-search-input';
 
 const categoryNav = [
   { label: 'VITALITY', slug: 'vitality' },
@@ -34,7 +37,6 @@ const moreNav = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [profileOpen, setProfileOpen] = useState(false);
   const pathname = usePathname();
@@ -85,6 +87,21 @@ export function Header() {
 
   const userName = user?.user_metadata?.full_name?.split(' ')[0] || user?.email?.split('@')[0] || '';
   const avatarUrl = user?.user_metadata?.avatar_url || null;
+
+  // PC·모바일 돋보기 공통 동작 — 홈의 검색 섹션으로 이동 후 focus (기존 별도 검색 오버레이 대체)
+  const goToHomeSearch = () => {
+    if (pathname === '/') {
+      const el = document.getElementById(HOME_SEARCH_SECTION_ID);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        window.setTimeout(() => {
+          document.getElementById(HOME_SEARCH_INPUT_ID)?.focus();
+        }, 450);
+        return;
+      }
+    }
+    router.push(`/#${HOME_SEARCH_SECTION_ID}`);
+  };
 
   return (
     <>
@@ -176,9 +193,9 @@ export function Header() {
             <div className="hidden md:block bg-cream/20" style={{ width: '1px', height: '14px' }} />
 
             <button
-              onClick={() => setSearchOpen(true)}
-              aria-label="검색"
-              className="flex items-center justify-center text-cream/50 hover:text-cream transition-colors"
+              onClick={goToHomeSearch}
+              aria-label="홈 검색으로 이동"
+              className="flex items-center justify-center text-cream/50 hover:text-cream transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               style={{ width: '32px', height: '32px' }}
             >
               <Search style={{ width: '15px', height: '15px' }} />
@@ -328,7 +345,6 @@ export function Header() {
         </div>
       </div>
 
-      <SearchOverlay isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

@@ -6,6 +6,7 @@ export const societyCultureArticles: Article[] = [
         slug: 'rescene-geoje-yaho-love-attack-rise-2026',
         category: 'GLOBAL TREND',
         categorySlug: 'global-trend',
+        topicSlug: 'society-culture',
         title: 'RESCENE, Geoje Yaho and LOVE ATTACK — The Small-Agency K-pop Miracle',
         titleKo: '리센느는 어떻게 ‘중소돌의 기적’을 만들었나 — 거제 야호·원이 유튜브·LOVE ATTACK 역주행',
         excerpt: '리센느의 LOVE ATTACK 역주행은 단순한 밈이 아니라 원이 유튜브, 미나미의 거제 야호, 지역 브랜딩, 음악 완성도가 함께 만든 중소돌의 기적에 가깝다.',

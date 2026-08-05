@@ -53,23 +53,28 @@ export default function CategoryClient({ category, catArticles, topics, params }
       <section className="relative overflow-hidden" style={{ minHeight: '55vh' }}>
         <div className="absolute inset-0 overflow-hidden">
           <Image src={category.image} alt={category.titleKo} fill sizes="(max-width: 768px) 100vw, 1600px" quality={75} className="object-cover object-center" priority />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/55 to-black/30" />
+          {/* 약한 전체 오버레이 — 이미지 분위기 보존 */}
+          <div className="absolute inset-0 bg-black/18 md:bg-black/12" />
+          {/* 하단 그라데이션 — 텍스트 영역 대비 확보 */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/15 md:from-black/90 md:via-black/48 md:to-black/10" />
+          {/* 좌측 그라데이션 — 텍스트 시작점 대비 보강 */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/10 to-transparent md:from-black/60 md:via-black/5" />
         </div>
         <div className="relative z-10 flex flex-col justify-end min-h-[55vh] px-5 md:px-12 pb-10 md:pb-14 pt-28 md:pt-40">
           <div className="max-w-[1600px] mx-auto w-full">
-            <Link href="/" className="inline-flex items-center gap-2 text-cream/55 hover:text-cream/90 uppercase transition-colors mb-6 md:mb-8" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.15em' }}>
+            <Link href="/" className="inline-flex items-center gap-2 text-cream/65 hover:text-cream uppercase transition-colors mb-6 md:mb-8" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.15em', textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
               <ArrowLeft className="w-3 h-3" /> Back
             </Link>
-            <p className="text-cream/50 mb-2 md:mb-3 uppercase speakable-summary" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.3em' }}>
+            <p className="text-cream/65 mb-2 md:mb-3 uppercase speakable-summary" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '10px', letterSpacing: '0.3em', textShadow: '0 1px 3px rgba(0,0,0,0.4)' }}>
               {category.id} &mdash; {category.desc}
             </p>
-            <h1 className="text-cream leading-none tracking-[-0.02em]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 8vw, 7rem)', fontWeight: 400 }}>
+            <h1 className="text-cream leading-none tracking-[-0.02em]" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1.8rem, 8vw, 7rem)', fontWeight: 400, textShadow: '0 2px 10px rgba(0,0,0,0.45)' }}>
               {category.title}
             </h1>
-            <p className="text-cream/55 mt-2 md:mt-3 italic" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1rem, 2.5vw, 1.5rem)' }}>
+            <p className="text-cream/85 mt-2 md:mt-3 italic" style={{ fontFamily: 'var(--font-cormorant)', fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', textShadow: '0 1px 6px rgba(0,0,0,0.4)' }}>
               {category.titleKo}
             </p>
-            <p className="text-cream/35 mt-1.5 md:mt-2 max-w-[500px] leading-relaxed" style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', fontWeight: 300 }}>
+            <p className="text-cream/70 mt-1.5 md:mt-2 max-w-[500px] leading-relaxed" style={{ fontFamily: 'var(--font-inter)', fontSize: 'clamp(0.8rem, 1.5vw, 1rem)', fontWeight: 300, textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
               {category.descKo}
             </p>
           </div>

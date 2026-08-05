@@ -2,6 +2,7 @@
 
 import { Header } from '@/components/Header';
 import { HeroPanorama } from '@/components/HeroPanorama';
+import { HomeSearchSection } from '@/components/home/HomeSearchSection';
 import { MagazineGrid } from '@/components/MagazineGrid';
 import { EditorPickSection } from '@/components/EditorPickSection';
 import { CommunityCTA } from '@/components/CommunityCTA';
@@ -13,6 +14,7 @@ export default function HomePage() {
       <Header />
       <main>
         <HeroPanorama />
+        <HomeSearchSection />
         <MagazineGrid />
         <EditorPickSection />
         <CommunityCTA />

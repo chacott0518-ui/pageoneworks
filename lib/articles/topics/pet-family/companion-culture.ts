@@ -6,6 +6,7 @@ export const companionCultureArticles: Article[] = [
     slug: 'jindo-vs-shiba-global-guide-2026',
     category: 'PET & FAMILY',
     categorySlug: 'pet-family',
+    topicSlug: 'companion-culture',
     title: 'Jindo vs Shiba Inu Global Guide 2026 — Temperament, Adoption, and Care Differences',
     titleKo: '진돗개 vs 시바견, 해외에서는 왜 다르게 평가될까 — 성격·입양·관리 차이',
     excerpt: '진돗개와 시바견은 모두 동아시아 스피츠형 견종이지만 해외에서 받아들여지는 이미지는 다릅니다. 충성심·독립성·훈련 난이도·가족 적합성·입양 전 체크포인트를 기준으로 두 견종의 차이를 정리했습니다.',

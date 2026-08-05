@@ -6,6 +6,7 @@ export const fitnessGuideArticles: Article[] = [
         slug: 'beginner-gym-workout-routine-2026',
         category: 'SPORTS & HEALTH',
         categorySlug: 'sports-health',
+        topicSlug: 'fitness-guide',
         title: 'Beginner Gym Workout Routine 2026 — Exercise Order and a 3-Day Full-Body Plan',
         titleKo: '헬스 초보 루틴 2026 — 헬스장 운동 순서·주 3회 전신운동 가이드',
         excerpt:

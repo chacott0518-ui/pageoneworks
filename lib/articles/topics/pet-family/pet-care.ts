@@ -6,6 +6,7 @@ export const petCareArticles: Article[] = [
         slug: 'dog-tear-stains-food-allergy-care-guide-2026',
         category: 'PET & FAMILY',
         categorySlug: 'pet-family',
+        topicSlug: 'pet-care',
         title: 'Dog Tear Stains and Food Allergy Guide 2026 — Causes, Odor, Brown Staining, Cleaning, and Vet Warning Signs',
         titleKo: '강아지 눈물자국, 사료 바꾸면 없어질까 — 알레르기·눈물 냄새·갈색 착색 관리법',
         excerpt: '강아지 눈물자국은 사료 문제 하나로만 설명하기 어렵다. 눈물량, 눈물 배출, 알레르기, 눈 질환, 위생 관리, 털색과 얼굴 구조까지 함께 확인해야 한다.',

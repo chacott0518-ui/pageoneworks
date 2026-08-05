@@ -6,6 +6,7 @@ export const housingMarketArticles: Article[] = [
     slug: 'seoul-apartment-price-housing-market-outlook-2026',
     category: 'PROPERTIES',
     categorySlug: 'properties',
+    topicSlug: 'housing-market',
     title:
       'Seoul Housing Market 2026 — Apartment Prices, Jeonse and Buying Timing Guide',
     titleKo:

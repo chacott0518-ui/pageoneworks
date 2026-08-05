@@ -6,6 +6,7 @@ export const digitalToolsArticles: Article[] = [
         slug: 'passkey-passwordless-login-guide-2026',
         category: 'DRIVE & TECH',
         categorySlug: 'drive-tech',
+        topicSlug: 'digital-tools',
         title:
           'Passkey Guide 2026 — Passwordless Login on iPhone, Android and Windows',
         titleKo:
@@ -225,6 +226,7 @@ export const digitalToolsArticles: Article[] = [
         slug: 'ai-deepfake-voice-phishing-scam-prevention-2026',
         category: 'DRIVE & TECH',
         categorySlug: 'drive-tech',
+        topicSlug: 'digital-tools',
         title:
           'AI Deepfake Scam Guide 2026 — Voice Cloning, Phishing Texts and Safe Verification',
         titleKo:
@@ -604,6 +606,7 @@ export const digitalToolsArticles: Article[] = [
         slug: 'ai-agent-work-automation-safety-guide-2026',
         category: 'DRIVE & TECH',
         categorySlug: 'drive-tech',
+        topicSlug: 'digital-tools',
         title:
           'AI Agent Guide 2026 — Chatbots, Work Automation and Safe Approval Rules',
         titleKo:
