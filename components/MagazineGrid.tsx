@@ -118,7 +118,7 @@ const mobileSwipe = displayList.slice(1, 3);
                 quality={75}
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 priority
-                unoptimized={main.image.startsWith('https://')}
+                unoptimized
                 itemProp="image"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
@@ -192,7 +192,7 @@ const mobileSwipe = displayList.slice(1, 3);
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       quality={75}
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      unoptimized={article.image.startsWith('https://')}
+                      unoptimized
                     />
                     <div className="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors duration-500" />
                     <div className="absolute top-2.5 left-2.5">

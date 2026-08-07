@@ -67,7 +67,7 @@ function CardLarge({ a }: { a: Article }) {
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={80}
             priority
-            unoptimized={a.image.startsWith('https://')}
+            unoptimized
             className="epick-img"
           />
           <div className="epick-overlay" />
@@ -95,7 +95,7 @@ function CardMedium({ a, rank, delay }: { a: Article; rank: number; delay: numbe
             fill
             sizes="(max-width: 768px) 50vw, 25vw"
             quality={75}
-            unoptimized={a.image.startsWith('https://')}
+            unoptimized
             className="epick-img"
           />
           <div className="epick-overlay" />
