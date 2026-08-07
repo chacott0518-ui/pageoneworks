@@ -18,6 +18,7 @@ export function HeroImage({ src, alt }: Props) {
       sizes="(max-width: 768px) 100vw, 1400px"
       quality={75}
       placeholder="empty"
+      unoptimized={src.startsWith('https://')}
       style={{ opacity: 0, transition: 'opacity 0.3s ease' }}
       onLoad={(e) => {
         const img = e.currentTarget;

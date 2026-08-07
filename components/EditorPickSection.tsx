@@ -67,6 +67,7 @@ function CardLarge({ a }: { a: Article }) {
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={80}
             priority
+            unoptimized={a.image.startsWith('https://')}
             className="epick-img"
           />
           <div className="epick-overlay" />
@@ -94,6 +95,7 @@ function CardMedium({ a, rank, delay }: { a: Article; rank: number; delay: numbe
             fill
             sizes="(max-width: 768px) 50vw, 25vw"
             quality={75}
+            unoptimized={a.image.startsWith('https://')}
             className="epick-img"
           />
           <div className="epick-overlay" />
@@ -117,7 +119,7 @@ function CardSmall({ a, rank, delay, isLast }: { a: Article; rank: number; delay
       <Link href={`/article/${a.slug}`} className="epick-list-link">
         <span className="epick-rank epick-rank--gold">{String(rank).padStart(2, '0')}</span>
         <div className="epick-list-thumb">
-          <Image src={a.image} alt={a.titleKo} fill sizes="160px" quality={75} className="epick-img" />
+          <Image src={a.image} alt={a.titleKo} fill sizes="160px" quality={75} unoptimized={a.image.startsWith('https://')} className="epick-img" />
         </div>
         <div className="epick-list-text">
           <PickMeta a={a} dark />
@@ -139,6 +141,7 @@ function MobileFeatured({ a }: { a: Article }) {
           sizes="100vw"
           quality={80}
           priority
+          unoptimized={a.image.startsWith('https://')}
           className="epick-img"
         />
         <div className="epick-overlay" />
@@ -157,7 +160,7 @@ function MobileListItem({ a, rank }: { a: Article; rank: number }) {
     <Link href={`/article/${a.slug}`} className="epick-mob-list-link">
       <span className="epick-rank epick-rank--gold">{String(rank).padStart(2, '0')}</span>
       <div className="epick-mob-thumb">
-        <Image src={a.image} alt={a.titleKo} fill sizes="96px" quality={75} className="epick-img" />
+        <Image src={a.image} alt={a.titleKo} fill sizes="96px" quality={75} unoptimized={a.image.startsWith('https://')} className="epick-img" />
       </div>
       <div className="epick-mob-list-text">
         <span className="epick-cat-sm">{a.category}</span>
