@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const FALLBACK = '/images/og-default.jpg';
 
@@ -12,16 +12,24 @@ interface Props {
 
 export function HeroImage({ src, alt }: Props) {
   const trimmed = typeof src === 'string' ? src.trim() : '';
-  const [current, setCurrent] = useState(trimmed || FALLBACK);
+  const [useFallback, setUseFallback] = useState(false);
   const [failed, setFailed] = useState(!trimmed);
 
-  if (failed) {
+  useEffect(() => {
+    setUseFallback(false);
+    setFailed(!trimmed);
+  }, [trimmed]);
+
+  if (failed || !trimmed) {
     return <div className="absolute inset-0 bg-[#1a1a1a]" aria-hidden />;
   }
 
+  const displaySrc = useFallback ? FALLBACK : trimmed;
+
   return (
     <Image
-      src={current}
+      key={displaySrc}
+      src={displaySrc}
       alt={alt}
       fill
       className="object-cover opacity-70"
@@ -36,8 +44,8 @@ export function HeroImage({ src, alt }: Props) {
         img.style.opacity = '0.7';
       }}
       onError={() => {
-        if (current !== FALLBACK) {
-          setCurrent(FALLBACK);
+        if (!useFallback) {
+          setUseFallback(true);
           return;
         }
         setFailed(true);

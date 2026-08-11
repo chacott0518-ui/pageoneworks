@@ -9,6 +9,7 @@ import {
   getLatestArticles,
   getArticlesByCategoryTitle,
 } from '@/lib/article-selectors';
+import SafeArticleThumb from '@/components/SafeArticleThumb';
 
 // data.ts의 categories에서 archive 제외하고 자동으로 탭 생성 → 카테고리 추가해도 자동 반영
 const tabs = [
@@ -145,10 +146,9 @@ const mobileSwipe = displayList.slice(1, 3);
               {side.length > 0 ? side.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group relative overflow-hidden bg-black flex-1">
                   <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
-                    <Image
-                      src={article.image}
-                      alt={article.titleKo}
-                      fill
+                    <SafeArticleThumb
+                      src={article.image || article.heroImage}
+                      alt=""
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       quality={75}
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
@@ -185,14 +185,12 @@ const mobileSwipe = displayList.slice(1, 3);
               {bottom.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group">
                   <div className="relative overflow-hidden mb-3 bg-black" style={{ aspectRatio: '4/3' }}>
-                    <Image
-                      src={article.image}
-                      alt={article.titleKo}
-                      fill
+                    <SafeArticleThumb
+                      src={article.image || article.heroImage}
+                      alt=""
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       quality={75}
                       className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      unoptimized
                     />
                     <div className="absolute inset-0 bg-black/15 group-hover:bg-transparent transition-colors duration-500" />
                     <div className="absolute top-2.5 left-2.5">
@@ -231,15 +229,12 @@ const mobileSwipe = displayList.slice(1, 3);
             className="group block relative overflow-hidden bg-black mb-3"
             style={{ aspectRatio: '3/2' }}
           >
-            <Image
+            <SafeArticleThumb
               src={main.heroImage ?? main.image}
-              alt={main.titleKo}
-              fill
+              alt=""
               sizes="(max-width: 768px) 100vw, 1600px"
               quality={75}
               className="object-cover"
-              priority
-              unoptimized={main.image.startsWith('https://')}
             />
             <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
             <div className="absolute top-3 left-3">
@@ -264,14 +259,12 @@ const mobileSwipe = displayList.slice(1, 3);
             <div className="grid grid-cols-2 gap-2 mb-5">
               {mobileSwipe.map((article) => (
                 <Link key={article.id} href={`/article/${article.slug}`} className="group relative overflow-hidden bg-black" style={{ aspectRatio: '4/3' }}>
-                  <Image
-                    src={article.image}
-                    alt={article.titleKo}
-                    fill
+                  <SafeArticleThumb
+                    src={article.image || article.heroImage}
+                    alt=""
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     quality={75}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    unoptimized={article.image.startsWith('https://')}
                   />
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(0deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 60%, transparent 100%)' }} />
                   <div className="absolute top-2 left-2">

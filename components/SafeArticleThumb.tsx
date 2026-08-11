@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const FALLBACK = '/images/og-default.jpg';
 
@@ -12,13 +12,17 @@ type Props = {
   sizes: string;
   className?: string;
   quality?: number;
+  /**
+   * Default true — production previously hit Vercel Image Optimization 402s.
+   * Article thumbs must load the src URL directly; only real img onError uses fallback.
+   */
   unoptimized?: boolean;
 };
 
 /**
  * Fixed-aspect article thumbnails for cards/search.
- * On load failure, swaps to project og-default, then a neutral placeholder —
- * so browser alt text never floods the image frame.
+ * Renders the real src first. Fallback only after a genuine onError.
+ * Does not preflight / HEAD-check remote URLs.
  */
 export default function SafeArticleThumb({
   src,
@@ -26,14 +30,18 @@ export default function SafeArticleThumb({
   sizes,
   className = 'object-cover',
   quality = 70,
-  unoptimized,
+  unoptimized = true,
 }: Props) {
   const trimmed = typeof src === 'string' ? src.trim() : '';
-  const initial = trimmed || FALLBACK;
-  const [current, setCurrent] = useState(initial);
-  const [showPlaceholder, setShowPlaceholder] = useState(!trimmed);
+  const [failed, setFailed] = useState(false);
+  const [useFallback, setUseFallback] = useState(false);
 
-  if (showPlaceholder) {
+  useEffect(() => {
+    setFailed(false);
+    setUseFallback(false);
+  }, [trimmed]);
+
+  if (!trimmed || failed) {
     return (
       <div
         className="absolute inset-0 flex items-center justify-center bg-[#EFEAE1]"
@@ -54,9 +62,12 @@ export default function SafeArticleThumb({
     );
   }
 
+  const displaySrc = useFallback ? FALLBACK : trimmed;
+
   return (
     <Image
-      src={current}
+      key={displaySrc}
+      src={displaySrc}
       alt={alt}
       fill
       sizes={sizes}
@@ -64,11 +75,11 @@ export default function SafeArticleThumb({
       className={className}
       unoptimized={unoptimized}
       onError={() => {
-        if (current !== FALLBACK) {
-          setCurrent(FALLBACK);
+        if (!useFallback) {
+          setUseFallback(true);
           return;
         }
-        setShowPlaceholder(true);
+        setFailed(true);
       }}
     />
   );
