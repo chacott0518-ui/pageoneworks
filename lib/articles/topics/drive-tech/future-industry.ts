@@ -17,9 +17,9 @@ export const futureIndustryArticles: Article[] = [
       updatedAt: '2026-08-05T22:24:00+09:00',
       readTime: '14 MIN',
     image:
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1600',
+      'https://images.unsplash.com/photo-1631882456892-54a30e92fe4f?auto=format&fit=crop&q=80&w=1600',
     heroImage:
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=85&w=1600',
+      'https://images.unsplash.com/photo-1631882456892-54a30e92fe4f?auto=format&fit=crop&q=85&w=1600',
     featured: true,
     tags: [
       '휴머노이드로봇',

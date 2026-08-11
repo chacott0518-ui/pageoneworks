@@ -9,11 +9,11 @@ import {
   useRef,
   useState,
 } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, X, ArrowRight } from 'lucide-react';
 import type { HomeSearchResultItem } from '@/lib/home-search';
+import SafeArticleThumb from '@/components/SafeArticleThumb';
 
 const GOLD = '#c9a96e';
 
@@ -338,10 +338,9 @@ function HomeSearchSectionInner() {
                           className="flex min-h-[44px] min-w-0 gap-3 border border-white/10 bg-white/[0.03] p-2.5 transition-colors hover:border-white/25 hover:bg-white/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
                         >
                           <div className="relative h-[74px] w-[74px] shrink-0 overflow-hidden bg-black min-[390px]:h-[82px] min-[390px]:w-[82px] md:h-[92px] md:w-[92px]">
-                            <Image
+                            <SafeArticleThumb
                               src={item.image}
                               alt=""
-                              fill
                               sizes="(min-width: 768px) 92px, 82px"
                               quality={70}
                               className="object-cover"

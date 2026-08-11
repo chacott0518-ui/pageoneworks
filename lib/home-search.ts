@@ -131,7 +131,7 @@ export function searchHomeArticles(rawQuery: string, list: Article[]): HomeSearc
     title: article.titleKo || article.title,
     category: article.category,
     excerpt: article.excerpt,
-    image: article.image,
+    image: article.image || article.heroImage || '',
     date: article.date,
     readTime: article.readTime,
   }));

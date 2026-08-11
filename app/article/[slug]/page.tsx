@@ -5,7 +5,6 @@ import PregnancyCalculator from '@/components/PregnancyCalculator';
 import TaxCalculator from '@/components/TaxCalculator';
 import VatCalculator from '@/components/VatCalculator';
 import React from 'react';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Phone, MapPin, Clock, ExternalLink } from 'lucide-react';
@@ -21,6 +20,7 @@ import { siteConfig, absoluteUrl } from '@/lib/site.config'
 const PHONE_HREF = siteConfig.phone.href
 import AIQnA from '@/components/AIQnA'
 import ConsultCTA from '@/components/ConsultCTA'
+import SafeArticleThumb from '@/components/SafeArticleThumb'
 
 const RELATED_LIMIT = 4;
 const RELATED_TAG_WEIGHT = 50;
@@ -587,8 +587,14 @@ export default function ArticlePage({ params }: Props) {
             if (block.type === 'image') {
               return (
                 <figure key={i} className="my-8 md:my-10">
-                  <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
-                    <Image src={block.content} alt={block.caption || ''} fill className="object-cover" sizes="(max-width: 768px) 100vw, 760px" quality={75} loading="lazy" />
+                  <div className="relative w-full overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                    <SafeArticleThumb
+                      src={block.content}
+                      alt=""
+                      sizes="(max-width: 768px) 100vw, 760px"
+                      quality={75}
+                      className="object-cover"
+                    />
                   </div>
                   {block.caption && (
                     <figcaption className="text-center mt-3 px-5 uppercase article-image-caption" style={{ fontFamily: 'var(--font-space-mono)', fontSize: '11px', letterSpacing: '0.12em', color: 'rgba(26,26,26,0.4)' }}>
@@ -684,7 +690,13 @@ export default function ArticlePage({ params }: Props) {
               ) : null;
               const imgBox = (img: { url: string; cap: string }, extraStyle: React.CSSProperties = {}) => (
                 <div style={{ position: 'relative', overflow: 'hidden', ...extraStyle }}>
-                  <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" quality={75} style={{ objectFit: 'cover', display: 'block' }} />
+                  <SafeArticleThumb
+                    src={img.url}
+                    alt=""
+                    sizes="(max-width: 768px) 100vw, 800px"
+                    quality={75}
+                    className="object-cover"
+                  />
                   {capOverlay(img.cap)}
                 </div>
               );
@@ -697,7 +709,13 @@ export default function ArticlePage({ params }: Props) {
                     {imgBox(mImgs[0], { gridColumn: '1 / -1', aspectRatio: '21/8' })}
                     {mImgs.slice(1).map((img, mi) => (
                       <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3' }}>
-                        <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" quality={75} style={{ objectFit: 'cover', display: 'block' }} />
+                        <SafeArticleThumb
+                          src={img.url}
+                          alt=""
+                          sizes="(max-width: 768px) 100vw, 800px"
+                          quality={75}
+                          className="object-cover"
+                        />
                         {capOverlay(img.cap)}
                       </div>
                     ))}
@@ -708,7 +726,13 @@ export default function ArticlePage({ params }: Props) {
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px', margin: '32px 0' }}>
                   {mImgs.slice(0, 4).map((img, mi) => (
                     <div key={mi} style={{ position: 'relative', overflow: 'hidden', aspectRatio: '1/1' }}>
-                      <Image src={img.url} alt={img.cap} fill sizes="(max-width: 768px) 100vw, 800px" quality={75} style={{ objectFit: 'cover', display: 'block' }} />
+                      <SafeArticleThumb
+                        src={img.url}
+                        alt=""
+                        sizes="(max-width: 768px) 100vw, 800px"
+                        quality={75}
+                        className="object-cover"
+                      />
                       {capOverlay(img.cap)}
                     </div>
                   ))}
@@ -824,6 +848,14 @@ export default function ArticlePage({ params }: Props) {
             }
             return blockEl;
           })}
+
+          {ctaInsertIndex < 0 && contentBlocks.length > 0 && (
+            <ConsultCTA
+              categorySlug={article.categorySlug}
+              articleTitle={article.titleKo}
+              category={article.category}
+            />
+          )}
 
           {isCarnguy && (
             <div style={{
@@ -1150,24 +1182,12 @@ export default function ArticlePage({ params }: Props) {
                       className="article-related-card group flex w-[136px] shrink-0 snap-start flex-col overflow-hidden rounded-[15px] border border-[#E6E0D6] bg-[#FAF8F5] outline-none transition-all duration-200 hover:-translate-y-0.5 hover:border-[#D4CBBC] hover:bg-[#FCFBF9] hover:shadow-[0_8px_20px_rgba(26,26,26,0.06)] focus-visible:ring-2 focus-visible:ring-[#C9A96E]/50 focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 lg:w-auto lg:min-w-0"
                     >
                       <div className="relative w-full overflow-hidden bg-black/5" style={{ aspectRatio: '4/3' }}>
-                        {thumbSrc ? (
-                          <Image
-                            src={thumbSrc}
-                            alt={cardTitle}
-                            fill
-                            sizes="(max-width: 768px) 140px, 260px"
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="absolute inset-0 flex items-center justify-center bg-[#EFEAE1]">
-                            <span
-                              className="uppercase"
-                              style={{ fontFamily: 'var(--font-space-mono)', fontSize: '9px', letterSpacing: '0.14em', color: 'rgba(26,26,26,0.3)' }}
-                            >
-                              PAGEONEWORKS
-                            </span>
-                          </div>
-                        )}
+                        <SafeArticleThumb
+                          src={thumbSrc}
+                          alt=""
+                          sizes="(max-width: 768px) 140px, 260px"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
                       </div>
                       <div className="flex flex-1 flex-col p-3 lg:p-4">
                         <p
