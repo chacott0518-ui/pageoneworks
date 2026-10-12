@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-ko)'],
         serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
         mono: ['var(--font-space-mono)', 'monospace'],
-        pretendard: ['Pretendard', '-apple-system', 'sans-serif'],
+        pretendard: ['Pretendard', 'var(--font-ko)'],
       },
       colors: {
         cream: '#f5f2ed',

@@ -66,7 +66,7 @@ function CardLarge({ a }: { a: Article }) {
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             quality={80}
-            priority
+            loading="lazy"
             unoptimized
             className="epick-img"
           />
@@ -140,7 +140,7 @@ function MobileFeatured({ a }: { a: Article }) {
           fill
           sizes="100vw"
           quality={80}
-          priority
+          loading="lazy"
           unoptimized={a.image.startsWith('https://')}
           className="epick-img"
         />

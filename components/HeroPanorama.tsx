@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
+import { HOME_LCP_IMAGE } from '@/lib/home-lcp';
 
 const slides = [
   {
@@ -9,7 +10,7 @@ const slides = [
     categoryKo: '\uc758\ub8cc\xb7\uc548\ud2f0\uc5d0\uc774\uc9d5',
     headline: 'The Future of',
     headlineEm: 'Longevity',
-    image: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1920&q=85',
+    image: HOME_LCP_IMAGE,
   },
   {
     category: 'PROPERTIES',
@@ -107,6 +108,10 @@ export function HeroPanorama() {
               className="object-cover"
               style={{ transform: 'scale(1.05)' }}
               priority={i === 0}
+              fetchPriority={i === 0 ? 'high' : 'auto'}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              /* Avoid /_next/image cold path competing with LCP; preload href === img src */
+              unoptimized={i === 0}
             />
           </div>
         ))}

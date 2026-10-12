@@ -7,6 +7,7 @@ import {
 import { siteConfig } from '@/lib/site.config'
 import { articles } from '@/lib/data'
 import { getLatestArticles } from '@/lib/article-selectors'
+import { HOME_LCP_IMAGE } from '@/lib/home-lcp'
 import HomeClient from './HomeClient'
 
 const SITE_URL = siteConfig.baseUrl
@@ -65,6 +66,8 @@ const itemListSchema = getItemListSchema(
 export default function HomePage() {
   return (
     <>
+      {/* Must match HeroPanorama slide-0 img src exactly (unoptimized LCP) */}
+      <link rel="preload" as="image" href={HOME_LCP_IMAGE} fetchPriority="high" />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
