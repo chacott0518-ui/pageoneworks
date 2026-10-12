@@ -107,11 +107,12 @@ export function HeroPanorama() {
               quality={75}
               className="object-cover"
               style={{ transform: 'scale(1.05)' }}
+              /* Only slide-0 is HOME LCP; never let later slides or Article cards steal priority */
               priority={i === 0}
               fetchPriority={i === 0 ? 'high' : 'auto'}
               loading={i === 0 ? 'eager' : 'lazy'}
-              /* Avoid /_next/image cold path competing with LCP; preload href === img src */
-              unoptimized={i === 0}
+              /* Local LCP + other slides: avoid /_next/image cold path on first paint */
+              unoptimized
             />
           </div>
         ))}

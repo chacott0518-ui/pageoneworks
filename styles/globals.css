@@ -273,6 +273,17 @@ h1, h2, h3, h4, p { word-break: keep-all; overflow-wrap: break-word; }
   vertical-align: top;
 }
 
+/* 2열 표: 짧은 첫 열이 균등 1fr로 과도하게 넓어지지 않게 */
+.article-table--cols-2 .article-table-th:first-child,
+.article-table--cols-2 .article-table-td:first-child {
+  min-width: 0;
+  white-space: nowrap;
+}
+.article-table--cols-2 .article-table-th:last-child,
+.article-table--cols-2 .article-table-td:last-child {
+  min-width: 0;
+}
+
 /* 관련 키워드 / 관련 엔티티 chip 줄바꿈 정책 */
 .article-keyword-chip,
 .article-entity-chip {

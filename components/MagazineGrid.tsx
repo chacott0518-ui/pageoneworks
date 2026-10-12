@@ -232,7 +232,7 @@ const mobileSwipe = displayList.slice(1, 3);
             <SafeArticleThumb
               src={main.heroImage ?? main.image}
               alt=""
-              sizes="(max-width: 768px) 100vw, 1600px"
+              sizes="(max-width: 768px) 100vw, 640px"
               quality={75}
               className="object-cover"
             />
@@ -262,7 +262,7 @@ const mobileSwipe = displayList.slice(1, 3);
                   <SafeArticleThumb
                     src={article.image || article.heroImage}
                     alt=""
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 50vw, 33vw"
                     quality={75}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />

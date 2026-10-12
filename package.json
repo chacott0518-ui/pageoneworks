@@ -7,7 +7,8 @@
     "build": "next build",
     "postbuild": "node scripts/notify-indexnow.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:magazine-images": "node scripts/check-magazine-images.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.3",

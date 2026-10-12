@@ -413,9 +413,13 @@ function FaqAnswer({ text }: { text: string }) {
 
 /**
  * 표 컬럼 개수에 따른 grid-template-columns 값과 스크롤 wrapper 최소 폭.
- * 2열은 기존처럼 균등폭 유지(강제 스크롤 없음), 3열 이상만 열 비율/최소폭을 지정한다.
+ * 2열: 첫 열(순서/요일/단계 등)은 내용폭, 두 번째 열이 나머지 — 모바일 여백 과다 방지.
+ * 3열 이상: 열 비율/최소폭 + 가로 스크롤 유지.
  */
 function getTableColumnTemplate(maxCols: number): string {
+  if (maxCols === 2) {
+    return 'max-content minmax(0, 1fr)';
+  }
   if (maxCols === 3) {
     return 'minmax(170px, 0.9fr) minmax(215px, 1.05fr) minmax(235px, 1.15fr)';
   }

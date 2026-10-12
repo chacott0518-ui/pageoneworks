@@ -95,6 +95,7 @@ function CardMedium({ a, rank, delay }: { a: Article; rank: number; delay: numbe
             fill
             sizes="(max-width: 768px) 50vw, 25vw"
             quality={75}
+            loading="lazy"
             unoptimized
             className="epick-img"
           />
@@ -138,7 +139,7 @@ function MobileFeatured({ a }: { a: Article }) {
           src={a.heroImage ?? a.image}
           alt={a.titleKo}
           fill
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 640px"
           quality={80}
           loading="lazy"
           unoptimized={a.image.startsWith('https://')}
